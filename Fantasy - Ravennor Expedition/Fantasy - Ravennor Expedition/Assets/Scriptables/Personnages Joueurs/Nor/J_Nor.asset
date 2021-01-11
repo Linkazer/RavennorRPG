@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: J_Nor
+  m_EditorClassIdentifier: 
+  nom: Nor
+  icon: {fileID: 21300000, guid: ca40a0e0dbe48d746bb7b522b87c111c, type: 3}
+  spritePerso: {fileID: 21300000, guid: 964ce8b10a3d4c14cbb8ff367b4ff833, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  baseHps: 10
+  hpByLevel: 0
+  baseMoveSpeed: 18
+  force: 1
+  constitution: 2
+  agilite: 5
+  intelligence: 1
+  perception: 5
+  charisme: 2
+  puissMag: 5
+  sortsDisponibles:
+  - {fileID: 11400000, guid: ba19b934dcbf3d94aa334be6056ee238, type: 2}
+  - {fileID: 11400000, guid: 226cb3fea4116c14cac3feea2181f80f, type: 2}
+  - {fileID: 11400000, guid: 7270c0825b6ffbd44b0441fdf4d0490c, type: 2}
+  - {fileID: 11400000, guid: df09667fa5fb4f14b9973a1d8c1cb574, type: 2}

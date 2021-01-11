@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: J_Okun
+  m_EditorClassIdentifier: 
+  nom: Okun
+  icon: {fileID: 21300000, guid: 740f4922f6c02554caf0136d0c520be0, type: 3}
+  spritePerso: {fileID: 21300000, guid: f6be83e413109f048a165550e4e44a1d, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  baseHps: 10
+  hpByLevel: 0
+  baseMoveSpeed: 18
+  force: 4
+  constitution: 3
+  agilite: 5
+  intelligence: 1
+  perception: 3
+  charisme: 1
+  puissMag: 4
+  sortsDisponibles:
+  - {fileID: 11400000, guid: cced96bca1dd17c4999da17d39132930, type: 2}
+  - {fileID: 11400000, guid: 5f4f655778b33924db5618370ee7bdc7, type: 2}
+  - {fileID: 11400000, guid: 6c84114456460a7439bccad2c37d2945, type: 2}

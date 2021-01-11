@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: EndConvoLvl 3
+  m_EditorClassIdentifier: 
+  storyText: "Alors que le groupe ass\xE8ne le coup final au n\xE9cromancien, les
+    mort-vivants alentours tombent lourdement au sol, inanim\xE9s.\n\n\"Eh bien voil\xE0
+    une bonne chose de faite\" dit Okun en reprennant son souffle.\n\n\"Heureusement
+    qu'on soit arriv\xE9 \xE0 temps. Je n'imagine pas le carnage qu'il aurait fait
+    s'il avait envoy\xE9 tout ses mort-vivants au village\" dit Shedun en v\xE9rifiant
+    que les cadavres ne bougent plus.\n\n\"Mais la qu'est-ce qu'il faisait ici ?\"
+    demande Vanyaenn en fouillant les notes du n\xE9cromancien. \"S'il avait juste
+    voulu attaqu\xE9 le village, il aurait pu le faire depuis longtemps.\"\n\nFouillant
+    avec elle, Eliza ramasse une enveloppe trouv\xE9 par terre. \"Je crois que j'ai
+    trouv\xE9 !\" dit-elle pour pr\xE9vnir les autres.\n\n\"Tu ferais mieux de te
+    d\xE9p\xE9cher Rodrick. La patience de madame \xE0 ses limites, tes r\xE9cents
+    \xE9checs ne jouent pas en ta faveur. Fait en sorte que le corps soit pr\xEAt
+    la fin du mois si tu ne veux pas finir comme ton pr\xE9d\xE9cesseur.\""
+  reponses:
+  - text: "Merci d'avoir jou\xE9, en esp\xE9rant vous recroiser."
+    nextStory: {fileID: 0}
+  battleBegin: 0
+  goToCamp: 1

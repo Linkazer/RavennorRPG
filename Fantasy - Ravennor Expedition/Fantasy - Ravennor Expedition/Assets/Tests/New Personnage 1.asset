@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: New Personnage 1
+  m_EditorClassIdentifier: 
+  nom: Tony Montana
+  icon: {fileID: 0}
+  persoApparence: {fileID: 0}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  maxHp: 100
+  maanaMax: 0
+  force: 0
+  agilite: 2
+  puissMag: 10
+  constitution: 0
+  perception: 0
+  bonusForce: 0
+  bonusAgilite: 0
+  bonusPuissMag: 0
+  bonusConstit: 0
+  bonusPerception: 0
+  bonusDegPhyMelee: 0
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusEsquive: 0
+  bonusChanceTouche: 0
+  bonusResistPhy: 0
+  bonusResistMag: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaanaCost: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalDefense: 0
+  bonusMagicalDefense: 0
+  sortsDisponibles: []

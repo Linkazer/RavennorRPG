@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Obstacle
+  - BattleCharacter
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Sol
+    uniqueID: 2146853489
+    locked: 0
+  - name: SurSol
+    uniqueID: 1005639121
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: InGameUI
+    uniqueID: 824864713
+    locked: 0
+  - name: UI
+    uniqueID: 2470479525
+    locked: 0

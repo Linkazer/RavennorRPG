@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_ChasseurMageMelee
+  m_EditorClassIdentifier: 
+  nom: Chasseur de Mage
+  icon: {fileID: 21300000, guid: 39508ef7f8d76e749a4f0889ebc1377b, type: 3}
+  spritePerso: {fileID: 21300000, guid: 71381983ab1d7e04694aa27f280d75d7, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  force: 2
+  constitution: 2
+  agilite: 2
+  intelligence: 1
+  perception: 1
+  charisme: 1
+  puissMag: 1
+  sortsDisponibles: []
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 536c8731be02dfe4793ebda4cd40bc5e, type: 2}
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 50
+      constant: 50
+      coeficient: -0.5
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: 8904bbc409f18634684a94cde2f00b9b, type: 2}
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 50
+      constant: 50
+      coeficient: -0.5
+      calculImportance: 1
+    - calculType: 5
+      abscissaValue: 9
+      maxValue: 10
+      constant: 5
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 2
+    cooldown: 0

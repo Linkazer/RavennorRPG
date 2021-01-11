@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_ArcherSkeleton
+  m_EditorClassIdentifier: 
+  nom: Squelette archer
+  icon: {fileID: 0}
+  spritePerso: {fileID: 21300000, guid: 75c6e2951af8f5341b8dcd398e20f80d, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  baseHps: 5
+  hpByLevel: 1
+  baseMoveSpeed: 10
+  force: 1
+  constitution: 2
+  agilite: 4
+  intelligence: 1
+  perception: 3
+  charisme: 1
+  puissMag: 1
+  sortsDisponibles: []
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: c41df3995eb4fc347a1553c11f1fe20d, type: 2}
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 100
+      constant: 100
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0

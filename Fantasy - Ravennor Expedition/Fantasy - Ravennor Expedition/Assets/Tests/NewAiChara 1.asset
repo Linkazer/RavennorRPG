@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: NewAiChara 1
+  m_EditorClassIdentifier: 
+  nom: "G\xE9rard"
+  icon: {fileID: 21300000, guid: 7c3f9b942df92de4bb84c4973bed8723, type: 3}
+  persoApparence: {fileID: 21300000, guid: 7de67b12c44d8cd42963fc4d247f95a9, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  force: 4
+  constitution: 3
+  agilite: 6
+  intelligence: 1
+  perception: 3
+  charisme: 1
+  puissMag: 5
+  sortsDisponibles: []
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 0b3f5fb1386d6414386873433357b1e4, type: 2}
+    calculs:
+    - calculType: 0
+      abscissaValue: 3
+      maxValue: 1
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0

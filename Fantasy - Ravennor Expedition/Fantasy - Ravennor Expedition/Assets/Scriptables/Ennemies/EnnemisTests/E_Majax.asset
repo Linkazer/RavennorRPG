@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_Majax
+  m_EditorClassIdentifier: 
+  nom: Majax
+  icon: {fileID: 21300000, guid: e0f8c3992f9b4d5459d6d95117e00ba4, type: 3}
+  persoApparence: {fileID: 21300000, guid: baa73a16e595c8c4598ca016362d6479, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 4
+  force: 3
+  constitution: 3
+  agilite: 2
+  intelligence: 1
+  perception: 5
+  charisme: 2
+  puissMag: 5
+  sortsDisponibles:
+  - {fileID: 11400000, guid: e6dc25e1dbeeb004eb6671fd9da257ea, type: 2}
+  - {fileID: 11400000, guid: 5cc9285567fe01442af7fe7afcf0231c, type: 2}
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 5cc9285567fe01442af7fe7afcf0231c, type: 2}
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 30
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    - calculType: 1
+      abscissaValue: 6
+      maxValue: 100
+      constant: 100
+      coeficient: -2
+      calculImportance: 1
+    maxCooldown: 2
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: e6dc25e1dbeeb004eb6671fd9da257ea, type: 2}
+    calculs:
+    - calculType: 0
+      abscissaValue: 0
+      maxValue: 0
+      constant: 9999
+      coeficient: 0
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0

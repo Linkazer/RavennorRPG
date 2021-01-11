@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: EndConvoLvl 1
+  m_EditorClassIdentifier: 
+  storyText: "Le dernier zombie vient de tomber \xE0 vos pieds. Le groupe reste \xE0
+    l'affut du moindre bruit, restant silencieux pendant plusieurs longues secondes.\n\n\"Je
+    pense que c'est bon. Tout le monde va bien ?\" demande Vanyaenn.\n\n\"Ca a l'air
+    d'aller\" r\xE9pond Okun en v\xE9rifiant s'il n'est pas blesser.\n\n\"C'\xE9tait
+    quoi ces trucs ?\" demande Nor.\n\n\"Ca m'\xE0 tout l'air d'\xEAtre de la n\xE9cromancie\"
+    r\xE9pond Shedun en inspectant les cadavres. \"Mais ce qui m'inqui\xE8te le plus,
+    c'est que certains de ces mort-vivants n'ont pas l'air d'\xEAtre tr\xE8s vieux.\"\n\n\"Tu
+    crois que...\"\nEliza s'abaisse pour inspecter les cavadres. Sur l'un d'eux,
+    elle apper\xE7oit un colier d'argent, avec une inscription dessus.\n\"C'est le
+    mari de la taverni\xE8re du village.\" dit-elle en baissant la t\xEAte.\n\n\"Dans
+    ce cas, y a plus qu'\xE0 se d\xE9p\xE9cher !\" dit Okun en courrant vers la prochaine
+    salle, rapidement suivit par Nor.\n\n\"Attend... Ah, ils vont finir par me tuer
+    ces deux l\xE0.\" r\xE2le Vanyaenn avant de les rejoinde."
+  reponses:
+  - text: Continuer ...
+    nextStory: {fileID: 0}
+  battleBegin: 0
+  goToCamp: 1

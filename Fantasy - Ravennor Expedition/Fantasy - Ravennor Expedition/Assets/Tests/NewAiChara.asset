@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: NewAiChara
+  m_EditorClassIdentifier: 
+  nom: "G\xE9rard"
+  icon: {fileID: 0}
+  persoApparence: {fileID: 0}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  maxHp: 100
+  maanaMax: 0
+  force: 4
+  agilite: 6
+  puissMag: 10
+  intelligence: 0
+  constitution: 0
+  perception: 0
+  charisme: 0
+  bonusForce: 0
+  bonusAgilite: 0
+  bonusPuissMag: 0
+  bonusIntelligence: 0
+  bonusConstit: 0
+  bonusPerception: 0
+  bonusCharisme: 0
+  bonusDegPhyMelee: 0
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusEsquive: 0
+  bonusChanceTouche: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaanaCost: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalDefense: 0
+  bonusMagicalDefense: 0
+  sortsDisponibles: []
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 41f5ccfa03831ed4ba54cb68713858c5, type: 2}
+    calculs:
+    - calculType: 0
+      abscissaValue: 3
+      maxValue: 100
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0

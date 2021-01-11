@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: StartConvoLevel 3
+  m_EditorClassIdentifier: 
+  storyText: "Alors que vous avancez dans le crypte en offrant aux quelques mort-vivants
+    que vous croisez un repos m\xE9rit\xE9, vous tombez face \xE0 une intersection.\n\n\"Par
+    o\xF9 on va maintenant ?\" demande Nor.\n\n\"D'apr\xE8s mes talents de chasseurs,
+    et au vu des marques sur le sol,\" dit Okun en sortant une pi\xE8ce de sa poche.
+    \"Je pense que nous devrions aller... Par l\xE0 !\" dit-il apr\xE8s avoir vu
+    la pi\xE8ce tomber sur sa face.\n\nBien que Nor soit une fois de plus surprise
+    par les talents d'Okun, le reste du groupe se d\xE9cide apr\xE8s quelques secondes
+    \xE0 les suivre, chacun plus d\xE9pit\xE9 que les autres. Au bout de quelques
+    m\xE8tres, et malgr\xE9 l'assurance d'Okun, vous vous retrouvez face \xE0 un
+    cul de sac, vous for\xE7ant \xE0 faire demi-tour.\n\n\"Dit moi Okun. Tes talents
+    de chasseurs, ils t'ont d\xE9j\xE0 permi d'attraper quoi que ce soit ?\" demande
+    Eliza.\n\n\"Eh bien figure toi qu'un jour, j'ai r\xE9ussi \xE0 chasser un taureau
+    ! C't'abruti pensait m'avoir en me fon\xE7ant dessus !\" s'exclaffe Okun.\n\nS'enfon\xE7ant
+    encore plus dans la crypte, le groupe fini par appercevoir une grande double
+    porte. S'approchant doucement, Eliza signale des bruit derri\xE8re la porte.
+    Apr\xE8s que tout le monde soit pr\xEAt, Okun enfonce la porte. Au fond de la
+    salle, un homme dont le visage est cach\xE9 par sa capuche sursaute, avant d'ordonner
+    aux mort-vivant dans la salle d'attaquer nos h\xE9ros."
+  reponses:
+  - text: Continuer ...
+    nextStory: {fileID: 0}
+  battleBegin: 1
+  goToCamp: 0

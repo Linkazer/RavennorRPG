@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_Abomination
+  m_EditorClassIdentifier: 
+  nom: Abomination
+  icon: {fileID: 0}
+  spritePerso: {fileID: 21300000, guid: 92d96f64d3c6f164484e80e920dccf36, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 2
+  baseHps: 20
+  hpByLevel: 0
+  baseMoveSpeed: 18
+  force: 3
+  constitution: 3
+  agilite: 1
+  intelligence: 2
+  perception: 1
+  charisme: 2
+  puissMag: 1
+  sortsDisponibles: []
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 8c58bbc1858e2e04baf7ac65092a6b0c, type: 2}
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 30
+      constant: 30
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: 31df1a121502c6e45ba315e3bf9e44d0, type: 2}
+    calculs:
+    - calculType: 0
+      abscissaValue: 6
+      maxValue: 999
+      constant: 999
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 99
+    cooldown: 0
