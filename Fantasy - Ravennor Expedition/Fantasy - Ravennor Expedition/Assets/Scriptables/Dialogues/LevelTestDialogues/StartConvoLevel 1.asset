@@ -12,19 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
   m_Name: StartConvoLevel 1
   m_EditorClassIdentifier: 
-  storyText: "Vous voil\xE0 en face de la crypte de Gzarsaroth. Alors qu'elle est
-    sens\xE9 \xEAtre abandonn\xE9 depuis plusieurs ann\xE9es, des habitants du village
-    voisin racontent avoir entendu des bruits et apper\xE7ut de la lumi\xE8re sortir
-    du donjon. L'un d'eux raconte m\xEAme avoir vu quelqu'un y entrer. Envoy\xE9
-    par l'Acad\xE9mie de Norgannon, Majax vous a demand\xE9 d'enqu\xEAter sur cette
-    crypte.\n\nEliza s'approche de la porte.\n\"Ah ! Ca pue la mort la dedans.\"
-    dit-elle en ouvrant.\n\n\"C'est le concept d'une crypte\" r\xE9pond Shedun.\n\n\"Soyez
-    sur vos gardes, on ne sait pas ce qui nous attend \xE0 l'int\xE9rieur de ces
-    murs\" dit Vanyaenn en fixant Okun.\n\nAlors que vous vous enfoncez dans le donjon,
-    vous tomber sur un grande salle avec de nombreux tombeaux. Alors que vous explorez
-    la pi\xE8ce, vous entendez un vase se casser.\n\n\"D\xE9sol\xE9\" dit Nor, avec
-    un vase cass\xE9 \xE0 ses pieds.\nSoudain, des grognements se font entendre.
-    Vous observer alors certains des tombeaux s'ouvrir."
+  storyText: "Apr\xE8s des jours de trajets, la confr\xE9rie arrive enfin en face
+    de la crypte de Gzarsaroth. Alors qu'elle est sens\xE9 \xEAtre abandonn\xE9 depuis
+    plusieurs ann\xE9es, des habitants du village voisin racontent avoir entendu
+    des bruits et apper\xE7ut de la lumi\xE8re sortir du donjon. L'un d'eux raconte
+    m\xEAme avoir vu quelqu'un y entrer. Envoy\xE9 par l'Acad\xE9mie de Norgannon,
+    la confr\xE9rie a pour travail d'enqu\xEAter sur cette crypte.\n\nEliza s'approche
+    de la porte.\n\"Ah ! Ca pue la mort la dedans.\" dit-elle en ouvrant.\n\n\"C'est
+    le concept d'une crypte\" r\xE9pond Shedun.\n\n\"Soyez sur vos gardes, on ne
+    sait pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en
+    fixant Okun.\n\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent
+    dans une grande salle avec de nombreux tombeaux. Fouillant la pi\xE8ce \xE0 la
+    recherche du moindre indice, le bruit d'une vase se cassant sur le sol r\xE9sonne
+    dans la pi\xE8ce.\n\n\"D\xE9sol\xE9\" dit Nor, avec un vase cass\xE9 \xE0 ses
+    pieds.\nSoudain, des grognements se font entendre. Plusieurs des tombeaux de
+    la salle commencent alors \xE0 s'ouvrir."
   reponses:
   - text: Continuer ...
     nextStory: {fileID: 0}

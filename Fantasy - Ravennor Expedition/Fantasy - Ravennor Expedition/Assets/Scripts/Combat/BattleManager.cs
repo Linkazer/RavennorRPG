@@ -165,6 +165,16 @@ public class BattleManager : MonoBehaviour
     {
         PlayerBattleManager.instance.ActivatePlayerBattleController(false);
         battleState = true;
+
+        foreach(RuntimeBattleCharacter runChara in charaTeamOne)
+        {
+            int boucleLength = runChara.GetAppliedEffects().Count;
+            for (int i = 0; i < boucleLength; i++)
+            {
+                runChara.RemoveEffect(0);
+            }
+        }
+
         if(doesWin)
         {
             Debug.Log("Won");
@@ -174,6 +184,14 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                if(roomManager.levelAtEnd != 0)
+                {
+                    foreach(PersonnageScriptables p in RavenorGameManager.instance.playerPersos)
+                    {
+                        p.SetLevel(roomManager.levelAtEnd);
+                    }
+                }
+
                 ExitBattle();
 
             }
@@ -452,7 +470,7 @@ public class BattleManager : MonoBehaviour
             BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, 0.5f);
         }
 
-        if (wantedAction.incantationTime != ActionIncantation.Fast)
+        if (wantedAction.incantationTime != ActionIncantation.Rapide)
         {
             caster.actionAvailable = false;
         }
@@ -472,7 +490,7 @@ public class BattleManager : MonoBehaviour
 
         switch (wantedAction.incantationTime)
         {
-            case ActionIncantation.Fast:
+            case ActionIncantation.Rapide:
                 return true;
             case ActionIncantation.Simple:
                 if (character.actionAvailable)
@@ -480,13 +498,13 @@ public class BattleManager : MonoBehaviour
                     return true;
                 }
                 return false;
-            case ActionIncantation.Slow:
+            case ActionIncantation.Lent:
                 if (character.actionAvailable && !character.hasMoved)
                 {
                     return true;
                 }
                 return false;
-            case ActionIncantation.Complex:
+            case ActionIncantation.Hard:
                 if (character.actionAvailable)
                 {
                     return true;
@@ -595,22 +613,22 @@ public class BattleManager : MonoBehaviour
 
         //Jet de la défense
         int defenseLucky = 0, attackLucky = 0;
-        targetDefenseScore = AttackRoll(target.GetCharacterDatas().GetDefense(), 1, out defenseLucky);
+        targetDefenseScore = target.GetCharacterDatas().GetBrutDefense();//AttackRoll(target.GetCharacterDatas().GetDefenseDice(), DiceType.D4, target.GetCharacterDatas().GetBrutDefense(), 1, out defenseLucky);
 
         //Jet de l'attaque
         switch (wantedAction.attackType)
         {
             case AttackType.Force:
-                casterHitScore = AttackRoll(caster.GetCharacterDatas().GetToucheMelee(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
+                casterHitScore = AttackRoll(caster.GetCharacterDatas().GetTouchDices(1), DiceType.D6, caster.GetCharacterDatas().GetBrutToucheMelee(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
                 wantedDiceBonus = EffectType.PhysicalMeleDamage;
                 //damage += caster.GetCharacterDatas().GetPhysicalDamageMelee();
                 break;
             case AttackType.Dexterite:
-                casterHitScore = AttackRoll(caster.GetCharacterDatas().GetToucheDistance(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
+                casterHitScore = AttackRoll(caster.GetCharacterDatas().GetTouchDices(2), DiceType.D6, caster.GetCharacterDatas().GetBrutToucheDistance(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
                 //damage += caster.GetCharacterDatas().GetPhysicalDamageDistance();
                 break;
             case AttackType.PuissMagique:
-                casterHitScore = AttackRoll(caster.GetCharacterDatas().GetToucheMagical(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
+                casterHitScore = AttackRoll(caster.GetCharacterDatas().GetTouchDices(3), DiceType.D6, caster.GetCharacterDatas().GetBrutToucheMagical(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
                 wantedDiceBonus = EffectType.MagicalDamage;
                 //damage += caster.GetCharacterDatas().GetMagicalDamage();
                 break;
@@ -624,25 +642,25 @@ public class BattleManager : MonoBehaviour
                 switch (wantedAction.attackType)
                 {
                     case AttackType.Force:
-                        casterHitScore = NormalRoll(caster.GetCharacterDatas().GetToucheMelee(), DiceType.D6);
+                        casterHitScore = NormalRoll(caster.GetCharacterDatas().GetTouchDices(1), caster.GetCharacterDatas().GetBrutToucheMelee(),DiceType.D6);
                         break;
                     case AttackType.Dexterite:
-                        casterHitScore = NormalRoll(caster.GetCharacterDatas().GetToucheDistance(), DiceType.D6);
+                        casterHitScore = NormalRoll(caster.GetCharacterDatas().GetTouchDices(2), caster.GetCharacterDatas().GetBrutToucheDistance(), DiceType.D6);
                         break;
                     case AttackType.PuissMagique:
-                        casterHitScore = NormalRoll(caster.GetCharacterDatas().GetToucheMagical(), DiceType.D6);
+                        casterHitScore = NormalRoll(caster.GetCharacterDatas().GetTouchDices(3), caster.GetCharacterDatas().GetBrutToucheMagical(), DiceType.D6);
                         break;
                 }
             }
             else
             {
-                diary.AddText(currentCaster.name + " rate son action");
+                diary.AddText(currentCaster.name + " rate son action (" + casterHitScore + " vs " + targetDefenseScore + ")");
                 return new List<Dice>();
             }
         }
         else if (defenseLucky > 0)
         {
-            targetDefenseScore = NormalRoll(target.GetCharacterDatas().GetDefense(), DiceType.D6);
+            //targetDefenseScore = NormalRoll(target.GetCharacterDatas().GetDefenseDice(), target.GetCharacterDatas().GetBrutDefense(), DiceType.D4);
         }
         
 
@@ -672,11 +690,13 @@ public class BattleManager : MonoBehaviour
                 neededDices.Add(d);
             }
 
+            diary.AddText(currentCaster.name + " touche (" + casterHitScore + " vs " + targetDefenseScore + ")");
+
             return neededDices;
         }
         else
         {
-            diary.AddText(currentCaster.name + " rate son action");
+            diary.AddText(currentCaster.name + " rate son action (" + casterHitScore + " vs " + targetDefenseScore + ")");
         }
 
         Debug.Log("Nothing happen ? : " + casterHitScore +" >= "+targetDefenseScore);
@@ -756,13 +776,23 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region Dice Rolling
-    public int AttackRoll(int diceNumber, int luckyDiceNumber, out int luckyDiceResult)
+    public int AttackRoll(int diceNumber, DiceType wantedDice, int bonus, int luckyDiceNumber, out int luckyDiceResult)
     {
         luckyDiceResult = 0;
-        int result = 0;
+        int result = bonus;
         for(int i = 0; i <diceNumber; i++)
         {
-            int currentDice = GameDices.RollD6();
+            int currentDice = 0;
+            switch (wantedDice)
+            {
+                case DiceType.D4:
+                    currentDice = GameDices.RollD4();
+                    break;
+                case DiceType.D6:
+                    currentDice = GameDices.RollD6();
+                    break;
+            }
+
 
             if(i<luckyDiceNumber)
             {
@@ -781,9 +811,48 @@ public class BattleManager : MonoBehaviour
         return result;
     }
 
-    public int NormalRoll(int diceNumber, DiceType dice)
+    /*public int AttackRoll(List<Dice> diceToUse, int bonus, int luckyDiceNumber, out int luckyDiceResult)
     {
-        return GameDices.RollDice(diceNumber, dice);
+        int value = bonus;
+        luckyDiceResult = 0;
+
+        for(int i = 0; i < diceToUse.Count; i++)
+        {
+            int newVal = GameDices.RollDice(diceToUse[i].numberOfDice, diceToUse[i].wantedDice);
+            if (i == 1)
+            {
+                if(newVal == 1)
+                {
+                    luckyDiceResult = -1;
+                }
+            }
+
+            if(i<luckyDiceNumber && newVal == 6 && luckyDiceResult >= 0)
+            {
+                luckyDiceResult = 1;
+            }
+
+            value += newVal;
+        }
+
+        return value;
+    }*/
+
+    public int NormalRoll(int diceNumber, int bonus, DiceType dice)
+    {
+        return GameDices.RollDice(diceNumber, dice)+bonus;
+    }
+
+    public int NormalRoll(List<Dice> diceToUse, int bonus)
+    {
+        int value = bonus;
+
+        for (int i = 0; i < diceToUse.Count; i++)
+        {
+            value += GameDices.RollDice(diceToUse[i].numberOfDice, diceToUse[i].wantedDice);
+        }
+
+        return value;
     }
 
     #endregion

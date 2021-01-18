@@ -48,12 +48,12 @@ public class PlayerBattleManager : MonoBehaviour
     {
         if (Grid.instance.NodeFromWorldPoint(position).usableNode)
         {
+            ActivatePlayerBattleController(false);
             if (holdSpellIndex >= 0)
             {
-                PlayerBattleManager.instance.ActivatePlayerBattleController(false);
                 if (currentCharacter.HasEnoughMaana(actionList[holdSpellIndex].maanaCost))
                 {
-                    if (actionList[holdSpellIndex].incantationTime != ActionIncantation.Fast)
+                    if (actionList[holdSpellIndex].incantationTime != ActionIncantation.Rapide)
                     {
                         currentCharacter.actionAvailable = false;
                     }
@@ -62,7 +62,7 @@ public class PlayerBattleManager : MonoBehaviour
                 else
                 {
                     ShowDeplacement();
-                    PlayerBattleManager.instance.ActivatePlayerBattleController(true);
+                    ActivatePlayerBattleController(true);
                 }
                 holdSpellIndex = -1;
             }
@@ -292,6 +292,7 @@ public class PlayerBattleManager : MonoBehaviour
     public void ActivatePlayerBattleController(bool state)
     {
         controler.enabled = state;
+        Debug.Log(controler.enabled);
         if(controler.enabled)
         {
             ShowDeplacement();

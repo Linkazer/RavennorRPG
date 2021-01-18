@@ -32,12 +32,12 @@ public class PersonnageScriptables : ScriptableObject
     //[SerializeField]
     private int bonusAgilite, bonusPuissMag, bonusIntelligence, bonusConstit, bonusPerception, bonusCharisme;
     [Header("Bonus Stats secondaires")]
-    //[SerializeField]
+    [SerializeField]
     private int bonusDegPhyMelee;
-    //[SerializeField]
-    private int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusEsquive, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
-                bonusMaanaCost, bonusSpellRange, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor;
-    private List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>(), diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
+    [SerializeField]
+    private int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
+                bonusMaanaCost, bonusSpellRange, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, defenseDice, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
+    private List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>();//, diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
     [Header("Bonus armures")]
     //[SerializeField]
     private int bonusPhysicalDefense, bonusMagicalDefense;
@@ -48,8 +48,10 @@ public class PersonnageScriptables : ScriptableObject
     //public GameObject arbreCompetence;
 
     [Header("Sorts Disponibles")]
+    public List<CharacterActionScriptable> learnedSpells;
     public List<CharacterActionScriptable> sortsDisponibles;
 
+    private int skillPoint, statPoint;
     //Liste des Passifs
 
     //[Header("Equipements")]
@@ -182,10 +184,35 @@ public class PersonnageScriptables : ScriptableObject
     }
     #endregion
 
+    public List<int> GetAllMainStats()
+    {
+        int[] newArr = new int[] { GetForce(), GetConstitution(), GetAgilite(), GetIntelligence(), GetPerception(), GetPuissMag() };
+        return new List<int>(newArr);
+    }
+
+    public List<int> GetAllSecondaryStats()
+    {
+        int[] newArr = new int[] { (int)GetPhysicalDamageMelee(), (int)GetMagicalDamage(), GetInitiative(), GetBrutDefense(), GetCharisme(), GetPerception(), GetPuissMag() };
+        return new List<int>(newArr);
+    }
+
     #region Secondary Stats
     public int GetMovementSpeed()
     {
         return GetAgilite() * 6 + baseMoveSpeed;
+    }
+
+    public int GetMemory()
+    {
+        int totalMmory = 2 + GetIntelligence();
+        if(totalMmory > 10)
+        {
+            return 10;
+        }
+        else
+        {
+            return totalMmory;
+        }
     }
 
     public float GetPhysicalDamageMelee()
@@ -208,24 +235,88 @@ public class PersonnageScriptables : ScriptableObject
         return GetPerception() + bonusPerception;
     }
 
-    public int GetDefense()
+    public int GetBrutDefense()
     {
-        return 0;// GetAgilite() + bonusDefense;
+        return GetAgilite()*2+GetForce()+level+bonusDefense;
     }
 
-    public int GetToucheMelee()
+    /*public List<Dice> GetDefenseDices()
     {
-        return GetForce() + bonusChanceToucheForce;
+        List<Dice> toReturn = new List<Dice>();
+        toReturn.Add(new Dice(DiceType.D6, GetAgilite(), DamageType.Brut));
+        Debug.Log(nom + " " + GetAgilite());
+        foreach (Dice d in GetBonusDice(EffectType.Defense))
+        {
+            toReturn.Add(d);
+
+        }
+
+        return toReturn;
+    }*/
+
+    /*public int GetDefenseDice()
+    {
+        return GetAgilite() + defenseDice;
+    }*/
+
+    public int GetBrutToucheMelee()
+    {
+        return bonusChanceToucheForce;// + level;
     }
 
-    public int GetToucheDistance()
+    public int GetBrutToucheDistance()
     {
-        return GetAgilite() + bonusChanceToucheDexterite;
+        return bonusChanceToucheDexterite;// + level;
     }
 
-    public int GetToucheMagical()
+    public int GetBrutToucheMagical()
     {
-        return GetPuissMag() + bonusChanceToucheMagic;
+        return bonusChanceToucheMagic;// + level;
+    }
+
+    /*public List<Dice> GetToucheDices(int index)
+    {
+        List<Dice> toReturn = new List<Dice>();
+        switch (index)
+        {
+            case 1:
+                toReturn.Add(new Dice(DiceType.D6, GetForce(), DamageType.Brut));
+                foreach (Dice d in GetBonusDice(EffectType.ChanceToucheForce))
+                {
+                    toReturn.Add(d);
+                }
+                break;
+            case 2:
+                toReturn.Add(new Dice(DiceType.D6, GetAgilite(), DamageType.Brut));
+                foreach (Dice d in GetBonusDice(EffectType.ChanceToucheDexterite))
+                {
+                    toReturn.Add(d);
+                }
+                break;
+            case 3:
+                toReturn.Add(new Dice(DiceType.D6, GetPuissMag(), DamageType.Brut));
+                foreach (Dice d in GetBonusDice(EffectType.ChanceToucheMagic))
+                {
+                    toReturn.Add(d);
+                }
+                break;
+        }
+
+        return toReturn;
+    }*/
+
+    public int GetTouchDices(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                return GetForce() + touchMeleeDice;
+            case 2:
+                return GetAgilite() + toucheDistanceDice;
+            case 3:
+                return GetPuissMag() + toucheMagicalDice;
+        }
+        return 0;
     }
 
     public float GetCriticalDamageMultiplier()
@@ -255,7 +346,7 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetCriticalChanceBonus()
     {
-        return 1 + Mathf.RoundToInt(((GetPerception() -1) / 3)) + 1 + bonusCriticalChance;
+        return Mathf.RoundToInt(((GetPerception() -1) / 3)) + 1 + bonusCriticalChance;
     }
 
     public int GetPhysicalArmor()
@@ -276,14 +367,14 @@ public class PersonnageScriptables : ScriptableObject
                 return diceBonusDegPhy;
             case EffectType.MagicalDamage:
                 return diceBonusDegMag;
-            case EffectType.Defense:
+            /*case EffectType.Defense:
                 return diceBonusDefense;
             case EffectType.ChanceToucheForce:
                 return diceBonusToucheForce;
             case EffectType.ChanceToucheDexterite:
                 return diceBonusToucheDexterite;
             case EffectType.ChanceToucheMagic:
-                return diceBonusToucheMagic;
+                return diceBonusToucheMagic;*/
         }
         return new List<Dice>();
     }
@@ -344,62 +435,43 @@ public class PersonnageScriptables : ScriptableObject
                 bonusInitiative += value;
                 break;
             case EffectType.Defense:
-                bonusDefense += value;
-                if (bonusDice != null)
+                if (bonusDice.numberOfDice > 0)
                 {
-                    if (adding)
-                    {
-                        diceBonusDefense.Add(bonusDice);
-                    }
-                    else
-                    {
-                        diceBonusDefense.Remove(bonusDice);
-                    }
+                    defenseDice += value;
+                }
+                else
+                {
+                    bonusDefense += value;
                 }
                 break;
-            case EffectType.Esquive:
-                bonusEsquive += value;
-                break;
             case EffectType.ChanceToucheForce:
-                bonusChanceToucheForce += value;
-                if (bonusDice != null)
+                if (bonusDice.numberOfDice > 0)
                 {
-                    if (adding)
-                    {
-                        diceBonusToucheForce.Add(bonusDice);
-                    }
-                    else
-                    {
-                        diceBonusToucheForce.Remove(bonusDice);
-                    }
+                    touchMeleeDice += value;
+                }
+                else
+                {
+                    bonusChanceToucheForce += value;
                 }
                 break;
             case EffectType.ChanceToucheDexterite:
-                bonusChanceToucheDexterite += value;
-                if (bonusDice != null)
+                if (bonusDice.numberOfDice > 0)
                 {
-                    if (adding)
-                    {
-                        diceBonusToucheDexterite.Add(bonusDice);
-                    }
-                    else
-                    {
-                        diceBonusToucheDexterite.Remove(bonusDice);
-                    }
+                    toucheDistanceDice += value;
+                }
+                else
+                {
+                    bonusChanceToucheDexterite += value;
                 }
                 break;
             case EffectType.ChanceToucheMagic:
-                bonusChanceToucheMagic += value;
-                if (bonusDice != null)
+                if (bonusDice.numberOfDice > 0)
                 {
-                    if (adding)
-                    {
-                        diceBonusToucheMagic.Add(bonusDice);
-                    }
-                    else
-                    {
-                        diceBonusToucheMagic.Remove(bonusDice);
-                    }
+                    toucheMagicalDice += value;
+                }
+                else
+                {
+                    bonusChanceToucheMagic += value;
                 }
                 break;
             case EffectType.HealApplied:
@@ -422,6 +494,41 @@ public class PersonnageScriptables : ScriptableObject
     }
     #endregion
 
+    public int GetSkillPoint()
+    {
+        return skillPoint;
+    }
+    public bool UseSkillPoint(int points)
+    {
+        if(skillPoint>= points)
+        {
+            skillPoint -= points;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public int GetStatPoint()
+    {
+        return statPoint;
+    }
+    public bool UseStatPoint(int points)
+    {
+        if (statPoint >= points)
+        {
+            statPoint -= points;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     public void ResetStats()
     {
         bonusForce = 0;
@@ -436,7 +543,6 @@ public class PersonnageScriptables : ScriptableObject
         bonusDegMag = 0;
         bonusInitiative = 0;
         bonusDefense = 0;
-        bonusEsquive = 0;
         bonusChanceToucheForce = 0;
         bonusChanceToucheDexterite = 0;
         bonusChanceToucheMagic = 0;
@@ -448,13 +554,57 @@ public class PersonnageScriptables : ScriptableObject
         bonusPhysicalArmor = 0;
         bonusMagicalArmor = 0;
 
+        defenseDice = 0;
+        touchMeleeDice = 0;
+        toucheDistanceDice = 0;
+        toucheMagicalDice = 0;
+
         diceBonusDegPhy = new List<Dice>();
         diceBonusDegMag = new List<Dice>();
-        diceBonusDegWeapon = new List<Dice>();
+        /*diceBonusDegWeapon = new List<Dice>();
         diceBonusDefense = new List<Dice>();
         diceBonusToucheForce = new List<Dice>();
         diceBonusToucheDexterite = new List<Dice>();
-        diceBonusToucheMagic = new List<Dice>();
+        diceBonusToucheMagic = new List<Dice>();*/
+    }
+
+    public void LevelUpStat(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                force++;
+                break;
+            case 1:
+                constitution++;
+                break;
+            case 2:
+                agilite++;
+                break;
+            case 3:
+                intelligence++;
+                break;
+            case 4:
+                perception++;
+                break;
+            case 5:
+                puissMag++;
+                break;
+        }
+    }
+
+    public void AddStat()
+    {
+
+    }
+
+    public void SetLevel(int levelWanted)
+    {
+        if(levelWanted>level)
+        {
+            skillPoint = levelWanted - level;
+            statPoint = levelWanted - level;
+        }
     }
 }
 

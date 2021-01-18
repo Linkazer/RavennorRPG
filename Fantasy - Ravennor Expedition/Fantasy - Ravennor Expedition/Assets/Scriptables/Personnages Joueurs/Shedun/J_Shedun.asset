@@ -21,13 +21,36 @@ MonoBehaviour:
   baseHps: 10
   hpByLevel: 0
   baseMoveSpeed: 18
-  force: 3
-  constitution: 3
+  force: 1
+  constitution: 2
   agilite: 4
   intelligence: 2
   perception: 2
-  charisme: 5
-  puissMag: 2
+  charisme: 2
+  puissMag: 3
+  bonusDegPhyMelee: 0
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaanaCost: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  defenseDice: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
+  learnedSpells:
+  - {fileID: 11400000, guid: a0fbe2e02680f54438c771224e2dcc19, type: 2}
+  - {fileID: 11400000, guid: 19d9a9fcba74fbf44a2add2c82006539, type: 2}
+  - {fileID: 11400000, guid: b002c337a9762804ca42122679b2c0e4, type: 2}
   sortsDisponibles:
   - {fileID: 11400000, guid: ee61a07253efd5744810dc5f9c27a165, type: 2}
   - {fileID: 11400000, guid: a0fbe2e02680f54438c771224e2dcc19, type: 2}

@@ -19,4 +19,17 @@ public class SpellEffect
     public int value;
     public int scaleByLevel;
     public Dice dicesBonus;
+
+    public SpellEffect()
+    {
+
+    }
+
+    public SpellEffect(SpellEffect toCopy)
+    {
+        type = toCopy.type;
+        value = toCopy.value;
+        scaleByLevel = toCopy.scaleByLevel;
+        dicesBonus = new Dice(toCopy.dicesBonus.wantedDice, toCopy.dicesBonus.numberOfDice, toCopy.dicesBonus.wantedDamage);
+    }
 }

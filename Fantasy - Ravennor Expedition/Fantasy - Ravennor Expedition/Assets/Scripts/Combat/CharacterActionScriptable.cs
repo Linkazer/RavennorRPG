@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum AttackType { Force, Dexterite, PuissMagique}
 
-public enum ActionIncantation { Fast, Simple, Slow, Complex}
+public enum ActionIncantation { Rapide, Simple, Lent, Hard}
 
 public enum ActionTargets { SelfAllies, Ennemies, All, FreeSpace, Invocations}
 

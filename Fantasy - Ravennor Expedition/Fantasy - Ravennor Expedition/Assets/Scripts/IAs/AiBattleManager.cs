@@ -154,7 +154,6 @@ public class AiBattleManager : MonoBehaviour
             if(target == null)
             {
                 nodeToMoveTo = GetClosestTargetNode(targets);
-                Debug.Log(nodeToMoveTo.worldPosition);
             }
 
             if (considToCooldown != null && !askForNextTurn)

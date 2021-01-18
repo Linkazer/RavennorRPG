@@ -62,7 +62,7 @@ public class PlayerBattleControllerManager : MonoBehaviour
 
     public void ChooseSpell(int index)
     {
-        if(this.enabled)
+        if(enabled)
         {
             PlayerBattleManager.instance.ChooseSpell(index);
         }

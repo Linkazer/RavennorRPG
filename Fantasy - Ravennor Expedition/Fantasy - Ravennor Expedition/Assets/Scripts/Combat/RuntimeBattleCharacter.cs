@@ -165,6 +165,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
         team = newTeam;
         currentScriptable = Instantiate(newScriptable);
 
+        //currentScriptable.ResetStats();
+
         currentHps = currentScriptable.GetMaxHps();
         currentMaana = currentScriptable.GetMaxMaana();
 
@@ -172,7 +174,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         currentNode = Grid.instance.NodeFromWorldPoint(transform.position);
 
-        initiative = BattleManager.instance.NormalRoll(currentScriptable.GetInitiative(), DiceType.D6);
+        initiative = BattleManager.instance.NormalRoll(currentScriptable.GetInitiative(), 0, DiceType.D6);
 
         characterSprite.sprite = currentScriptable.spritePerso;
     }

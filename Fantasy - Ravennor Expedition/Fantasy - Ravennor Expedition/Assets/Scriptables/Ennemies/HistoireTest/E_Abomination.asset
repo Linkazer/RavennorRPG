@@ -17,20 +17,41 @@ MonoBehaviour:
   spritePerso: {fileID: 21300000, guid: 92d96f64d3c6f164484e80e920dccf36, type: 3}
   spriteDeMains: {fileID: 0}
   specialPrefab: {fileID: 0}
-  level: 2
+  level: 1
   baseHps: 20
   hpByLevel: 0
   baseMoveSpeed: 18
-  force: 3
+  force: 2
   constitution: 3
   agilite: 1
   intelligence: 2
   perception: 1
   charisme: 2
-  puissMag: 1
+  puissMag: 3
+  bonusDegPhyMelee: 0
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaanaCost: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  defenseDice: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
+  learnedSpells: []
   sortsDisponibles: []
   comportement:
   - wantedAction: {fileID: 11400000, guid: 8c58bbc1858e2e04baf7ac65092a6b0c, type: 2}
+    maxValue: 1
     calculs:
     - calculType: 1
       abscissaValue: 0
@@ -41,6 +62,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 31df1a121502c6e45ba315e3bf9e44d0, type: 2}
+    maxValue: 1
     calculs:
     - calculType: 0
       abscissaValue: 6

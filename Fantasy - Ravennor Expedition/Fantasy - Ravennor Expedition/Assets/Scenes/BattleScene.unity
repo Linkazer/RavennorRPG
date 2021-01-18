@@ -8425,7 +8425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  lerpCoef: 0.01
+  lerpCoef: 0.1
   followChara: 0
   toFollow: {fileID: 0}
 --- !u!20 &519420031
@@ -10863,8 +10863,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 81609017}
   m_HandleRect: {fileID: 81609016}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -32715,8 +32715,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 299768142}
   m_HandleRect: {fileID: 299768141}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

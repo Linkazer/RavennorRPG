@@ -28,7 +28,14 @@ public class SpellEffectCommon
         spr = toCopy.spr;
         description = toCopy.description;
 
-        effects = toCopy.effects;
+        List<SpellEffect> newList = new List<SpellEffect>();
+
+        foreach(SpellEffect eff in toCopy.effects)
+        {
+            newList.Add(new SpellEffect(eff));
+        }
+
+        effects = newList;
 
         onTimeEffectType = toCopy.onTimeEffectType;
         onTimeEffectValue = toCopy.onTimeEffectValue;

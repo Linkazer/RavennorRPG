@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
   m_Name: StartConvoLevel 3
   m_EditorClassIdentifier: 
-  storyText: "Alors que vous avancez dans le crypte en offrant aux quelques mort-vivants
+  storyText: "Alors que vous progressez dans la crypte en offrant aux quelques mort-vivants
     que vous croisez un repos m\xE9rit\xE9, vous tombez face \xE0 une intersection.\n\n\"Par
     o\xF9 on va maintenant ?\" demande Nor.\n\n\"D'apr\xE8s mes talents de chasseurs,
     et au vu des marques sur le sol,\" dit Okun en sortant une pi\xE8ce de sa poche.
