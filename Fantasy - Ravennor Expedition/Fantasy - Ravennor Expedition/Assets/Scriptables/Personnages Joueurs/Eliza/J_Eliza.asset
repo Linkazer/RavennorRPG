@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Eliza
   icon: {fileID: 21300000, guid: 5a345f868adbf2048ac82c9c3b5c9f64, type: 3}
+  portrait: {fileID: 0}
   spritePerso: {fileID: 21300000, guid: 653d13a9a1d35534fb0ea4da26cd2e1b, type: 3}
   spriteDeMains: {fileID: 0}
   specialPrefab: {fileID: 0}
@@ -38,15 +39,15 @@ MonoBehaviour:
   bonusChanceToucheMagic: 0
   bonusSoinAppli: 0
   bonusSoinRecu: 0
-  bonusMaanaCost: 0
+  bonusMaana: 0
   bonusSpellRange: 0
   bonusCriticalChance: 0
   bonusPhysicalArmor: 0
   bonusMagicalArmor: 0
-  defenseDice: 0
   touchMeleeDice: 0
   toucheDistanceDice: 0
   toucheMagicalDice: 0
+  levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   learnedSpells:
   - {fileID: 11400000, guid: c4209ec09ed91f541976e4addbcb3ab2, type: 2}
   - {fileID: 11400000, guid: 5cc9285567fe01442af7fe7afcf0231c, type: 2}

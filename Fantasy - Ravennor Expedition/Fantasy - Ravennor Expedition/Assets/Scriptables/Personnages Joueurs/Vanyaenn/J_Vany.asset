@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Vanyaenn
   icon: {fileID: 21300000, guid: fd45da42767891649ae2f625994b7988, type: 3}
+  portrait: {fileID: 0}
   spritePerso: {fileID: 21300000, guid: acd7dae5e4735de46858911e1fa940fd, type: 3}
   spriteDeMains: {fileID: 0}
   specialPrefab: {fileID: 0}
@@ -38,15 +39,15 @@ MonoBehaviour:
   bonusChanceToucheMagic: 0
   bonusSoinAppli: 0
   bonusSoinRecu: 0
-  bonusMaanaCost: 0
+  bonusMaana: 0
   bonusSpellRange: 0
   bonusCriticalChance: 0
   bonusPhysicalArmor: 0
   bonusMagicalArmor: 0
-  defenseDice: 0
   touchMeleeDice: 0
   toucheDistanceDice: 0
   toucheMagicalDice: 0
+  levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   learnedSpells:
   - {fileID: 11400000, guid: 519503e7b30eccc4bbb267e88780d294, type: 2}
   - {fileID: 11400000, guid: 6801f0d968fa3834a94b49609670ad55, type: 2}

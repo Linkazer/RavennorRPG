@@ -37,6 +37,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private BattleDiary diary;
 
+    [SerializeField]
+    private RuntimeBattleCharacter passiveCheater;
+
     private void Awake()
     {
         instance = this;
@@ -133,6 +136,8 @@ public class BattleManager : MonoBehaviour
 
     public void KillCharacter(RuntimeBattleCharacter toKill)
     {
+        toKill.deathEvt.Invoke();
+
         diary.AddText(toKill.name + " succombe.");
 
         toKill.gameObject.SetActive(false);
@@ -189,6 +194,7 @@ public class BattleManager : MonoBehaviour
                     foreach(PersonnageScriptables p in RavenorGameManager.instance.playerPersos)
                     {
                         p.SetLevel(roomManager.levelAtEnd);
+                        RavenorGameManager.instance.SetLevelUp();
                     }
                 }
 
@@ -335,7 +341,7 @@ public class BattleManager : MonoBehaviour
 
     public void EndCurrentAction(RuntimeBattleCharacter character)
     {
-        currentCharacterTurn.SetAnimation("Default");
+        character.SetAnimation("Default");
         character.currentNode = Grid.instance.NodeFromWorldPoint(character.transform.position);
         //Grid.instance.ResetUsableNode();
         if (character.GetTeam() == 1)
@@ -343,7 +349,7 @@ public class BattleManager : MonoBehaviour
             Pathfinding.instance.SetAllNodes(Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position), null);
             PlayerBattleManager.instance.ActivatePlayerBattleController(true);
         }
-        else
+        else if(character.GetTeam() > -1)
         {
             AiBattleManager.instance.TryNextMove();
         }
@@ -351,6 +357,8 @@ public class BattleManager : MonoBehaviour
 
     public void LaunchAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted)
     {
+        caster.useActionEvt.Invoke();
+
         currentWantedAction = wantedAction;
         currentCaster = caster;
 
@@ -479,6 +487,16 @@ public class BattleManager : MonoBehaviour
         {
             EndCurrentActionWithDelay(0.2f);
         }
+    }
+
+    public void DoFreeAction(CharacterActionScriptable wantedAction, Vector2 positionWanted, Vector2 startPos) //Utilisé pour les Sorts passif (Sans Caster)
+    {
+        if(startPos != Vector2.zero)
+        {
+            passiveCheater.transform.position = startPos;
+        }
+
+        DoAction(wantedAction, passiveCheater, positionWanted);
     }
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
@@ -961,6 +979,8 @@ public class BattleManager : MonoBehaviour
     public void AskToMove(GameObject objectToMove, Vector3 destination, int maxDistance)
     {
         toMove = objectToMove;
+        int distance = Pathfinding.instance.GetDistance(Grid.instance.NodeFromWorldPoint(objectToMove.transform.position), Grid.instance.NodeFromWorldPoint(destination));
+        currentCharacterTurn.movedEvt.Invoke(distance);
         PathRequestManager.RequestPath(objectToMove.transform.position, destination, maxDistance, OnPathFound);
     }
 

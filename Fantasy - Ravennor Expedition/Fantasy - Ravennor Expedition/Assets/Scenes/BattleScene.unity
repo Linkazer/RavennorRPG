@@ -17064,6 +17064,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a25e3308822cf143a7d2424957e8690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1056730442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1056730444}
+  - component: {fileID: 1056730443}
+  m_Layer: 0
+  m_Name: PassiveTestCheater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1056730443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056730442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a25e3308822cf143a7d2424957e8690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentScriptable: {fileID: 11400000, guid: 2faa11d1a29c7c64085bccd46c35ece1, type: 2}
+  characterSprite: {fileID: 0}
+  anim: {fileID: 0}
+  handSpriteRight: {fileID: 0}
+  handSpriteLeft: {fileID: 0}
+  actionAvailable: 0
+  hasMoved: 0
+  movementLeft: 0
+  currentNode:
+    walkable: 0
+    hasCharacterOn: 0
+    chara: {fileID: 0}
+    worldPosition: {x: 0, y: 0, z: 0}
+    gridX: 0
+    gridY: 0
+    gCost: 0
+    hCost: 0
+    usableNode: 0
+  hpImage: {fileID: 0}
+--- !u!4 &1056730444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056730442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1059983609
 GameObject:
   m_ObjectHideFlags: 0
@@ -30706,6 +30768,7 @@ MonoBehaviour:
   level: {fileID: 7560241282882709333, guid: e83af057efb1b9a448099c7a0d9c79e9, type: 3}
   battleState: 0
   diary: {fileID: 1935258964}
+  passiveCheater: {fileID: 1056730443}
   speed: 0.8
   path: []
 --- !u!4 &1935258959
@@ -32715,8 +32778,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 299768142}
   m_HandleRect: {fileID: 299768141}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

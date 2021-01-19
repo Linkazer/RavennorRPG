@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class RuntimeBattleCharacter : MonoBehaviour
@@ -50,6 +51,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     private List<RuntimeBattleCharacter> invocations = new List<RuntimeBattleCharacter>();
 
+    [HideInInspector]
+    public UnityEvent<int> damageTakenEvt = new UnityEvent<int>(), healTakenEvt = new UnityEvent<int>(), movedEvt = new UnityEvent<int>();
+    [HideInInspector]
+    public UnityEvent useActionEvt = new UnityEvent(), endTurnEvt = new UnityEvent(), beginTurnEvt = new UnityEvent(), deathEvt = new UnityEvent();
 
     #region Varialbes Utilities
     public PersonnageScriptables GetCharacterDatas()
@@ -198,6 +203,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
 
             UpdateEffects();
+
+            beginTurnEvt.Invoke();
         }
     }
 
@@ -257,6 +264,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         if (damageAmount > 0)
         {
+            damageTakenEvt.Invoke(damageAmount);
+
             Debug.Log(this + " took " + damageAmount);
             BattleDiary.instance.AddText(name + " a pris " + damageAmount.ToString() + " de dégâts");
             currentHps -= damageAmount;
@@ -330,6 +339,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         if (damageAmount > 0)
         {
+            damageTakenEvt.Invoke(damageAmount);
+
             Debug.Log(name + " a pris " + damageFeedback + " de dégâts");
             BattleDiary.instance.AddText(name + " a pris " + damageFeedback + " de dégâts");
             currentHps -= damageAmount;
@@ -357,6 +368,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         if (healAmount > 0)
         {
+            healTakenEvt.Invoke(healAmount);
+
             Debug.Log(this + " healed of " + healAmount);
             BattleDiary.instance.AddText(name + " est soigné de " + healAmount);
 
@@ -393,6 +406,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
                     healAmount += newAmount;
                 }
             }
+
+            healTakenEvt.Invoke(healAmount+bonusAmount);
 
             Debug.Log(this + " healed of " + (healAmount + bonusAmount));
             BattleDiary.instance.AddText(toPrint);

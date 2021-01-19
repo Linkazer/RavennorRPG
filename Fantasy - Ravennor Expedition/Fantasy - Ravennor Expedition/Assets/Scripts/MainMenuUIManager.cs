@@ -6,6 +6,6 @@ public class MainMenuUIManager : MonoBehaviour
 {
     public void Play()
     {
-        RavenorGameManager.instance.LoadBattle();
+        RavenorGameManager.instance.LoadCamp();
     }
 }

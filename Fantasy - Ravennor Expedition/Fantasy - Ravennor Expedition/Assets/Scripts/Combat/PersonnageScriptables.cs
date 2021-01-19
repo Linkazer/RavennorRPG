@@ -9,6 +9,7 @@ public class PersonnageScriptables : ScriptableObject
     [Header("Apparence")]
     public string nom = "Gérard";
     public Sprite icon;
+    public Sprite portrait;
     public Sprite spritePerso;
     public Sprite spriteDeMains;
     public GameObject specialPrefab;
@@ -36,7 +37,7 @@ public class PersonnageScriptables : ScriptableObject
     private int bonusDegPhyMelee;
     [SerializeField]
     private int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
-                bonusMaanaCost, bonusSpellRange, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, defenseDice, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
+                bonusMaana, bonusSpellRange, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
     private List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>();//, diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
     [Header("Bonus armures")]
     //[SerializeField]
@@ -44,8 +45,8 @@ public class PersonnageScriptables : ScriptableObject
 
     //[Header("Autres")]
 
-    //[Header("Arbre de compétences")]
-    //public GameObject arbreCompetence;
+    [Header("Arbre de compétences")]
+    public CharacterLevelUpTable levelUpTable;
 
     [Header("Sorts Disponibles")]
     public List<CharacterActionScriptable> learnedSpells;
@@ -67,19 +68,19 @@ public class PersonnageScriptables : ScriptableObject
                 force++;
                 break;
             case 1:
-                agilite++;
+                constitution++;
                 break;
             case 2:
-                puissMag++;
+                agilite++;
                 break;
             case 3:
                 intelligence++;
                 break;
             case 4:
-                constitution++;
+                perception++;
                 break;
             case 5:
-                perception++;
+                puissMag++;
                 break;
             case 6:
                 charisme++;
@@ -95,8 +96,12 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetMaxMaana()
     {
-        maanaMax = level + puissMag;
-        return maanaMax;
+        maanaMax = level + puissMag + bonusMaana;
+        if (maanaMax >= 0)
+        {
+            return maanaMax;
+        }
+        return 0;
     }
 
     public int GetForce()
@@ -334,11 +339,6 @@ public class PersonnageScriptables : ScriptableObject
         return bonusSoinRecu;
     }
 
-    public int GetMaanaCostBonus()
-    {
-        return bonusMaanaCost;
-    }
-
     public int GetSpellRangeBonus()
     {
         return bonusSpellRange;
@@ -435,14 +435,7 @@ public class PersonnageScriptables : ScriptableObject
                 bonusInitiative += value;
                 break;
             case EffectType.Defense:
-                if (bonusDice.numberOfDice > 0)
-                {
-                    defenseDice += value;
-                }
-                else
-                {
-                    bonusDefense += value;
-                }
+                bonusDefense += value;
                 break;
             case EffectType.ChanceToucheForce:
                 if (bonusDice.numberOfDice > 0)
@@ -483,8 +476,8 @@ public class PersonnageScriptables : ScriptableObject
             case EffectType.SpellRange:
                 bonusSpellRange += value;
                 break;
-            case EffectType.MaanaCost:
-                bonusMaanaCost += value;
+            case EffectType.MaanaBonus:
+                bonusMaana += value;
                 break;
             case EffectType.CriticalChance:
                 bonusCriticalChance += value;
@@ -548,13 +541,12 @@ public class PersonnageScriptables : ScriptableObject
         bonusChanceToucheMagic = 0;
         bonusSoinAppli = 0;
         bonusSoinRecu = 0;
-        bonusMaanaCost = 0;
+        bonusMaana = 0;
         bonusSpellRange = 0;
         bonusCriticalChance = 0;
         bonusPhysicalArmor = 0;
         bonusMagicalArmor = 0;
 
-        defenseDice = 0;
         touchMeleeDice = 0;
         toucheDistanceDice = 0;
         toucheMagicalDice = 0;
@@ -593,9 +585,29 @@ public class PersonnageScriptables : ScriptableObject
         }
     }
 
-    public void AddStat()
+    public void RemoveUpStat(int index)
     {
-
+        switch (index)
+        {
+            case 0:
+                force--;
+                break;
+            case 1:
+                constitution--;
+                break;
+            case 2:
+                agilite--;
+                break;
+            case 3:
+                intelligence--;
+                break;
+            case 4:
+                perception--;
+                break;
+            case 5:
+                puissMag--;
+                break;
+        }
     }
 
     public void SetLevel(int levelWanted)

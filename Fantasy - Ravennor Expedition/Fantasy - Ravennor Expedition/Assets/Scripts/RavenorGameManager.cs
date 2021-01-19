@@ -19,6 +19,9 @@ public class RavenorGameManager : MonoBehaviour
 
     public List<PersonnageScriptables> playerPersos;
 
+    [SerializeField]
+    private List<int> characterToLevelUp = new List<int>();
+
     private void Awake()
     {
         if (instance != null)
@@ -55,5 +58,24 @@ public class RavenorGameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void SetLevelUp()
+    {
+        for(int i = 0; i < playerPersos.Count; i++)
+        {
+            characterToLevelUp.Add(i);
+        }
+    }
+
+    public int GetNextLevelUp()
+    {
+        if(characterToLevelUp.Count>0)
+        {
+            int toReturn = characterToLevelUp[0];
+            characterToLevelUp.RemoveAt(0);
+            return toReturn;
+        }
+        return -1;
     }
 }
