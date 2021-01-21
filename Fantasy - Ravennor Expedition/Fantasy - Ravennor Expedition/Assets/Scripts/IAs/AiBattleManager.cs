@@ -128,6 +128,8 @@ public class AiBattleManager : MonoBehaviour
 
             foreach (AiConsideration consid in aiCaster.comportement)
             {
+
+
                 if (consid.cooldown <= 0 || (askForNextTurn && consid.cooldown <= 1))
                 {
                     //List<Node> toCheck = Pathfinding.instance.GetNodesWithMaxDistance(caster.currentNode, consid.wantedAction.range.y, false);
@@ -135,7 +137,7 @@ public class AiBattleManager : MonoBehaviour
                     foreach (RuntimeBattleCharacter chara in targets)
                     {
                         //StartCoroutine(TestCanUse(consid.wantedAction, chara, askForNextTurn));
-                        if (CanSpellBeUsed(consid.wantedAction, chara, askForNextTurn))
+                        if (CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
                         {
                             float newScore = EvaluateAction(consid, caster, chara);
                             if (newScore > maxScore)
@@ -163,45 +165,34 @@ public class AiBattleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator TestCanUse(CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
+    private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
     {
-        List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+        //Condition de l'IA
+        float absice = GetAbcsissaValue(consid.conditionWanted, currentChara, targetToTry);
 
-        if (askForNextTurn || currentChara.movementLeft > 90)
+        switch(consid.conditionType)
         {
-            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 90, true);
-        }
-
-        float rangeNeeded = actionToTry.range.y;
-        /*if(askForNextTurn)
-        {
-            rangeNeeded += currentChara.GetMaxMovement();
-        }*/
-
-        Debug.Log("Boucle lenght : " + possibleDeplacement.Count);
-
-        for (int i = 0; i < possibleDeplacement.Count; i++)
-        {
-            //Node n = possibleDeplacement[i];
-            yield return new WaitForSeconds(Time.deltaTime);
-            Debug.Log(currentChara + " Iteration");
-            if (Pathfinding.instance.GetDistance(possibleDeplacement[i], targetToTry.currentNode) < rangeNeeded)
-            {
-                //hit = Physics2D.Raycast(n.worldPosition, (targetToTry.transform.position - n.worldPosition).normalized, Vector2.Distance(targetToTry.transform.position, n.worldPosition), layerMaskObstacle);
-
-                if (hit.collider == null || !actionToTry.hasViewOnTarget || askForNextTurn)
+            case AiConditionType.Up:
+                if(absice<=consid.conditionValue)
                 {
-                    nodeToMoveTo = possibleDeplacement[i];
-
-                    Debug.Log("Succeed");
+                    return false;
                 }
-            }
+                break;
+            case AiConditionType.Down:
+                if (absice >= consid.conditionValue)
+                {
+                    return false;
+                }
+                break;
+            case AiConditionType.Equal:
+                if (absice != consid.conditionValue)
+                {
+                    return false;
+                }
+                break;
         }
-    }
 
-    private bool CanSpellBeUsed(CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
-    {
-        //Debug.Log("Can spel be use");
+        //Condition pour l'Action
 
         if (targetToTry.GetCurrentHps() < 0)
         {

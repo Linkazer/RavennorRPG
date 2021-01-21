@@ -32,14 +32,14 @@ public class PersonnageScriptables : ScriptableObject
     private int bonusForce;
     //[SerializeField]
     private int bonusAgilite, bonusPuissMag, bonusIntelligence, bonusConstit, bonusPerception, bonusCharisme;
-    [Header("Bonus Stats secondaires")]
-    [SerializeField]
-    private int bonusDegPhyMelee;
-    [SerializeField]
-    private int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
+    //[Header("Bonus Stats secondaires")]
+    //[SerializeField]
+    protected int bonusDegPhyMelee;
+    //[SerializeField]
+    protected int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
                 bonusMaana, bonusSpellRange, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
-    private List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>();//, diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
-    [Header("Bonus armures")]
+    protected List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>();//, diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
+    //[Header("Bonus armures")]
     //[SerializeField]
     private int bonusPhysicalDefense, bonusMagicalDefense;
 
@@ -522,9 +522,9 @@ public class PersonnageScriptables : ScriptableObject
     }
 
 
-    public void ResetStats()
+    public virtual void ResetStats()
     {
-        bonusForce = 0;
+        /*bonusForce = 0;
         bonusAgilite = 0; 
         bonusPuissMag = 0; 
         bonusIntelligence = 0;
@@ -552,12 +552,7 @@ public class PersonnageScriptables : ScriptableObject
         toucheMagicalDice = 0;
 
         diceBonusDegPhy = new List<Dice>();
-        diceBonusDegMag = new List<Dice>();
-        /*diceBonusDegWeapon = new List<Dice>();
-        diceBonusDefense = new List<Dice>();
-        diceBonusToucheForce = new List<Dice>();
-        diceBonusToucheDexterite = new List<Dice>();
-        diceBonusToucheMagic = new List<Dice>();*/
+        diceBonusDegMag = new List<Dice>();*/
     }
 
     public void LevelUpStat(int index)

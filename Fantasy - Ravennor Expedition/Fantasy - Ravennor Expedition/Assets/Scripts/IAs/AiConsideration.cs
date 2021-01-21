@@ -15,6 +15,8 @@ public enum AiCalculType{ Conditionnal, Affine, Logarythm,
                           Logistical
                         }
 
+public enum AiConditionType { None, Up, Down, Equal }
+
 [System.Serializable]
 public class ValueForCalcul
 {
@@ -29,7 +31,13 @@ public class ValueForCalcul
 [System.Serializable]
 public class AiConsideration
 {
+    [Header("Actions")]
     public CharacterActionScriptable wantedAction;
+    [Header("Condition")]
+    public AiAbscissaType conditionWanted;
+    public float conditionValue;
+    public AiConditionType conditionType;
+    [Header("Calculs")]
     public float maxValue = 1;
     public List<ValueForCalcul> calculs;
     public int maxCooldown, cooldown;
