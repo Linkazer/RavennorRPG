@@ -89,6 +89,22 @@ public class CampManager : MonoBehaviour
             {
                 characterSprites[i].gameObject.SetActive(false);
             }
+            else
+            {
+                switch (i)
+                {
+                    case 2:
+                        if (GetCharactersId().Contains(5))
+                        {
+                            characterSprites[i].transform.localScale = new Vector3(-1, 1, 1);
+                        }
+                        else
+                        {
+                            characterSprites[i].transform.localScale = new Vector3(1, 1, 1);
+                        }
+                        break;
+                }
+            }
         }
 
         if (RavenorGameManager.instance.dialogueToDisplay != null)

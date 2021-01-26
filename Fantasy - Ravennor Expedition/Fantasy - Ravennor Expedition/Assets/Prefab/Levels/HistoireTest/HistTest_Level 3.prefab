@@ -23449,6 +23449,7 @@ MonoBehaviour:
   cameraPos: {x: 0, y: 0}
   startDialogue: {fileID: 11400000, guid: f02916c80d967f247b00160f4218acd4, type: 2}
   endDialogue: {fileID: 11400000, guid: 9294ba59ae5381943826e81eedd935c9, type: 2}
+  campDialogue: {fileID: 0}
   characterInLevel: []
   characterInCamp:
   - Nor
@@ -23458,15 +23459,16 @@ MonoBehaviour:
   endGame: 1
   nextLvl: {fileID: 0}
   levelAtEnd: 0
+  persoToChange: []
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: 4be1d2f56882f6d46af5deeef0086c49, type: 2}
-    - {fileID: 11400000, guid: 4be1d2f56882f6d46af5deeef0086c49, type: 2}
-    - {fileID: 11400000, guid: d09d1d29d351cab45bc14fa6ef29b8a9, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     ennemisPos:
     - {fileID: 2600873587656351773}
     - {fileID: 3856942447566393199}
@@ -23498,7 +23500,7 @@ MonoBehaviour:
   numberOfEnnemiesToKill: 0
   cameraMaxLeftTop: {x: -3, y: 3}
   cameraMaxRightBottom: {x: 3, y: -3}
-  bossWanted: {fileID: 11400000, guid: d09d1d29d351cab45bc14fa6ef29b8a9, type: 2}
+  bossWanted: {fileID: 0}
 --- !u!1 &7560241282959635523
 GameObject:
   m_ObjectHideFlags: 0
