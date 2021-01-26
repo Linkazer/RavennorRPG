@@ -292,7 +292,6 @@ public class PlayerBattleManager : MonoBehaviour
     public void ActivatePlayerBattleController(bool state)
     {
         controler.enabled = state;
-        Debug.Log(controler.enabled);
         if(controler.enabled)
         {
             ShowDeplacement();

@@ -105,6 +105,8 @@ public class BattleManager : MonoBehaviour
 
     public void BattleBegin()
     {
+        BattleUiManager.instance.SetUI();
+
         Grid.instance.CreateGrid();
         NewCharacterRound(roundList[0]);
     }

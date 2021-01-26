@@ -17,7 +17,14 @@ MonoBehaviour:
     spr: {fileID: 0}
     description: "Inflige \xE0 la cible 1D4 + 2 de d\xE9g\xE2ts par tour pendant
       3 tours."
-    effects: []
+    effects:
+    - type: 0
+      value: 0
+      scaleByLevel: 0
+      dicesBonus:
+        wantedDice: 0
+        numberOfDice: 0
+        wantedDamage: 0
     onTimeEffectType: 3
     onTimeEffectValue: 2
     affliction: 0

@@ -22,6 +22,8 @@ public class RavenorGameManager : MonoBehaviour
     [SerializeField]
     private List<int> characterToLevelUp = new List<int>();
 
+    public ParcheminScriptable dialogueToDisplay;
+
     private void Awake()
     {
         if (instance != null)

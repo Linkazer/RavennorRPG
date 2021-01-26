@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: J_Nor
   m_EditorClassIdentifier: 
   nom: Nor
-  icon: {fileID: 21300000, guid: ca40a0e0dbe48d746bb7b522b87c111c, type: 3}
+  icon: {fileID: 21300000, guid: 964ce8b10a3d4c14cbb8ff367b4ff833, type: 3}
+  portrait: {fileID: 21300000, guid: 2cdd5abb458c74340bd0609b20839519, type: 3}
   spritePerso: {fileID: 21300000, guid: 964ce8b10a3d4c14cbb8ff367b4ff833, type: 3}
   spriteDeMains: {fileID: 0}
   specialPrefab: {fileID: 0}
@@ -28,25 +29,7 @@ MonoBehaviour:
   perception: 3
   charisme: 2
   puissMag: 3
-  bonusDegPhyMelee: 0
-  bonusDegPhyDistance: 0
-  bonusDegMag: 0
-  bonusInitiative: 0
-  bonusDefense: 0
-  bonusChanceToucheForce: 0
-  bonusChanceToucheDexterite: 0
-  bonusChanceToucheMagic: 0
-  bonusSoinAppli: 0
-  bonusSoinRecu: 0
-  bonusMaanaCost: 0
-  bonusSpellRange: 0
-  bonusCriticalChance: 0
-  bonusPhysicalArmor: 0
-  bonusMagicalArmor: 0
-  defenseDice: 0
-  touchMeleeDice: 0
-  toucheDistanceDice: 0
-  toucheMagicalDice: 0
+  levelUpTable: {fileID: 0}
   learnedSpells:
   - {fileID: 11400000, guid: 226cb3fea4116c14cac3feea2181f80f, type: 2}
   - {fileID: 11400000, guid: 7270c0825b6ffbd44b0441fdf4d0490c, type: 2}

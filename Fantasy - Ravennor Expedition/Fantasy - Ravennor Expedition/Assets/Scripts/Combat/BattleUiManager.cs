@@ -9,6 +9,9 @@ public class BattleUiManager : MonoBehaviour
     public static BattleUiManager instance;
 
     [SerializeField]
+    private GameObject mainBattleUI;
+
+    [SerializeField]
     private List<Image> turnImages;
 
     [SerializeField]
@@ -45,9 +48,19 @@ public class BattleUiManager : MonoBehaviour
         return currentChara;
     }
 
-   private void Awake()
+    private void Awake()
     {
         instance = this;
+    }
+    
+    private void Start()
+    {
+        mainBattleUI.SetActive(false);
+    }
+
+    public void SetUI()
+    {
+        mainBattleUI.SetActive(true);
     }
 
     public void SetNewTurn(int turnIndex, List<RuntimeBattleCharacter> roundList)
@@ -145,6 +158,11 @@ public class BattleUiManager : MonoBehaviour
     public void ChooseSpell(int index)
     {
         PlayerBattleControllerManager.instance.ChooseSpell(index);
+    }
+
+    public void TestFonct()
+    {
+        Debug.Log("Yess");
     }
 
     public void WinningScreen()

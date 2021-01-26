@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,6 +13,8 @@ public class ParcheminDialogueSystem : MonoBehaviour
     private List<TextMeshProUGUI> reponsesTexts;
 
     private ParcheminScriptable currentStory;
+
+    public UnityEvent EndDialogueEvent = new UnityEvent();
 
     public void ShowStory(ParcheminScriptable newStory)
     {
@@ -31,6 +34,8 @@ public class ParcheminDialogueSystem : MonoBehaviour
                 reponsesTexts[i].gameObject.SetActive(false);
             }
         }
+
+        gameObject.SetActive(true);
     }
 
     public void GetResponse(int index)
@@ -59,5 +64,8 @@ public class ParcheminDialogueSystem : MonoBehaviour
                 BattleManager.instance.ExitBattle();
             }
         }
+
+        EndDialogueEvent.Invoke();
+        gameObject.SetActive(false);
     }
 }

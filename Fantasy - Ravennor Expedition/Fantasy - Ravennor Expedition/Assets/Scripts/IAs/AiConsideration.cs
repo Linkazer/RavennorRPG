@@ -25,7 +25,7 @@ public class ValueForCalcul
     public float maxValue;
     public float constant;
     public float coeficient;
-    public float calculImportance;
+    public float calculImportance = 1;
 }
 
 [System.Serializable]

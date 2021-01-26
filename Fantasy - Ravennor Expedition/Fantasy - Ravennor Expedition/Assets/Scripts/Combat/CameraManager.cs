@@ -27,13 +27,13 @@ public class CameraManager : MonoBehaviour
         if(followChara && toFollow != null && Vector2.Distance(toFollow.position, transform.position) > 0)
         {
             //Vector3.Lerp(transform.position, new Vector3(toFollow.position.x, toFollow.position.y, -10), lerpCoef)
-            if (Vector2.Distance(toFollow.position, transform.position) < lerpCoef)
+            if (Vector2.Distance(toFollow.position, transform.position) < (lerpCoef*Time.deltaTime))
             {
                 SetCameraPosition(toFollow.position);
             }
             else
             {
-                SetCameraPosition(transform.position + (new Vector3(toFollow.position.x, toFollow.position.y, -10) - transform.position).normalized * lerpCoef);
+                SetCameraPosition(transform.position + (new Vector3(toFollow.position.x, toFollow.position.y, -10) - transform.position).normalized * lerpCoef * Time.deltaTime);
             }
         }
 

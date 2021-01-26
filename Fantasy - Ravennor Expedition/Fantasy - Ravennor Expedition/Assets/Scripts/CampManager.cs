@@ -65,11 +65,24 @@ public class CampManager : MonoBehaviour
     private CharacterActionScriptable wantedNewSpell;
     private List<CharacterActionScriptable> unlockableSpells;
 
+    [SerializeField]
+    private ParcheminDialogueSystem dialogSysteme;
+
     private void Start()
     {
         persos = RavenorGameManager.instance.playerPersos;
 
-        CheckForNewLevelUp();
+        if (RavenorGameManager.instance.dialogueToDisplay != null)
+        {
+            dialogSysteme.ShowStory(RavenorGameManager.instance.dialogueToDisplay);
+            RavenorGameManager.instance.dialogueToDisplay = null;
+
+            dialogSysteme.EndDialogueEvent.AddListener(EndDialogue);
+        }
+        else
+        {
+            CheckForNewLevelUp();
+        }
     }
 
     private void CheckForNewLevelUp()
@@ -86,6 +99,7 @@ public class CampManager : MonoBehaviour
         RavenorGameManager.instance.LoadBattle();
     }
 
+    #region Feedbacks
     public void Outline(Image matToChange)
     {
         //matToChange.material.color = Color.white;
@@ -95,7 +109,9 @@ public class CampManager : MonoBehaviour
     {
         //matToChange.material.color = Color.black;
     }
+    #endregion
 
+    #region CharacterSheet
     public void OpenCharacterSheet(int index)
     {
         CloseCharacterSheet();
@@ -174,7 +190,9 @@ public class CampManager : MonoBehaviour
 
         characterSheet.SetActive(true);
     }
+    #endregion
 
+    #region Spell Gestion
     public void AddSpell(CharacterActionScriptable newSpell)
     {
         if (!currentChara.learnedSpells.Contains(newSpell))
@@ -290,7 +308,9 @@ public class CampManager : MonoBehaviour
     {
         spellManagementParent.SetActive(false);
     }
+    #endregion
 
+    #region Level Up
     public void OpenLevelUpTable(int index)
     {
         currentChara = persos[index];
@@ -444,7 +464,7 @@ public class CampManager : MonoBehaviour
         levelUpParent.SetActive(false);
         CheckForNewLevelUp();
     }
-
+    #endregion
     public void ClosePannel()
     {
         for (int i = 0; i < characterSprites.Count; i++)
@@ -456,5 +476,10 @@ public class CampManager : MonoBehaviour
     public void OpenInventory()
     {
 
+    }
+
+    public void EndDialogue()
+    {
+        CheckForNewLevelUp();
     }
 }

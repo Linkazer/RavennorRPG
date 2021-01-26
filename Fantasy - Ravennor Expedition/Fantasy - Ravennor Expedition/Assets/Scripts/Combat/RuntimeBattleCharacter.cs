@@ -323,6 +323,29 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
         }
 
+        if (bonusAmount > 0)
+        {
+            if(damageFeedback != "")
+            {
+                damageFeedback += "+ ";
+            }
+            damageFeedback += bonusAmount.ToString() + " ";
+        }
+
+        switch (typeOfDamage)
+        {
+            case DamageType.Physical:
+                physicalDamage += bonusAmount;
+                break;
+            case DamageType.Magical:
+                magicalDamage += bonusAmount;
+                break;
+            case DamageType.Brut:
+                brutDamage += bonusAmount;
+                break;
+        }
+
+
         magicalDamage -= currentScriptable.GetMagicalArmor();
         if(magicalDamage < 0)
         {
@@ -337,12 +360,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         damageAmount = physicalDamage + magicalDamage + brutDamage;
 
-        if (damageAmount > 0)
+        if ((damageAmount-bonusAmount) > 0)
         {
             damageTakenEvt.Invoke(damageAmount);
 
-            Debug.Log(name + " a pris " + damageFeedback + " de dégâts");
-            BattleDiary.instance.AddText(name + " a pris " + damageFeedback + " de dégâts");
+            Debug.Log(name + " a pris " + damageFeedback + "de dégâts");
+            BattleDiary.instance.AddText(name + " a pris " + damageFeedback + "de dégâts");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 

@@ -41,7 +41,7 @@ MonoBehaviour:
   wantedEffect: {fileID: 11400000, guid: 67853703e886ec942a1f4e78f840e8d9, type: 2}
   applyOnTarget: 1
   applyOnCaster: 0
-  applyOnGround: 0
+  applyOnGround: 1
   projectionRange: 0
   invocation: {fileID: 0}
   lifeStealPercent: 0
