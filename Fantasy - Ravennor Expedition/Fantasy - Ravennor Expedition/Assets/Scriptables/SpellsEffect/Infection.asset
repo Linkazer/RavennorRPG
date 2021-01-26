@@ -19,28 +19,25 @@ MonoBehaviour:
       3 tours."
     effects:
     - type: 0
+      possiblesTargets: 0
       value: 0
       scaleByLevel: 0
       dicesBonus:
         wantedDice: 0
         numberOfDice: 0
         wantedDamage: 0
-    onTimeEffectType: 3
-    onTimeEffectValue: 2
+      trigger: 0
+      caster: {fileID: 0}
+    actionEffect:
+    - spellToUse: {fileID: 11400000, guid: 1a4d2999b303b664585fa96671ee111a, type: 2}
+      trigger: 7
+      possiblesTargets: 1
+      caster: {fileID: 0}
     affliction: 0
-    possiblesTargets: 1
   nature: 1
   duree: 3
   isMalus: 1
-  diceOnTime:
-    wantedDice: 1
-    numberOfDice: 1
-    wantedDamage: 3
-  diceByLevelBonus: 0.5
-  diceByLevel: 0
-  deleteMalus: 0
-  deleteBonus: 0
-  timeUpMalus: 0
-  timeUpBonus: 0
+  malusToCancel: []
+  bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 21300000, guid: 1c2b9b62f9b2c9d44a769f9c717d60a0, type: 3}

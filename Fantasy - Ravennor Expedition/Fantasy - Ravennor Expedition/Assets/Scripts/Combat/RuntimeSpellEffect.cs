@@ -8,11 +8,9 @@ public class RuntimeSpellEffect
 
     public SpellEffectCommon effet;
 
-    public RuntimeSpellEffect(SpellEffectCommon common, Dice effectDices, DiceType bonusDices, int diceBonusNumber, int startCooldown)
+    public RuntimeSpellEffect(SpellEffectCommon common, int startCooldown, RuntimeBattleCharacter caster)
     {
-        effet = new SpellEffectCommon(common);
-
-        effet.onTimeEffectValue = GameDices.RollDice(effectDices.numberOfDice, effectDices.wantedDice) + GameDices.RollDice(diceBonusNumber, bonusDices) + effet.onTimeEffectValue;
+        effet = new SpellEffectCommon(common, caster);
 
         currentCooldown = startCooldown;
     }

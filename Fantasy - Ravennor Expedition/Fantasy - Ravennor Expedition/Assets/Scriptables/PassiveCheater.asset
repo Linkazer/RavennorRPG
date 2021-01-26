@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: PassiveCheater
+  m_EditorClassIdentifier: 
+  nom: 
+  icon: {fileID: 0}
+  portrait: {fileID: 0}
+  spritePerso: {fileID: 0}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  baseHps: 10
+  hpByLevel: 0
+  baseMoveSpeed: 30
+  force: 1
+  constitution: 1
+  agilite: 1
+  intelligence: 1
+  perception: 1
+  charisme: 1
+  puissMag: 1
+  bonusDegPhyMelee: 0
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaana: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
+  levelUpTable: {fileID: 0}
+  learnedSpells: []
+  sortsDisponibles: []

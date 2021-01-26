@@ -74,6 +74,18 @@ public class SpellObject : MonoBehaviour
     {
         if (BattleManager.instance.GetCurrentTurnChara() == effectCaster)
         {
+            if (Grid.instance.NodeFromWorldPoint(transform.position).hasCharacterOn)
+            {
+                RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
+
+                BattleManager.instance.ResolveEffect(effet, transform.position, EffectTrigger.BeginTurn);
+
+                /*if (effet.possiblesTargets == ActionTargets.All || (effet.possiblesTargets == ActionTargets.Ennemies && chara.GetTeam() != effectCaster.GetTeam()) || (effet.possiblesTargets == ActionTargets.SelfAllies && chara.GetTeam() == effectCaster.GetTeam()))
+                {
+                    BattleManager.instance.ApplyTimeEffect(effet, chara);
+                }*/
+            }
+
             turnLeft--;
             if (turnLeft <= 0)
             {
@@ -81,14 +93,5 @@ public class SpellObject : MonoBehaviour
             }
         }
 
-        if(Grid.instance.NodeFromWorldPoint(transform.position).hasCharacterOn)
-        {
-            RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
-
-            if (effet.possiblesTargets == ActionTargets.All || (effet.possiblesTargets == ActionTargets.Ennemies && chara.GetTeam()!=effectCaster.GetTeam())|| (effet.possiblesTargets == ActionTargets.SelfAllies && chara.GetTeam() == effectCaster.GetTeam()))
-            {
-                BattleManager.instance.ApplyTimeEffect(effet, chara);
-            }
-        }
     }
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d025bb39ace7c1b409f6e9bd54532146, type: 3}
+  m_Name: TableTest
+  m_EditorClassIdentifier: 
+  tables:
+  - levelNeeded: 0
+    possibleSpells:
+    - {fileID: 11400000, guid: 5cc9285567fe01442af7fe7afcf0231c, type: 2}
+    - {fileID: 11400000, guid: 5f4f655778b33924db5618370ee7bdc7, type: 2}
+  - levelNeeded: 1
+    possibleSpells:
+    - {fileID: 11400000, guid: 19d9a9fcba74fbf44a2add2c82006539, type: 2}
+    - {fileID: 11400000, guid: df09667fa5fb4f14b9973a1d8c1cb574, type: 2}
+  - levelNeeded: 2
+    possibleSpells: []
+  levelUnlockSpell: 000000000100000002000000
+  levelUnlockCapacity: 

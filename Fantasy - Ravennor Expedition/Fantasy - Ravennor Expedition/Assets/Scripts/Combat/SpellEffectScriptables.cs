@@ -15,6 +15,8 @@ public class SpellEffectScriptables : ScriptableObject
     public int duree;
     public bool isMalus;
 
+    public List<SpellEffectScriptables> malusToCancel, bonusToCancel;
+
     //Targets
     //Applications ??
 
@@ -22,12 +24,10 @@ public class SpellEffectScriptables : ScriptableObject
 
     //public DamageType onTimeEffectType;
     //public int effectOnTimePower;
-    public Dice diceOnTime;
+    /*public Dice diceOnTime;
     public float diceByLevelBonus;
-    public DiceType diceByLevel;
+    public DiceType diceByLevel;*/
     //public Affliction affliction;
-    public int deleteMalus, deleteBonus, timeUpMalus, timeUpBonus;
-
 
     public Sprite spriteZone, spriteCase;
 }

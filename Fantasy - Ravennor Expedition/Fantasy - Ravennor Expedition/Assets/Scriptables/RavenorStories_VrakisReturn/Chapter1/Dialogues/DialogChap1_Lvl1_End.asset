@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: DialogChap1_Lvl1_End
+  m_EditorClassIdentifier: 
+  storyText: "Le dernier zombie vient de tomber \xE0 vos pieds. Le groupe reste \xE0
+    l'affut du moindre bruit, restant silencieux pendant plusieurs longues secondes.\n\n\"Je
+    pense que c'est bon. Tout le monde va bien ?\" demande Vanyaenn.\n\n\"Ca a l'air
+    d'aller\" r\xE9pond Okun en v\xE9rifiant s'il n'est pas blesser.\n\n\"C'\xE9tait
+    quoi ces trucs ?\" demande Nor.\n\n\"Il faut croire que les villageois avait
+    raison, cette crypte est belle est bien hant\xE9\" r\xE9pond Shedun en inspectant
+    les cadavres.\n\n\"Des fant\xF4mes ! Manquait plus que \xE7a !\"\n\n....."
+  reponses:
+  - text: ...
+    nextStory: {fileID: 0}
+  battleBegin: 0
+  goToCamp: 1

@@ -265,6 +265,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (damageAmount > 0)
         {
             damageTakenEvt.Invoke(damageAmount);
+            ResolveEffect(EffectTrigger.DamageTaken);
 
             Debug.Log(this + " took " + damageAmount);
             BattleDiary.instance.AddText(name + " a pris " + damageAmount.ToString() + " de dégâts");
@@ -363,6 +364,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if ((damageAmount-bonusAmount) > 0)
         {
             damageTakenEvt.Invoke(damageAmount);
+            ResolveEffect(EffectTrigger.DamageTaken);
 
             Debug.Log(name + " a pris " + damageFeedback + "de dégâts");
             BattleDiary.instance.AddText(name + " a pris " + damageFeedback + "de dégâts");
@@ -392,6 +394,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (healAmount > 0)
         {
             healTakenEvt.Invoke(healAmount);
+            ResolveEffect(EffectTrigger.Heal);
 
             Debug.Log(this + " healed of " + healAmount);
             BattleDiary.instance.AddText(name + " est soigné de " + healAmount);
@@ -431,6 +434,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
 
             healTakenEvt.Invoke(healAmount+bonusAmount);
+            ResolveEffect(EffectTrigger.Heal);
 
             Debug.Log(this + " healed of " + (healAmount + bonusAmount));
             BattleDiary.instance.AddText(toPrint);
@@ -476,15 +480,22 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
     }
 
+    public void ApplyEffect(SpellEffect wantedEffect)
+    {
+        currentScriptable.StatBonus(wantedEffect.value, wantedEffect.type, wantedEffect.dicesBonus, true);
+    }
+
     public void UpdateEffects()
     {
         for(int i = 0; i < appliedEffects.Count; i++)
         {
-            BattleManager.instance.ApplyTimeEffect(appliedEffects[i].effet, this);
+            ResolveEffect(EffectTrigger.BeginTurn);
+            //BattleManager.instance.ApplyTimeEffect(appliedEffects[i].effet, this);
 
             appliedEffects[i].currentCooldown--;
             if(appliedEffects[i].currentCooldown <= 0)
             {
+                ResolveEffect(EffectTrigger.End);
                 RemoveEffect(i);
                 i--;
             }
@@ -505,6 +516,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
 
         appliedEffects.RemoveAt(index);
+    }
+
+    public void ResolveEffect(EffectTrigger triggerWanted)
+    {
+        for (int i = 0; i < appliedEffects.Count; i++)
+        {
+            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, triggerWanted);
+        }
     }
 
     public void AddInvocation(RuntimeBattleCharacter toAdd)

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_RangeSoul
+  m_EditorClassIdentifier: 
+  nom: "\xC2me en peine"
+  icon: {fileID: 0}
+  portrait: {fileID: 0}
+  spritePerso: {fileID: 21300000, guid: b0bfaca80ecf67b4da2f4fec236d1334, type: 3}
+  spriteDeMains: {fileID: 0}
+  specialPrefab: {fileID: 0}
+  level: 1
+  baseHps: 5
+  hpByLevel: 0
+  baseMoveSpeed: 30
+  force: 1
+  constitution: 2
+  agilite: 3
+  intelligence: 1
+  perception: 2
+  charisme: 2
+  puissMag: 1
+  levelUpTable: {fileID: 0}
+  learnedSpells: []
+  sortsDisponibles:
+  - {fileID: 11400000, guid: c41df3995eb4fc347a1553c11f1fe20d, type: 2}
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: c41df3995eb4fc347a1553c11f1fe20d, type: 2}
+    conditionWanted: 0
+    conditionValue: 0
+    conditionType: 0
+    maxValue: 1
+    calculs:
+    - calculType: 1
+      abscissaValue: 3
+      maxValue: 100
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 50
+      constant: 50
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
+  aiBonusDegPhyMelee: 0
+  aiBonusDegPhyDistance: 0
+  aiBonusDegMag: 0
+  aiBonusInitiative: 0
+  aiBonusDefense: -2
+  aiBonusChanceToucheForce: 0
+  aiBonusChanceToucheDexterite: 0
+  aiBonusChanceToucheMagic: 0
+  aiBonusSoinAppli: 0
+  aiBonusSoinRecu: 0
+  aiBonusMaana: 0
+  aiBonusCriticalChance: 0
+  aiBonusPhysicalArmor: 0
+  aiBonusMagicalArmor: 0
+  aiTouchMeleeDice: 0
+  aiToucheDistanceDice: 0
+  aiToucheMagicalDice: 0
+  aiDiceBonusDegPhy: []
+  aiDiceBonusDegMag: []

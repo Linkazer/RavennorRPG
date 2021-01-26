@@ -139,6 +139,7 @@ public class BattleManager : MonoBehaviour
     public void KillCharacter(RuntimeBattleCharacter toKill)
     {
         toKill.deathEvt.Invoke();
+        toKill.ResolveEffect(EffectTrigger.Die);
 
         diary.AddText(toKill.name + " succombe.");
 
@@ -360,6 +361,7 @@ public class BattleManager : MonoBehaviour
     public void LaunchAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted)
     {
         caster.useActionEvt.Invoke();
+        caster.ResolveEffect(EffectTrigger.DoAction);
 
         currentWantedAction = wantedAction;
         currentCaster = caster;
@@ -367,22 +369,35 @@ public class BattleManager : MonoBehaviour
         Debug.Log(caster + " use action " + wantedAction);
         diary.AddText(caster.name + " utilise " + wantedAction.nom);
 
+        switch(wantedAction.spellType)
+        {
+            case SpellType.Direct:
+                DoAction((CharacterActionDirect)wantedAction, caster, positionWanted);
+                break;
+            case SpellType.Invocation:
+                if (wantedAction.invocation != null)
+                {
+                    InvokeAlly(caster, wantedAction.invocation, positionWanted);
+                }
+                break;
+        }
+
         if (wantedAction.projectile != null)
         {
             BattleAnimationManager.instance.PlayProjectile(caster.transform.position, positionWanted, wantedAction.projectile, wantedAction.speed);
         }
         else
         {
-            DoAction(wantedAction, caster, positionWanted);
+            
         }
     }
 
     public void DoCurrentAction(Vector2 positionWanted)
     {
-        DoAction(currentWantedAction, currentCaster, positionWanted);
+        DoAction((CharacterActionDirect)currentWantedAction, currentCaster, positionWanted);
     }
 
-    public void DoAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted)
+    public void DoAction(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted)
     {
         Vector2 direction = Vector2.one;
         if (wantedAction.doesFaceCaster)
@@ -429,11 +444,6 @@ public class BattleManager : MonoBehaviour
 
         //wantedAction.SpecialAction();
 
-        if (wantedAction.invocation != null)
-        {
-            InvokeAlly(caster, wantedAction.invocation, positionWanted);
-        }
-
         if(wantedAction.applyOnCaster)
         {
             ApplyEffects(wantedAction, caster, caster);
@@ -455,10 +465,8 @@ public class BattleManager : MonoBehaviour
             {
                 RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
                     wantedAction.wantedEffect.effet,
-                    wantedAction.wantedEffect.diceOnTime,
-                    wantedAction.wantedEffect.diceByLevel,
-                    (int)(wantedAction.wantedEffect.diceByLevelBonus/(float)caster.GetCharacterDatas().level),
-                    wantedAction.wantedEffect.duree
+                    wantedAction.wantedEffect.duree,
+                    caster
                     );
 
                 foreach (SpellEffect eff in runEffet.effet.effects)
@@ -491,7 +499,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void DoFreeAction(CharacterActionScriptable wantedAction, Vector2 positionWanted, Vector2 startPos) //Utilisé pour les Sorts passif (Sans Caster)
+    /*public void DoFreeAction(CharacterActionScriptable wantedAction, Vector2 positionWanted, Vector2 startPos) //Utilisé pour les Sorts passif (Sans Caster)
     {
         if(startPos != Vector2.zero)
         {
@@ -499,7 +507,7 @@ public class BattleManager : MonoBehaviour
         }
 
         DoAction(wantedAction, passiveCheater, positionWanted);
-    }
+    }*/
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
     {
@@ -558,7 +566,7 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region Spell Resolution
-    public void ResolveSpell(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public void ResolveSpell(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         int applyEffect = 0;
         if(wantedAction.hasPowerEffect)
@@ -584,7 +592,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void DoHeal(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public void DoHeal(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         List<Dice> neededDices = new List<Dice>(wantedAction.GetDices());
         neededDices.Add(wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level));
@@ -594,7 +602,7 @@ public class BattleManager : MonoBehaviour
         target.TakeHeal(neededDices, (int)caster.GetCharacterDatas().GetSoinApplique());
     }
 
-    public int DoDamage(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public int DoDamage(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         int bonusDamages = 0;
 
@@ -614,7 +622,7 @@ public class BattleManager : MonoBehaviour
         return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target), bonusDamages);
     }
 
-    public List<Dice> DoesHit(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public List<Dice> DoesHit(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         int targetDefenseScore = 0, casterHitScore = 0;
 
@@ -723,7 +731,7 @@ public class BattleManager : MonoBehaviour
         return new List<Dice>();
     }
 
-    public void ApplyEffects(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public void ApplyEffects(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         if (wantedAction.wantedEffect != null)
         {
@@ -731,10 +739,8 @@ public class BattleManager : MonoBehaviour
 
             RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
                 wantedAction.wantedEffect.effet,
-                wantedAction.wantedEffect.diceOnTime,
-                wantedAction.wantedEffect.diceByLevel,
-                (int)(wantedAction.wantedEffect.diceByLevelBonus / (float)caster.GetCharacterDatas().level),
-                wantedAction.wantedEffect.duree
+                wantedAction.wantedEffect.duree,
+                caster
                 );
 
             foreach (SpellEffect eff in runEffet.effet.effects)
@@ -744,10 +750,12 @@ public class BattleManager : MonoBehaviour
 
             target.AddEffect(runEffet);
 
-            if (wantedAction.wantedEffect.duree <= 0)
+            ResolveEffect(runEffet.effet, target.transform.position, EffectTrigger.Apply);
+
+            /*if (wantedAction.wantedEffect.duree <= 0)
             {
                 ApplyTimeEffect(runEffet.effet, target);
-            }
+            }*/
         }
     }
 
@@ -756,18 +764,33 @@ public class BattleManager : MonoBehaviour
         effet.value = (int)((effet.value + effet.scaleByLevel * caster.GetCharacterDatas().level));
     }
 
-    public void ApplyTimeEffect(SpellEffectCommon effect, RuntimeBattleCharacter target)
+    public void ResolveEffect(SpellEffectCommon effect, Vector2 positionWanted, EffectTrigger triggerWanted)
     {
-        switch(effect.onTimeEffectType)
+        if (Grid.instance.NodeFromWorldPoint(positionWanted).hasCharacterOn)
         {
-            case DamageType.Heal:
-                target.TakeHeal(effect.onTimeEffectValue);
-                break;
-            default:
-                target.TakeDamage(effect.onTimeEffectValue, effect.onTimeEffectType);
-                break;
+            RuntimeBattleCharacter target = Grid.instance.NodeFromWorldPoint(positionWanted).chara;
+            foreach (SpellEffect eff in effect.effects)
+            {
+                if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
+                {
+                    target.ApplyEffect(eff);
+                }
+            }
+        }
+
+        foreach(SpellEffectAction effAct in effect.actionEffect)
+        {
+            if(effAct.trigger == triggerWanted)
+            {
+                LaunchAction(effAct.spellToUse, effAct.caster, positionWanted);
+            }
         }
     }
+
+    /*public void ApplyTimeEffect(SpellEffectCommon effect, RuntimeBattleCharacter target)
+    {
+        //...
+    }*/
 
     private void InvokeAlly(RuntimeBattleCharacter caster, PersonnageScriptables toInvoke, Vector2 wantedPosition)
     {
@@ -899,6 +922,10 @@ public class BattleManager : MonoBehaviour
         return roundList[currentIndexTurn];
     }
 
+    private bool IsValidTarget(RuntimeBattleCharacter caster, RuntimeBattleCharacter target, ActionTargets targetType)
+    {
+        return (targetType == ActionTargets.All || (targetType == ActionTargets.Ennemies && caster.GetTeam() != target.GetTeam()) || (targetType == ActionTargets.SelfAllies && caster.GetTeam() == target.GetTeam()));
+    }
     #endregion
 
     //Get Character team
