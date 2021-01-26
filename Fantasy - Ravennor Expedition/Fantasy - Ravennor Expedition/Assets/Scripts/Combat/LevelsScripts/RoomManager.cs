@@ -7,11 +7,13 @@ public class RoomManager : MonoBehaviour
     //public static RoomManager instance;
 
     public Vector2 cameraPos;
-    public ParcheminScriptable startDialogue, endDialogue;
+    public ParcheminScriptable startDialogue, endDialogue, campDialogue;
+    public List<string> characterInLevel = new List<string>(), characterInCamp = new List<string>();
     public bool endGame;
 
     public GameObject nextLvl;
     public int levelAtEnd;
+    public List<PersonnageScriptables> persoToChange;
 
     [SerializeField]
     protected List<Room> rooms;
@@ -28,6 +30,23 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField]
     public Vector2 cameraMaxLeftTop, cameraMaxRightBottom;
+
+    public RoomManager()
+    {
+        characterInLevel.Add("Eliza");
+        characterInLevel.Add("Nor");
+        characterInLevel.Add("Okun");
+        characterInLevel.Add("Shedun");
+        characterInLevel.Add("Vanyaenn");
+        characterInLevel.Add("Mira");
+
+        characterInCamp.Add("Eliza");
+        characterInCamp.Add("Nor");
+        characterInCamp.Add("Okun");
+        characterInCamp.Add("Shedun");
+        characterInCamp.Add("Vanyaenn");
+        characterInCamp.Add("Mira");
+    }
 
     [ContextMenu("Set Chara positions")]
     protected void SetPositions()
@@ -106,6 +125,20 @@ public class RoomManager : MonoBehaviour
 
     public void WinLevel()
     {
+        foreach(PersonnageScriptables p in persoToChange)
+        {
+            for(int i = 0; i < RavenorGameManager.instance.playerPersos.Count; i++)
+            {
+                if(RavenorGameManager.instance.playerPersos[i].nom == p.nom)
+                {
+                    RavenorGameManager.instance.playerPersos[i] = p;
+                    break;
+                }
+            }
+        }
+
+        RavenorGameManager.instance.dialogueToDisplay = campDialogue;
+
         BattleManager.instance.EndBattle(true);
     }
 

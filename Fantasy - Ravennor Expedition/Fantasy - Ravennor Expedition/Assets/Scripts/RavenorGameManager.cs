@@ -42,7 +42,7 @@ public class RavenorGameManager : MonoBehaviour
         nextBattle = newBattle;
     }
 
-    public GameObject GetNextBattle()
+    public GameObject GetBattle()
     {
         return nextBattle;
     }

@@ -49,8 +49,18 @@ public class BattleManager : MonoBehaviour
     {
         if (RavenorGameManager.instance != null)
         {
-            level = RavenorGameManager.instance.GetNextBattle();
-            teamOne = RavenorGameManager.instance.playerPersos;
+            level = RavenorGameManager.instance.GetBattle();
+            //teamOne = RavenorGameManager.instance.playerPersos;
+
+            roomManager = level.GetComponent<RoomManager>();
+
+            foreach (PersonnageScriptables perso in RavenorGameManager.instance.playerPersos)
+            {
+                if(roomManager.characterInLevel.Contains(perso.nom))
+                {
+                    teamOne.Add(perso);
+                }
+            }
         }
 
         roomManager = level.GetComponent<RoomManager>();

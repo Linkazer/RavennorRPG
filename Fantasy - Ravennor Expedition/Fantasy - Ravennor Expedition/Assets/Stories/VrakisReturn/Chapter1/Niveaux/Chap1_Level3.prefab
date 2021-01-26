@@ -23411,7 +23411,7 @@ GameObject:
   - component: {fileID: 7560241282882709334}
   - component: {fileID: 1067116453399373250}
   m_Layer: 0
-  m_Name: Chap1_Lvl3
+  m_Name: Chap1_Level3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23449,9 +23449,22 @@ MonoBehaviour:
   cameraPos: {x: 0, y: 0}
   startDialogue: {fileID: 11400000, guid: f02916c80d967f247b00160f4218acd4, type: 2}
   endDialogue: {fileID: 11400000, guid: 9294ba59ae5381943826e81eedd935c9, type: 2}
+  characterInLevel:
+  - Eliza
+  - Nor
+  - Okun
+  - Shedun
+  - Vanyaenn
+  characterInCamp:
+  - Eliza
+  - Nor
+  - Okun
+  - Shedun
+  - Vanyaenn
   endGame: 1
   nextLvl: {fileID: 0}
   levelAtEnd: 0
+  persoToChange: []
   rooms:
   - ennemis:
     - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}

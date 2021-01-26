@@ -209,14 +209,14 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetMemory()
     {
-        int totalMmory = 2 + GetIntelligence();
-        if(totalMmory > 10)
+        int totalMemory = 2 + GetIntelligence();
+        if(totalMemory > 10)
         {
             return 10;
         }
         else
         {
-            return totalMmory;
+            return totalMemory;
         }
     }
 

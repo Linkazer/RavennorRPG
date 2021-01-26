@@ -26,7 +26,8 @@ public class CampManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI characterName;
 
-    private List<PersonnageScriptables> persos;
+    [SerializeField]
+    private List<PersonnageScriptables> persos = new List<PersonnageScriptables>();
     private PersonnageScriptables currentChara;
 
     [Header("Spell Management")]
@@ -70,7 +71,25 @@ public class CampManager : MonoBehaviour
 
     private void Start()
     {
-        persos = RavenorGameManager.instance.playerPersos;
+        //persos = RavenorGameManager.instance.playerPersos;
+
+        foreach (PersonnageScriptables perso in RavenorGameManager.instance.playerPersos)
+        {
+            if (RavenorGameManager.instance.GetBattle().GetComponent<RoomManager>().characterInCamp.Contains(perso.nom))
+            {
+                persos.Add(perso);
+            }
+        }
+
+        Debug.Log(GetCharactersId().Count);
+
+        for(int i = 0; i < characterSprites.Count; i++)
+        {
+            if (!GetCharactersId().Contains(i))
+            {
+                characterSprites[i].gameObject.SetActive(false);
+            }
+        }
 
         if (RavenorGameManager.instance.dialogueToDisplay != null)
         {
@@ -116,7 +135,18 @@ public class CampManager : MonoBehaviour
     {
         CloseCharacterSheet();
 
-        currentChara = persos[index];
+        int charaIndex = 0;
+        for (int i = 0; i < persos.Count; i++)
+        {
+            if(persos[i].nom == GetCharaNameByIndex(index))
+            {
+                charaIndex = i;
+                Debug.Log(persos[i]);
+                break;
+            }
+        }
+
+        currentChara = persos[charaIndex];
         characterSprites[index].color = Color.white;
         for (int i = 0; i < characterSprites.Count; i++)
         {
@@ -226,17 +256,29 @@ public class CampManager : MonoBehaviour
                 }
             }
 
+            Color emptyColor = Color.white;
+            emptyColor.a = 0;
+
             for (int i = 0; i < usedSpells.Count; i++)
             {
-                if (currentChara.sortsDisponibles.Count > i+1 && currentChara.sortsDisponibles[i+1] != null)
+                if(i < currentChara.GetMemory()-1)
                 {
-                    usedSpells[i].sprite = currentChara.sortsDisponibles[i+1].icon;
+                    if (currentChara.sortsDisponibles.Count > i + 1 && currentChara.sortsDisponibles[i + 1] != null)
+                    {
+                        usedSpells[i].sprite = currentChara.sortsDisponibles[i + 1].icon;
+                        usedSpells[i].color = Color.white;
+                    }
+                    else
+                    {
+                        usedSpells[i].color = emptyColor;
+                    }
                     usedSpells[i].gameObject.SetActive(true);
                 }
                 else
                 {
                     usedSpells[i].gameObject.SetActive(false);
                 }
+
             }
 
             spellManagementParent.SetActive(true);
@@ -465,6 +507,7 @@ public class CampManager : MonoBehaviour
         CheckForNewLevelUp();
     }
     #endregion
+    
     public void ClosePannel()
     {
         for (int i = 0; i < characterSprites.Count; i++)
@@ -473,9 +516,75 @@ public class CampManager : MonoBehaviour
         }
     }
 
-    public void OpenInventory()
+    private List<int> GetCharactersId()
     {
+        List<int> toReturn = new List<int>();
+        foreach(PersonnageScriptables perso in persos)
+        {
+            switch(perso.nom)
+            {
+                case "Eliza":
+                    toReturn.Add(0);
+                    break;
+                case "Nor":
+                    toReturn.Add(1);
+                    break;
+                case "Okun":
+                    toReturn.Add(2);
+                    break;
+                case "Shedun":
+                    toReturn.Add(3);
+                    break;
+                case "Vanyaenn":
+                    toReturn.Add(4);
+                    break;
+                case "Mira":
+                    toReturn.Add(5);
+                    break;
+            }
+        }
 
+        return toReturn;
+    }
+
+    private string GetCharaNameByIndex(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return "Eliza";
+            case 1:
+                return "Nor";
+            case 2:
+                return "Okun";
+            case 3:
+                return "Shedun";
+            case 4:
+                return "Vanyaenn";
+            case 5:
+                return "Mira";
+        }
+        return "";
+    }
+
+    private int GetCharaIndexByName(string wantedName)
+    {
+        switch (wantedName)
+        {
+            case "Eliza":
+                return 0;
+            case "Nor":
+                return 1;
+            case "Okun":
+                return 2;
+            case "Shedun":
+                return 3;
+            case "Vanyaenn":
+                return 4;
+            case "Mira":
+                return 5;
+        }
+        return -1;
     }
 
     public void EndDialogue()

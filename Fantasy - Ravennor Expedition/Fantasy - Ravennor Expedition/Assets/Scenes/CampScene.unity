@@ -2983,13 +2983,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294184363}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 376770496}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -270, y: -220}
@@ -4214,6 +4214,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
   - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
   - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
+  - {fileID: 11400000, guid: c97c0718525fd864fa169c3f19c5798f, type: 2}
   characterToLevelUp: 
   dialogueToDisplay: {fileID: 0}
 --- !u!4 &399407457
@@ -5707,6 +5708,7 @@ MonoBehaviour:
   - {fileID: 294184366}
   - {fileID: 110447921}
   - {fileID: 924304173}
+  - {fileID: 672929504}
   nonSelectedColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   mainStats:
   - {fileID: 1645040022153078064}
@@ -5732,6 +5734,7 @@ MonoBehaviour:
   multCrit: {fileID: 557609508}
   characterPortrait: {fileID: 1699974831}
   characterName: {fileID: 1084405920}
+  persos: []
   spellManagementParent: {fileID: 1565417083}
   knownSpells:
   - {fileID: 5799162788549504631}
