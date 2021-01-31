@@ -52,7 +52,8 @@ public class PersonnageScriptables : ScriptableObject
     public List<CharacterActionScriptable> learnedSpells;
     public List<CharacterActionScriptable> sortsDisponibles;
 
-    private int skillPoint, statPoint;
+    [HideInInspector]
+    public List<SpellEffectScriptables> passifs;
     //Liste des Passifs
 
     //[Header("Equipements")]
@@ -487,40 +488,6 @@ public class PersonnageScriptables : ScriptableObject
     }
     #endregion
 
-    public int GetSkillPoint()
-    {
-        return skillPoint;
-    }
-    public bool UseSkillPoint(int points)
-    {
-        if(skillPoint>= points)
-        {
-            skillPoint -= points;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public int GetStatPoint()
-    {
-        return statPoint;
-    }
-    public bool UseStatPoint(int points)
-    {
-        if (statPoint >= points)
-        {
-            statPoint -= points;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
 
     public virtual void ResetStats()
     {
@@ -607,11 +574,7 @@ public class PersonnageScriptables : ScriptableObject
 
     public void SetLevel(int levelWanted)
     {
-        if(levelWanted>level)
-        {
-            skillPoint = levelWanted - level;
-            statPoint = levelWanted - level;
-        }
+        level = levelWanted;
     }
 }
 

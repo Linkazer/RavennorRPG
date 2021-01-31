@@ -118,6 +118,7 @@ public class BattleManager : MonoBehaviour
         BattleUiManager.instance.SetUI();
 
         Grid.instance.CreateGrid();
+
         NewCharacterRound(roundList[0]);
     }
 
@@ -142,6 +143,12 @@ public class BattleManager : MonoBehaviour
         usableRuntimeCharacter[0].UseRuntimeCharacter(newPerso, team, position);
         roundList.Add(usableRuntimeCharacter[0]);
         usableRuntimeCharacter.RemoveAt(0);
+
+        foreach(SpellEffectScriptables eff in roundList[roundList.Count - 1].GetCharacterDatas().passifs)
+        {
+            ApplyEffects(eff, roundList[roundList.Count - 1], roundList[roundList.Count - 1]);
+        }
+        
 
         initiatives.Add(roundList[roundList.Count - 1].GetInitiative());
     }
@@ -521,6 +528,11 @@ public class BattleManager : MonoBehaviour
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
     {
+        if(character.GetCurrentMaana() < wantedAction.maanaCost)
+        {
+            return false;
+        }
+
         if ((wantedAction.attackType != AttackType.PuissMagique && character.CheckForAffliction(Affliction.Atrophie)) || (wantedAction.attackType == AttackType.PuissMagique && character.CheckForAffliction(Affliction.Silence)))
         {
             return false;
@@ -767,6 +779,24 @@ public class BattleManager : MonoBehaviour
                 ApplyTimeEffect(runEffet.effet, target);
             }*/
         }
+    }
+
+    public void ApplyEffects(SpellEffectScriptables wantedEffect, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    {
+        RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
+            wantedEffect.effet,
+            wantedEffect.duree,
+            caster
+            );
+
+        foreach (SpellEffect eff in runEffet.effet.effects)
+        {
+            SetEffectValues(eff, caster);
+        }
+
+        target.AddEffect(runEffet);
+
+        ResolveEffect(runEffet.effet, target.transform.position, EffectTrigger.Apply);
     }
 
     public void SetEffectValues(SpellEffect effet, RuntimeBattleCharacter caster)

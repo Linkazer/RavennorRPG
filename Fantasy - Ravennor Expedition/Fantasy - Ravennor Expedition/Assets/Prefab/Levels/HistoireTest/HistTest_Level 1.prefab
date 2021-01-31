@@ -1366,31 +1366,30 @@ MonoBehaviour:
   cameraPos: {x: -0.5, y: 0.18}
   startDialogue: {fileID: 11400000, guid: 21d5744bed9b435419f6522ed147d2de, type: 2}
   endDialogue: {fileID: 11400000, guid: 44c0d0c856d2fae4b8f6b2a58fc431ea, type: 2}
+  campDialogue: {fileID: 0}
+  characterInLevel:
+  - Mira
+  characterInCamp:
+  - Eliza
+  - Nor
+  - Okun
+  - Shedun
+  - Vanyaenn
+  - Mira
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: e83af057efb1b9a448099c7a0d9c79e9, type: 3}
   levelAtEnd: 0
+  persoToChange: []
   rooms:
+  - ennemis: []
+    ennemisPos: []
+    ennemisPositions: []
   - ennemis:
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: 4be1d2f56882f6d46af5deeef0086c49, type: 2}
-    ennemisPos:
-    - {fileID: 2600873587656351773}
-    - {fileID: 3949141678424527790}
-    - {fileID: 1567297957884183516}
-    - {fileID: 2511727580213035313}
-    ennemisPositions:
-    - {x: -0.39999992, y: -0.23999995}
-    - {x: -0.07999992, y: 0.24000004}
-    - {x: 0.24000007, y: -0.39999995}
-    - {x: 0.40000007, y: 0.56000006}
-  - ennemis:
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
-    - {fileID: 11400000, guid: 4be1d2f56882f6d46af5deeef0086c49, type: 2}
-    - {fileID: 11400000, guid: 4be1d2f56882f6d46af5deeef0086c49, type: 2}
-    - {fileID: 11400000, guid: d35ca13b635931e4f9af66abdb7f3718, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     ennemisPos:
     - {fileID: 1168715302215016515}
     - {fileID: 3376467364340642254}
@@ -1405,16 +1404,8 @@ MonoBehaviour:
     - {x: 2, y: -0.07999992}
   playerPos:
   - {fileID: 4579922895677674218}
-  - {fileID: 8483555795714411979}
-  - {fileID: 6658296771814768445}
-  - {fileID: 2753580877957920145}
-  - {fileID: 2495437387191324909}
   playerStartPositions:
   - {x: -1.1999999, y: -0.24}
-  - {x: -1.04, y: 0.08000001}
-  - {x: -1.04, y: -0.39999998}
-  - {x: -1.3599999, y: -0.55999994}
-  - {x: -1.3599999, y: -0.07999995}
   numberOfEnnemiesToKill: 9
   cameraMaxLeftTop: {x: -1.6, y: 0.96}
   cameraMaxRightBottom: {x: 2.88, y: -1.12}

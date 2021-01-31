@@ -16,6 +16,8 @@ public class CharacterInformationUI : MonoBehaviour
     private Transform effectGrid;
     [SerializeField]
     private List<Image> effectsOnChara;
+    [SerializeField]
+    private TextMeshProUGUI health, movespeed, defense, melee, distance, magical;
 
     [SerializeField]
     private GameObject effectResume;
@@ -52,6 +54,13 @@ public class CharacterInformationUI : MonoBehaviour
         PersonnageScriptables p = chara.GetCharacterDatas();
         nomChara.text = p.nom;
         spriteChara.sprite = p.spritePerso;
+
+        health.text = chara.GetCurrentHps() + "/" + p.GetMaxHps();
+        movespeed.text = p.GetMovementSpeed().ToString();
+        defense.text = p.GetBrutDefense().ToString();
+        melee.text = p.GetTouchDices(1).ToString() + "D6";
+        distance.text = p.GetTouchDices(2).ToString() + "D6";
+        magical.text = p.GetTouchDices(3).ToString() + "D6";
 
         effectDescriptions = new List<string>();
         int i = 0;
