@@ -80,4 +80,9 @@ public class RavenorGameManager : MonoBehaviour
         }
         return -1;
     }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }

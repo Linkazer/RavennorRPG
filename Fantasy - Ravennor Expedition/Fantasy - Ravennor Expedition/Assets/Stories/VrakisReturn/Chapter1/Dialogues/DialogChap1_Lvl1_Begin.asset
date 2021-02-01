@@ -26,11 +26,12 @@ MonoBehaviour:
     dit Vanyaenn en fixant Okun.\n\nAlors que nos h\xE9ros s'enfoncent dans le donjon,
     ils arrivent dans une grande salle avec de nombreux tombeaux. Fouillant la pi\xE8ce
     \xE0 la recherche du moindre indice, le bruit d'une vase se cassant sur le sol
-    r\xE9sonne dans la pi\xE8ce.\n\n\"D\xE9sol\xE9\" dit Nor, avec un vase cass\xE9
-    \xE0 ses pieds.\nSoudain, des grognements se font entendre. Plusieurs des tombeaux
-    de la salle commencent alors \xE0 s'ouvrir."
+    r\xE9sonne dans la pi\xE8ce. Vanyaenn tourne rapidement la t\xEAte pour apercevoir
+    l'origine du bruit.\n\n\"D\xE9sol\xE9\" dit Nor, avec un vase cass\xE9 \xE0 ses
+    pieds.\nSoudain, des mumures se font entendre. Tout autour de la confr\xE9rie,
+    des silouhettes fantomatiques sortent des tombeaux."
   reponses:
-  - text: ...
+  - text: Continuer...
     nextStory: {fileID: 0}
   battleBegin: 1
   goToCamp: 0

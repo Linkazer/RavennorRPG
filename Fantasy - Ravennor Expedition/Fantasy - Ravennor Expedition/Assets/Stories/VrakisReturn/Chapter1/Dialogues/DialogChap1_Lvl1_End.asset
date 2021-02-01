@@ -12,15 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
   m_Name: DialogChap1_Lvl1_End
   m_EditorClassIdentifier: 
-  storyText: "Le dernier zombie vient de tomber \xE0 vos pieds. Le groupe reste \xE0
-    l'affut du moindre bruit, restant silencieux pendant plusieurs longues secondes.\n\n\"Je
-    pense que c'est bon. Tout le monde va bien ?\" demande Vanyaenn.\n\n\"Ca a l'air
-    d'aller\" r\xE9pond Okun en v\xE9rifiant s'il n'est pas blesser.\n\n\"C'\xE9tait
-    quoi ces trucs ?\" demande Nor.\n\n\"Il faut croire que les villageois avait
-    raison, cette crypte est belle est bien hant\xE9\" r\xE9pond Shedun en inspectant
-    les cadavres.\n\n\"Des fant\xF4mes ! Manquait plus que \xE7a !\"\n\n....."
+  storyText: "Le dernier fantome vient de tomber. Le groupe reste \xE0 l'affut du
+    moindre bruit, restant silencieux pendant plusieurs longues secondes.\n\n\"Je
+    pense que c'est bon\" dit Vanyaenn en jetant un oeil \xE0 ses combagons. \"Tout
+    le monde va bien ?\"\n\n\"\xC7a a l'air d'aller\" r\xE9pond Okun en v\xE9rifiant
+    s'il n'est pas bless\xE9.\n\n\"C'\xE9tait quoi ces trucs ?\" demande Nor.\n\n\"Il
+    faut croire que les villageois avaient raison.\" dit Shedun. \"Cette crypte semble
+    belle est bien hant\xE9e.\"\n\n\"Super. Des fant\xF4mes. Comme si cette crypte
+    \xE9tait pas assez flippante comme \xE7a\" r\xE2le Eliza.\n\n\"Quoi que ce soit,
+    \xE7a m'\xE9tonnerai que ce soit les seuls. Alors restez sur vos gardes, et avan\xE7ons
+    discr...\" Vanyaenn s'interrompt et regarde autour d'elle. \"O\xF9 sont pass\xE9
+    Nor et Okun ?\"\n\n\"On a trouv\xE9 un chemin par ici !\" cri Okun avant de s'engouffrer
+    dedans, suivit de Nor.\n\nN'essayant m\xEAme pls de cacher son exasp\xE9ration,
+    Vanyaenn finit par rejoindre le reste du groupe."
   reponses:
-  - text: ...
+  - text: Continuer...
     nextStory: {fileID: 0}
   battleBegin: 0
   goToCamp: 1

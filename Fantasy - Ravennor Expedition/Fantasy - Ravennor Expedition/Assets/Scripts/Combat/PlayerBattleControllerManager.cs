@@ -12,6 +12,9 @@ public class PlayerBattleControllerManager : MonoBehaviour
     [SerializeField]
     private LayerMask UILayer;
 
+    [SerializeField]
+    private MenuManager gameMenu;
+
     private void Awake()
     {
         instance = this;
@@ -42,7 +45,19 @@ public class PlayerBattleControllerManager : MonoBehaviour
             PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PlayerBattleManager.instance.holdSpellIndex < 0)
+            {
+                gameMenu.OpenMenu();
+            }
+            else
+            {
+                PlayerBattleManager.instance.ChooseSpell(-1);
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
         {
             PlayerBattleManager.instance.ChooseSpell(-1);
         }

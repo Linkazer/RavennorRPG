@@ -99,7 +99,7 @@ public class BattleManager : MonoBehaviour
         //Grid.instance.SetAllUsableNodes();
         //Grid.instance.ResetUsableNode();
 
-        PlayerBattleManager.instance.ActivatePlayerBattleController(false);
+        //PlayerBattleManager.instance.ActivatePlayerBattleController(false);
 
         roomManager.SetRoomManager();
 
