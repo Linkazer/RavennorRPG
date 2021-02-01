@@ -228,12 +228,6 @@ public class CampManager : MonoBehaviour
         chanceCrit.text = currentChara.GetCriticalChanceBonus().ToString();
         multCrit.text = currentChara.GetCriticalDamageMultiplier().ToString();
 
-        //Level Up
-        if (currentChara.GetStatPoint() > 0)
-        {
-
-        }
-
         characterSheet.SetActive(true);
     }
     #endregion
@@ -371,19 +365,34 @@ public class CampManager : MonoBehaviour
     #region Level Up
     public void OpenLevelUpTable(int index)
     {
-        currentChara = persos[index];
+        currentChara = RavenorGameManager.instance.playerPersos[index];
 
         unlockableSpells = new List<CharacterActionScriptable>();
 
+        int inc = 0;
         foreach(LevelTable table in currentChara.levelUpTable.GetUsableTables(currentChara.level))
         {
-            foreach(CharacterActionScriptable act in table.possibleSpells)
+            if (!currentChara.levelUpTable.autoLevelUps.Contains(inc))
             {
-                if(!currentChara.learnedSpells.Contains(act))
+                foreach (CharacterActionScriptable act in table.possibleSpells)
                 {
-                    unlockableSpells.Add(act);
+                    if (!currentChara.learnedSpells.Contains(act))
+                    {
+                        unlockableSpells.Add(act);
+                    }
                 }
             }
+            else if(currentChara.level == table.levelNeeded)
+            {
+                currentChara.LevelUpStat(table.levelUpStat);
+                foreach(CharacterActionScriptable act in table.possibleSpells)
+                {
+                    currentChara.learnedSpells.Add(act);
+                }
+                CheckForNewLevelUp();
+                return;
+            }
+            inc++;
         }
 
         lvlPortrait.sprite = currentChara.portrait;

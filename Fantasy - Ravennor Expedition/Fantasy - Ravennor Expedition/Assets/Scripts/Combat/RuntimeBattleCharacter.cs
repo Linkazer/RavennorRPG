@@ -490,16 +490,18 @@ public class RuntimeBattleCharacter : MonoBehaviour
         for(int i = 0; i < appliedEffects.Count; i++)
         {
             ResolveEffect(EffectTrigger.BeginTurn);
-            //BattleManager.instance.ApplyTimeEffect(appliedEffects[i].effet, this);
 
-            appliedEffects[i].currentCooldown--;
-            if(appliedEffects[i].currentCooldown <= 0)
+            if (appliedEffects[i].currentCooldown >= 0)
             {
-                ResolveEffect(EffectTrigger.End);
-                RemoveEffect(i);
-                i--;
+
+                appliedEffects[i].currentCooldown--;
+                if (appliedEffects[i].currentCooldown <= 0)
+                {
+                    ResolveEffect(EffectTrigger.End);
+                    RemoveEffect(i);
+                    i--;
+                }
             }
-            //Appel des effets OnTime
         }
     }
 

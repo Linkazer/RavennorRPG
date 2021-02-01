@@ -59,13 +59,16 @@ public class Node : IHeapItem<Node> {
 					BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, EffectTrigger.BeginTurn);
 				}
 
-				effectsOnNode[i].currentCooldown--;
-
-				if (effectsOnNode[i].currentCooldown <= 0)
+				if (effectsOnNode[i].currentCooldown >= 0)
 				{
-					effectsOnNode.RemoveAt(i);
-					casterList.RemoveAt(i);
-					i--;
+					effectsOnNode[i].currentCooldown--;
+
+					if (effectsOnNode[i].currentCooldown <= 0)
+					{
+						effectsOnNode.RemoveAt(i);
+						casterList.RemoveAt(i);
+						i--;
+					}
 				}
 			}
         }
