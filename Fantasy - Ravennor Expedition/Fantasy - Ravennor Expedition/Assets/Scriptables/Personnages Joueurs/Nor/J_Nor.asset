@@ -31,10 +31,11 @@ MonoBehaviour:
   puissMag: 3
   levelUpTable: {fileID: 0}
   learnedSpells:
-  - {fileID: 11400000, guid: 226cb3fea4116c14cac3feea2181f80f, type: 2}
-  - {fileID: 11400000, guid: 7270c0825b6ffbd44b0441fdf4d0490c, type: 2}
-  - {fileID: 11400000, guid: df09667fa5fb4f14b9973a1d8c1cb574, type: 2}
+  - {fileID: 11400000, guid: d5027e2c9a84baf4e987ef95745c4405, type: 2}
+  - {fileID: 11400000, guid: 1f85c787be8767548b6388bbf435c21d, type: 2}
+  - {fileID: 11400000, guid: 87f7e22a02142054a87f9fb6fdb24864, type: 2}
   sortsDisponibles:
-  - {fileID: 11400000, guid: ba19b934dcbf3d94aa334be6056ee238, type: 2}
-  - {fileID: 11400000, guid: df09667fa5fb4f14b9973a1d8c1cb574, type: 2}
-  - {fileID: 11400000, guid: 7270c0825b6ffbd44b0441fdf4d0490c, type: 2}
+  - {fileID: 11400000, guid: 32d2121a9110d4146a49fca2e385af7a, type: 2}
+  - {fileID: 11400000, guid: 87f7e22a02142054a87f9fb6fdb24864, type: 2}
+  - {fileID: 11400000, guid: 1f85c787be8767548b6388bbf435c21d, type: 2}
+  passifs: []
