@@ -1160,6 +1160,7 @@ MonoBehaviour:
   cameraPos: {x: 0, y: 0}
   startDialogue: {fileID: 11400000, guid: 454dbf36748e6554088210af4804d7f0, type: 2}
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
+  campDialogue: {fileID: 0}
   characterInLevel:
   - Eliza
   - Nor

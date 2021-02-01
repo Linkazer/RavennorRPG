@@ -43,6 +43,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private int initiative;
 
     private List<CharacterActionScriptable> actionsDisponibles;
+    private List<int> cooldowns = new List<int>();
 
     //Effets
     private List<RuntimeSpellEffect> appliedEffects = new List<RuntimeSpellEffect>();
@@ -154,6 +155,34 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return nb > 1;
     }
 
+    public int GetSpellCooldown(CharacterActionScriptable spell)
+    {
+        int index = 0;
+        foreach (CharacterActionScriptable s in actionsDisponibles)
+        {
+            if (s.nom == spell.nom)
+            {
+                break;
+            }
+            index++;
+        }
+        return cooldowns[index];
+    }
+
+    public void SetCooldown(CharacterActionScriptable spell)
+    {
+        int index = 0;
+        foreach(CharacterActionScriptable s in actionsDisponibles)
+        {
+            if(s.nom == spell.nom)
+            {
+                break;
+            }
+            index++;
+        }
+        cooldowns[index] = actionsDisponibles[index].GetMaxCooldown();
+    }
+
     #endregion
 
     #region Set Chara
@@ -177,6 +206,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         actionsDisponibles= new List<CharacterActionScriptable>(currentScriptable.sortsDisponibles);
 
+        for(int i = 0; i < actionsDisponibles.Count; i++)
+        {
+            cooldowns.Add(0);
+        }
+
         currentNode = Grid.instance.NodeFromWorldPoint(transform.position);
 
         initiative = BattleManager.instance.NormalRoll(currentScriptable.GetInitiative(), 0, DiceType.D6);
@@ -189,6 +223,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         if (currentHps > 0)
         {
+            for(int i = 0; i < cooldowns.Count; i++)
+            {
+                if (cooldowns[i] > 0)
+                {
+                    cooldowns[i]--;
+                }
+            }
+
             hasMoved = false;
 
             actionAvailable = true; //A modifier plus tard
@@ -324,44 +366,48 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
         }
 
-        if (bonusAmount > 0)
+        if (bonusAmount != 0)
         {
             if(damageFeedback != "")
             {
-                damageFeedback += "+ ";
+                if (bonusAmount > 0)
+                {
+                    damageFeedback += "+ ";
+                }
+                else
+                {
+                    damageFeedback += "- ";
+                }
             }
-            damageFeedback += bonusAmount.ToString() + " ";
+            damageFeedback += Mathf.Abs(bonusAmount).ToString() + " ";
+
+            switch (typeOfDamage)
+            {
+                case DamageType.Physical:
+                    physicalDamage += bonusAmount;
+                    break;
+                case DamageType.Magical:
+                    magicalDamage += bonusAmount;
+                    break;
+                case DamageType.Brut:
+                    brutDamage += bonusAmount;
+                    break;
+            }
         }
 
-        switch (typeOfDamage)
+        if(currentScriptable.GetMagicalArmor()<=magicalDamage)
         {
-            case DamageType.Physical:
-                physicalDamage += bonusAmount;
-                break;
-            case DamageType.Magical:
-                magicalDamage += bonusAmount;
-                break;
-            case DamageType.Brut:
-                brutDamage += bonusAmount;
-                break;
+            magicalDamage -= currentScriptable.GetMagicalArmor();
         }
 
-
-        magicalDamage -= currentScriptable.GetMagicalArmor();
-        if(magicalDamage < 0)
+        if(currentScriptable.GetPhysicalArmor()<=physicalDamage)
         {
-            magicalDamage = 0;
-        }
-
-        physicalDamage -= currentScriptable.GetPhysicalArmor();
-        if(physicalDamage < 0)
-        {
-            physicalDamage = 0;
+            physicalDamage -= currentScriptable.GetPhysicalArmor();
         }
 
         damageAmount = physicalDamage + magicalDamage + brutDamage;
 
-        if ((damageAmount-bonusAmount) > 0)
+        if ((damageAmount-bonusAmount) > 0 && damageAmount > 0)
         {
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
@@ -468,10 +514,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
         {
             appliedEffects.Add(runEffect);
 
-            foreach (SpellEffect eff in runEffect.effet.effects)
+            /*foreach (SpellEffect eff in runEffect.effet.effects)
             {
                 currentScriptable.StatBonus(eff.value, eff.type, eff.dicesBonus, true);
-            }
+            }*/
 
             if(!CheckForAffliction(runEffect.effet.affliction) && runEffect.effet.affliction != Affliction.None)
             {
@@ -502,6 +548,25 @@ public class RuntimeBattleCharacter : MonoBehaviour
                     i--;
                 }
             }
+        }
+    }
+
+    public void RemoveEffect(SpellEffectScriptables effectToRemove)
+    {
+        int index = 0;
+        foreach(RuntimeSpellEffect eff in appliedEffects)
+        {
+            if (eff.effet.nom == effectToRemove.effet.nom)
+            {
+                break;
+            }
+            index++;
+        }
+
+        if (index < appliedEffects.Count)
+        {
+            Debug.Log("Effect remove");
+            RemoveEffect(index);
         }
     }
 

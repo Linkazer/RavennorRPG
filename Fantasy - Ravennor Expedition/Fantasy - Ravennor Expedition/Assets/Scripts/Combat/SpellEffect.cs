@@ -18,7 +18,7 @@ public class SpellEffect
     public EffectType type;
     public ActionTargets possiblesTargets;
     public int value;
-    public int scaleByLevel;
+    public float scaleByLevel;
     public Dice dicesBonus;
     public EffectTrigger trigger;
 

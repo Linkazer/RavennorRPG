@@ -15,7 +15,7 @@ public class SpellEffectScriptables : ScriptableObject
     public int duree;
     public bool isMalus;
 
-    public List<SpellEffectScriptables> malusToCancel, bonusToCancel;
+    public List<SpellEffectScriptables> bonusToCancel;
 
     //Targets
     //Applications ??

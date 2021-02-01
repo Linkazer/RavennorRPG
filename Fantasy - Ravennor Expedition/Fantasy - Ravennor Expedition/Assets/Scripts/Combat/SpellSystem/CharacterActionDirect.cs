@@ -36,7 +36,11 @@ public class CharacterActionDirect : CharacterActionScriptable
 
     public Dice GetLevelBonusDices(int casterLevel)
     {
-        return new Dice(diceByLevel, Mathf.RoundToInt((casterLevel - actionLevel) / diceByLevelBonus), damageType);
+        if (Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus) > 0)
+        {
+            return new Dice(diceByLevel, Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus), damageType);
+        }
+        return null;
     }
 
     public int DamageRoll(int casterLevel)
@@ -48,11 +52,12 @@ public class CharacterActionDirect : CharacterActionScriptable
             result += GameDices.RollDice(dices[i].numberOfDice, dices[i].wantedDice);
         }
 
-        if (Mathf.RoundToInt((casterLevel - actionLevel) / diceByLevelBonus) > 0)
+        if (Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus) > 0)
         {
-            result += GameDices.RollDice(Mathf.RoundToInt((casterLevel - actionLevel) / diceByLevelBonus), diceByLevel);
+            result += GameDices.RollDice(Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus), diceByLevel);
         }
 
         return result;
     }
+
 }

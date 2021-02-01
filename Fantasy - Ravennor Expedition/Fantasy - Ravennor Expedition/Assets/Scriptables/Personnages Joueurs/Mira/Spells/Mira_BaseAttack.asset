@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Okun_PeauFerRevu
+  m_Name: Mira_BaseAttack
   m_EditorClassIdentifier: 
-  nom: Peau de fer
-  icon: {fileID: 21300000, guid: d06647c9dd2ce594783fd40746d61cd2, type: 3}
-  description: "Augmente de 3 (+2 par niveaux) la D\xE9fense du lanceur."
+  nom: "Ep\xE9e enchant\xE9e"
+  icon: {fileID: 21300000, guid: bce51000eeb674848aea01ab9e2cee4d, type: 3}
+  description: "Inflige 1D6 de d\xE9g\xE2ts physiques. Inflige 1D4 de d\xE9g\xE2ts
+    magiques tous les 2 niveaux \xE0 partir du niveau 3."
   spellType: 0
-  attackType: 2
+  attackType: 1
   actionLevel: 1
-  maanaCost: 2
+  maanaCost: 0
   incantationTime: 1
-  target: 0
+  target: 1
   AICastTarget: 0
-  range: {x: 0, y: 5}
+  range: {x: 0, y: 14}
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -30,20 +31,23 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 70373f242bde1284b88ee6fcc9e952eb, type: 3}
-  caseFeedback: {fileID: 21300000, guid: 678f31552fc4b1a45bae0ee64aba1e23, type: 3}
+  caseSprite: {fileID: 21300000, guid: 930b03cc53b3bfe4d88311dbb3a8aa05, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   animationOnNodeName: 
   animationOnZoneName: 
   maxCooldown: 0
-  hasPowerEffect: 0
-  dices: []
+  hasPowerEffect: 1
+  dices:
+  - wantedDice: 1
+    numberOfDice: 1
+    wantedDamage: 1
   useWeaponDamage: 0
-  damageType: 0
-  diceByLevelBonus: 0
+  damageType: 2
+  diceByLevelBonus: 0.5
   diceByLevel: 0
   autoCritical: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 11400000, guid: f3315f48548ba23419517d2ff76d81c7, type: 2}
+  wantedEffect: {fileID: 0}
   applyOnTarget: 0
-  applyOnCaster: 1
+  applyOnCaster: 0
   applyOnGround: 0

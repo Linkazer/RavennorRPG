@@ -272,7 +272,10 @@ public class PlayerBattleManager : MonoBehaviour
     public void UseSpell(Vector2 position)
     {
         currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost);
-        BattleManager.instance.LaunchAction(actionList[holdSpellIndex], currentCharacter, position);
+
+        currentCharacter.SetCooldown(actionList[holdSpellIndex]);
+
+        BattleManager.instance.LaunchAction(actionList[holdSpellIndex], currentCharacter, position, false);
     }
 
     public void ShowDeplacement()

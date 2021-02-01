@@ -22,13 +22,21 @@ MonoBehaviour:
   baseHps: 10
   hpByLevel: 0
   baseMoveSpeed: 30
-  force: 0
-  constitution: 0
-  agilite: 0
-  intelligence: 0
-  perception: 0
-  charisme: 0
-  puissMag: 0
+  force: 1
+  constitution: 2
+  agilite: 3
+  intelligence: 3
+  perception: 1
+  charisme: 2
+  puissMag: 4
   levelUpTable: {fileID: 0}
-  learnedSpells: []
-  sortsDisponibles: []
+  learnedSpells:
+  - {fileID: 11400000, guid: c8e40ff2e8ab49f44b7ec0c7578724ff, type: 2}
+  - {fileID: 11400000, guid: 251df6d41f4480e418e366a2b026b4c6, type: 2}
+  - {fileID: 11400000, guid: be9c0f071ed69074ebdf79bd8a2c190e, type: 2}
+  sortsDisponibles:
+  - {fileID: 11400000, guid: f3549e2cc3e249b49b643fcde5fe1d96, type: 2}
+  - {fileID: 11400000, guid: c8e40ff2e8ab49f44b7ec0c7578724ff, type: 2}
+  - {fileID: 11400000, guid: 251df6d41f4480e418e366a2b026b4c6, type: 2}
+  - {fileID: 11400000, guid: be9c0f071ed69074ebdf79bd8a2c190e, type: 2}
+  passifs: []

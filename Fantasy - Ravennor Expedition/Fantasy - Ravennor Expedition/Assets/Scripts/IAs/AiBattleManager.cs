@@ -65,7 +65,8 @@ public class AiBattleManager : MonoBehaviour
                 else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) <= wantedAction.range.y))
                 {
                     //Debug.Log(currentChara + " do action");
-                    BattleManager.instance.LaunchAction(wantedAction, currentChara, target.transform.position);
+                    currentChara.SetCooldown(wantedAction);
+                    BattleManager.instance.LaunchAction(wantedAction, currentChara, target.transform.position, false);
                 }
                 else
                 {
@@ -130,7 +131,7 @@ public class AiBattleManager : MonoBehaviour
             {
 
 
-                if (consid.cooldown <= 0 || (askForNextTurn && consid.cooldown <= 1))
+                if ((consid.cooldown <= 0 && caster.GetSpellCooldown(consid.wantedAction)<=0) || (askForNextTurn && consid.cooldown <= 1 && caster.GetSpellCooldown(consid.wantedAction) <= 1))
                 {
                     //List<Node> toCheck = Pathfinding.instance.GetNodesWithMaxDistance(caster.currentNode, consid.wantedAction.range.y, false);
 
@@ -168,7 +169,6 @@ public class AiBattleManager : MonoBehaviour
     private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
     {
         //Condition de l'IA
-        Debug.Log("Try " + consid.wantedAction.nom);
         float absice = GetAbcsissaValue(consid.conditionWanted, currentChara, targetToTry);
 
         switch(consid.conditionType)
@@ -192,7 +192,6 @@ public class AiBattleManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("Switch end");
 
         //Condition pour l'Action
 
@@ -216,15 +215,11 @@ public class AiBattleManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("Cast target end");
-
 
         if ((actionToTry.attackType != AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Atrophie)) || (actionToTry.attackType == AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Silence)))
         {
             return false;
         }
-
-        Debug.Log("attack type end");
 
         List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
 
@@ -253,8 +248,6 @@ public class AiBattleManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Deplacement end");
-
         return false;
     }
 
@@ -292,8 +285,6 @@ public class AiBattleManager : MonoBehaviour
         {
             totalResult = actionToEvaluate.maxValue;
         }
-
-        Debug.Log(actionToEvaluate.wantedAction.nom + " evaluated at : " + totalResult);
         return totalResult;
     }
 

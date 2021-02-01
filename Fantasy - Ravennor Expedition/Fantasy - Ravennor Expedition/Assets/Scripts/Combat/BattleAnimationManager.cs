@@ -47,7 +47,10 @@ public class BattleAnimationManager : MonoBehaviour
         }
 
         StartCoroutine(SpriteShowed(toShow, timeToShow));
-        BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+        if (timeToShow >= 0)
+        {
+            BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+        }
     }
 
     public void PlayOnNode(Vector2 position, Sprite spriteToPut, Sprite caseSprite, float timeToShow)
@@ -58,7 +61,10 @@ public class BattleAnimationManager : MonoBehaviour
         toShow[toShow.Count - 1].SetSprite(spriteToPut, caseSprite, 1);
 
         StartCoroutine(SpriteShowed(toShow, timeToShow));
-        BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+        if (timeToShow >= 0)
+        {
+            BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+        }
     }
 
     public void PlayProjectile(Vector2 startPos, Vector2 endPos, Sprite projectileSprite, float speed)
@@ -97,6 +103,10 @@ public class BattleAnimationManager : MonoBehaviour
 
     IEnumerator SpriteShowed(List<SpellObject> usedObj, float time)
     {
+        if(time < 0)
+        {
+            time = 0.5f;
+        }
         yield return new WaitForSeconds(time);
         foreach(SpellObject obj in usedObj)
         {

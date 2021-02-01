@@ -42,15 +42,14 @@ public class CharacterActionScriptable : ScriptableObject
     public Sprite projectile;
     public float speed;
 
-    [Header("Special abilities")]
-    public PersonnageScriptables invocation;
-
     [Header("Affichages")]
     public Sprite zoneSprite;
     public Sprite caseSprite;
     public Sprite caseFeedback;
     public string animationOnNodeName, animationOnZoneName;
 
+    [SerializeField]
+    private int maxCooldown = 0;
 
     public CharacterActionScriptable()
     {
@@ -64,5 +63,10 @@ public class CharacterActionScriptable : ScriptableObject
     public bool HadFeedback()
     {
         return (zoneSprite != null || caseSprite != null || animationOnNodeName != "" || animationOnZoneName != "");
+    }
+
+    public int GetMaxCooldown()
+    {
+        return maxCooldown;
     }
 }

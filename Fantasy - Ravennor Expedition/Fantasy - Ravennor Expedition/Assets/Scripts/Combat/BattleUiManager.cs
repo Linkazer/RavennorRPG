@@ -77,7 +77,7 @@ public class BattleUiManager : MonoBehaviour
 
             //if (turnIndex + offset < roundList.Count)
             {
-                //if (roundList[turnIndex + offset].GetCurrentHps() > 0)
+                if (roundList[turnIndex + offset].GetCurrentHps() > 0)
                 {
                     turnImages[i].sprite = roundList[turnIndex + offset].GetCharacterDatas().icon;
                     turnImages[i].color = Color.white;

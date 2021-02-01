@@ -15,12 +15,12 @@ MonoBehaviour:
   effet:
     nom: Peau de fer
     spr: {fileID: 21300000, guid: d06647c9dd2ce594783fd40746d61cd2, type: 3}
-    description: "Le personnage voit sa d\xE9fense augmenter de 5 (+2 par niveau
+    description: "Le personnage voit sa d\xE9fense augmenter de 3 (+2 par niveau
       du lanceur)"
     effects:
     - type: 9
       possiblesTargets: 0
-      value: 5
+      value: 3
       scaleByLevel: 2
       dicesBonus:
         wantedDice: 0
@@ -33,7 +33,6 @@ MonoBehaviour:
   nature: 0
   duree: 3
   isMalus: 0
-  malusToCancel: []
   bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 0}

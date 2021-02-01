@@ -81,8 +81,6 @@ public class CampManager : MonoBehaviour
             }
         }
 
-        Debug.Log(GetCharactersId().Count);
-
         for(int i = 0; i < characterSprites.Count; i++)
         {
             if (!GetCharactersId().Contains(i))

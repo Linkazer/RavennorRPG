@@ -4260,6 +4260,10 @@ PrefabInstance:
       value: Stat1 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2811565023440193719, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
+      propertyPath: m_text
+      value: "Dext\xE9rit\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811565023440193719, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_fontSize
       value: 20
       objectReference: {fileID: 0}
@@ -4325,7 +4329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7195928083445917036, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7195928083445917036, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6901,10 +6905,10 @@ RectTransform:
   m_Father: {fileID: 1104153296}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &452284259
 GameObject:
@@ -7431,7 +7435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: 70}
+  m_AnchoredPosition: {x: 110, y: 70}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &501491948
@@ -10071,8 +10075,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 81609017}
   m_HandleRect: {fileID: 81609016}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17368,7 +17372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7195928083445917036, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7195928083445917036, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_SizeDelta.y
@@ -28105,7 +28109,7 @@ MonoBehaviour:
   - {fileID: 988742487}
   charaTeamOne: []
   charaTeamTwo: []
-  level: {fileID: 7560241282882709333, guid: 16cf28a1ec3b1744eb63a794511c398b, type: 3}
+  level: {fileID: 7560241282882709333, guid: 1268795ff2f62004cbff2ab032a1c4a3, type: 3}
   battleState: 0
   diary: {fileID: 1935258964}
   passiveCheater: {fileID: 1056730443}
@@ -32334,7 +32338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2811565023440193719, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_text
-      value: "Mel\xE9e"
+      value: Force
       objectReference: {fileID: 0}
     - target: {fileID: 2811565023440193719, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_fontSize
@@ -32402,7 +32406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7195928083445917036, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7195928083445917036, guid: 798e1bdf9e91ad5499127929b0936d8f, type: 3}
       propertyPath: m_SizeDelta.y
