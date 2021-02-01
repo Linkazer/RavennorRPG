@@ -389,7 +389,14 @@ public class BattleManager : MonoBehaviour
         switch(wantedAction.spellType)
         {
             case SpellType.Direct:
-                DoAction((CharacterActionDirect)wantedAction, caster, positionWanted);
+                if (wantedAction.projectile != null)
+                {
+                    BattleAnimationManager.instance.PlayProjectile(caster.transform.position, positionWanted, wantedAction.projectile, wantedAction.speed);
+                }
+                else
+                {
+                    DoAction((CharacterActionDirect)wantedAction, caster, positionWanted);
+                }
                 break;
             case SpellType.Invocation:
                 if (wantedAction.invocation != null)
@@ -397,15 +404,6 @@ public class BattleManager : MonoBehaviour
                     InvokeAlly(caster, wantedAction.invocation, positionWanted);
                 }
                 break;
-        }
-
-        if (wantedAction.projectile != null)
-        {
-            BattleAnimationManager.instance.PlayProjectile(caster.transform.position, positionWanted, wantedAction.projectile, wantedAction.speed);
-        }
-        else
-        {
-            
         }
     }
 
@@ -854,6 +852,7 @@ public class BattleManager : MonoBehaviour
                 Grid.instance.CreateGrid();
             }
         }
+        EndCurrentAction();
     }
 
     #endregion

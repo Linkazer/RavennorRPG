@@ -6,7 +6,7 @@ public enum EffectNature { Physical, Magical }
 
 public enum Affliction{ None, Paralysie, Immobilisation, Silence, Atrophie, InstantKill}
 
-[CreateAssetMenu(fileName = "New Spell Effect", menuName ="Create New Spell Effect")]
+[CreateAssetMenu(fileName = "New Spell Effect", menuName = "Spell/Create New Spell Effect")]
 public class SpellEffectScriptables : ScriptableObject
 {
     public SpellEffectCommon effet;

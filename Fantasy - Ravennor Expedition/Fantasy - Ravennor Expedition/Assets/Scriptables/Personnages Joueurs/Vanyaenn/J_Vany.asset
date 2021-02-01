@@ -31,11 +31,12 @@ MonoBehaviour:
   puissMag: 4
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   learnedSpells:
-  - {fileID: 11400000, guid: 519503e7b30eccc4bbb267e88780d294, type: 2}
-  - {fileID: 11400000, guid: 6801f0d968fa3834a94b49609670ad55, type: 2}
-  - {fileID: 11400000, guid: 89cecd9e06bca6b40be3010ea8d1b616, type: 2}
+  - {fileID: 11400000, guid: 147861126638cd34389b998ddc85a814, type: 2}
+  - {fileID: 11400000, guid: 9d24033b3fb8b634ca223b2f7bc88f15, type: 2}
+  - {fileID: 11400000, guid: a13f570ec9700cb4baf4a466721f4afa, type: 2}
   sortsDisponibles:
-  - {fileID: 11400000, guid: 70f6eb59f12fc2248a26f10f0abb582f, type: 2}
-  - {fileID: 11400000, guid: 519503e7b30eccc4bbb267e88780d294, type: 2}
-  - {fileID: 11400000, guid: 6801f0d968fa3834a94b49609670ad55, type: 2}
-  - {fileID: 11400000, guid: 89cecd9e06bca6b40be3010ea8d1b616, type: 2}
+  - {fileID: 11400000, guid: 533128adc27a7d94a923ac9346f357cd, type: 2}
+  - {fileID: 11400000, guid: 147861126638cd34389b998ddc85a814, type: 2}
+  - {fileID: 11400000, guid: 9d24033b3fb8b634ca223b2f7bc88f15, type: 2}
+  - {fileID: 11400000, guid: a13f570ec9700cb4baf4a466721f4afa, type: 2}
+  passifs: []

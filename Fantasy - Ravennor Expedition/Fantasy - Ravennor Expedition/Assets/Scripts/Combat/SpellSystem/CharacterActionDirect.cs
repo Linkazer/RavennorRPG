@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Damage Spell", menuName = "Create Damage Spell")]
+[CreateAssetMenu(fileName = "New Damage Spell", menuName = "Spell/Create Damage Spell")]
 public class CharacterActionDirect : CharacterActionScriptable
 {
     [Header("Dégâts")]

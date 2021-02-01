@@ -21,7 +21,7 @@ MonoBehaviour:
   level: 1
   baseHps: 10
   hpByLevel: 0
-  baseMoveSpeed: 18
+  baseMoveSpeed: 100
   force: 4
   constitution: 3
   agilite: 2
@@ -31,10 +31,11 @@ MonoBehaviour:
   puissMag: 2
   levelUpTable: {fileID: 0}
   learnedSpells:
-  - {fileID: 11400000, guid: 5f4f655778b33924db5618370ee7bdc7, type: 2}
-  - {fileID: 11400000, guid: 6c84114456460a7439bccad2c37d2945, type: 2}
-  - {fileID: 11400000, guid: 5255145454b26d14481bee8d7e54e934, type: 2}
+  - {fileID: 11400000, guid: 9daf92d35e513a64d98b5b75248d3359, type: 2}
+  - {fileID: 11400000, guid: a58b3cc9e7eed47488e7f0f7379d8b2c, type: 2}
+  - {fileID: 11400000, guid: 3d7a3143bfb9ce947a4a70c6c8a17eb6, type: 2}
   sortsDisponibles:
-  - {fileID: 11400000, guid: cced96bca1dd17c4999da17d39132930, type: 2}
-  - {fileID: 11400000, guid: 5f4f655778b33924db5618370ee7bdc7, type: 2}
-  - {fileID: 11400000, guid: 6c84114456460a7439bccad2c37d2945, type: 2}
+  - {fileID: 11400000, guid: 34e02775f172d684da5c6fecd411c318, type: 2}
+  - {fileID: 11400000, guid: 9daf92d35e513a64d98b5b75248d3359, type: 2}
+  - {fileID: 11400000, guid: a58b3cc9e7eed47488e7f0f7379d8b2c, type: 2}
+  passifs: []

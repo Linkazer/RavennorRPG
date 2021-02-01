@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
+  m_Name: Okun_RenversementRevu
+  m_EditorClassIdentifier: 
+  nom: Renversement
+  icon: {fileID: 21300000, guid: a727a5f542160f441ad599fc6399ab7e, type: 3}
+  description: "Inflige 1D6 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts physiques et renverse
+    la cible, l'emp\xEAchant de jouer son prochain tour."
+  spellType: 0
+  attackType: 0
+  actionLevel: 1
+  maanaCost: 2
+  incantationTime: 1
+  target: 1
+  AICastTarget: 0
+  range: {x: 0, y: 14}
+  activeZoneCases:
+  - {x: 0, y: 0}
+  doesFaceCaster: 0
+  hasViewOnTarget: 1
+  projectile: {fileID: 0}
+  speed: 0
+  invocation: {fileID: 0}
+  zoneSprite: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: 765c4d2efbb5e5548a5fc3605e22b637, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
+  animationOnNodeName: 
+  animationOnZoneName: 
+  hasPowerEffect: 1
+  dices:
+  - wantedDice: 1
+    numberOfDice: 1
+    wantedDamage: 1
+  useWeaponDamage: 0
+  damageType: 1
+  diceByLevelBonus: 0.5
+  diceByLevel: 0
+  autoCritical: 0
+  lifeStealPercent: 0
+  wantedEffect: {fileID: 11400000, guid: a23c540af16702c48be05d47dd44d594, type: 2}
+  applyOnTarget: 1
+  applyOnCaster: 0
+  applyOnGround: 0

@@ -168,18 +168,19 @@ public class AiBattleManager : MonoBehaviour
     private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
     {
         //Condition de l'IA
+        Debug.Log("Try " + consid.wantedAction.nom);
         float absice = GetAbcsissaValue(consid.conditionWanted, currentChara, targetToTry);
 
         switch(consid.conditionType)
         {
             case AiConditionType.Up:
-                if(absice<=consid.conditionValue)
+                if(absice<consid.conditionValue)
                 {
                     return false;
                 }
                 break;
             case AiConditionType.Down:
-                if (absice >= consid.conditionValue)
+                if (absice > consid.conditionValue)
                 {
                     return false;
                 }
@@ -191,6 +192,7 @@ public class AiBattleManager : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log("Switch end");
 
         //Condition pour l'Action
 
@@ -214,12 +216,15 @@ public class AiBattleManager : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log("Cast target end");
 
 
-        if((actionToTry.attackType != AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Atrophie)) || (actionToTry.attackType == AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Silence)))
+        if ((actionToTry.attackType != AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Atrophie)) || (actionToTry.attackType == AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Silence)))
         {
             return false;
         }
+
+        Debug.Log("attack type end");
 
         List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
 
@@ -236,7 +241,7 @@ public class AiBattleManager : MonoBehaviour
 
         foreach(Node n in possibleDeplacement)
         {
-            if(Pathfinding.instance.GetDistance(n, targetToTry.currentNode) < rangeNeeded)
+            if(Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded)
             {
                 hit = Physics2D.Raycast(n.worldPosition, (targetToTry.transform.position - n.worldPosition).normalized, Vector2.Distance(targetToTry.transform.position, n.worldPosition), layerMaskObstacle);
 
@@ -248,6 +253,7 @@ public class AiBattleManager : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Deplacement end");
 
         return false;
     }
@@ -277,7 +283,7 @@ public class AiBattleManager : MonoBehaviour
 
         foreach(ValueForCalcul value in actionToEvaluate.calculs)
         {
-            totalResult += ConsiderationCalcul(value, caster, target);
+            totalResult += ConsiderationCalcul(value, caster, target, actionToEvaluate.maxValue);
             coef += value.calculImportance;
         }
 
@@ -286,10 +292,12 @@ public class AiBattleManager : MonoBehaviour
         {
             totalResult = actionToEvaluate.maxValue;
         }
+
+        Debug.Log(actionToEvaluate.wantedAction.nom + " evaluated at : " + totalResult);
         return totalResult;
     }
 
-    public float ConsiderationCalcul(ValueForCalcul values, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public float ConsiderationCalcul(ValueForCalcul values, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, float maxValue)
     {
         float result = 0;
         float abcsissa = GetAbcsissaValue(values.abscissaValue, caster, target);
@@ -326,9 +334,9 @@ public class AiBattleManager : MonoBehaviour
                 break;
         }
 
-        result = Mathf.Clamp(result, 0, 1);
+        result = Mathf.Clamp(result * values.calculImportance, 0, maxValue);
 
-        return result*values.calculImportance;
+        return result;
     }
 
     public float GetAbcsissaValue(AiAbscissaType abcsissa, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
