@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: DialogChap1_Lvl2_Begin
+  m_EditorClassIdentifier: 
+  storyText: "Alors que la confr\xE9rie continue son avanc\xE9e dans la crypte. Cette
+    derni\xE8re semble plus vaste qu'il n'y parait, et y trouver l'art\xE9fact risque
+    de prendre plus de temps que pr\xE9vut. Progressant dans les couloirs, la confr\xE9rie
+    arrive \xE0 une intersection.\n\n\"Par o\xF9 on va maintenant ?\" demande Nor.\n\n\"D'apr\xE8s
+    mes talents de chasseurs, et au vu des marques sur le sol,\" dit Okun en sortant
+    une pi\xE8ce de sa poche. \"Je pense que nous devrions aller... Par l\xE0 !\"
+    dit-il apr\xE8s avoir vu la pi\xE8ce tomber sur sa face.\n\nBien que Nor soit
+    une fois de plus surprise par les talents d'Okun, le reste du groupe se d\xE9cide
+    apr\xE8s quelques secondes \xE0 les suivre, chacun plus d\xE9pit\xE9 que les
+    autres. Et que ce soit un coup du destin ou de la simple chance, la confr\xE9rie
+    finit par approcher d'une grande salle. Okun, fier de lui, entre dans la salle,
+    suivit de ses compagnons. Et avant que ces derniers puissent r\xE9agir, un projectile
+    magique passe \xE0 c\xF4t\xE9 d'Okun. Apara\xEEssent alors d'autres silhouettes
+    fantomatiques pr\xEAtent \xE0 en d\xE9coudre.\n\n\"Okun, la prochaine fois que
+    tu choisie une direction, rapelle moi de partir \xE0 l'oppos\xE9e\" dit Shedun."
+  reponses:
+  - text: Continuer...
+    nextStory: {fileID: 0}
+  battleBegin: 1
+  goToCamp: 0

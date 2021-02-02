@@ -41,7 +41,10 @@ public class PlayerBattleManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        BattleManager.instance.EndTurn();
+        if (controler.enabled)
+        {
+            BattleManager.instance.EndTurn();
+        }
     }
 
     public void NextAction(Vector2 position)

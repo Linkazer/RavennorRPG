@@ -30,13 +30,13 @@ MonoBehaviour:
   hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
-  invocation: {fileID: 0}
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 0b8aec69866a9824989bffbd970410cb, type: 3}
   caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   animationOnNodeName: 
   animationOnZoneName: 
-  hasPowerEffect: 1
+  maxCooldown: 0
+  hasPowerEffect: 0
   dices: []
   useWeaponDamage: 0
   damageType: 2
@@ -44,7 +44,7 @@ MonoBehaviour:
   diceByLevel: 0
   autoCritical: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 11400000, guid: 810dc2e10e996fe4b9c2716941eed708, type: 2}
+  wantedEffect: {fileID: 11400000, guid: 1784ecff48a60b94fa0ca779918fdd3e, type: 2}
   applyOnTarget: 0
-  applyOnCaster: 0
+  applyOnCaster: 1
   applyOnGround: 0

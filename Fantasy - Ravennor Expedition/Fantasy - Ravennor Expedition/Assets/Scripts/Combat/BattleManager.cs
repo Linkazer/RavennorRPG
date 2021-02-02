@@ -1097,6 +1097,10 @@ public class BattleManager : MonoBehaviour
             {
                 EndTurn();
             }
+            else
+            {
+                EndCurrentAction(currentCharacterTurn);
+            }
         }
     }
 

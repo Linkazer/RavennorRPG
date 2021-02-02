@@ -24,6 +24,10 @@ public class RavenorGameManager : MonoBehaviour
 
     public ParcheminScriptable dialogueToDisplay;
 
+    [SerializeField]
+    private float difficultyMultiplier = 1;
+
+
     private void Awake()
     {
         if (instance != null)
@@ -84,5 +88,10 @@ public class RavenorGameManager : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
+    }
+
+    public float GetDifficulty()
+    {
+        return difficultyMultiplier;
     }
 }

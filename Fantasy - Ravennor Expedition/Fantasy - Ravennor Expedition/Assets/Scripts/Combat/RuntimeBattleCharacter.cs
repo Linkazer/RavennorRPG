@@ -407,13 +407,32 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         damageAmount = physicalDamage + magicalDamage + brutDamage;
 
+        string damageText = damageAmount + " de dégâts";
+
+        if(RavenorGameManager.instance != null && team == 1 && RavenorGameManager.instance.GetDifficulty() != 1)
+        {
+            damageAmount = Mathf.RoundToInt(damageAmount*RavenorGameManager.instance.GetDifficulty());
+            if(damageAmount <= 0)
+            {
+                damageAmount = 1;
+            }
+            if(RavenorGameManager.instance.GetDifficulty() < 1)
+            {
+                damageText += "(réduit à " + damageAmount + ") ";
+            }
+            else
+            {
+                damageText += "(augmenté à " + damageAmount + ") ";
+            }
+        }
+
         if ((damageAmount-bonusAmount) > 0 && damageAmount > 0)
         {
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
 
-            Debug.Log(name + " a pris " + damageFeedback + "de dégâts");
-            BattleDiary.instance.AddText(name + " a pris " + damageFeedback + "de dégâts");
+            Debug.Log(name + " a pris " + damageText + " (" + damageFeedback + ")");
+            BattleDiary.instance.AddText(name + " a pris " + damageText + " (" + damageFeedback + ")");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 

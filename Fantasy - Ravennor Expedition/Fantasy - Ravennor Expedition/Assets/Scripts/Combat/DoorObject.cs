@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorObject : MonoBehaviour
 {
     [SerializeField]
-    private int index;
+    private List<int> indexs;
 
     private Node currentNode;
 
@@ -31,7 +31,10 @@ public class DoorObject : MonoBehaviour
     IEnumerator OpenDoor()
     {
         Debug.Log("Ouverture porte");
-        BattleManager.instance.OpenRoom(index);
+        foreach(int i in indexs)
+        {
+            BattleManager.instance.OpenRoom(i);
+        }
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         PlayerBattleManager.instance.ActivatePlayerBattleController(false);
         yield return new WaitForSeconds(0.5f);

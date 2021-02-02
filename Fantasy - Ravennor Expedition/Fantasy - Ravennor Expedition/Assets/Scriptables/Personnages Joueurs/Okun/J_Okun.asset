@@ -21,7 +21,7 @@ MonoBehaviour:
   level: 1
   baseHps: 10
   hpByLevel: 0
-  baseMoveSpeed: 100
+  baseMoveSpeed: 18
   force: 4
   constitution: 3
   agilite: 2
@@ -29,6 +29,23 @@ MonoBehaviour:
   perception: 2
   charisme: 2
   puissMag: 2
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaana: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
   - {fileID: 11400000, guid: 9daf92d35e513a64d98b5b75248d3359, type: 2}

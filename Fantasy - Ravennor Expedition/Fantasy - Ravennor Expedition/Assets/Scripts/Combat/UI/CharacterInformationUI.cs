@@ -17,15 +17,17 @@ public class CharacterInformationUI : MonoBehaviour
     [SerializeField]
     private List<Image> effectsOnChara;
     [SerializeField]
+    private List<TextMeshProUGUI> effectTimes;
+    [SerializeField]
     private TextMeshProUGUI health, movespeed, defense, melee, distance, magical;
 
     [SerializeField]
     private GameObject effectResume;
 
     [SerializeField]
-    private TextMeshProUGUI effectDetail;
+    private TextMeshProUGUI effectName, effectDetail;
 
-    private List<string> effectDescriptions;
+    private List<string> effectDescriptions, effectNames;
 
     [ContextMenu("Set Images Effects")]
     void SetEffectImage()
@@ -63,12 +65,15 @@ public class CharacterInformationUI : MonoBehaviour
         magical.text = p.GetTouchDices(3).ToString() + "D6";
 
         effectDescriptions = new List<string>();
+        effectNames = new List<string>();
         int i = 0;
         foreach(RuntimeSpellEffect runEff in chara.GetAppliedEffects())
         {
+            effectNames.Add(runEff.effet.nom);
             effectDescriptions.Add(runEff.effet.description);
             effectsOnChara[i].sprite = runEff.effet.spr;
-            effectsOnChara[i].gameObject.SetActive(true);
+            effectsOnChara[i].transform.parent.gameObject.SetActive(true);
+            effectTimes[i].text = runEff.currentCooldown.ToString();
         }
     }
 
@@ -77,13 +82,14 @@ public class CharacterInformationUI : MonoBehaviour
         HideEffect();
         foreach(Image i in effectsOnChara)
         {
-            i.gameObject.SetActive(false);
+            i.transform.parent.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
     }
 
     public void ShowEffect(int index)
     {
+        effectName.text = effectNames[index];
         effectDetail.text = effectDescriptions[index];
         effectResume.SetActive(true);
     }

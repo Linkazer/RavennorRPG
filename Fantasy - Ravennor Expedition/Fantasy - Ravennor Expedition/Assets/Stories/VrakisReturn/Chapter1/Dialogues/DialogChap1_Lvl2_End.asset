@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: DialogChap1_Lvl2_End
+  m_EditorClassIdentifier: 
+  storyText: "A l'autre bout de la salle, la confr\xE9rie tombe sur un escalier.
+    Ce dernier s'engouffre dans un noir profond. N'ayant aucun id\xE9e de ce qui
+    peut bien se trouver \xE0 l'autre vout de cet escalier, la confr\xE9rie d\xE9cide
+    de se reposer un peu.\n\nInspectant les environs, Eliza s'arr\xEAte devant une
+    fresque. Cherchant \xE0 en comprendre le sens, Vanyaenn surgit derri\xE8re elle.
+    Elle se met alors \xE0 glisser ses mains sur la fresque afin de s'en faire une
+    image.\n\n\"Si je ne me trompe pas, la fresque \xE0 l'air de raconter la chute
+    de l'empire de Kelsemeth\" explique-t-elle \xE0 Eliza. \"Leur empereur lan\xE7at
+    une guerre contre les autres royaumes de Ravenor. S'en suivit alors une des plus
+    grandes guerre que le monde ait connut. Et apr\xE8s plusieurs ann\xE9es de batailles,
+    un sortil\xE8ge interdit fut lanc\xE9 par un mage inconnu sur l'empire, erradiquant
+    toute trace de civilisation sur des kilom\xE8tres \xE0 la ronde. Depuis, l'empire
+    de Kelsemeth a disparu, et a laiss\xE9 sa place au D\xE9sert des Cendres.\"\n\n\"Mais
+    elle fait quoi ici cette fresque ?\" demande Nor san crier gare, faisant sursauter
+    Eliza.\n\n\"Aucune id\xE9e\" r\xE9pond Vanyaenn. \"Au vu de sa proximit\xE9 avec
+    le D\xE9sert des Cendres, peut-\xEAtre que certains habitant de Kelsemeth sont
+    ent\xE9r\xE9s ici. Quoi qu'il en soit, mieux vaut nous reposer quelques heures.
+    On n'a aucune id\xE9e de ce qui se trouve en bas de ces escalier, alors mieux
+    vaut \xEAtre en forme quand on y sera.\""
+  reponses:
+  - text: Continuer...
+    nextStory: {fileID: 0}
+  battleBegin: 0
+  goToCamp: 1

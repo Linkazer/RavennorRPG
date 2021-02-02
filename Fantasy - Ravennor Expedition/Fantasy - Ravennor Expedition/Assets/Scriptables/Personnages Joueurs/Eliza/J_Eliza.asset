@@ -29,6 +29,23 @@ MonoBehaviour:
   perception: 3
   charisme: 2
   puissMag: 3
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaana: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   learnedSpells:
   - {fileID: 11400000, guid: c306b5f830d241644aacad40b66219b1, type: 2}
@@ -37,5 +54,5 @@ MonoBehaviour:
   sortsDisponibles:
   - {fileID: 11400000, guid: 5f75cf055cd081a41b59760e76fb5e59, type: 2}
   - {fileID: 11400000, guid: c306b5f830d241644aacad40b66219b1, type: 2}
-  - {fileID: 11400000, guid: ea8a1caf856986e4796db18420f5acab, type: 2}
+  - {fileID: 11400000, guid: 8ce097b06835f68428365999dd8b84d8, type: 2}
   passifs: []

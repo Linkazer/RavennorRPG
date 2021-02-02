@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: DialogChap1_Lvl3_End
+  m_EditorClassIdentifier: 
+  storyText: "Gri\xE8vement bless\xE9, le gardien finit par tomber \xE0 genoux. Sentant
+    son heure arriv\xE9, il s'adresse \xE0 la confr\xE9rie.\n\n\"Ainsi, mon devoir
+    s'ach\xE8ve ici. Puissiez vous la prot\xE9ger, pour sa s\xE9curit\xE9, comme
+    pour celle du monde\" dit-il avant de disparaitre, suivit par les silhouettes
+    fantomatiques encore pr\xE9sentes dans la crypte.\n\nSurpris par les derni\xE8re
+    paroles du gardien, la confr\xE9rie s'approche doucement de la tombe. L'aura
+    magique qu'elle d\xE9gageait a fini par disparaitre avec le gardien. Et alors
+    qu'Okun s'appr\xEAte a ouvrir la tombe, Eliza l'arr\xEAte.\n\n\"Vous \xEAtes
+    s\xFBr que c'est une bonne id\xE9e ? Ca a pas l'air d'\xEAtre un simple art\xE9fact
+    mineur. Il faudrait peut-\xEAtre pr\xE9venir l'Academie.\"\n\n\"Tu penses que
+    l'Academie nous aurait envoy\xE9 si elle nous pensait incapable de r\xE9cup\xE9rer
+    cet art\xE9fact ?\" demande Shedun. \"Mieux vaux leur ramener pour le mettre
+    en s\xE9curit\xE9 que d'attendre plusieurs jours qu'un archimage arrive.\"\n\n\"Shedun
+    a raison. On ne sait pas qui d'autres traine dans les parages. Mieux vaut se
+    d\xE9p\xE9cher de partir d'ici\" dit Vanyaenn.\n\nSur ces mots, Okun pousse le
+    dessus de la tombe, lib\xE9rant un nuage de poussi\xE8re en le faisant tomber.
+    Et alors que la poussi\xE8re redescend, les membres de la confr\xE9rie se penchent
+    au dessus du tombeau. Et maglr\xE9 toutes leurs pr\xE9visions, aucun d'eux ne
+    s'attendait \xE0 voir... une elfe. Une simple elfe \xE0 la peau rose et au long
+    cheveux violet. Surprennant tout le monde, l'elfe ouvre faiblement les yeux.\n\n\"Kira...\"
+    chuchota-t-elle d'une voix presque imperceptible avant de s'\xE9vanouir.\n"
+  reponses:
+  - text: Continuer...
+    nextStory: {fileID: 0}
+  battleBegin: 0
+  goToCamp: 1
