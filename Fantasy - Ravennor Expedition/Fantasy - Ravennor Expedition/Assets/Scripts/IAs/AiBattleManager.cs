@@ -34,17 +34,17 @@ public class AiBattleManager : MonoBehaviour
 
         SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), false);
 
-        SearchNextMove();
+        SearchNextMove(1.5f);
     }
 
-    public void SearchNextMove()
+    public void SearchNextMove(float timeToWait)
     {
-        StartCoroutine(WaitBeforeTryAction());
+        StartCoroutine(WaitBeforeTryAction(timeToWait));
     }
 
-    IEnumerator WaitBeforeTryAction()
+    IEnumerator WaitBeforeTryAction(float timeToWait)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(timeToWait);
         TryNextMove();
     }
 
@@ -81,9 +81,10 @@ public class AiBattleManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Move for next round");
                     currentChara.actionAvailable = false;
                     SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
+
+                    Debug.Log("Move for next round : " + nodeToMoveTo.worldPosition);
 
                     if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                     {
@@ -93,7 +94,7 @@ public class AiBattleManager : MonoBehaviour
                     }
                     else
                     {
-                        //Debug.Log(" Movement Left EndTurn");
+                        Debug.Log(" Movement Left EndTurn");
                         BattleManager.instance.EndTurn();
                     }
                 }
@@ -119,7 +120,7 @@ public class AiBattleManager : MonoBehaviour
         target = null;
         wantedAction = null;
 
-        nodeToMoveTo = null;
+        nodeToMoveTo = currentChara.currentNode;
 
         if (aiCaster != null)
         {
@@ -129,8 +130,6 @@ public class AiBattleManager : MonoBehaviour
 
             foreach (AiConsideration consid in aiCaster.comportement)
             {
-
-
                 if ((consid.cooldown <= 0 && caster.GetSpellCooldown(consid.wantedAction)<=0) || (askForNextTurn && consid.cooldown <= 1 && caster.GetSpellCooldown(consid.wantedAction) <= 1))
                 {
                     //List<Node> toCheck = Pathfinding.instance.GetNodesWithMaxDistance(caster.currentNode, consid.wantedAction.range.y, false);
@@ -143,6 +142,15 @@ public class AiBattleManager : MonoBehaviour
                             float newScore = EvaluateAction(consid, caster, chara);
                             if (newScore > maxScore)
                             {
+                                if (askForNextTurn)
+                                {
+                                    Debug.Log("For next turn ?");
+                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range.y, consid.wantedAction.hasViewOnTarget, currentChara.GetCharacterDatas().GetMovementSpeed());
+                                }
+                                else
+                                {
+                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range.y, consid.wantedAction.hasViewOnTarget, 0);
+                                }
                                 maxScore = newScore;
                                 evaluatedValues = newScore;
                                 wantedAction = consid.wantedAction;
@@ -156,7 +164,7 @@ public class AiBattleManager : MonoBehaviour
 
             if(target == null)
             {
-                nodeToMoveTo = GetClosestTargetNode(targets);
+                nodeToMoveTo = GetClosestTargetNode(targets, 0);
             }
 
             if (considToCooldown != null && !askForNextTurn)
@@ -234,6 +242,8 @@ public class AiBattleManager : MonoBehaviour
             rangeNeeded += currentChara.GetMaxMovement();
         }*/
 
+        bool foundSomething = false;
+
         foreach(Node n in possibleDeplacement)
         {
             if(Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded)
@@ -242,19 +252,53 @@ public class AiBattleManager : MonoBehaviour
 
                 if(hit.collider == null || !actionToTry.hasViewOnTarget || askForNextTurn)
                 {
-                    nodeToMoveTo = n;
-
+                    /*if (Pathfinding.instance.GetDistance(currentChara.currentNode, n) < currentDistance)
+                    {
+                        nodeToMoveTo = n;
+                    }*/
+                    //foundSomething = true;
                     return true;
                 }
             }
         }
-        return false;
+
+        return foundSomething;
     }
 
-    private Node GetClosestTargetNode(List<RuntimeBattleCharacter> possiblesTargets)
+    private Node GetNodeToHitTarget(RuntimeBattleCharacter wantedTarget, float rangeWanted, bool needView, int deplacementBoost)
+    {
+        //float range = 1000;
+        Debug.Log("Allo");
+        Node nodeToReturn = currentChara.currentNode;
+
+        List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft + deplacementBoost, true);
+
+        float currentDistance = 1000;
+
+        foreach (Node n in possibleDeplacement)
+        {
+            if (Pathfinding.instance.GetDistance(n, wantedTarget.currentNode) <= rangeWanted)
+            {
+                hit = Physics2D.Raycast(n.worldPosition, (wantedTarget.transform.position - n.worldPosition).normalized, Vector2.Distance(wantedTarget.transform.position, n.worldPosition), layerMaskObstacle);
+
+                if (hit.collider == null || !needView)
+                {
+                    if (Pathfinding.instance.GetDistance(currentChara.currentNode, n) < currentDistance)
+                    {
+                        nodeToReturn = n;
+                        currentDistance = Pathfinding.instance.GetDistance(currentChara.currentNode, n);
+                    }
+                }
+            }
+        }
+
+        return nodeToReturn;
+    }
+
+    private Node GetClosestTargetNode(List<RuntimeBattleCharacter> possiblesTargets, float rangeWanted)
     {
         float range = 1000;
-        Node nodeToReturn = new Node();
+        Node nodeToReturn = currentChara.currentNode;
 
         foreach(RuntimeBattleCharacter r in possiblesTargets)
         {

@@ -30,7 +30,6 @@ public class DoorObject : MonoBehaviour
 
     IEnumerator OpenDoor()
     {
-        Debug.Log("Ouverture porte");
         foreach(int i in indexs)
         {
             BattleManager.instance.OpenRoom(i);

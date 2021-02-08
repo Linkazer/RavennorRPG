@@ -21,12 +21,14 @@ MonoBehaviour:
     dit-il apr\xE8s avoir vu la pi\xE8ce tomber sur sa face.\n\nBien que Nor soit
     une fois de plus surprise par les talents d'Okun, le reste du groupe se d\xE9cide
     apr\xE8s quelques secondes \xE0 les suivre, chacun plus d\xE9pit\xE9 que les
-    autres. Et que ce soit un coup du destin ou de la simple chance, la confr\xE9rie
-    finit par approcher d'une grande salle. Okun, fier de lui, entre dans la salle,
-    suivit de ses compagnons. Et avant que ces derniers puissent r\xE9agir, un projectile
-    magique passe \xE0 c\xF4t\xE9 d'Okun. Apara\xEEssent alors d'autres silhouettes
-    fantomatiques pr\xEAtent \xE0 en d\xE9coudre.\n\n\"Okun, la prochaine fois que
-    tu choisie une direction, rapelle moi de partir \xE0 l'oppos\xE9e\" dit Shedun."
+    autres. Apr\xE8s plusieurs minutes de marche, la confr\xE9rie finit par entendre
+    un bruit venant de derri\xE8re eux. Arr\xEAtant de bouger pour mieux entendre
+    le bruit, Eliza finit par reconnaitre des bruits de pas, et ces derniers viennent
+    dans leur directions. Utilisant sa vision du Maana, Vanyaenn aper\xE7oit une
+    dizaine d'aura s'approchant dangereusement du groupe.\n\nSe trouvant dans un
+    grand couloir, la confr\xE9rie commence \xE0 courir pour \xE9chaper \xE0 leur
+    poursuivant. Cependant, alors que les fant\xF4mes les attrapes, la confr\xE9rie
+    se retrouve face \xE0 une grande porte."
   reponses:
   - text: Continuer...
     nextStory: {fileID: 0}

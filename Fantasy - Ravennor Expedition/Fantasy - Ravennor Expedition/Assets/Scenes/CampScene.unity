@@ -4631,7 +4631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93e16542554d9f4d8bf59bd66833ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextBattle: {fileID: 7560241282882709333, guid: 1268795ff2f62004cbff2ab032a1c4a3, type: 3}
+  nextBattle: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
   playerPersos:
   - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
   - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}

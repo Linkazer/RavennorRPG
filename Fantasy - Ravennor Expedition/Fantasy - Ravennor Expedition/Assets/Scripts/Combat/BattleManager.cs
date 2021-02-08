@@ -374,7 +374,7 @@ public class BattleManager : MonoBehaviour
         }
         else if(character.GetTeam() > -1)
         {
-            AiBattleManager.instance.TryNextMove();
+            AiBattleManager.instance.SearchNextMove(0.5f);
         }
     }
 

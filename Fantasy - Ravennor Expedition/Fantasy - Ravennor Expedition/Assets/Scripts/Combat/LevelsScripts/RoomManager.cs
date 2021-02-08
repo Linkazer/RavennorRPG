@@ -13,7 +13,6 @@ public class RoomManager : MonoBehaviour
 
     public GameObject nextLvl;
     public int levelAtEnd;
-    public List<PersonnageScriptables> persoToChange;
 
     [SerializeField]
     protected List<Room> rooms;
@@ -23,6 +22,7 @@ public class RoomManager : MonoBehaviour
     //[HideInInspector]
     public List<Vector2> playerStartPositions;
 
+    [SerializeField]
     protected List<int> usedIndex = new List<int>();
 
     [SerializeField]
@@ -46,6 +46,11 @@ public class RoomManager : MonoBehaviour
         characterInCamp.Add("Shedun");
         characterInCamp.Add("Vanyaenn");
         characterInCamp.Add("Mira");
+    }
+
+    private void Start()
+    {
+        usedIndex = new List<int>();
     }
 
     [ContextMenu("Set Chara positions")]
@@ -89,15 +94,18 @@ public class RoomManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
+        Debug.Log("Open Room : " + index + " Contains : " + usedIndex.Contains(index));
         if(!usedIndex.Contains(index) || index == 0)
         {
+            Debug.Log("Use index");
             usedIndex.Add(index);
-            ActivateRoom(rooms[index]);
+            ActivateRoom(index);
         }
     }
 
-    protected virtual void ActivateRoom(Room toActivate)
+    protected virtual void ActivateRoom(int index)
     {
+        Room toActivate = rooms[index];
         for (int i = 0; i < toActivate.ennemis.Count;i++)
         {
             BattleManager.instance.SpawnNewCharacter(toActivate.ennemis[i], toActivate.ennemisPositions[i]);
@@ -125,18 +133,6 @@ public class RoomManager : MonoBehaviour
 
     public void WinLevel()
     {
-        foreach(PersonnageScriptables p in persoToChange)
-        {
-            for(int i = 0; i < RavenorGameManager.instance.playerPersos.Count; i++)
-            {
-                if(RavenorGameManager.instance.playerPersos[i].nom == p.nom)
-                {
-                    RavenorGameManager.instance.playerPersos[i] = p;
-                    break;
-                }
-            }
-        }
-
         RavenorGameManager.instance.dialogueToDisplay = campDialogue;
 
         BattleManager.instance.EndBattle(true);

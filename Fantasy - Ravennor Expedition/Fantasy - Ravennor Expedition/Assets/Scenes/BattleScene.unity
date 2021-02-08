@@ -29635,7 +29635,7 @@ MonoBehaviour:
   - {fileID: 988742487}
   charaTeamOne: []
   charaTeamTwo: []
-  level: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
+  level: {fileID: 7560241282882709333, guid: 1268795ff2f62004cbff2ab032a1c4a3, type: 3}
   battleState: 0
   diary: {fileID: 1935258964}
   passiveCheater: {fileID: 1056730443}
@@ -32091,8 +32091,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 299768142}
   m_HandleRect: {fileID: 299768141}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

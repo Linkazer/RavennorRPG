@@ -25,9 +25,9 @@ public class RoomManager_Boss : RoomManager
         return false;
     }
 
-    protected override void ActivateRoom(Room toActivate)
+    protected override void ActivateRoom(int index)
     {
-        base.ActivateRoom(toActivate);
+        base.ActivateRoom(index);
 
         foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetTeamTwo())
         {
