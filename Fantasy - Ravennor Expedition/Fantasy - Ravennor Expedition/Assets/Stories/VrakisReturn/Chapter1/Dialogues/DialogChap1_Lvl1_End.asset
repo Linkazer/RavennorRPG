@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: DialogChap1_Lvl1_End
   m_EditorClassIdentifier: 
   storyText: "Le dernier fantome vient de tomber. Le groupe reste \xE0 l'affut du
-    moindre bruit, restant silencieux pendant plusieurs longues secondes.\n\n\"Je
-    pense que c'est bon\" dit Vanyaenn en jetant un oeil \xE0 ses combagons. \"Tout
-    le monde va bien ?\"\n\n\"\xC7a a l'air d'aller\" r\xE9pond Okun en v\xE9rifiant
-    s'il n'est pas bless\xE9.\n\n\"C'\xE9tait quoi ces trucs ?\" demande Nor.\n\n\"Il
-    faut croire que les villageois avaient raison.\" dit Shedun. \"Cette crypte semble
-    belle est bien hant\xE9e.\"\n\n\"Super. Des fant\xF4mes. Comme si cette crypte
-    \xE9tait pas assez flippante comme \xE7a\" r\xE2le Eliza.\n\n\"Quoi que ce soit,
+    moindre bruit, restant silencieux pendant plusieurs longues secondes.\n\"Je pense
+    que c'est bon\" dit Vanyaenn en jetant un oeil \xE0 ses combagons. \"Tout le
+    monde va bien ?\"\n\"\xC7a a l'air d'aller\" r\xE9pond Okun en v\xE9rifiant s'il
+    n'est pas bless\xE9.\n\"C'\xE9tait quoi ces trucs ?\" demande Nor.\n\"Il faut
+    croire que les villageois avaient raison.\" dit Shedun. \"Cette crypte semble
+    belle est bien hant\xE9e.\"\n\"Super. Des fant\xF4mes. Comme si cette crypte
+    \xE9tait pas assez flippante comme \xE7a\" r\xE2le Eliza.\n\"Quoi que ce soit,
     \xE7a m'\xE9tonnerai que ce soit les seuls. Alors restez sur vos gardes, et avan\xE7ons
     discr...\" Vanyaenn s'interrompt et regarde autour d'elle. \"O\xF9 sont pass\xE9
-    Nor et Okun ?\"\n\n\"On a trouv\xE9 un chemin par ici !\" cri Okun avant de s'engouffrer
-    dedans, suivit de Nor.\n\nN'essayant m\xEAme plus de cacher son exasp\xE9ration,
+    Nor et Okun ?\"\n\"On a trouv\xE9 un chemin par ici !\" cri Okun avant de s'engouffrer
+    dedans, suivit de Nor.\nN'essayant m\xEAme plus de cacher son exasp\xE9ration,
     Vanyaenn finit par rejoindre le reste du groupe."
   reponses:
   - text: Continuer...

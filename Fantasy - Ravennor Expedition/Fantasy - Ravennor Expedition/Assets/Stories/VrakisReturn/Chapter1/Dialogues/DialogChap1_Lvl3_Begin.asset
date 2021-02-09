@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
   m_Name: DialogChap1_Lvl3_Begin
   m_EditorClassIdentifier: 
-  storyText: "La crypte continues de descendre encore et encore, \xE0 telle point
+  storyText: "La crypte continue de descendre encore et encore, \xE0 telle point
     qu'y rencontrer une mine naine n'aurait pas \xE9t\xE9 surprennant. Depuis leur
     dernier affrontement, le groupe n'a plus rencontrer un seul fant\xF4me, ce qui
-    ne rassurait cependant pas nos h\xE9ros.\n\n\"Vous pensez qu'on en a encore pour
+    ne rassurait cependant pas nos h\xE9ros.\n\"Vous pensez qu'on en a encore pour
     longtemps \xE0 descendre ?\" demande Okun. \"J'ai pas \xE9t\xE9 pay\xE9 pour
-    \xE7a moi.\"\n\n\"Je te rapelle quand m\xEAme qu'on est pas pay\xE9 par l'Academie\"
-    r\xE9pond Vanyaenn. \"Et quelque chose me dit qu'on est bient\xF4t arriv\xE9.\"\n\nEn
+    \xE7a moi.\"\n\"Je te rapelle quand m\xEAme qu'on est pas pay\xE9 par l'Academie\"
+    r\xE9pond Vanyaenn. \"Et quelque chose me dit qu'on est bient\xF4t arriv\xE9.\"\nEn
     effet, le groupe fini par voir la fin de l'escalier. En s'approchant, ils d\xE9couvrent
     une double porte. Derri\xE8re elle, Vanyaenn per\xE7oit une \xE9trange aura magique.
     Apr\xE8s un temps de r\xE9flexion, la confr\xE9rie d\xE9cide quand m\xEAme d'ouvrir
-    la porte.\n\nMalgr\xE9 le poids de la porte, Okun arrive \xE0 l'ouvrir, laissant
+    la porte.\nMalgr\xE9 le poids de la porte, Okun arrive \xE0 l'ouvrir, laissant
     la confr\xE9rie entrer dans une grande salle. Sur les murs, plusieurs fresques
     sont d\xE9ssin\xE9es. Mais ce qui reste le plus \xE9trange, c'est le fait que
     la salle soit quasiment vide, \xE0 l'exception d'un tombe de l'autre c\xF4t\xE9
     de la pi\xE8ce. Et alors que Vanyaenn se rend compte que l'aura magique a disparue,
     la porte se claque derri\xE8re nos h\xE9ros. Apparaissent alors plusieurs fant\xF4mes.
     A la surpise de tout le monde, l'un d'eux, se tenant pr\xE8s de la tombe, commence
-    \xE0 parler.\n\n\"Vous avez donc d\xE9cidez d'ignorer nos avertissements. Maintenant,
+    \xE0 parler.\n\"Vous avez donc d\xE9cidez d'ignorer nos avertissements. Maintenant,
     payez en le pris !\" crie-t-il avant de se jeter sur la confr\xE9rie."
   reponses:
   - text: Continuer...

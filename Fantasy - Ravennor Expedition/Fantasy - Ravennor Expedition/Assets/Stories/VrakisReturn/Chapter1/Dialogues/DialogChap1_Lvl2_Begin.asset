@@ -15,20 +15,20 @@ MonoBehaviour:
   storyText: "Alors que la confr\xE9rie continue son avanc\xE9e dans la crypte. Cette
     derni\xE8re semble plus vaste qu'il n'y parait, et y trouver l'art\xE9fact risque
     de prendre plus de temps que pr\xE9vut. Progressant dans les couloirs, la confr\xE9rie
-    arrive \xE0 une intersection.\n\n\"Par o\xF9 on va maintenant ?\" demande Nor.\n\n\"D'apr\xE8s
+    arrive \xE0 une intersection.\n\"Par o\xF9 on va maintenant ?\" demande Nor.\n\"D'apr\xE8s
     mes talents de chasseurs, et au vu des marques sur le sol,\" dit Okun en sortant
     une pi\xE8ce de sa poche. \"Je pense que nous devrions aller... Par l\xE0 !\"
-    dit-il apr\xE8s avoir vu la pi\xE8ce tomber sur sa face.\n\nBien que Nor soit
-    une fois de plus surprise par les talents d'Okun, le reste du groupe se d\xE9cide
+    dit-il apr\xE8s avoir vu la pi\xE8ce tomber sur sa face.\nBien que Nor soit une
+    fois de plus surprise par les talents d'Okun, le reste du groupe se d\xE9cide
     apr\xE8s quelques secondes \xE0 les suivre, chacun plus d\xE9pit\xE9 que les
     autres. Apr\xE8s plusieurs minutes de marche, la confr\xE9rie finit par entendre
     un bruit venant de derri\xE8re eux. Arr\xEAtant de bouger pour mieux entendre
     le bruit, Eliza finit par reconnaitre des bruits de pas, et ces derniers viennent
     dans leur directions. Utilisant sa vision du Maana, Vanyaenn aper\xE7oit une
-    dizaine d'aura s'approchant dangereusement du groupe.\n\nSe trouvant dans un
-    grand couloir, la confr\xE9rie commence \xE0 courir pour \xE9chaper \xE0 leur
-    poursuivant. Cependant, alors que les fant\xF4mes les attrapes, la confr\xE9rie
-    se retrouve face \xE0 une grande porte."
+    dizaine d'aura s'approchant dangereusement du groupe.\nSe trouvant dans un grand
+    couloir, la confr\xE9rie commence \xE0 courir pour \xE9chaper \xE0 leur poursuivant.
+    Cependant, alors que les fant\xF4mes les attrapes, la confr\xE9rie se retrouve
+    face \xE0 une grande porte."
   reponses:
   - text: Continuer...
     nextStory: {fileID: 0}
