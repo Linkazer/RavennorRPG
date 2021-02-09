@@ -40,7 +40,7 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private GameObject spellInfo;
     [SerializeField]
-    private TextMeshProUGUI spellTitle, spellDescription, spellMaanaCost;
+    private TextMeshProUGUI spellTitle, spellDescription, spellMaanaCost, spellIncantationTime;
 
     private RuntimeBattleCharacter currentChara;
     public RuntimeBattleCharacter GetCurrentChara()
@@ -193,6 +193,7 @@ public class BattleUiManager : MonoBehaviour
         spellTitle.text = toShow.nom;
         spellDescription.text = toShow.description;
         spellMaanaCost.text = toShow.maanaCost.ToString();
+        spellIncantationTime.text = toShow.incantationTime.ToString();
 
         spellInfo.SetActive(true);
     }

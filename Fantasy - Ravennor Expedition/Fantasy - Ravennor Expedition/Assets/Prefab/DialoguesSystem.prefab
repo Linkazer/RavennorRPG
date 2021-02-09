@@ -819,8 +819,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -22}
-  m_SizeDelta: {x: 460, y: 44}
+  m_AnchoredPosition: {x: 287.5, y: -22}
+  m_SizeDelta: {x: 575, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729134143827992
 CanvasRenderer:
@@ -985,8 +985,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: 110}
-  m_SizeDelta: {x: 460, y: 44}
+  m_AnchoredPosition: {x: 287.5, y: 110}
+  m_SizeDelta: {x: 575, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729134538083628
 CanvasRenderer:
@@ -1672,8 +1672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: 22}
-  m_SizeDelta: {x: 460, y: 44}
+  m_AnchoredPosition: {x: 287.5, y: 22}
+  m_SizeDelta: {x: 575, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729135106654836
 CanvasRenderer:
@@ -1840,7 +1840,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 651.5, y: 970}
+  m_SizeDelta: {x: 750, y: 970}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729135126454993
 CanvasRenderer:
@@ -2080,8 +2080,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 12}
-  m_SizeDelta: {x: 460, y: 760}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 575, y: 775}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729135373345299
 CanvasRenderer:
@@ -2111,7 +2111,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "Apr\xE8s des jours de trajets, la Confr\xE9rie du Zippo arrive enfin \xE0
+    Lanon, un village proche de la crypte de Gzarsaroth. L'Acad\xE9mie de Norganon
+    ayant trouv\xE9 des traces d'un ancien art\xE9fact, Majax a charg\xE9 la confr\xE9rie
+    de le retrouver et de le ramener \xE0 l'Acad\xE9mie. Cependant, \xE0 chaque fois
+    que le groupe prononce le nom de Gzarsaroth, les villageois \xE9vitent le sujet
+    et partent \xE0 vive allure. La seule information que le groupe ait pu obtenir
+    est que la crypte serait hant\xE9e.\nLe lendemain, apr\xE8s une bonne nuit de
+    repos, la confr\xE9rie part en direction de la crypte. Une fois arriv\xE9, Eliza
+    s'approche de la porte.\n\"Ah ! Ca pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
+    le concept d'une crypte\" r\xE9pond Shedun.\n\"Soyez sur vos gardes, on ne sait
+    pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en fixant
+    Okun.\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent dans une
+    grande salle avec de nombreux tombeaux. Fouillant la pi\xE8ce \xE0 la recherche
+    du moindre indice, le bruit d'une vase se cassant sur le sol r\xE9sonne dans
+    la pi\xE8ce. Vanyaenn tourne rapidement la t\xEAte pour apercevoir l'origine
+    du bruit.\n\"D\xE9sol\xE9\" dit Nor, avec un vase cass\xE9 \xE0 ses pieds.\nSoudain,
+    des mumures se font entendre. Tout autour de la confr\xE9rie, des silouhettes
+    fantomatiques sortent des tombeaux."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 205a1194358860b46b9377eab76a4adc, type: 2}
@@ -2152,7 +2169,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 50
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -2587,7 +2604,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -400}
-  m_SizeDelta: {x: 460, y: 44}
+  m_SizeDelta: {x: 575, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4165729135774060125
 MonoBehaviour:
@@ -2609,7 +2626,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 2
   m_StartAxis: 0
-  m_CellSize: {x: 460, y: 44}
+  m_CellSize: {x: 575, y: 44}
   m_Spacing: {x: 0, y: -88}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2709,8 +2726,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: 66}
-  m_SizeDelta: {x: 460, y: 44}
+  m_AnchoredPosition: {x: 287.5, y: 66}
+  m_SizeDelta: {x: 575, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729135796811684
 CanvasRenderer:
@@ -3041,8 +3058,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: 154}
-  m_SizeDelta: {x: 460, y: 44}
+  m_AnchoredPosition: {x: 287.5, y: 154}
+  m_SizeDelta: {x: 575, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729135894908129
 CanvasRenderer:
