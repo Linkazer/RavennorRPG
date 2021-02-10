@@ -17,7 +17,10 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 9e1d14b96b2279d45bb072bd40e27b99, type: 3}
   spritePerso: {fileID: 21300000, guid: 9e1d14b96b2279d45bb072bd40e27b99, type: 3}
   spriteDeMains: {fileID: 0}
-  specialPrefab: {fileID: 0}
+  description: "Mira est une jeune elfe ayant rejoint la confr\xE9rie il y a peu.
+    Elle est assez r\xE9serv\xE9 est reste souvent en retrait. Cependant, gr\xE2ce
+    aux apprentissages de son percepteur, Mira est une excellente combattante une
+    fois l'\xE9p\xE9e en main."
   level: 1
   baseHps: 10
   hpByLevel: 0
@@ -29,6 +32,23 @@ MonoBehaviour:
   perception: 1
   charisme: 2
   puissMag: 4
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaana: 0
+  bonusSpellRange: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
   - {fileID: 11400000, guid: c8e40ff2e8ab49f44b7ec0c7578724ff, type: 2}

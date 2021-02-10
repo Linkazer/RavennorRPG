@@ -24,7 +24,7 @@ public class CampManager : MonoBehaviour
     [SerializeField]
     private Image characterPortrait;
     [SerializeField]
-    private TextMeshProUGUI characterName;
+    private TextMeshProUGUI characterName, characterDescription;
 
     [SerializeField]
     private List<PersonnageScriptables> persos = new List<PersonnageScriptables>();
@@ -180,6 +180,8 @@ public class CampManager : MonoBehaviour
 
         maxHps.text = currentChara.GetMaxHps().ToString();
         maxMaana.text = currentChara.GetMaxMaana().ToString();
+
+        characterDescription.text = currentChara.description;
 
         List<int> mainStatsValues = currentChara.GetAllMainStats();
 
@@ -347,6 +349,14 @@ public class CampManager : MonoBehaviour
         spellPortee.text = toShow.range.y.ToString();
 
         spellInfo.SetActive(true);
+    }
+
+    public void ShowLockSpellInfo(int index)
+    {
+        if (index < unlockableSpells.Count)
+        {
+            SpellInfo(unlockableSpells[index]);
+        }
     }
 
     public void HideSpellInfo()

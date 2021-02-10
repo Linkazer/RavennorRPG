@@ -12,7 +12,8 @@ public class PersonnageScriptables : ScriptableObject
     public Sprite portrait;
     public Sprite spritePerso;
     public Sprite spriteDeMains;
-    public GameObject specialPrefab;
+    [TextArea(3,5)]
+    public string description;
 
     [Header("Niveau")]
     public int level = 1;

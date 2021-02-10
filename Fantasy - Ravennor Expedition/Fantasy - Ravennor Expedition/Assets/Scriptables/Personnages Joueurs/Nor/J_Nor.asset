@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Nor
   icon: {fileID: 21300000, guid: 964ce8b10a3d4c14cbb8ff367b4ff833, type: 3}
-  portrait: {fileID: 21300000, guid: 2cdd5abb458c74340bd0609b20839519, type: 3}
+  portrait: {fileID: 21300000, guid: 964ce8b10a3d4c14cbb8ff367b4ff833, type: 3}
   spritePerso: {fileID: 21300000, guid: 964ce8b10a3d4c14cbb8ff367b4ff833, type: 3}
   spriteDeMains: {fileID: 0}
-  specialPrefab: {fileID: 0}
+  description: 
   level: 1
   baseHps: 10
   hpByLevel: 0
