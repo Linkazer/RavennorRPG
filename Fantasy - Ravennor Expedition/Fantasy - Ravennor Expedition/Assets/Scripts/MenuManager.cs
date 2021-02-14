@@ -8,6 +8,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private Slider globalSlider, musicSlider, sfxSlider;
 
+    [SerializeField]
+    private GameObject controleFiche;
+
     public void OpenMenu()
     {
         globalSlider.value = SoundSyst.instance.GetVolumeValue("GlobalVolume");
@@ -44,5 +47,15 @@ public class MenuManager : MonoBehaviour
     public void CloseGame()
     {
         RavenorGameManager.instance.CloseGame();
+    }
+
+    public void OpenControl()
+    {
+        controleFiche.SetActive(true);
+    }
+
+    public void CloseControl()
+    {
+        controleFiche.SetActive(false);
     }
 }

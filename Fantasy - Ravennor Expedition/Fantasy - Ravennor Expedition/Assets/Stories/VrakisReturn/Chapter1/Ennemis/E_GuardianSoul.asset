@@ -16,8 +16,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 553d6be29f9dfa84e9d482ae554234c8, type: 3}
   portrait: {fileID: 21300000, guid: 553d6be29f9dfa84e9d482ae554234c8, type: 3}
   spritePerso: {fileID: 21300000, guid: 553d6be29f9dfa84e9d482ae554234c8, type: 3}
-  spriteDeMains: {fileID: 0}
-  specialPrefab: {fileID: 0}
+  spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
+  brasPosition: 0
+  description: 
   level: 2
   baseHps: 15
   hpByLevel: 0
@@ -51,6 +52,7 @@ MonoBehaviour:
   sortsDisponibles:
   - {fileID: 11400000, guid: f456c71be951102429fbd0746fbf1add, type: 2}
   - {fileID: 11400000, guid: 596c22fd3fecb194e801b51b532f6e0f, type: 2}
+  - {fileID: 11400000, guid: d5fcab742f444784f86417c8c0e57092, type: 2}
   passifs: []
   comportement:
   - wantedAction: {fileID: 11400000, guid: 596c22fd3fecb194e801b51b532f6e0f, type: 2}
@@ -109,6 +111,34 @@ MonoBehaviour:
       calculImportance: 1
     maxCooldown: 0
     cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: d5fcab742f444784f86417c8c0e57092, type: 2}
+    conditionWanted: 0
+    conditionValue: 15
+    conditionType: 1
+    maxValue: 0.3
+    calculs:
+    - calculType: 1
+      abscissaValue: 10
+      maxValue: 25
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    maxCooldown: 99
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: d5fcab742f444784f86417c8c0e57092, type: 2}
+    conditionWanted: 0
+    conditionValue: 15
+    conditionType: 1
+    maxValue: 0.3
+    calculs:
+    - calculType: 1
+      abscissaValue: 10
+      maxValue: 25
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    maxCooldown: 99
+    cooldown: 1
   aiBonusDegPhyMelee: 0
   aiBonusDegPhyDistance: 0
   aiBonusDegMag: 0

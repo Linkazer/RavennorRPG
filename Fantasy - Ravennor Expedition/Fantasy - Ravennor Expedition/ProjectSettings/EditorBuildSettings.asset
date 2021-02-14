@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CampScene.unity
     guid: e19a9c7a3c8af9a4795aec0c59e5e7ec
+  - enabled: 1
+    path: Assets/Scenes/TEMP_Tutoriel.unity
+    guid: 58d945273400b7b4b95aaa71d3b18dbc
   m_configObjects: {}

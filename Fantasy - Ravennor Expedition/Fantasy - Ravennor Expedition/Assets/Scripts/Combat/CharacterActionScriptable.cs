@@ -29,7 +29,7 @@ public class CharacterActionScriptable : ScriptableObject
     public ActionIncantation incantationTime;
 
     public ActionTargets target;
-    public ActionTargets AICastTarget;
+    public ActionTargets castTarget = ActionTargets.All;
     protected int targetNumber;
 
     [Header("Forme")]
@@ -46,7 +46,8 @@ public class CharacterActionScriptable : ScriptableObject
     public Sprite zoneSprite;
     public Sprite caseSprite;
     public Sprite caseFeedback;
-    public string animationOnNodeName, animationOnZoneName;
+    public string castAnimation;
+    //public string animationOnNodeName, animationOnZoneName;
 
     [SerializeField]
     private int maxCooldown = 0;
@@ -62,7 +63,7 @@ public class CharacterActionScriptable : ScriptableObject
 
     public bool HadFeedback()
     {
-        return (zoneSprite != null || caseSprite != null || animationOnNodeName != "" || animationOnZoneName != "");
+        return (zoneSprite != null || caseSprite != null);
     }
 
     public int GetMaxCooldown()

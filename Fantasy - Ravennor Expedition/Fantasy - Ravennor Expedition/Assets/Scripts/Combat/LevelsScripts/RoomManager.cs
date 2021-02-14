@@ -94,10 +94,8 @@ public class RoomManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
-        Debug.Log("Open Room : " + index + " Contains : " + usedIndex.Contains(index));
         if(!usedIndex.Contains(index) || index == 0)
         {
-            Debug.Log("Use index");
             usedIndex.Add(index);
             ActivateRoom(index);
         }

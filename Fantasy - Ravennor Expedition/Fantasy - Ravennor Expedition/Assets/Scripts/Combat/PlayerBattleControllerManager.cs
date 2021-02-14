@@ -33,11 +33,11 @@ public class PlayerBattleControllerManager : MonoBehaviour
         {
             PlayerBattleManager.instance.NextAction(currentMousePos);
         }
-
-        if(Input.GetKeyDown(KeyCode.A))
+        
+        /*if(Input.GetKeyDown(KeyCode.A))
         {
             PlayerBattleManager.instance.ChooseSpell(0);
-        }
+        }*/
 
         if (PlayerBattleManager.instance.holdSpellIndex >= 0 && Grid.instance.NodeFromWorldPoint(currentMousePos) != Grid.instance.NodeFromWorldPoint(lastMousePos) && Grid.instance.NodeFromWorldPoint(currentMousePos).usableNode)
         {

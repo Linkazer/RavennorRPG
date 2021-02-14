@@ -116,6 +116,8 @@ public class CampManager : MonoBehaviour
         {
             CheckForNewLevelUp();
         }
+
+        LoadingScreenManager.instance.HideScreen();
     }
 
     private void CheckForNewLevelUp()
@@ -258,11 +260,11 @@ public class CampManager : MonoBehaviour
                 if (currentChara.learnedSpells.Count > i && currentChara.learnedSpells[i] != null)
                 {
                     knownSpells[i].sprite = currentChara.learnedSpells[i].icon;
-                    knownSpells[i].gameObject.SetActive(true);
+                    knownSpells[i].transform.parent.gameObject.SetActive(true);
                 }
                 else
                 {
-                    knownSpells[i].gameObject.SetActive(false);
+                    knownSpells[i].transform.parent.gameObject.SetActive(false);
                 }
             }
 
@@ -282,11 +284,11 @@ public class CampManager : MonoBehaviour
                     {
                         usedSpells[i].color = emptyColor;
                     }
-                    usedSpells[i].gameObject.SetActive(true);
+                    usedSpells[i].transform.parent.gameObject.SetActive(true);
                 }
                 else
                 {
-                    usedSpells[i].gameObject.SetActive(false);
+                    usedSpells[i].transform.parent.gameObject.SetActive(false);
                 }
 
             }

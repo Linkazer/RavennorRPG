@@ -21,7 +21,7 @@ MonoBehaviour:
   maanaCost: 0
   incantationTime: 0
   target: 1
-  AICastTarget: 1
+  castTarget: 2
   range: {x: 0, y: 5}
   activeZoneCases:
   - {x: 0, y: 0}
@@ -32,15 +32,14 @@ MonoBehaviour:
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 6af067f7049bc7745b813e64ec964bdc, type: 3}
   caseFeedback: {fileID: 21300000, guid: 1c2b9b62f9b2c9d44a769f9c717d60a0, type: 3}
-  animationOnNodeName: 
-  animationOnZoneName: 
+  castAnimation: 
   maxCooldown: 0
   hasPowerEffect: 1
   dices:
   - wantedDice: 0
     numberOfDice: 1
     wantedDamage: 3
-  useWeaponDamage: 0
+  noBonusSpell: 1
   damageType: 3
   diceByLevelBonus: 0.3334
   diceByLevel: 0

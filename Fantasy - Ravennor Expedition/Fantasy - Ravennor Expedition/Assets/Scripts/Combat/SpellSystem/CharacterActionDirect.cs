@@ -12,7 +12,7 @@ public class CharacterActionDirect : CharacterActionScriptable
     [SerializeField]
     protected List<Dice> dices;
     //private List<DiceType> diceTypes;
-    public bool useWeaponDamage;
+    public bool noBonusSpell;
     public DamageType damageType;
     public float diceByLevelBonus;
     public DiceType diceByLevel;

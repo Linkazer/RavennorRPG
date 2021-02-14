@@ -74,22 +74,20 @@ public class BattleUiManager : MonoBehaviour
         {
             Color newCol = Color.white;
             newCol.a = 0;
-
-            //if (turnIndex + offset < roundList.Count)
+            
+            if (turnIndex + offset < roundList.Count)
             {
-                if (roundList[turnIndex + offset].GetCurrentHps() > 0)
+                if (roundList[turnIndex].GetCurrentHps() > 0)
                 {
                     turnImages[i].sprite = roundList[turnIndex + offset].GetCharacterDatas().icon;
                     turnImages[i].color = Color.white;
-
-                    turnIndex++;
-                    turnIndex = turnIndex % roundList.Count;
                 }
-                /*else
+                else
                 {
-                    //offset++;
-                    //i--;
-                }*/
+                    i--;
+                }
+                turnIndex++;
+                turnIndex = (turnIndex) % roundList.Count;
             }
         }
     }

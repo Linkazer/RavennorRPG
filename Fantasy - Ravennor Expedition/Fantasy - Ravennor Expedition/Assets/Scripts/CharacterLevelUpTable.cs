@@ -18,6 +18,7 @@ public class LevelUpCapacity
     public EffectType bonusType;
     public int bonusValue;
     public SpellEffectScriptables passif;
+    public string description;
 }
 
 [CreateAssetMenu(fileName = "New Level up Table", menuName = "Create New LevelUp Table")]

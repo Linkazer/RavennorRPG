@@ -16,6 +16,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private SpriteRenderer handSpriteRight, handSpriteLeft;
+    [SerializeField]
+    private GameObject brasParent;
 
     [HideInInspector]
     public bool actionAvailable;
@@ -216,6 +218,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
         initiative = BattleManager.instance.NormalRoll(currentScriptable.GetInitiative(), 0, DiceType.D6);
 
         characterSprite.sprite = currentScriptable.spritePerso;
+        handSpriteRight.sprite = currentScriptable.spriteDeMains;
+        handSpriteLeft.sprite = currentScriptable.spriteDeMains;
+
+        brasParent.transform.localPosition = new Vector3(brasParent.transform.localPosition.x, currentScriptable.brasPosition, 0);
     }
     #endregion
 
@@ -313,6 +319,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             BattleDiary.instance.AddText(name + " a pris " + damageAmount.ToString() + " de dégâts");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
+
+            SetAnimation("DamageTaken");
 
             if (BattleUiManager.instance.GetCurrentChara() == this)
             {
@@ -435,6 +443,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             BattleDiary.instance.AddText(name + " a pris " + damageText + " (" + damageFeedback + ")");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
+
+            SetAnimation("DamageTaken");
 
             if (BattleUiManager.instance.GetCurrentChara() == this)
             {

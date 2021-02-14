@@ -35,6 +35,6 @@ MonoBehaviour:
     avant de s'\xE9vanouir."
   reponses:
   - text: Continuer...
-    nextStory: {fileID: 0}
+    nextStory: {fileID: 11400000, guid: 566e76b7174c3a146adc2348b5c6f491, type: 2}
   battleBegin: 0
   goToCamp: 1

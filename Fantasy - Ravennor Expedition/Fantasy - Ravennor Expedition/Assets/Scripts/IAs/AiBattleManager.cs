@@ -84,7 +84,7 @@ public class AiBattleManager : MonoBehaviour
                     currentChara.actionAvailable = false;
                     SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
 
-                    Debug.Log("Move for next round : " + nodeToMoveTo.worldPosition);
+                    //Debug.Log(currentChara.name + " Move for next round : " + nodeToMoveTo.worldPosition);
 
                     if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                     {
@@ -144,7 +144,6 @@ public class AiBattleManager : MonoBehaviour
                             {
                                 if (askForNextTurn)
                                 {
-                                    Debug.Log("For next turn ?");
                                     nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range.y, consid.wantedAction.hasViewOnTarget, currentChara.GetCharacterDatas().GetMovementSpeed());
                                 }
                                 else
@@ -176,8 +175,27 @@ public class AiBattleManager : MonoBehaviour
 
     private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
     {
+        switch (actionToTry.castTarget)
+        {
+            case ActionTargets.Ennemies:
+                if (targetToTry.GetTeam() != 1)
+                {
+                    return false;
+                }
+                break;
+            case ActionTargets.SelfAllies:
+                if (targetToTry.GetTeam() == 1)
+                {
+                    return false;
+                }
+                break;
+        }
+
         //Condition de l'IA
+
         float absice = GetAbcsissaValue(consid.conditionWanted, currentChara, targetToTry);
+
+        //Debug.Log(currentChara.name + " " + absice);
 
         switch(consid.conditionType)
         {
@@ -188,8 +206,10 @@ public class AiBattleManager : MonoBehaviour
                 }
                 break;
             case AiConditionType.Down:
+                //Debug.Log("Down : " + absice + " > " + consid.conditionValue);
                 if (absice > consid.conditionValue)
                 {
+                    //Debug.Log("Returned");
                     return false;
                 }
                 break;
@@ -206,22 +226,6 @@ public class AiBattleManager : MonoBehaviour
         if (targetToTry.GetCurrentHps() < 0)
         {
             return false;
-        }
-
-        switch (actionToTry.AICastTarget)
-        {
-            case ActionTargets.Ennemies:
-                if (targetToTry.GetTeam() != 1)
-                {
-                    return false;
-                }
-                break;
-            case ActionTargets.SelfAllies:
-                if (targetToTry.GetTeam() == 1)
-                {
-                    return false;
-                }
-                break;
         }
 
         if ((actionToTry.attackType != AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Atrophie)) || (actionToTry.attackType == AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Silence)))
@@ -268,7 +272,6 @@ public class AiBattleManager : MonoBehaviour
     private Node GetNodeToHitTarget(RuntimeBattleCharacter wantedTarget, float rangeWanted, bool needView, int deplacementBoost)
     {
         //float range = 1000;
-        Debug.Log("Allo");
         Node nodeToReturn = currentChara.currentNode;
 
         List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft + deplacementBoost, true);

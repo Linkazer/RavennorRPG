@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8992114569237637530}
   - component: {fileID: 7289689626847132245}
   m_Layer: 9
-  m_Name: Main (1)
+  m_Name: "MainArri\xE8re"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1513481922560513785
 Transform:
   m_ObjectHideFlags: 0
@@ -25,12 +25,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137299636723071252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.06, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5579141151818564258}
-  m_RootOrder: 3
+  m_Father: {fileID: 2188180527282696143}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8992114569237637530
 SpriteRenderer:
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ad4de7c80eb02a348869223b7b419aff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,6 +98,38 @@ MonoBehaviour:
   spr: {fileID: 8992114569237637530}
   offset: 1
   originSpr: {fileID: 2220960731001485484}
+--- !u!1 &1950382211686765892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2188180527282696143}
+  m_Layer: 9
+  m_Name: Bras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2188180527282696143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950382211686765892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8749109696390495439}
+  - {fileID: 1513481922560513785}
+  m_Father: {fileID: 5579141151818564258}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3436628312490493240
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,12 +142,12 @@ GameObject:
   - component: {fileID: 2813103839111611605}
   - component: {fileID: 8101923846049918139}
   m_Layer: 9
-  m_Name: Main
+  m_Name: MainAvant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8749109696390495439
 Transform:
   m_ObjectHideFlags: 0
@@ -123,12 +155,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3436628312490493240}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.06, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5579141151818564258}
-  m_RootOrder: 2
+  m_Father: {fileID: 2188180527282696143}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2813103839111611605
 SpriteRenderer:
@@ -170,7 +202,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ad4de7c80eb02a348869223b7b419aff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -477,8 +509,7 @@ Transform:
   m_Children:
   - {fileID: 1611056699523616338}
   - {fileID: 8920165795757123875}
-  - {fileID: 8749109696390495439}
-  - {fileID: 1513481922560513785}
+  - {fileID: 2188180527282696143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -548,8 +579,9 @@ MonoBehaviour:
   currentScriptable: {fileID: 0}
   characterSprite: {fileID: 2220960731001485484}
   anim: {fileID: 94368721081132624}
-  handSpriteRight: {fileID: 0}
-  handSpriteLeft: {fileID: 0}
+  handSpriteRight: {fileID: 2813103839111611605}
+  handSpriteLeft: {fileID: 8992114569237637530}
+  brasParent: {fileID: 1950382211686765892}
   actionAvailable: 0
   hasMoved: 0
   movementLeft: 0

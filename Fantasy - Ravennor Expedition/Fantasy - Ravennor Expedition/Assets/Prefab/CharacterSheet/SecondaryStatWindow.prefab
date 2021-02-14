@@ -236,7 +236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "D\xE9g\xE2ts"
+  m_text: "D\xE9g\xE2ts bonus"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 205a1194358860b46b9377eab76a4adc, type: 2}
@@ -687,6 +687,10 @@ PrefabInstance:
     - target: {fileID: 7574759848377126683, guid: b59a1d11ee0873541897709255f9af88, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574759849485242048, guid: b59a1d11ee0873541897709255f9af88, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59a1d11ee0873541897709255f9af88, type: 3}

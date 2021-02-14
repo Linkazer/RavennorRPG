@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Ch1WeakedSoul_Affliction
   m_EditorClassIdentifier: 
-  nom: Affliction
+  nom: Choc
   icon: {fileID: 21300000, guid: c860e632be43bc14f9e1019042a856e5, type: 3}
   description: 
   spellType: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   maanaCost: 0
   incantationTime: 1
   target: 1
-  AICastTarget: 1
+  castTarget: 1
   range: {x: 0, y: 34}
   activeZoneCases:
   - {x: 0, y: 0}
@@ -29,12 +29,12 @@ MonoBehaviour:
   hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
-  invocation: {fileID: 0}
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: aadb8e1e8ef297145a30e35e6b776633, type: 3}
   caseFeedback: {fileID: 21300000, guid: a69181bc1e4a71443adae3ec225d49e1, type: 3}
   animationOnNodeName: 
   animationOnZoneName: 
+  maxCooldown: 0
   hasPowerEffect: 1
   dices:
   - wantedDice: 1

@@ -12,6 +12,7 @@ public class PersonnageScriptables : ScriptableObject
     public Sprite portrait;
     public Sprite spritePerso;
     public Sprite spriteDeMains;
+    public float brasPosition;
     [TextArea(3,5)]
     public string description;
 

@@ -40,6 +40,11 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private RuntimeBattleCharacter passiveCheater;
 
+    [SerializeField]
+    private AudioClip storyMusic, battleMusic;
+    [SerializeField]
+    private AudioSource backgroundSource;
+
     #region Set Up
     private void Awake()
     {
@@ -103,6 +108,8 @@ public class BattleManager : MonoBehaviour
 
         roomManager.SetRoomManager();
 
+        LoadingScreenManager.instance.HideScreen();
+
         if (roomManager.startDialogue != null)
         {
             BattleUiManager.instance.StartDialogue(roomManager.startDialogue);
@@ -116,6 +123,9 @@ public class BattleManager : MonoBehaviour
 
     public void BattleBegin()
     {
+        backgroundSource.clip = battleMusic;
+        backgroundSource.Play();
+
         BattleUiManager.instance.SetUI();
 
         Grid.instance.CreateGrid();
@@ -203,6 +213,9 @@ public class BattleManager : MonoBehaviour
 
         if(doesWin)
         {
+            backgroundSource.clip = storyMusic;
+            backgroundSource.Play();
+
             Debug.Log("Won");
             if (roomManager.endDialogue != null)
             {
@@ -378,8 +391,22 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void IncantateAction(string animToPlay)
+    {
+        currentCharacterTurn.SetAnimation(animToPlay);
+        //SpellIncantation()
+    }
+
+    IEnumerator SpellIncantation(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction, float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        LaunchAction (wantedAction, caster, positionWanted, effectAction);
+    }
+
     public void LaunchAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
     {
+        caster.SetSpriteDirection((positionWanted.x < caster.transform.position.x));
+
         caster.useActionEvt.Invoke();
         caster.ResolveEffect(EffectTrigger.DoAction);
 
@@ -447,6 +474,12 @@ public class BattleManager : MonoBehaviour
 
         List<Node> hitNodes = Grid.instance.GetZoneFromPosition(positionWanted, spellZone);
 
+        /*if((!hitNodes[0].hasCharacterOn && wantedAction.castTarget != ActionTargets.All) && !(IsTargetAvailable(caster.GetTeam(),hitNodes[0].chara.GetTeam(),wantedAction.castTarget, caster.GetInvocations().Contains(hitNodes[0].chara))))
+        {
+            EndCurrentActionWithDelay(0.2f);
+            return;
+        }*/
+
         if(wantedAction.zoneSprite != null)
         {
             if (effectAction)
@@ -477,7 +510,7 @@ public class BattleManager : MonoBehaviour
         {
             nodesPos.Add(n.worldPosition);
 
-            if (n.hasCharacterOn && IsTargetAvailable(caster.GetTeam(), n.chara.GetTeam(), wantedAction.target))
+            if (n.hasCharacterOn && IsTargetAvailable(caster.GetTeam(), n.chara.GetTeam(), wantedAction.target,caster.GetInvocations().Contains(n.chara)))
             {
                 ResolveSpell(wantedAction, caster, n.chara);
             }
@@ -571,7 +604,7 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
-    public bool IsTargetAvailable(int casterTeam, int targetTeam, ActionTargets wantedTarget)
+    public bool IsTargetAvailable(int casterTeam, int targetTeam, ActionTargets wantedTarget, bool isInvocation)
     {
         switch (wantedTarget)
         {
@@ -589,6 +622,8 @@ public class BattleManager : MonoBehaviour
                 return false;
             case ActionTargets.All:
                 return true;
+            case ActionTargets.Invocations:
+                return isInvocation;
         }
         return false;
     }
@@ -651,7 +686,7 @@ public class BattleManager : MonoBehaviour
                 bonusDamages += (int)caster.GetCharacterDatas().GetMagicalDamage();
                 break;
         }
-        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target), bonusDamages);
+        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target), wantedAction.noBonusSpell? 0 : bonusDamages);
     }
 
     public List<Dice> DoesHit(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
@@ -988,10 +1023,10 @@ public class BattleManager : MonoBehaviour
         return roundList[currentIndexTurn];
     }
 
-    private bool IsValidTarget(RuntimeBattleCharacter caster, RuntimeBattleCharacter target, ActionTargets targetType)
+    /*private bool IsValidTarget(RuntimeBattleCharacter caster, RuntimeBattleCharacter target, ActionTargets targetType)
     {
         return (targetType == ActionTargets.All || (targetType == ActionTargets.Ennemies && caster.GetTeam() != target.GetTeam()) || (targetType == ActionTargets.SelfAllies && caster.GetTeam() == target.GetTeam()));
-    }
+    }*/
     #endregion
 
     //Get Character team

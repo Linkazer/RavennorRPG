@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
     private float speed;
     [SerializeField]
     private float lerpCoef;
+    private float baselerp = 0;
 
     public bool followChara;
     [SerializeField]
@@ -18,6 +19,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
+        baselerp = lerpCoef;
         BattleManager.TurnBeginEvent.AddListener(OnNewTurn);
     }
 
@@ -27,8 +29,10 @@ public class CameraManager : MonoBehaviour
         if(followChara && toFollow != null && Vector2.Distance(toFollow.position, transform.position) > 0)
         {
             //Vector3.Lerp(transform.position, new Vector3(toFollow.position.x, toFollow.position.y, -10), lerpCoef)
+
             if (Vector2.Distance(toFollow.position, transform.position) < (lerpCoef*Time.deltaTime))
             {
+                lerpCoef = baselerp;
                 SetCameraPosition(toFollow.position);
             }
             else
@@ -73,6 +77,9 @@ public class CameraManager : MonoBehaviour
 
     public void SetNextChara(Transform newToFollow)
     {
+        lerpCoef = Vector2.Distance(newToFollow.position, transform.position) * baselerp;
+        if (lerpCoef < baselerp)
+            lerpCoef = baselerp;
         toFollow = newToFollow;
         followChara = true;
     }

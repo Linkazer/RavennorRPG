@@ -27,8 +27,9 @@ MonoBehaviour:
     dans leur directions. Utilisant sa vision du Maana, Vanyaenn aper\xE7oit une
     dizaine d'aura s'approchant dangereusement du groupe.\nSe trouvant dans un grand
     couloir, la confr\xE9rie commence \xE0 courir pour \xE9chaper \xE0 leur poursuivant.
-    Cependant, alors que les fant\xF4mes les attrapes, la confr\xE9rie se retrouve
-    face \xE0 une grande porte."
+    C'est alors que la confr\xE9rie atterie dans une petite salle, au bout de la
+    quelle Eliza aper\xE7oit une porte.\n\"Vite, foncer vers la porte, on se barricadera
+    derri\xE8re !\" cri Vanyaenn aux autres."
   reponses:
   - text: Continuer...
     nextStory: {fileID: 0}

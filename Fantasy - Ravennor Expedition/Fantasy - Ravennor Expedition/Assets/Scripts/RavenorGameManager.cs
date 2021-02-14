@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,20 +52,52 @@ public class RavenorGameManager : MonoBehaviour
         return nextBattle;
     }
 
+    #region Loading
+    public void LoadMainMenu()
+    {
+        LoadScene(0);
+        //SceneManager.LoadScene(0);
+    }
+
     public void LoadBattle()
     {
-        SceneManager.LoadScene(1);
+        LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void LoadCamp()
     {
-        SceneManager.LoadScene(2);
+        LoadScene(2);
+        //SceneManager.LoadScene(2);
     }
 
-    public void LoadMainMenu()
+    internal void LoadTuto()
     {
-        SceneManager.LoadScene(0);
+        LoadScene(3);
+        //SceneManager.LoadScene(3);
     }
+
+    void LoadScene(int sceneNb)
+    {
+        if (LoadingScreenManager.instance != null)
+        {
+            LoadingScreenManager.instance.ShowScreen();
+        }
+        StartCoroutine(LoadAsyncScene(sceneNb));
+    }
+
+    IEnumerator LoadAsyncScene(int index)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);
+        float loadTime = 0;
+
+        while (!asyncLoad.isDone || loadTime < 3)
+        {
+            loadTime += Time.fixedDeltaTime;
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+        }
+    }
+    #endregion
 
     public void SetLevelUp()
     {
