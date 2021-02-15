@@ -57,7 +57,7 @@ MonoBehaviour:
   comportement:
   - wantedAction: {fileID: 11400000, guid: 596c22fd3fecb194e801b51b532f6e0f, type: 2}
     conditionWanted: 0
-    conditionValue: 10
+    conditionValue: 11
     conditionType: 2
     maxValue: 1
     calculs:
@@ -67,11 +67,11 @@ MonoBehaviour:
       constant: 100
       coeficient: -1
       calculImportance: 1
-    maxCooldown: 2
+    maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: f456c71be951102429fbd0746fbf1add, type: 2}
     conditionWanted: 0
-    conditionValue: 10
+    conditionValue: 11
     conditionType: 2
     maxValue: 0.8
     calculs:
@@ -95,7 +95,7 @@ MonoBehaviour:
       constant: 50
       coeficient: -1
       calculImportance: 1
-    maxCooldown: 2
+    maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: f456c71be951102429fbd0746fbf1add, type: 2}
     conditionWanted: 0
