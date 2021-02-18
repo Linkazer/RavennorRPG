@@ -24,7 +24,7 @@ MonoBehaviour:
   level: 1
   baseHps: 10
   hpByLevel: 0
-  baseMoveSpeed: 18
+  baseMoveSpeed: 100
   force: 1
   constitution: 2
   agilite: 4

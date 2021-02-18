@@ -2150,7 +2150,7 @@ MonoBehaviour:
   - {x: -0.8799999, y: -0.55999994}
   - {x: -1.2, y: -0.88}
   - {x: -1.2000002, y: -0.56}
-  usedIndex: 
+  openRoomIndexes: 00000000
   numberOfEnnemiesToKill: 0
   cameraMaxLeftTop: {x: -3, y: 3}
   cameraMaxRightBottom: {x: 3, y: -3}

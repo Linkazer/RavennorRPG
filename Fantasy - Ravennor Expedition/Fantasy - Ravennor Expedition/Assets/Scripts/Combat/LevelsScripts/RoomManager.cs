@@ -23,7 +23,7 @@ public class RoomManager : MonoBehaviour
     public List<Vector2> playerStartPositions;
 
     [SerializeField]
-    protected List<int> usedIndex = new List<int>();
+    protected List<int> openRoomIndexes = new List<int>();
 
     [SerializeField]
     private int numberOfEnnemiesToKill = 0;
@@ -50,7 +50,7 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        usedIndex = new List<int>();
+        openRoomIndexes = new List<int>();
     }
 
     [ContextMenu("Set Chara positions")]
@@ -94,9 +94,10 @@ public class RoomManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
-        if(!usedIndex.Contains(index) || index == 0)
+        Debug.Log(openRoomIndexes.Contains(index));
+        if(!openRoomIndexes.Contains(index) || index == 0)
         {
-            usedIndex.Add(index);
+            openRoomIndexes.Add(index);
             ActivateRoom(index);
         }
     }

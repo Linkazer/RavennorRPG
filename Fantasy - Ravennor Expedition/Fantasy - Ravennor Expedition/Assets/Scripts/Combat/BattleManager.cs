@@ -1090,6 +1090,7 @@ public class BattleManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
+        Debug.Log(index);
         roomManager.OpenRoom(index);
     }
     #endregion
