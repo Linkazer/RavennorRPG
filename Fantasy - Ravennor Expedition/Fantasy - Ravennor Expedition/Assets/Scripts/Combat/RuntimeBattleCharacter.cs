@@ -407,10 +407,18 @@ public class RuntimeBattleCharacter : MonoBehaviour
         {
             magicalDamage -= currentScriptable.GetMagicalArmor();
         }
+        else
+        {
+            magicalDamage = 0;
+        }
 
         if(currentScriptable.GetPhysicalArmor()<=physicalDamage)
         {
             physicalDamage -= currentScriptable.GetPhysicalArmor();
+        }
+        else
+        {
+            physicalDamage = 0;
         }
 
         damageAmount = physicalDamage + magicalDamage + brutDamage;

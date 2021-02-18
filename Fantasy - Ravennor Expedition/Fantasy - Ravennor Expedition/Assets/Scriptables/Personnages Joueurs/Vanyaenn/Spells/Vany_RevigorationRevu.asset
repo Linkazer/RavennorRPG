@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Revigoration
   icon: {fileID: 21300000, guid: 0c658df3c1452314c856c8cc8379301f, type: 3}
-  description: Soigne la cible de 1D6 (+1D6 tous les 2 niveaux).
+  description: Soigne la cible de 2D4 (+1D4 tous les niveaux).
   spellType: 0
   attackType: 2
   actionLevel: 1
   maanaCost: 1
   incantationTime: 1
   target: 0
-  AICastTarget: 0
+  castTarget: 2
   range: {x: 0, y: 30}
   activeZoneCases:
   - {x: 0, y: 0}
@@ -32,15 +32,14 @@ MonoBehaviour:
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 820deaf6f60a04246bcd73f145474e7f, type: 3}
   caseFeedback: {fileID: 21300000, guid: 1c2b9b62f9b2c9d44a769f9c717d60a0, type: 3}
-  animationOnNodeName: 
-  animationOnZoneName: 
+  castAnimation: 
   maxCooldown: 0
   hasPowerEffect: 1
   dices:
   - wantedDice: 0
     numberOfDice: 2
     wantedDamage: 0
-  useWeaponDamage: 0
+  noBonusSpell: 0
   damageType: 0
   diceByLevelBonus: 1
   diceByLevel: 0

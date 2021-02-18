@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Dagues
   icon: {fileID: 21300000, guid: 60e939e6c5f69844f9d917a2ff95c8e2, type: 3}
-  description: "Inflige 1D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts physiques."
+  description: "Inflige 2D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts physiques."
   spellType: 0
   attackType: 1
   actionLevel: 1
   maanaCost: 0
   incantationTime: 1
   target: 1
-  AICastTarget: 0
+  castTarget: 2
   range: {x: 0, y: 14}
   activeZoneCases:
   - {x: 0, y: 0}
@@ -29,18 +29,17 @@ MonoBehaviour:
   hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
-  invocation: {fileID: 0}
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 086cb6a13f4320b4ab2e24c7f5e7047e, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
-  animationOnNodeName: 
-  animationOnZoneName: 
+  castAnimation: 
+  maxCooldown: 0
   hasPowerEffect: 1
   dices:
   - wantedDice: 0
-    numberOfDice: 1
+    numberOfDice: 2
     wantedDamage: 1
-  useWeaponDamage: 0
+  noBonusSpell: 0
   damageType: 1
   diceByLevelBonus: 0.5
   diceByLevel: 0

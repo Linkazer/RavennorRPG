@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 7560241282882709334}
   - component: {fileID: 3220683069067154743}
   m_Layer: 0
-  m_Name: Chap1_Level2
+  m_Name: Chap1_Level2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2090,21 +2090,9 @@ MonoBehaviour:
   nextLvl: {fileID: 7560241282882709333, guid: 9b01d169f4f24f846a29c996a74ceb4f, type: 3}
   levelAtEnd: 0
   rooms:
-  - ennemis:
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    ennemisPos:
-    - {fileID: 2736400342205070460}
-    - {fileID: 2479937892159818066}
-    - {fileID: 6612051084835088625}
-    - {fileID: 8324219731522213324}
-    ennemisPositions:
-    - {x: -0.4000001, y: 0.07999995}
-    - {x: -0.39999998, y: -1.3599999}
-    - {x: 0.07999992, y: -1.3599999}
-    - {x: 0.5599998, y: 0.08000004}
+  - ennemis: []
+    ennemisPos: []
+    ennemisPositions: []
   - ennemis:
     - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
     - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
