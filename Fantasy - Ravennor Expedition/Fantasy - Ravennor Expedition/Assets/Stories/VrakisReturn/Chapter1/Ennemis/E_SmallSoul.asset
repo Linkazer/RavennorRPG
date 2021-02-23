@@ -17,6 +17,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: c646ae7585600064080fbaa057635c36, type: 3}
   spritePerso: {fileID: 21300000, guid: c646ae7585600064080fbaa057635c36, type: 3}
   spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
+  brasPosition: 0
   description: 
   level: 1
   baseHps: 5
@@ -54,22 +55,22 @@ MonoBehaviour:
   comportement:
   - wantedAction: {fileID: 11400000, guid: c20d8f53fddb7254ba5971a62ffba42a, type: 2}
     conditionWanted: 0
-    conditionValue: 15
+    conditionValue: 14
     conditionType: 2
     maxValue: 1
     calculs:
     - calculType: 1
       abscissaValue: 3
       maxValue: 100
-      constant: 0
-      coeficient: 1
+      constant: 100
+      coeficient: -1
       calculImportance: 1
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: c20d8f53fddb7254ba5971a62ffba42a, type: 2}
     conditionWanted: 0
-    conditionValue: 0
-    conditionType: 0
+    conditionValue: 15
+    conditionType: 1
     maxValue: 1
     calculs:
     - calculType: 1

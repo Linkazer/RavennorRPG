@@ -32,12 +32,12 @@ MonoBehaviour:
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 70373f242bde1284b88ee6fcc9e952eb, type: 3}
   caseFeedback: {fileID: 21300000, guid: 678f31552fc4b1a45bae0ee64aba1e23, type: 3}
-  animationOnNodeName: 
-  animationOnZoneName: 
+  castAnimation: 
+  soundToPlay: {fileID: 8300000, guid: f775f27e8e9aac14bbb87166f09628f4, type: 3}
   maxCooldown: 0
   hasPowerEffect: 0
   dices: []
-  useWeaponDamage: 0
+  noBonusSpell: 0
   damageType: 0
   diceByLevelBonus: 0
   diceByLevel: 0

@@ -18,7 +18,8 @@ MonoBehaviour:
   spritePerso: {fileID: 21300000, guid: 653d13a9a1d35534fb0ea4da26cd2e1b, type: 3}
   spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
   brasPosition: 0
-  description: 
+  description: "Jeune elfe originaire des Terres du Nord, Eliza a \xE9t\xE9 recueillit
+    par la directrice de l'Academie suite \xE0 la destruction de son village."
   level: 1
   baseHps: 10
   hpByLevel: 0

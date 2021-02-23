@@ -74,6 +74,11 @@ public class PlayerBattleManager : MonoBehaviour
                 MoveCharacter(position);
             }
         }
+        else if (holdSpellIndex >= 0)
+        {
+            holdSpellIndex = -1;
+            ShowDeplacement();
+        }
     }
 
     public void ChooseSpell(int index)
@@ -297,8 +302,8 @@ public class PlayerBattleManager : MonoBehaviour
 
     public void ActivatePlayerBattleController(bool state)
     {
-        controler.enabled = state;
-        if(controler.enabled)
+        controler.SetPlayerTurn(state);
+        if(state)
         {
             ShowDeplacement();
             BattleUiManager.instance.UpdateSpells();

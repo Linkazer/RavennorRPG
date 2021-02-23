@@ -2562,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6560774174563767772, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+      propertyPath: m_text
+      value: Jet d'attaque
+      objectReference: {fileID: 0}
     - target: {fileID: 8066789526004515497, guid: 662647d714e66734da61d4eb82b23429, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2813,6 +2817,10 @@ PrefabInstance:
     - target: {fileID: 975020022558205246, guid: 662647d714e66734da61d4eb82b23429, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560774174563767772, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+      propertyPath: m_text
+      value: Jet d'attaque
       objectReference: {fileID: 0}
     - target: {fileID: 8066789526004515497, guid: 662647d714e66734da61d4eb82b23429, type: 3}
       propertyPath: m_IsActive
@@ -3959,6 +3967,10 @@ PrefabInstance:
     - target: {fileID: 975020022558205246, guid: 662647d714e66734da61d4eb82b23429, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560774174563767772, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+      propertyPath: m_text
+      value: Jet d'attaque
       objectReference: {fileID: 0}
     - target: {fileID: 8066789526004515497, guid: 662647d714e66734da61d4eb82b23429, type: 3}
       propertyPath: m_IsActive

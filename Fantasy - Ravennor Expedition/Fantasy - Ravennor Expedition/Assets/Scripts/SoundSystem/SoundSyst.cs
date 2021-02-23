@@ -23,11 +23,22 @@ public class SoundSyst : MonoBehaviour
     {
         float toReturn = 0;
         mixer.GetFloat(name, out toReturn);
+
+        Debug.Log(name + " : " + (toReturn + 40) / 40);
+
         return (toReturn+40)/40;
     }
 
     public void ChangeMixerVolume(string varName, float value)
     {
-        mixer.SetFloat(varName, value*40-40);
+        if(value<=0)
+        {
+            mixer.SetFloat(varName, -80);
+        }
+        else
+        {
+            mixer.SetFloat(varName, value * 40 - 40);
+        }
+
     }
 }

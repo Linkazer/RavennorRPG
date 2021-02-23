@@ -14,8 +14,8 @@ public class MenuManager : MonoBehaviour
     public void OpenMenu()
     {
         globalSlider.value = SoundSyst.instance.GetVolumeValue("GlobalVolume");
-        globalSlider.value = SoundSyst.instance.GetVolumeValue("MusicVolume");
-        globalSlider.value = SoundSyst.instance.GetVolumeValue("SFXVolume");
+        musicSlider.value = SoundSyst.instance.GetVolumeValue("MusicVolume");
+        sfxSlider.value = SoundSyst.instance.GetVolumeValue("SFXVolume");
         gameObject.SetActive(true);
     }
 

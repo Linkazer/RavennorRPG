@@ -47,6 +47,9 @@ public class CharacterActionScriptable : ScriptableObject
     public Sprite caseSprite;
     public Sprite caseFeedback;
     public string castAnimation;
+
+    public AudioClip soundToPlay;
+
     //public string animationOnNodeName, animationOnZoneName;
 
     [SerializeField]

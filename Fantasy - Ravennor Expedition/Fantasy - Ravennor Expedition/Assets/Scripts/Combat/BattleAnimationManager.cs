@@ -36,7 +36,7 @@ public class BattleAnimationManager : MonoBehaviour
 
     }
 
-    public void PlayOnNode(List<Vector2> position, Sprite spriteToPut, Sprite caseSprite, float timeToShow)
+    public void PlayOnNode(List<Vector2> position, Sprite spriteToPut, Sprite caseSprite, float timeToShow, AudioClip soundToPlay)
     {
         List<SpellObject> toShow = new List<SpellObject>();
         foreach(Vector2 pos in position)
@@ -46,21 +46,21 @@ public class BattleAnimationManager : MonoBehaviour
             toShow[toShow.Count - 1].SetSprite(spriteToPut, caseSprite, 5);
         }
 
-        StartCoroutine(SpriteShowed(toShow, timeToShow));
+        StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
         if (timeToShow >= 0)
         {
             BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
         }
     }
 
-    public void PlayOnNode(Vector2 position, Sprite spriteToPut, Sprite caseSprite, float timeToShow)
+    public void PlayOnNode(Vector2 position, Sprite spriteToPut, Sprite caseSprite, float timeToShow, AudioClip soundToPlay)
     {
         List<SpellObject> toShow = new List<SpellObject>();
         toShow.Add(GetSpellsObject());
         toShow[toShow.Count - 1].SetObject(position);
         toShow[toShow.Count - 1].SetSprite(spriteToPut, caseSprite, 1);
 
-        StartCoroutine(SpriteShowed(toShow, timeToShow));
+        StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
         if (timeToShow >= 0)
         {
             BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
@@ -101,8 +101,10 @@ public class BattleAnimationManager : MonoBehaviour
         toMove.ResetObject();
     }
 
-    IEnumerator SpriteShowed(List<SpellObject> usedObj, float time)
+    IEnumerator SpriteShowed(List<SpellObject> usedObj, float time, AudioClip soundToPlay)
     {
+        usedObj[0].SetSound(soundToPlay);
+
         if(time < 0)
         {
             time = 0.5f;

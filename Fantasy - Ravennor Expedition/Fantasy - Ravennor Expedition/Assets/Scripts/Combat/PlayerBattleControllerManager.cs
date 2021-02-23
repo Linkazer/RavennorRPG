@@ -15,6 +15,8 @@ public class PlayerBattleControllerManager : MonoBehaviour
     [SerializeField]
     private MenuManager gameMenu;
 
+    private bool isPlayerTurn;
+
     private void Awake()
     {
         instance = this;
@@ -24,54 +26,63 @@ public class PlayerBattleControllerManager : MonoBehaviour
     {
         currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            BattleManager.instance.EndTurn();
-        }
 
-        if(Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+        #region Combat Inputs
+        if (isPlayerTurn)
         {
-            PlayerBattleManager.instance.NextAction(currentMousePos);
-        }
-        
-        /*if(Input.GetKeyDown(KeyCode.A))
-        {
-            PlayerBattleManager.instance.ChooseSpell(0);
-        }*/
-
-        if (PlayerBattleManager.instance.holdSpellIndex >= 0 && Grid.instance.NodeFromWorldPoint(currentMousePos) != Grid.instance.NodeFromWorldPoint(lastMousePos) && Grid.instance.NodeFromWorldPoint(currentMousePos).usableNode)
-        {
-            lastMousePos = currentMousePos;
-            PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (PlayerBattleManager.instance.holdSpellIndex < 0)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                gameMenu.OpenMenu();
+                BattleManager.instance.EndTurn();
             }
-            else
+
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+            {
+                PlayerBattleManager.instance.NextAction(currentMousePos);
+            }
+
+            /*if(Input.GetKeyDown(KeyCode.A))
+            {
+                PlayerBattleManager.instance.ChooseSpell(0);
+            }*/
+
+            if (PlayerBattleManager.instance.holdSpellIndex >= 0 && Grid.instance.NodeFromWorldPoint(currentMousePos) != Grid.instance.NodeFromWorldPoint(lastMousePos) && Grid.instance.NodeFromWorldPoint(currentMousePos).usableNode)
+            {
+                lastMousePos = currentMousePos;
+                PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (PlayerBattleManager.instance.holdSpellIndex >= 0)
+                {
+
+                    PlayerBattleManager.instance.ChooseSpell(-1);
+                    return;
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
             {
                 PlayerBattleManager.instance.ChooseSpell(-1);
             }
-        }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            PlayerBattleManager.instance.ChooseSpell(-1);
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (Grid.instance.NodeFromWorldPoint(currentMousePos).hasCharacterOn)
+                {
+                    BattleUiManager.instance.ShowCharaInformation(Grid.instance.NodeFromWorldPoint(currentMousePos).chara);
+                }
+                else
+                {
+                    BattleUiManager.instance.HideCharaInformation();
+                }
+            }
         }
+        #endregion
 
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(Grid.instance.NodeFromWorldPoint(currentMousePos).hasCharacterOn)
-            {
-                BattleUiManager.instance.ShowCharaInformation(Grid.instance.NodeFromWorldPoint(currentMousePos).chara);
-            }
-            else
-            {
-                BattleUiManager.instance.HideCharaInformation();
-            }
+            gameMenu.OpenMenu();
         }
     }
 
@@ -104,4 +115,10 @@ public class PlayerBattleControllerManager : MonoBehaviour
         }*/
         return results.Count > 0;
     }
+
+    public void SetPlayerTurn(bool state)
+    {
+        isPlayerTurn = state;
+    }
+
 }

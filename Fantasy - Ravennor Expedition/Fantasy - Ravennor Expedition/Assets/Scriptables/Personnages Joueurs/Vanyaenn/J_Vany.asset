@@ -19,7 +19,8 @@ MonoBehaviour:
   spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
   brasPosition: 0.01
   description: "Vanyaenn est une dryade originaire du M\xE9rendil. Elle est souvent
-    consid\xE9r\xE9 comme la seule personne sens\xE9 de la confr\xE9rie."
+    consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
+    bon sens."
   level: 1
   baseHps: 10
   hpByLevel: 0

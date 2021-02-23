@@ -33,6 +33,7 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 67af26f7d8feb2448bd37b64743b8e33, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   castAnimation: 
+  soundToPlay: {fileID: 8300000, guid: 5859c87981609c4438e42cb284bbb90b, type: 3}
   maxCooldown: 0
   hasPowerEffect: 1
   dices:

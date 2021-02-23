@@ -20,6 +20,9 @@ public class SpellObject : MonoBehaviour
 
     private SpellEffectCommon effet;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
     public void SetSprite(Sprite newSpr, Sprite caseFeedback, int offset)
     {
         sprite.sprite = newSpr;
@@ -27,10 +30,10 @@ public class SpellObject : MonoBehaviour
         spriteAffichage.offset = offset;
     }
 
-    public void LoadAnim(AnimationClip anim)
+    public void SetSound(AudioClip newSound)
     {
-        spellAnimation.clip = anim;
-        spellAnimation.Play();
+        audioSource.clip = newSound;
+        //audioSource.Play();
     }
 
     public void SetPosition(Vector2 newPos)

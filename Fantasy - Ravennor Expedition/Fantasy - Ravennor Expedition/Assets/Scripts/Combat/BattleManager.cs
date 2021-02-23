@@ -348,7 +348,6 @@ public class BattleManager : MonoBehaviour
     #region Character Actions
     public void MoveCharacter(RuntimeBattleCharacter character, Vector2 destination)
     {
-        character.hasMoved = true;
         if (character.GetTeam() != 1)
         {
             AskToMove(character.gameObject, destination, character.movementLeft);
@@ -484,11 +483,11 @@ public class BattleManager : MonoBehaviour
         {
             if (effectAction)
             {
-                BattleAnimationManager.instance.PlayOnNode(positionWanted, wantedAction.zoneSprite, wantedAction.caseFeedback, -1);
+                BattleAnimationManager.instance.PlayOnNode(positionWanted, wantedAction.zoneSprite, wantedAction.caseFeedback, -1, wantedAction.soundToPlay);
             }
             else
             {
-                BattleAnimationManager.instance.PlayOnNode(positionWanted, wantedAction.zoneSprite, wantedAction.caseFeedback, 0.5f);
+                BattleAnimationManager.instance.PlayOnNode(positionWanted, wantedAction.zoneSprite, wantedAction.caseFeedback, 0.5f, wantedAction.soundToPlay);
             }
         }
 
@@ -542,11 +541,11 @@ public class BattleManager : MonoBehaviour
         {
             if (effectAction)
             {
-                BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, -1);
+                BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, -1, wantedAction.soundToPlay);
             }
             else
             {
-                BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, 0.5f);
+                BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, 0.5f, wantedAction.soundToPlay);
             }
         }
 
@@ -1090,8 +1089,23 @@ public class BattleManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
-        Debug.Log(index);
         roomManager.OpenRoom(index);
+    }
+
+    private void CheckForOpportunityAttack()
+    {
+        if(!currentCharacterTurn.CheckForAffliction(Affliction.Evasion) && !currentCharacterTurn.hasMoved)
+        {
+            List<Node> nodeToCheck = Grid.instance.GetNeighbours(currentCharacterTurn.currentNode);
+
+            foreach (Node n in nodeToCheck)
+            {
+                if (n.hasCharacterOn && n.chara.GetTeam() != currentCharacterTurn.GetTeam())
+                {
+                    n.chara.AttackOfOpportunity(currentCharacterTurn.currentNode.worldPosition);
+                }
+            }
+        }
     }
     #endregion
 
@@ -1119,6 +1133,7 @@ public class BattleManager : MonoBehaviour
     {
         if (pathSuccessful)
         {
+            CheckForOpportunityAttack();
             path = newPath;
             targetIndex = 0;
             currentCharacterTurn.SetAnimation("Moving");
@@ -1163,6 +1178,7 @@ public class BattleManager : MonoBehaviour
                     if (targetIndex >= path.Length)
                     {
                         Grid.instance.CreateGrid();
+                        currentCharacterTurn.hasMoved = true;
                         EndCurrentAction(currentCharacterTurn);
                         yield break;
                     }
@@ -1177,6 +1193,12 @@ public class BattleManager : MonoBehaviour
                 direction = new Vector2(currentWaypoint.x - toMove.transform.position.x, currentWaypoint.y - toMove.transform.position.y).normalized;
 
                 toMove.transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+
+              /*if(currentCharacterTurn.currentNode != Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position))
+                {
+                    CheckForOpportunityAttack();
+                    currentCharacterTurn.currentNode = Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position);
+                }*/
                 //	Vector3.MoveTowards(transform.position,currentWaypoint,speed * Time.deltaTime);
                 //testFollowPath = false;
                 yield return null;

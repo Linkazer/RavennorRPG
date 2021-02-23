@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EffectNature { Physical, Magical }
 
-public enum Affliction{ None, Paralysie, Immobilisation, Silence, Atrophie, InstantKill}
+public enum Affliction{ None, Paralysie, Immobilisation, Silence, Atrophie, InstantKill, Evasion}
 
 [CreateAssetMenu(fileName = "New Spell Effect", menuName = "Spell/Create New Spell Effect")]
 public class SpellEffectScriptables : ScriptableObject

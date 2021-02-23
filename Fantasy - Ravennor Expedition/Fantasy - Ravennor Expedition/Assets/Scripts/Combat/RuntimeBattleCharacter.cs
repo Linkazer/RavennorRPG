@@ -59,6 +59,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     [HideInInspector]
     public UnityEvent useActionEvt = new UnityEvent(), endTurnEvt = new UnityEvent(), beginTurnEvt = new UnityEvent(), deathEvt = new UnityEvent();
 
+    private bool hasOpportunity = true;
+
     #region Varialbes Utilities
     public PersonnageScriptables GetCharacterDatas()
     {
@@ -239,7 +241,9 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
             hasMoved = false;
 
-            actionAvailable = true; //A modifier plus tard
+            actionAvailable = true;
+
+            hasOpportunity = true;
 
             if (CheckForAffliction(Affliction.Immobilisation))
             {
@@ -650,6 +654,15 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
         }
         return false;
+    }
+    
+    public void AttackOfOpportunity(Vector2 position)
+    {
+        if (hasOpportunity)
+        {
+            BattleManager.instance.LaunchAction(actionsDisponibles[0], this, position, true);
+            hasOpportunity = false;
+        }
     }
     #endregion
 
