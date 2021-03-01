@@ -137,6 +137,36 @@ TextureImporter:
   - first:
       213: 1722021967276526679
     second: TilemapCrypteChap1_22
+  - first:
+      213: 9119860225563357182
+    second: TilemapCrypteChap1_22
+  - first:
+      213: 2449047294483992692
+    second: TilemapCrypteChap1_23
+  - first:
+      213: -8999512501750685356
+    second: TilemapCrypteChap1_24
+  - first:
+      213: -8443906856997305293
+    second: TilemapCrypteChap1_25
+  - first:
+      213: -6930916288298871880
+    second: TilemapCrypteChap1_26
+  - first:
+      213: 3706002049170085030
+    second: TilemapCrypteChap1_27
+  - first:
+      213: -2205067911974075015
+    second: TilemapCrypteChap1_28
+  - first:
+      213: 582057602686195256
+    second: TilemapCrypteChap1_29
+  - first:
+      213: -216788571333503155
+    second: TilemapCrypteChap1_30
+  - first:
+      213: -4322037657196326721
+    second: TilemapCrypteChap1_31
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -702,6 +732,195 @@ TextureImporter:
       bones: []
       spriteID: 75ccfe60bd9d5e710800000000000000
       internalID: 1722021967276526679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47099d9e983ccf120800000000000000
+      internalID: 2449047294483992692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 451a675af0f4b1380800000000000000
+      internalID: -8999512501750685356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 334c038837731da80800000000000000
+      internalID: -8443906856997305293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_26
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b31afb7b5070df90800000000000000
+      internalID: -6930916288298871880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_27
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a417ad7a3d5e6330800000000000000
+      internalID: 3706002049170085030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9754c21ca660661e0800000000000000
+      internalID: -2205067911974075015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_29
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8361de64e42e31800800000000000000
+      internalID: 582057602686195256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d475d4661ffcdfcf0800000000000000
+      internalID: -216788571333503155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapCrypteChap1_31
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb093f066a90504c0800000000000000
+      internalID: -4322037657196326721
       vertices: []
       indices: 
       edges: []

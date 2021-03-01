@@ -138,7 +138,7 @@ public class Grid : MonoBehaviour {
 			if (n.walkable)
 			{
 				n.usableNode = true;
-				SetNodeFeedback(n.worldPosition, wantedColor, -49);
+				SetNodeFeedback(n.worldPosition, wantedColor, 6);
 			}
         }
     }
@@ -151,7 +151,7 @@ public class Grid : MonoBehaviour {
 
 		foreach (Node n in wantedNodes)
         {
-			SetNodeFeedback(n.worldPosition, wantedColor,-48);
+			SetNodeFeedback(n.worldPosition, wantedColor,7);
 		}
     }
 

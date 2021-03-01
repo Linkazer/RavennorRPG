@@ -428,26 +428,26 @@ public class RuntimeBattleCharacter : MonoBehaviour
         damageAmount = physicalDamage + magicalDamage + brutDamage;
 
         string damageText = damageAmount + " de dégâts";
-
-        if(RavenorGameManager.instance != null && team == 1 && RavenorGameManager.instance.GetDifficulty() != 1)
+        if ((damageAmount - bonusAmount) > 0 && damageAmount > 0)
         {
-            damageAmount = Mathf.RoundToInt(damageAmount*RavenorGameManager.instance.GetDifficulty());
-            if(damageAmount <= 0)
+            if (RavenorGameManager.instance != null && team == 1 && RavenorGameManager.instance.GetDifficulty() != 1)
             {
-                damageAmount = 1;
+                damageAmount = Mathf.RoundToInt(damageAmount * RavenorGameManager.instance.GetDifficulty());
+                if (damageAmount <= 0)
+                {
+                    damageAmount = 1;
+                }
+                if (RavenorGameManager.instance.GetDifficulty() < 1)
+                {
+                    damageText += "(réduit à " + damageAmount + ") ";
+                }
+                else
+                {
+                    damageText += "(augmenté à " + damageAmount + ") ";
+                }
             }
-            if(RavenorGameManager.instance.GetDifficulty() < 1)
-            {
-                damageText += "(réduit à " + damageAmount + ") ";
-            }
-            else
-            {
-                damageText += "(augmenté à " + damageAmount + ") ";
-            }
-        }
 
-        if ((damageAmount-bonusAmount) > 0 && damageAmount > 0)
-        {
+
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
 
@@ -658,7 +658,13 @@ public class RuntimeBattleCharacter : MonoBehaviour
     
     public void AttackOfOpportunity(Vector2 position)
     {
-        if (hasOpportunity)
+        bool canUseSpell = true;
+        if ((actionsDisponibles[0].attackType != AttackType.PuissMagique && CheckForAffliction(Affliction.Atrophie)) || (actionsDisponibles[0].attackType == AttackType.PuissMagique && CheckForAffliction(Affliction.Silence)))
+        {
+            canUseSpell = false;
+        }
+
+        if (hasOpportunity && canUseSpell)
         {
             BattleManager.instance.LaunchAction(actionsDisponibles[0], this, position, true);
             hasOpportunity = false;

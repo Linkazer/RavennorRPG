@@ -20,7 +20,7 @@ MonoBehaviour:
   brasPosition: 0
   description: 
   level: 2
-  baseHps: 15
+  baseHps: 35
   hpByLevel: 0
   baseMoveSpeed: 18
   force: 3
