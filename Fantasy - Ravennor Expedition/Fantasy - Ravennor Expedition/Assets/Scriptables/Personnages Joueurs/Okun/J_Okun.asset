@@ -18,10 +18,9 @@ MonoBehaviour:
   spritePerso: {fileID: 21300000, guid: f6be83e413109f048a165550e4e44a1d, type: 3}
   spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
   brasPosition: 0.01
-  description: "Grand gaillard, Okun est souvent consid\xE9r\xE9 par les autres membres
-    de la confr\xE9rie comme un \"bourrin\". Sa capacit\xE9 \xE0 r\xE9fl\xE9chir
-    laisse \xE0 d\xE9sirer, mais cela lui permet de se jeter dans la bataille sans
-    h\xE9sitation."
+  description: "Okun est souvent concid\xE9r\xE9 comme le bourrin du groupe, mais
+    aussi le plus secret. Toujours de bonne humeur, il esquive chacune des questions
+    des autres membres concernant son pass\xE9."
   level: 1
   baseHps: 10
   hpByLevel: 0

@@ -17,10 +17,10 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 9e1d14b96b2279d45bb072bd40e27b99, type: 3}
   spritePerso: {fileID: 21300000, guid: 9e1d14b96b2279d45bb072bd40e27b99, type: 3}
   spriteDeMains: {fileID: 0}
-  description: "Mira est une jeune elfe ayant rejoint la confr\xE9rie il y a peu.
-    Elle est assez r\xE9serv\xE9 est reste souvent en retrait. Cependant, gr\xE2ce
-    aux apprentissages de son percepteur, Mira est une excellente combattante une
-    fois l'\xE9p\xE9e en main."
+  brasPosition: 0
+  description: "Mira est une jeune elfe ayant surv\xE9cut plusieurs ann\xE9es dans
+    un tombeau. Elle a rejoint la Confr\xE9rie afin d'en apprendre plus sur les raisons
+    qui ont pouss\xE9 son percepteur \xE0 l'enfermer."
   level: 1
   baseHps: 10
   hpByLevel: 0

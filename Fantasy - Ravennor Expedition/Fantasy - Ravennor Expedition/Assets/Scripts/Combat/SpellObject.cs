@@ -33,7 +33,7 @@ public class SpellObject : MonoBehaviour
     public void SetSound(AudioClip newSound)
     {
         audioSource.clip = newSound;
-        //audioSource.Play();
+        audioSource.Play();
     }
 
     public void SetPosition(Vector2 newPos)
