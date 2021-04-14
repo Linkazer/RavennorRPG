@@ -73,7 +73,8 @@ public class CharacterInformationUI : MonoBehaviour
             effectDescriptions.Add(runEff.effet.description);
             effectsOnChara[i].sprite = runEff.effet.spr;
             effectsOnChara[i].transform.parent.gameObject.SetActive(true);
-            effectTimes[i].text = runEff.currentCooldown.ToString();
+
+            effectTimes[i].text = runEff.currentCooldown>=0 ? runEff.currentCooldown.ToString() : "";
         }
     }
 

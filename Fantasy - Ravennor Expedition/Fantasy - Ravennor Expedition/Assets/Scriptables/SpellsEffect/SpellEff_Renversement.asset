@@ -16,13 +16,13 @@ MonoBehaviour:
     nom: Renversement
     spr: {fileID: 21300000, guid: a727a5f542160f441ad599fc6399ab7e, type: 3}
     description: Le personnage passe son prochain tour.
+    maxStack: 1
     effects: []
     actionEffect: []
     affliction: 1
   nature: 0
   duree: 1
   isMalus: 1
-  malusToCancel: []
   bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 0}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RuntimeSpellEffect
 {
     public int currentCooldown;
+    public int currentStack;
 
     public SpellEffectCommon effet;
 

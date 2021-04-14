@@ -159,7 +159,6 @@ public class BattleManager : MonoBehaviour
         {
             ApplyEffects(eff, roundList[roundList.Count - 1], roundList[roundList.Count - 1]);
         }
-        
 
         initiatives.Add(roundList[roundList.Count - 1].GetInitiative());
     }
@@ -491,16 +490,22 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (wantedAction.applyOnGround && wantedAction.wantedEffect != null && wantedAction.wantedEffect.spriteZone != null)
+        if (wantedAction.wantedEffectOnGround.Count>0)
         {
-            BattleAnimationManager.instance.AddZoneEffect(positionWanted, wantedAction.wantedEffect.spriteZone, caster, wantedAction.wantedEffect.duree, wantedAction.wantedEffect.effet);
+            foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnGround)
+            {
+                BattleAnimationManager.instance.AddZoneEffect(positionWanted, eff.spriteZone, caster, eff.duree, eff.effet);
+            }
         }
 
         //wantedAction.SpecialAction();
 
-        if(wantedAction.applyOnCaster)
+        if(wantedAction.wantedEffectOnCaster.Count>0)
         {
-            ApplyEffects(wantedAction, caster, caster);
+            foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnCaster)
+            {
+                ApplyEffects(eff, caster, caster);
+            }
         }
 
         List<Vector2> nodesPos = new List<Vector2>();
@@ -515,24 +520,27 @@ public class BattleManager : MonoBehaviour
             }
 
             //Application d'effets sur le Sol
-            if (wantedAction.applyOnGround && wantedAction.wantedEffect != null)
+            if (wantedAction.wantedEffectOnGround.Count>0)
             {
-                RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
-                    wantedAction.wantedEffect.effet,
-                    wantedAction.wantedEffect.duree,
-                    caster
-                    );
-
-                foreach (SpellEffect eff in runEffet.effet.effects)
+                foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnGround)
                 {
-                    SetEffectValues(eff, caster);
-                }
+                    RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
+                        eff.effet,
+                        eff.duree,
+                        caster
+                        );
 
-                n.AddEffect(runEffet, caster);
+                    foreach (SpellEffect effS in runEffet.effet.effects)
+                    {
+                        SetEffectValues(effS, caster);
+                    }
 
-                if (wantedAction.wantedEffect.spriteCase != null)
-                {
-                    BattleAnimationManager.instance.AddZoneEffect(n.worldPosition, wantedAction.wantedEffect.spriteCase, caster, wantedAction.wantedEffect.duree, wantedAction.wantedEffect.effet);
+                    n.AddEffect(runEffet, caster);
+
+                    if (eff.spriteCase != null)
+                    {
+                        BattleAnimationManager.instance.AddZoneEffect(n.worldPosition, eff.spriteCase, caster, eff.duree, eff.effet);
+                    }
                 }
             }
         }
@@ -649,9 +657,12 @@ public class BattleManager : MonoBehaviour
             applyEffect = 1;
         }
 
-        if (applyEffect > 0 && wantedAction.applyOnTarget)
+        if (applyEffect > 0 && wantedAction.wantedEffectOnTarget.Count>0)
         {
-            ApplyEffects(wantedAction, caster, target);
+            foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
+            {
+                ApplyEffects(eff, caster, target);
+            }
         }
     }
 
@@ -800,7 +811,7 @@ public class BattleManager : MonoBehaviour
         return new List<Dice>();
     }
 
-    public void ApplyEffects(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    /*public void ApplyEffects(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         if (wantedAction.wantedEffect != null)
         {
@@ -824,14 +835,9 @@ public class BattleManager : MonoBehaviour
                 target.RemoveEffect(eff);
             }
 
-            ResolveEffect(runEffet.effet, target.transform.position, EffectTrigger.Apply);
-
-            /*if (wantedAction.wantedEffect.duree <= 0)
-            {
-                ApplyTimeEffect(runEffet.effet, target);
-            }*/
+            ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
         }
-    }
+    }*/
 
     public void ApplyEffects(SpellEffectScriptables wantedEffect, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
@@ -846,14 +852,14 @@ public class BattleManager : MonoBehaviour
             SetEffectValues(eff, caster);
         }
 
-        //target.AddEffect(runEffet);
+        target.AddEffect(runEffet);
 
         foreach(SpellEffectScriptables eff in wantedEffect.bonusToCancel)
         {
             target.RemoveEffect(eff);
         }
 
-        ResolveEffect(runEffet.effet, target.transform.position, EffectTrigger.Apply);
+        ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
     }
 
     public void SetEffectValues(SpellEffect effet, RuntimeBattleCharacter caster)
@@ -861,25 +867,49 @@ public class BattleManager : MonoBehaviour
         effet.value = (int)((effet.value + effet.scaleByLevel * caster.GetCharacterDatas().level));
     }
 
-    public void ResolveEffect(SpellEffectCommon effect, Vector2 positionWanted, EffectTrigger triggerWanted)
+    public void ResolveEffect(SpellEffectCommon effect, Vector2 positionWanted, EffectTrigger triggerWanted, int stack)
     {
-        if (Grid.instance.NodeFromWorldPoint(positionWanted).hasCharacterOn)
+        for (int i = 0; i < stack; i++)
         {
-            RuntimeBattleCharacter target = Grid.instance.NodeFromWorldPoint(positionWanted).chara;
-            foreach (SpellEffect eff in effect.effects)
+
+            if (Grid.instance.NodeFromWorldPoint(positionWanted).hasCharacterOn)
             {
-                if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
+                RuntimeBattleCharacter target = Grid.instance.NodeFromWorldPoint(positionWanted).chara;
+                foreach (SpellEffect eff in effect.effects)
                 {
-                    target.ApplyEffect(eff);
+                    if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
+                    {
+                        target.ApplyEffect(eff);
+                    }
+                }
+            }
+
+            foreach (SpellEffectAction effAct in effect.actionEffect)
+            {
+                if (effAct.trigger == triggerWanted)
+                {
+                    LaunchAction(effAct.spellToUse, effAct.caster, positionWanted, true);
                 }
             }
         }
+    }
 
-        foreach(SpellEffectAction effAct in effect.actionEffect)
+    public void ResolveEffect(SpellEffectCommon effect, RuntimeBattleCharacter target, EffectTrigger triggerWanted)
+    {
+
+        foreach (SpellEffect eff in effect.effects)
         {
-            if(effAct.trigger == triggerWanted)
+            if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
             {
-                LaunchAction(effAct.spellToUse, effAct.caster, positionWanted, true);
+                target.ApplyEffect(eff);
+            }
+        }
+
+        foreach (SpellEffectAction effAct in effect.actionEffect)
+        {
+            if (effAct.trigger == triggerWanted)
+            {
+                LaunchAction(effAct.spellToUse, effAct.caster, target.transform.position, true);
             }
         }
     }

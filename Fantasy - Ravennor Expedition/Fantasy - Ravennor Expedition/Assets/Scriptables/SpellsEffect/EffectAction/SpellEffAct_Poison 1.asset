@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Vany_InfectionRevu
+  m_Name: SpellEffAct_Poison 1
   m_EditorClassIdentifier: 
-  nom: Infection
-  icon: {fileID: 21300000, guid: 62e55264fccdcb24c8d530e9081a8444, type: 3}
-  description: "La cible devient fi\xE9vreuse. Elle re\xE7oit un malus de -2 (+1
-    par niveau du lanceur) sur ses jets d'attaques."
+  nom: Poison
+  icon: {fileID: 0}
+  description: 
   spellType: 0
   attackType: 2
-  actionLevel: 1
-  maanaCost: 1
-  incantationTime: 1
+  actionLevel: 0
+  maanaCost: 0
+  incantationTime: 0
   target: 1
   castTarget: 2
-  range: {x: 0, y: 30}
+  range: {x: 0, y: 5}
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -34,17 +33,20 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 6af067f7049bc7745b813e64ec964bdc, type: 3}
   caseFeedback: {fileID: 21300000, guid: 1c2b9b62f9b2c9d44a769f9c717d60a0, type: 3}
   castAnimation: 
-  soundToPlay: {fileID: 8300000, guid: 6bfb6cf464e3cba41b9aefef9ec45164, type: 3}
+  soundToPlay: {fileID: 0}
   maxCooldown: 0
-  hasPowerEffect: 0
-  dices: []
-  noBonusSpell: 0
-  damageType: 2
-  diceByLevelBonus: 0
+  hasPowerEffect: 1
+  dices:
+  - wantedDice: 0
+    numberOfDice: 1
+    wantedDamage: 3
+  noBonusSpell: 1
+  damageType: 3
+  diceByLevelBonus: 0.3334
   diceByLevel: 0
   autoCritical: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget:
-  - {fileID: 11400000, guid: 8f1c33a2aa19d884d9b2f32cb9c47e8a, type: 2}
-  wantedEffectOnCaster: []
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster:
+  - {fileID: 11400000, guid: b121eee8a34927248a057f79b1b5f756, type: 2}
   wantedEffectOnGround: []

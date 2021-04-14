@@ -17,6 +17,7 @@ MonoBehaviour:
     spr: {fileID: 21300000, guid: fbc47274206d03d41bc0e3672c106717, type: 3}
     description: "Le personnage gagne un bonus de +2 (+1 par niveaux) sur ses jets
       d'attaque de Dext\xE9rit\xE9."
+    maxStack: 1
     effects:
     - type: 12
       possiblesTargets: 0

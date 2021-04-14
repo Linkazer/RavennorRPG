@@ -94,7 +94,6 @@ public class RoomManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
-        Debug.Log(openRoomIndexes.Contains(index));
         if(!openRoomIndexes.Contains(index) || index == 0)
         {
             openRoomIndexes.Add(index);

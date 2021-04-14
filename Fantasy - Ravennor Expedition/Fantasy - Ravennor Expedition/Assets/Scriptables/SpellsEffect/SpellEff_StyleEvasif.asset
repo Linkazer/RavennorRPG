@@ -17,6 +17,7 @@ MonoBehaviour:
     spr: {fileID: 21300000, guid: 399c37486e663f045a29117f89b57557, type: 3}
     description: "Le personnage gagne un bonus de 2 (+1 par niveaux du lanceur) \xE0
       sa d\xE9fense, mais subit un malus de 1 (+0.5 par niveau) de d\xE9g\xE2ts.."
+    maxStack: 1
     effects:
     - type: 9
       possiblesTargets: 0

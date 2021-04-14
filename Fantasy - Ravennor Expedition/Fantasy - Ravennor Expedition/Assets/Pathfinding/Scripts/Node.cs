@@ -56,7 +56,7 @@ public class Node : IHeapItem<Node> {
 
 				if (hasCharacterOn)
 				{
-					BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, EffectTrigger.BeginTurn);
+					BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, EffectTrigger.BeginTurn, effectsOnNode[i].currentStack);
 				}
 
 				if (effectsOnNode[i].currentCooldown >= 0)

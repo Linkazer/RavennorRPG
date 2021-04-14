@@ -55,7 +55,6 @@ MonoBehaviour:
   diceByLevel: 1
   autoCritical: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 0}
-  applyOnTarget: 0
-  applyOnCaster: 0
-  applyOnGround: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []

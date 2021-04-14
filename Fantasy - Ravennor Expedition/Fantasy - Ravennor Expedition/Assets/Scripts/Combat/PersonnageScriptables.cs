@@ -35,11 +35,11 @@ public class PersonnageScriptables : ScriptableObject
     //[SerializeField]
     private int bonusAgilite, bonusPuissMag, bonusIntelligence, bonusConstit, bonusPerception, bonusCharisme;
     //[Header("Bonus Stats secondaires")]
-    //[SerializeField]
+    [SerializeField]
     protected int bonusDegPhyMelee;
     [SerializeField]
     protected int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
-                bonusMaana, bonusSpellRange, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
+                bonusMaana, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
     protected List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>();//, diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
     //[Header("Bonus armures")]
     //[SerializeField]
@@ -54,7 +54,7 @@ public class PersonnageScriptables : ScriptableObject
     public List<CharacterActionScriptable> learnedSpells;
     public List<CharacterActionScriptable> sortsDisponibles;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<SpellEffectScriptables> passifs;
     //Liste des Passifs
 
@@ -342,11 +342,6 @@ public class PersonnageScriptables : ScriptableObject
         return bonusSoinRecu;
     }
 
-    public int GetSpellRangeBonus()
-    {
-        return bonusSpellRange;
-    }
-
     public int GetCriticalChanceBonus()
     {
         return Mathf.RoundToInt(((GetPerception() -1) / 3)) + 1 + bonusCriticalChance;
@@ -475,9 +470,6 @@ public class PersonnageScriptables : ScriptableObject
                 break;
             case EffectType.HealRecieved:
                 bonusSoinRecu += value;
-                break;
-            case EffectType.SpellRange:
-                bonusSpellRange += value;
                 break;
             case EffectType.MaanaBonus:
                 bonusMaana += value;

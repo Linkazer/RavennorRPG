@@ -548,12 +548,17 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 if (eff.effet.nom == runEffect.effet.nom && eff.currentCooldown < runEffect.currentCooldown)
                 {
                     eff.currentCooldown = runEffect.currentCooldown;
+                    if(eff.currentStack < eff.effet.maxStack)
+                    {
+                        eff.currentStack++;
+                    }
                 }
             }
         }
         else
         {
             appliedEffects.Add(runEffect);
+            runEffect.currentStack++;
 
             /*foreach (SpellEffect eff in runEffect.effet.effects)
             {
@@ -630,7 +635,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         for (int i = 0; i < appliedEffects.Count; i++)
         {
-            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, triggerWanted);
+            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, triggerWanted, appliedEffects[i].currentStack);
         }
     }
 

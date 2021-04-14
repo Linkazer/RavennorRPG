@@ -11,6 +11,8 @@ public class SpellEffectCommon
     public Sprite spr;
     public string description;
 
+    public int maxStack = 1;
+
     public List<SpellEffect> effects;
 
     public List<SpellEffectAction> actionEffect;

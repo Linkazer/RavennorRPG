@@ -18,6 +18,7 @@ MonoBehaviour:
     description: "Le personnage gagne un bonus de 1 (+1 tous les 2 niveaux du lanceur)
       \xE0 ses d\xE9g\xE2ts \xE0 l'arme, mais subit un malus de 2 (+1 par niveau)
       \xE0 ses jets d'attaque avec son arme.."
+    maxStack: 1
     effects:
     - type: 6
       possiblesTargets: 0

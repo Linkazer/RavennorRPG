@@ -7,7 +7,7 @@ public enum EffectType
     Force, Agilite, PuissMagique, Constitution, Perception,
     PhysicalMeleDamage, PhysicalDistanceDamage, MagicalDamage, 
     Initiative, Defense, Esquive, ChanceToucheForce, ChanceToucheDexterite, ChanceToucheMagic,
-    HealApplied, HealRecieved, MaanaBonus, SpellRange,
+    HealApplied, HealRecieved, MaanaBonus,
     CriticalChance, CriticalMultiplier,
     PhysicalArmor, MagicalArmor
 }

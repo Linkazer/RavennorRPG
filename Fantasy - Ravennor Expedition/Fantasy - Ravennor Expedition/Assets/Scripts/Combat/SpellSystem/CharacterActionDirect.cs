@@ -21,8 +21,9 @@ public class CharacterActionDirect : CharacterActionScriptable
     public float lifeStealPercent = 0;
 
     [Header("Effets")]
-    public SpellEffectScriptables wantedEffect;
-    public bool applyOnTarget = false, applyOnCaster = false, applyOnGround = false;
+    //public SpellEffectScriptables wantedEffect;
+    public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
+    //public bool applyOnTarget = false, applyOnCaster = false, applyOnGround = false;
 
     public CharacterActionDirect()
     {

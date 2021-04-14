@@ -44,7 +44,7 @@ MonoBehaviour:
   diceByLevel: 0
   autoCritical: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 11400000, guid: 1784ecff48a60b94fa0ca779918fdd3e, type: 2}
-  applyOnTarget: 0
-  applyOnCaster: 1
-  applyOnGround: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster:
+  - {fileID: 11400000, guid: 1784ecff48a60b94fa0ca779918fdd3e, type: 2}
+  wantedEffectOnGround: []
