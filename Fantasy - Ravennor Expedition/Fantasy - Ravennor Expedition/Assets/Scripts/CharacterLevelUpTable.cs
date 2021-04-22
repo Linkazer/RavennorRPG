@@ -15,10 +15,11 @@ public class LevelTable
 [System.Serializable]
 public class LevelUpCapacity
 {
+    public string nom;
+    public string description;
     public EffectType bonusType;
     public int bonusValue;
     public SpellEffectScriptables passif;
-    public string description;
 }
 
 [CreateAssetMenu(fileName = "New Level up Table", menuName = "Create New LevelUp Table")]
@@ -26,8 +27,6 @@ public class CharacterLevelUpTable : ScriptableObject
 {
     [SerializeField]
     private List<LevelTable> tables;
-
-    public List<int> levelUnlockSpell = new List<int>(), levelUnlockCapacity = new List<int>(), autoLevelUps = new List<int>();
 
     public List<LevelTable> GetUsableTables(int levelWanted)
     {
@@ -40,5 +39,10 @@ public class CharacterLevelUpTable : ScriptableObject
             }
         }
         return toReturn;
+    }
+
+    public LevelTable GetLevelTable(int levelWanted)
+    {
+        return tables[levelWanted];
     }
 }

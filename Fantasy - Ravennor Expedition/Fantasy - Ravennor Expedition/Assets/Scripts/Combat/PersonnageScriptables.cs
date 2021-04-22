@@ -34,7 +34,7 @@ public class PersonnageScriptables : ScriptableObject
     private int bonusForce;
     //[SerializeField]
     private int bonusAgilite, bonusPuissMag, bonusIntelligence, bonusConstit, bonusPerception, bonusCharisme;
-    //[Header("Bonus Stats secondaires")]
+    [Header("Bonus Stats secondaires")]
     [SerializeField]
     protected int bonusDegPhyMelee;
     [SerializeField]
@@ -44,6 +44,8 @@ public class PersonnageScriptables : ScriptableObject
     //[Header("Bonus armures")]
     //[SerializeField]
     private int bonusPhysicalDefense, bonusMagicalDefense;
+
+    private int actionBonus, baseAttackBonus;
 
     //[Header("Autres")]
 
@@ -516,6 +518,12 @@ public class PersonnageScriptables : ScriptableObject
         diceBonusDegMag = new List<Dice>();*/
     }
 
+    public void GetPossibleActions(out int _possibleAction, out int _possibleAttack)
+    {
+        _possibleAction = actionBonus+1;
+        _possibleAttack = baseAttackBonus;
+    }
+
     public void LevelUpStat(int index)
     {
         switch (index)
@@ -539,6 +547,26 @@ public class PersonnageScriptables : ScriptableObject
                 puissMag++;
                 break;
         }
+    }
+
+    public bool CanLevelUpStat(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return force < 5;
+            case 1:
+                return constitution < 5;
+            case 2:
+                return agilite < 5;
+            case 3:
+                return intelligence < 5;
+            case 4:
+                return perception < 5;
+            case 5:
+                return puissMag < 5;
+        }
+        return false;
     }
 
     public void RemoveUpStat(int index)

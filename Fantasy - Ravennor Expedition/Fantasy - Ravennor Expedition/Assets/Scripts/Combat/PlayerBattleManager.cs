@@ -58,7 +58,7 @@ public class PlayerBattleManager : MonoBehaviour
                 {
                     if (actionList[holdSpellIndex].incantationTime != ActionIncantation.Rapide)
                     {
-                        currentCharacter.actionAvailable = false;
+                        currentCharacter.UseAction(actionList[holdSpellIndex].isWeaponBased);
                     }
                     UseSpell(Grid.instance.NodeFromWorldPoint(position).worldPosition);
                 }
@@ -84,7 +84,7 @@ public class PlayerBattleManager : MonoBehaviour
     public void ChooseSpell(int index)
     {
         //Grid.instance.ResetUsableNode();
-        if (currentCharacter.actionAvailable && index < actionList.Count && index != holdSpellIndex && index >= 0)
+        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && currentCharacter.CanDoAction(actionList[index].isWeaponBased))
         {
             if (BattleManager.instance.IsActionAvailable(currentCharacter, actionList[index]))
             {
@@ -282,6 +282,8 @@ public class PlayerBattleManager : MonoBehaviour
         currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost);
 
         currentCharacter.SetCooldown(actionList[holdSpellIndex]);
+
+        currentCharacter.UseSpell(actionList[holdSpellIndex]);
 
         BattleManager.instance.LaunchAction(actionList[holdSpellIndex], currentCharacter, position, false);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Invocation Spell", menuName = "Spell/Create Invocation Spell")]
 public class CharacterActionInvocation : CharacterActionScriptable
 {
-    public PersonnageScriptables invocation;
+    public List<PersonnageScriptables> invocations;
 
     public CharacterActionInvocation()
     {

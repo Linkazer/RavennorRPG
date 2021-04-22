@@ -18,11 +18,11 @@ public class DoorObject : MonoBehaviour
     {
         RuntimeBattleCharacter chara = BattleManager.instance.GetCurrentTurnChara();
 
-        if (chara.actionAvailable)
+        if (chara.CanDoAction(true))
         {
             if (Pathfinding.instance.GetDistance(chara.currentNode, currentNode) < 15)
             {
-                chara.actionAvailable = false;
+                chara.UseAction(true);
                 StartCoroutine(OpenDoor());
             }
         }

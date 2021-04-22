@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: PersoTest
+  m_EditorClassIdentifier: 
+  nom: Vanyaenn
+  icon: {fileID: 21300000, guid: acd7dae5e4735de46858911e1fa940fd, type: 3}
+  portrait: {fileID: 21300000, guid: acd7dae5e4735de46858911e1fa940fd, type: 3}
+  spritePerso: {fileID: 21300000, guid: acd7dae5e4735de46858911e1fa940fd, type: 3}
+  spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
+  brasPosition: 0.01
+  description: "Vanyaenn est une dryade originaire du M\xE9rendil. Elle est souvent
+    consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
+    bon sens."
+  level: 1
+  baseHps: 10
+  hpByLevel: 0
+  baseMoveSpeed: 18
+  force: 4
+  constitution: 1
+  agilite: 3
+  intelligence: 3
+  perception: 2
+  charisme: 2
+  puissMag: 7
+  bonusDegPhyMelee: 0
+  bonusDegPhyDistance: 0
+  bonusDegMag: 0
+  bonusInitiative: 0
+  bonusDefense: 0
+  bonusChanceToucheForce: 0
+  bonusChanceToucheDexterite: 0
+  bonusChanceToucheMagic: 0
+  bonusSoinAppli: 0
+  bonusSoinRecu: 0
+  bonusMaana: 0
+  bonusCriticalChance: 0
+  bonusPhysicalArmor: 0
+  bonusMagicalArmor: 0
+  touchMeleeDice: 0
+  toucheDistanceDice: 0
+  toucheMagicalDice: 0
+  levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
+  learnedSpells:
+  - {fileID: 11400000, guid: 147861126638cd34389b998ddc85a814, type: 2}
+  - {fileID: 11400000, guid: 9d24033b3fb8b634ca223b2f7bc88f15, type: 2}
+  - {fileID: 11400000, guid: f456c71be951102429fbd0746fbf1add, type: 2}
+  - {fileID: 11400000, guid: 3435053c28bcf6c4184afd22c32a2e07, type: 2}
+  - {fileID: 11400000, guid: c8e40ff2e8ab49f44b7ec0c7578724ff, type: 2}
+  sortsDisponibles:
+  - {fileID: 11400000, guid: 533128adc27a7d94a923ac9346f357cd, type: 2}
+  - {fileID: 11400000, guid: 147861126638cd34389b998ddc85a814, type: 2}
+  passifs: []

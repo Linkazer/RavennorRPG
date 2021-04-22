@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SpellType { Direct, Projectile, Deplacement, Invocation}
+public enum SpellType { Direct, Projectile, Deplacement, Invocation, Teleportation, DamagingTeleportation}
 
 public enum AttackType { Force, Dexterite, PuissMagique}
 
@@ -11,6 +11,8 @@ public enum ActionIncantation { Rapide, Simple, Lent, Hard}
 public enum ActionTargets { SelfAllies, Ennemies, All, FreeSpace, Invocations}
 
 public enum DamageType { Heal, Physical, Magical, Brut}
+
+public enum ScalePossibility { None, EffectStack, HpLostPercent, Distance}
 
 //[CreateAssetMenu(fileName = "New Battle Action", menuName = "Create New Battle Action")]
 public class CharacterActionScriptable : ScriptableObject
@@ -26,7 +28,9 @@ public class CharacterActionScriptable : ScriptableObject
     public AttackType attackType;
     public int actionLevel;
     public int maanaCost;
+    public int maxUtilisation = -1;
     public ActionIncantation incantationTime;
+    public bool isWeaponBased;
 
     public ActionTargets target;
     public ActionTargets castTarget = ActionTargets.All;

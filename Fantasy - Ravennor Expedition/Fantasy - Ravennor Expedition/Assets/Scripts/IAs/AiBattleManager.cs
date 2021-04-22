@@ -52,7 +52,7 @@ public class AiBattleManager : MonoBehaviour
     {
         if (currentChara.GetCurrentHps() > 0)
         {
-            if (currentChara.actionAvailable && wantedAction != null)
+            if (wantedAction != null && currentChara.CanDoAction(wantedAction.isWeaponBased))
             {
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
@@ -81,7 +81,7 @@ public class AiBattleManager : MonoBehaviour
                 }
                 else
                 {
-                    currentChara.actionAvailable = false;
+                    currentChara.UseAllAction();
                     SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
 
                     //Debug.Log(currentChara.name + " Move for next round : " + nodeToMoveTo.worldPosition);

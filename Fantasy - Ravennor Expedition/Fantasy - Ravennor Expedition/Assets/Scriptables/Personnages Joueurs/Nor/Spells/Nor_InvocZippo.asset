@@ -19,7 +19,9 @@ MonoBehaviour:
   attackType: 2
   actionLevel: 1
   maanaCost: 1
+  maxUtilisation: 0
   incantationTime: 1
+  isWeaponBased: 0
   target: 3
   castTarget: 2
   range: {x: 0, y: 24}
@@ -35,4 +37,5 @@ MonoBehaviour:
   castAnimation: 
   soundToPlay: {fileID: 8300000, guid: 1a24346a78a98c9459e157e387b84943, type: 3}
   maxCooldown: 0
-  invocation: {fileID: 11400000, guid: 2d0075c6e6001524196d13b053553596, type: 2}
+  invocations:
+  - {fileID: 11400000, guid: 2d0075c6e6001524196d13b053553596, type: 2}

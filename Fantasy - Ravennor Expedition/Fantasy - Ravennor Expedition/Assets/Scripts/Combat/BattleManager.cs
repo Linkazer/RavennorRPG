@@ -335,6 +335,7 @@ public class BattleManager : MonoBehaviour
 
     public void EndTurn()
     {
+        Debug.Log("End Turn");
         PlayerBattleManager.instance.ActivatePlayerBattleController(false);
         if (!CheckForBattleEnd())
         {
@@ -559,7 +560,7 @@ public class BattleManager : MonoBehaviour
 
         if (wantedAction.incantationTime != ActionIncantation.Rapide)
         {
-            caster.actionAvailable = false;
+            caster.UseAction(wantedAction.isWeaponBased);
         }
 
         if(!wantedAction.HadFeedback() && !effectAction)
@@ -570,7 +571,7 @@ public class BattleManager : MonoBehaviour
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
     {
-        if(character.GetSpellCooldown(wantedAction) > 0)
+        if(character.GetSpellCooldown(wantedAction) > 0 || character.HasSpellUtilisationLeft(wantedAction))
         {
             return false;
         }
@@ -590,19 +591,19 @@ public class BattleManager : MonoBehaviour
             case ActionIncantation.Rapide:
                 return true;
             case ActionIncantation.Simple:
-                if (character.actionAvailable)
+                if (character.CanDoAction(wantedAction.isWeaponBased))
                 {
                     return true;
                 }
                 return false;
             case ActionIncantation.Lent:
-                if (character.actionAvailable && !character.hasMoved)
+                if (character.CanDoAction(wantedAction.isWeaponBased) && !character.hasMoved)
                 {
                     return true;
                 }
                 return false;
             case ActionIncantation.Hard:
-                if (character.actionAvailable)
+                if (character.CanDoAction(wantedAction.isWeaponBased))
                 {
                     return true;
                 }
@@ -696,6 +697,26 @@ public class BattleManager : MonoBehaviour
                 bonusDamages += (int)caster.GetCharacterDatas().GetMagicalDamage();
                 break;
         }
+
+        switch (wantedAction.scaleOrigin)
+        {
+            case ScalePossibility.EffectStack:
+                foreach(RuntimeSpellEffect eff in target.GetAppliedEffects())
+                {
+                    if(eff.effet.nom == wantedAction.wantedScaleEffect.effet.nom)
+                    {
+                        bonusDamages += Mathf.RoundToInt(eff.currentStack * wantedAction.bonusByScale);
+                    }
+                }
+                break;
+            case ScalePossibility.HpLostPercent:
+                bonusDamages += Mathf.RoundToInt((1 / target.GetPercentHp()) * 100 * wantedAction.bonusByScale);
+                break;
+            case ScalePossibility.Distance:
+                bonusDamages += Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.bonusByScale);
+                break;
+        }
+
         return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target), wantedAction.noBonusSpell? 0 : bonusDamages);
     }
 
@@ -707,6 +728,27 @@ public class BattleManager : MonoBehaviour
         if (wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level) != null)
         {
             neededDices.Add(wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level));
+        }
+        switch (wantedAction.scaleOrigin)
+        {
+            case ScalePossibility.EffectStack:
+                foreach (RuntimeSpellEffect eff in target.GetAppliedEffects())
+                {
+                    if (eff.effet.nom == wantedAction.wantedScaleEffect.effet.nom)
+                    {
+                        neededDices.Add(wantedAction.scalingDices);
+                        neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(eff.currentStack * wantedAction.diceByScale);
+                    }
+                }
+                break;
+            case ScalePossibility.HpLostPercent:
+                neededDices.Add(wantedAction.scalingDices);
+                neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt((1 / target.GetPercentHp()) * 100 * wantedAction.diceByScale);
+                break;
+            case ScalePossibility.Distance:
+                neededDices.Add(wantedAction.scalingDices);
+                neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.diceByScale);
+                break;
         }
 
         EffectType wantedDiceBonus = EffectType.Agilite;
@@ -921,9 +963,9 @@ public class BattleManager : MonoBehaviour
 
     private void InvokeAlly(RuntimeBattleCharacter caster, CharacterActionInvocation spell, Vector2 wantedPosition)
     {
-        PersonnageScriptables toInvoke = spell.invocation;
+        PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations, caster.GetCharacterDatas().level);
 
-        if (!caster.CheckForInvocations(toInvoke))
+        if (!caster.CheckForInvocations(toInvoke) && toInvoke != null)
         {
             Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
             if (nodeWanted.usableNode && !nodeWanted.hasCharacterOn)
@@ -944,6 +986,19 @@ public class BattleManager : MonoBehaviour
             }
         }
         EndCurrentAction();
+    }
+
+    private PersonnageScriptables CharacterToInvoke(List<PersonnageScriptables> possibleInvoc, int level)
+    {
+        for(int i = possibleInvoc.Count-1; i >= 0; i--)
+        {
+            if(possibleInvoc[i] != null && i < level)
+            {
+                return possibleInvoc[i];
+            }
+        }
+
+        return null;
     }
 
     #endregion

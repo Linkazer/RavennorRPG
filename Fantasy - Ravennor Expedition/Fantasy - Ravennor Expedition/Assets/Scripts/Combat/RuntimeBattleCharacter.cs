@@ -20,7 +20,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private GameObject brasParent;
 
     [HideInInspector]
-    public bool actionAvailable;
+    private int possibleAction, possibleBaseAttack;
     
     [HideInInspector]
     public bool hasMoved;
@@ -46,6 +46,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     private List<CharacterActionScriptable> actionsDisponibles;
     private List<int> cooldowns = new List<int>();
+    private List<int> spellUtilisations = new List<int>();
 
     //Effets
     private List<RuntimeSpellEffect> appliedEffects = new List<RuntimeSpellEffect>();
@@ -76,9 +77,75 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return currentMaana;
     }
 
+    public bool CanDoAction(bool isBaseAttack)
+    {
+        if(isBaseAttack)
+        {
+            return (possibleBaseAttack > 0 || possibleAction > 0);
+        }
+        return (possibleAction > 0);
+    }
+
+    public void UseAction(bool isBaseAttack)
+    {
+        if (isBaseAttack)
+        {
+            if (possibleBaseAttack > 0)
+            {
+                possibleBaseAttack--;
+            }
+            else
+            {
+                possibleAction--;
+            }
+        }
+        else
+        {
+            possibleAction--;
+        }
+    }
+
+    public void UseAllAction()
+    {
+        possibleBaseAttack = 0;
+        possibleAction = 0;
+    }
+
     public bool HasEnoughMaana(int maanaAmount)
     {
         return maanaAmount <= currentMaana;
+    }
+
+    public void UseSpell(CharacterActionScriptable spell)
+    {
+        int index = 0;
+        foreach (CharacterActionScriptable s in actionsDisponibles)
+        {
+            if (s.nom == spell.nom)
+            {
+                break;
+            }
+            index++;
+        }
+        spellUtilisations[index]++;
+    }
+
+    public bool HasSpellUtilisationLeft(CharacterActionScriptable spell)
+    {
+        int index = 0;
+        foreach (CharacterActionScriptable s in actionsDisponibles)
+        {
+            if (s.nom == spell.nom)
+            {
+                if(spell.maxUtilisation > 0 && spellUtilisations[index] < spell.maxUtilisation)
+                {
+                    return true;
+                }
+                break;
+            }
+            index++;
+        }
+        return false;
     }
 
     public bool UseMaana(int maanaSpent)
@@ -241,7 +308,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
             hasMoved = false;
 
-            actionAvailable = true;
+            currentScriptable.GetPossibleActions(out possibleAction, out possibleBaseAttack);
 
             hasOpportunity = true;
 

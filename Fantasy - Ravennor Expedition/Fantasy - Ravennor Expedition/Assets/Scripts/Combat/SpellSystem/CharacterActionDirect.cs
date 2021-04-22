@@ -7,23 +7,25 @@ public class CharacterActionDirect : CharacterActionScriptable
 {
     [Header("Dégâts")]
     public bool hasPowerEffect = true;
-    //[SerializeField]
-    //private List<int> diceNumbers;
+
     [SerializeField]
     protected List<Dice> dices;
-    //private List<DiceType> diceTypes;
     public bool noBonusSpell;
     public DamageType damageType;
     public float diceByLevelBonus;
     public DiceType diceByLevel;
     public bool autoCritical = false;
 
+    public ScalePossibility scaleOrigin;
+    public SpellEffectScriptables wantedScaleEffect;
+    public Dice scalingDices;
+    public float diceByScale;
+    public float bonusByScale;
+
     public float lifeStealPercent = 0;
 
     [Header("Effets")]
-    //public SpellEffectScriptables wantedEffect;
     public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
-    //public bool applyOnTarget = false, applyOnCaster = false, applyOnGround = false;
 
     public CharacterActionDirect()
     {

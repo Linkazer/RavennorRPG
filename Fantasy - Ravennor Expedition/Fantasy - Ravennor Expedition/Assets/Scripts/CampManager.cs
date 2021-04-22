@@ -7,7 +7,7 @@ using TMPro;
 public class CampManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject characterSheet, characterSpells;
+    private GameObject characterSheet;
 
     [SerializeField]
     private List<Image> characterSprites;
@@ -65,6 +65,15 @@ public class CampManager : MonoBehaviour
     private Image imgWantedNewSpell;
     private CharacterActionScriptable wantedNewSpell;
     private List<CharacterActionScriptable> unlockableSpells;
+    //Capacités
+    [SerializeField]
+    private GameObject levelUpCapacityParent;
+    [SerializeField]
+    private List<TextMeshProUGUI> capacityNameDescription;
+    [SerializeField]
+    private List<GameObject> feedbackChosenCapacity;
+    private int chosenCapacityIndex;
+    private LevelTable currentTable;
 
     [SerializeField]
     private ParcheminDialogueSystem dialogSysteme;
@@ -380,9 +389,10 @@ public class CampManager : MonoBehaviour
         unlockableSpells = new List<CharacterActionScriptable>();
 
         int inc = 0;
-        foreach(LevelTable table in currentChara.levelUpTable.GetUsableTables(currentChara.level))
+        foreach (LevelTable table in currentChara.levelUpTable.GetUsableTables(currentChara.level))
         {
-            if (!currentChara.levelUpTable.autoLevelUps.Contains(inc))
+            inc++;
+            if (!table.autoLevelUp)
             {
                 foreach (CharacterActionScriptable act in table.possibleSpells)
                 {
@@ -392,17 +402,17 @@ public class CampManager : MonoBehaviour
                     }
                 }
             }
-            else if(currentChara.level == table.levelNeeded)
+            
+            if (currentChara.level == inc)
             {
                 currentChara.LevelUpStat(table.levelUpStat);
-                foreach(CharacterActionScriptable act in table.possibleSpells)
+                foreach (CharacterActionScriptable act in table.possibleSpells)
                 {
                     currentChara.learnedSpells.Add(act);
                 }
                 CheckForNewLevelUp();
                 return;
             }
-            inc++;
         }
 
         lvlPortrait.sprite = currentChara.portrait;
@@ -423,9 +433,12 @@ public class CampManager : MonoBehaviour
             {
                 imgUnlockSpells[i].sprite = unlockableSpells[i].icon;
                 imgUnlockSpells[i].color = Color.white;
+                imgUnlockSpells[i].transform.parent.GetComponent<Image>().color = Color.white;
             }
             else
             {
+                Debug.Log("Hide color ??");
+                imgUnlockSpells[i].transform.parent.GetComponent<Image>().color = hidingColor;
                 imgUnlockSpells[i].color = hidingColor;
             }
         }
@@ -444,13 +457,32 @@ public class CampManager : MonoBehaviour
         }
         #endregion
 
+        #region Capacity Unlock
+
+        currentTable = currentChara.levelUpTable.GetLevelTable(currentChara.level-1);
+        for (int i = 0; i < 3; i++)
+        {
+            feedbackChosenCapacity[i].SetActive(false);
+            if (i < currentTable.capacities.Count && currentTable.capacities[i] != null)
+            {
+                capacityNameDescription[i].text = currentTable.capacities[i].nom;
+                capacityNameDescription[i+3].text = currentTable.capacities[i].description;
+                capacityNameDescription[i].transform.parent.gameObject.SetActive(true);
+            }
+            else
+            {
+                capacityNameDescription[i].transform.parent.gameObject.SetActive(false);
+            }
+        }
+        #endregion
+
         levelUpParent.SetActive(true);
     }
 
     public void SetLevepUpSheet()
     {
-        lvlMaxHps.text = currentChara.GetMaxHps().ToString();
-        lvlMaxMaana.text = currentChara.GetMaxMaana().ToString();
+        //lvlMaxHps.text = currentChara.GetMaxHps().ToString();
+        //lvlMaxMaana.text = currentChara.GetMaxMaana().ToString();
 
         List<int> mainStatsValues = currentChara.GetAllMainStats();
 
@@ -502,13 +534,29 @@ public class CampManager : MonoBehaviour
 
     public void AddStat(int index)
     {
-        if(statToUp != -1)
+        if (currentChara.CanLevelUpStat(index))
         {
-            currentChara.RemoveUpStat(statToUp);
+            if (statToUp != -1)
+            {
+                currentChara.RemoveUpStat(statToUp);
+            }
+            statToUp = index;
+            currentChara.LevelUpStat(statToUp);
+            SetLevepUpSheet();
         }
-        statToUp = index;
-        currentChara.LevelUpStat(statToUp);
-        SetLevepUpSheet();
+    }
+
+    public void ValidateNewStats()
+    {
+        levelUpStatParent.SetActive(false);
+        if (currentTable.possibleSpells.Count > 0)
+        {
+            levelUpSpellParent.SetActive(true);
+        }
+        else
+        {
+            CheckForNewLevelUp();
+        }
     }
 
     public void ChooseUnlockedSpell(int index)
@@ -522,25 +570,49 @@ public class CampManager : MonoBehaviour
         currentChara.learnedSpells.Add(wantedNewSpell);
     }
 
-    public void ValidateNewStats()
+    public void ValidateNewSpell()
     {
-        levelUpStatParent.SetActive(false);
-        if (currentChara.levelUpTable.levelUnlockSpell.Contains(currentChara.level))
+        if (wantedNewSpell != null)
         {
-            levelUpSpellParent.SetActive(true);
-        }
-        else
-        {
-            CheckForNewLevelUp();
+            UnlockNewSpell();
+            levelUpSpellParent.SetActive(false);
+            if (currentTable.capacities.Count > 0)
+            {
+                levelUpCapacityParent.SetActive(true);
+            }
+            else
+            {
+                levelUpParent.SetActive(false);
+                CheckForNewLevelUp();
+            }
         }
     }
 
-    public void ValidateNewSpell()
+    public void ChooseNewCapacity(int index)
     {
-        UnlockNewSpell();
+        feedbackChosenCapacity[chosenCapacityIndex].SetActive(false);
+        chosenCapacityIndex = index;
+        feedbackChosenCapacity[index].SetActive(true);
+    }
+
+    private void UnlockNewCapacity()
+    {
+        if (currentTable.capacities[chosenCapacityIndex].passif != null)
+        {
+            currentChara.passifs.Add(currentTable.capacities[chosenCapacityIndex].passif);
+        }
+
+        currentChara.StatBonus(currentTable.capacities[chosenCapacityIndex].bonusValue, currentTable.capacities[chosenCapacityIndex].bonusType, null, false);
+    }
+
+    public void ValidateNewCapacity()
+    {
+        UnlockNewCapacity();
+        levelUpCapacityParent.SetActive(false);
         levelUpParent.SetActive(false);
         CheckForNewLevelUp();
     }
+
     #endregion
     
     public void ClosePannel()
