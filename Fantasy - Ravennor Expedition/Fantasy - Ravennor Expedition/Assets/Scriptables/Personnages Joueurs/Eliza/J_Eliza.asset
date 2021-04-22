@@ -23,15 +23,16 @@ MonoBehaviour:
     de l'Acad\xE9mie."
   level: 1
   baseHps: 10
-  hpByLevel: 0
+  hpByLevel: 2
   baseMoveSpeed: 18
-  force: 3
-  constitution: 2
-  agilite: 2
+  baseMaana: 2
+  force: 2
+  constitution: 1
+  agilite: 1
   intelligence: 1
-  perception: 3
-  charisme: 2
-  puissMag: 3
+  perception: 2
+  charisme: 0
+  puissMag: 2
   bonusDegPhyMelee: 0
   bonusDegPhyDistance: 0
   bonusDegMag: 0

@@ -23,15 +23,17 @@ MonoBehaviour:
     bon sens."
   level: 1
   baseHps: 10
-  hpByLevel: 0
+  hpByLevel: 1
   baseMoveSpeed: 18
+  baseMaana: 3
   force: 1
   constitution: 1
-  agilite: 3
-  intelligence: 3
+  agilite: 1
+  intelligence: 2
   perception: 2
-  charisme: 2
-  puissMag: 4
+  charisme: 0
+  puissMag: 2
+  bonusDegPhyMelee: 0
   bonusDegPhyDistance: 0
   bonusDegMag: 0
   bonusInitiative: 0
@@ -42,7 +44,6 @@ MonoBehaviour:
   bonusSoinAppli: 0
   bonusSoinRecu: 0
   bonusMaana: 0
-  bonusSpellRange: 0
   bonusCriticalChance: 0
   bonusPhysicalArmor: 0
   bonusMagicalArmor: 0

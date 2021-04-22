@@ -127,7 +127,9 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
             index++;
         }
-        spellUtilisations[index]++;
+        Debug.Log(index);
+        Debug.Log(spellUtilisations.Count);
+        spellUtilisations[index] += 1;
     }
 
     public bool HasSpellUtilisationLeft(CharacterActionScriptable spell)
@@ -280,6 +282,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         for(int i = 0; i < actionsDisponibles.Count; i++)
         {
             cooldowns.Add(0);
+            spellUtilisations.Add(0);
         }
 
         currentNode = Grid.instance.NodeFromWorldPoint(transform.position);

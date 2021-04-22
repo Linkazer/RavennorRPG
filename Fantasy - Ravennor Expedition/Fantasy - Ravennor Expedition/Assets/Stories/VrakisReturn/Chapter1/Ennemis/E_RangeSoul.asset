@@ -23,13 +23,15 @@ MonoBehaviour:
   baseHps: 5
   hpByLevel: 0
   baseMoveSpeed: 18
+  baseMaana: 0
   force: 1
-  constitution: 2
+  constitution: 1
   agilite: 1
   intelligence: 1
   perception: 2
-  charisme: 2
-  puissMag: 3
+  charisme: 0
+  puissMag: 2
+  bonusDegPhyMelee: 0
   bonusDegPhyDistance: 0
   bonusDegMag: 0
   bonusInitiative: 0
@@ -40,7 +42,6 @@ MonoBehaviour:
   bonusSoinAppli: 0
   bonusSoinRecu: 0
   bonusMaana: 0
-  bonusSpellRange: 0
   bonusCriticalChance: 0
   bonusPhysicalArmor: 0
   bonusMagicalArmor: 0

@@ -19,7 +19,7 @@ public class PersonnageScriptables : ScriptableObject
     [Header("Niveau")]
     public int level = 1;
     [SerializeField]
-    private int baseHps = 10, hpByLevel = 0, baseMoveSpeed = 30;
+    private int baseHps = 10, hpByLevel = 0, baseMoveSpeed = 30, baseMaana = 0;
     private int maxHp;
     private int maanaMax;
 
@@ -101,7 +101,7 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetMaxMaana()
     {
-        maanaMax = level + puissMag + bonusMaana;
+        maanaMax = level + puissMag + bonusMaana + baseMaana;
         if (maanaMax >= 0)
         {
             return maanaMax;
