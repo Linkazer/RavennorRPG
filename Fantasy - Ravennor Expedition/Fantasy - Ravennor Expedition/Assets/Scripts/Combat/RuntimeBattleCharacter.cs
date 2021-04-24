@@ -103,12 +103,19 @@ public class RuntimeBattleCharacter : MonoBehaviour
         {
             possibleAction--;
         }
+
+        BattleUiManager.instance.UseActionFeedback(isBaseAttack);
     }
 
     public void UseAllAction()
     {
         possibleBaseAttack = 0;
         possibleAction = 0;
+    }
+
+    public void ResetOneAction()
+    {
+        possibleAction++;
     }
 
     public bool HasEnoughMaana(int maanaAmount)
@@ -745,6 +752,13 @@ public class RuntimeBattleCharacter : MonoBehaviour
             hasOpportunity = false;
         }
     }
+    
+    public void Teleport(Vector2 newPosition)
+    {
+        transform.position = newPosition;
+        currentNode = Grid.instance.NodeFromWorldPoint(newPosition);
+        Grid.instance.CreateGrid();
+    }
     #endregion
 
     #region Animations
@@ -756,6 +770,16 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void SetAnimation(string animName)
     {
         anim.Play(animName);
+    }
+
+    public AnimatorClipInfo GetCurrentAnimation()
+    {
+        AnimatorClipInfo[] infos = anim.GetCurrentAnimatorClipInfo(0);
+        if (infos.Length > 0)
+        {
+            return infos[0];
+        }
+        return new AnimatorClipInfo();
     }
     #endregion
 }

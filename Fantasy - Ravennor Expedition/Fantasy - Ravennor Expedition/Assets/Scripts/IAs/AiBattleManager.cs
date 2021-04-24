@@ -56,13 +56,13 @@ public class AiBattleManager : MonoBehaviour
             {
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
-                if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range.y || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
+                if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
                     //Debug.Log(currentChara + " move for action");
                     BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition);
                     currentChara.movementLeft -= nodeToMoveTo.gCost;
                 }
-                else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) <= wantedAction.range.y))
+                else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) <= wantedAction.range))
                 {
                     //Debug.Log(currentChara + " do action");
                     currentChara.SetCooldown(wantedAction);
@@ -144,11 +144,11 @@ public class AiBattleManager : MonoBehaviour
                             {
                                 if (askForNextTurn)
                                 {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range.y, consid.wantedAction.hasViewOnTarget, currentChara.GetCharacterDatas().GetMovementSpeed());
+                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, currentChara.GetCharacterDatas().GetMovementSpeed());
                                 }
                                 else
                                 {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range.y, consid.wantedAction.hasViewOnTarget, 0);
+                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
                                 }
                                 maxScore = newScore;
                                 evaluatedValues = newScore;
@@ -240,7 +240,7 @@ public class AiBattleManager : MonoBehaviour
             possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 50, true);
         }
 
-        float rangeNeeded = actionToTry.range.y;
+        float rangeNeeded = actionToTry.range;
         /*if(askForNextTurn)
         {
             rangeNeeded += currentChara.GetMaxMovement();

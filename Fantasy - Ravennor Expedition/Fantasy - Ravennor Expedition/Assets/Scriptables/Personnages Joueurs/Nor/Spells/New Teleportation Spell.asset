@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a24990a4962134fa0ef4a4eb2d0908, type: 3}
+  m_Name: New Teleportation Spell
+  m_EditorClassIdentifier: 
+  nom: Spell de TP
+  icon: {fileID: -5352494607467827931, guid: d33244caf2a27414f8308dab6201581e, type: 3}
+  description: Ceci est un sort test de TP
+  spellType: 4
+  attackType: 0
+  actionLevel: 0
+  maanaCost: 0
+  maxUtilisation: -1
+  incantationTime: 1
+  isWeaponBased: 0
+  target: 0
+  castTarget: 2
+  range: 50
+  activeZoneCases:
+  - {x: 0, y: 0}
+  - {x: 0, y: 1}
+  doesFaceCaster: 1
+  hasViewOnTarget: 0
+  projectile: {fileID: 0}
+  speed: 0
+  zoneSprite: {fileID: 0}
+  caseSprite: {fileID: 0}
+  caseFeedback: {fileID: 0}
+  castAnimation: 
+  soundToPlay: {fileID: 0}
+  maxCooldown: 0
+  positionToTeleport: {x: 0, y: 1}
+  isJump: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []

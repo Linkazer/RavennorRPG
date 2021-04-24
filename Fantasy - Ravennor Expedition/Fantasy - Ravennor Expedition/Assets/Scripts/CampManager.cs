@@ -357,7 +357,7 @@ public class CampManager : MonoBehaviour
         spellDescription.text = toShow.description;
         spellMaana.text = toShow.maanaCost.ToString();
         spellIncantation.text = toShow.incantationTime.ToString();
-        spellPortee.text = toShow.range.y.ToString();
+        spellPortee.text = toShow.range.ToString();
 
         spellInfo.SetActive(true);
     }

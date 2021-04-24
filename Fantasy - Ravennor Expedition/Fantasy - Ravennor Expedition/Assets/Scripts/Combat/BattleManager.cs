@@ -390,6 +390,15 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private void CancelCurrentAction()
+    {
+        if(currentWantedAction.incantationTime != ActionIncantation.Rapide)
+        {
+            currentCharacterTurn.ResetOneAction();
+        }
+        EndCurrentAction();
+    }
+
     public void IncantateAction(string animToPlay)
     {
         currentCharacterTurn.SetAnimation(animToPlay);
@@ -429,6 +438,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case SpellType.Invocation:
                 InvokeAlly(caster, (CharacterActionInvocation)wantedAction, positionWanted);
+                break;
+            case SpellType.Teleportation:
+                TeleportationSpell(caster, (CharacterActionTeleportation)wantedAction, positionWanted);
                 break;
         }
     }
@@ -999,6 +1011,82 @@ public class BattleManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void TeleportationSpell(RuntimeBattleCharacter caster, CharacterActionTeleportation spell, Vector2 wantedPosition)
+    {
+        wantedPosition = GetTargetPosWithFacingPosition(caster.currentNode.worldPosition, wantedPosition, spell.positionToTeleport);
+
+        Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
+        if (!nodeWanted.hasCharacterOn && nodeWanted.walkable)
+        {
+            StartCoroutine(TeleportationSpellWaiter(spell.isJump, caster, wantedPosition));
+        }
+        else
+        {
+            CancelCurrentAction();
+        }
+    }
+
+    private IEnumerator TeleportationSpellWaiter(bool isJump, RuntimeBattleCharacter characterToTeleport, Vector2 teleportPosition)
+    {
+        if(isJump)
+        {
+            characterToTeleport.SetAnimation("JumpBegin");
+        }
+        else
+        {
+            characterToTeleport.SetAnimation("TeleportBegin");
+        }
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(characterToTeleport.GetCurrentAnimation().clip.length);
+
+       characterToTeleport.Teleport(teleportPosition);
+
+        if (isJump)
+        {
+            characterToTeleport.SetAnimation("JumpEnd");
+        }
+        else
+        {
+            characterToTeleport.SetAnimation("TeleportEnd");
+        }
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(characterToTeleport.GetCurrentAnimation().clip.length);
+        EndCurrentAction();
+    }
+
+    private Vector2 GetTargetPosWithFacingPosition(Vector2 casterPos, Vector2 targetPos, Vector2 spellDirection)
+    {
+        Vector2 direction = Vector2.one;
+
+        direction = new Vector2(casterPos.x, casterPos.y);
+        direction = new Vector2(Grid.instance.NodeFromWorldPoint(targetPos).gridX, Grid.instance.NodeFromWorldPoint(targetPos).gridY) - direction;
+
+        if (direction.y == 0 && direction.x == 0)
+        {
+            targetPos += new Vector2(spellDirection.x * 0.16f, spellDirection.y * 0.16f);
+        }
+        else if (direction.y > 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == direction.y))
+        {
+            targetPos += new Vector2(spellDirection.x * 0.16f, spellDirection.y * 0.16f);
+        }
+        else if (direction.x < 0 && (Mathf.Abs(direction.x) > Mathf.Abs(direction.y) || direction.x == -direction.y))
+        {
+            targetPos += new Vector2(-spellDirection.y * 0.16f, spellDirection.x * 0.16f);
+        }
+        else if (direction.y < 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == direction.y))
+        {
+            targetPos += new Vector2(-spellDirection.x * 0.16f, -spellDirection.y * 0.16f);
+        }
+        else
+        {
+            targetPos += new Vector2(spellDirection.y * 0.16f, -spellDirection.x * 0.16f);
+        }
+
+        return targetPos;
     }
 
     #endregion

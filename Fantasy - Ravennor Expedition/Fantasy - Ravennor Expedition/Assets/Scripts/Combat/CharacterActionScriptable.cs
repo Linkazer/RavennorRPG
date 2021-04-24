@@ -37,7 +37,8 @@ public class CharacterActionScriptable : ScriptableObject
     protected int targetNumber;
 
     [Header("Forme")]
-    public Vector2 range;
+    //public Vector2 range;
+    public int range;
     //public bool straightLine, diagonal;
     public List<Vector2Int> activeZoneCases = new List<Vector2Int>();
     public bool doesFaceCaster;

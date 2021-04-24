@@ -42,7 +42,11 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI spellTitle, spellDescription, spellMaanaCost, spellIncantationTime;
 
+    [SerializeField]
+    private List<GameObject> actionPoint, baseActionPoint;
+
     private RuntimeBattleCharacter currentChara;
+
     public RuntimeBattleCharacter GetCurrentChara()
     {
         return currentChara;
@@ -120,6 +124,8 @@ public class BattleUiManager : MonoBehaviour
                 spellImages[i].gameObject.SetActive(false);
             }
         }
+
+        UpdatePossibleAction();
     }
 
     public void UpdateSpells()
@@ -209,5 +215,45 @@ public class BattleUiManager : MonoBehaviour
     public void HideCharaInformation()
     {
         charaInfo.Hide();
+    }
+
+    public void UpdatePossibleAction()
+    {
+        currentChara.GetCharacterDatas().GetPossibleActions(out int possibleAction, out int possibleAttack);
+
+        for (int i = 0; i < possibleAction; i++)
+        {
+            actionPoint[i].SetActive(true);
+        }
+        for (int i = 0; i < possibleAttack; i++)
+        {
+            baseActionPoint[i].SetActive(true);
+        }
+    }
+
+    public void UseActionFeedback(bool weaponBased)
+    {
+        if(weaponBased)
+        {
+            for(int i = baseActionPoint.Count-1; i >= 0; i--)
+            {
+                if(baseActionPoint[i].activeSelf)
+                {
+                    baseActionPoint[i].SetActive(false);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for (int i = actionPoint.Count - 1; i >= 0; i--)
+            {
+                if (actionPoint[i].activeSelf)
+                {
+                    actionPoint[i].SetActive(false);
+                    break;
+                }
+            }
+        }
     }
 }
