@@ -19,10 +19,12 @@ MonoBehaviour:
   attackType: 0
   actionLevel: 1
   maanaCost: 0
+  maxUtilisation: -1
   incantationTime: 1
+  isWeaponBased: 0
   target: 0
   castTarget: 0
-  range: {x: 0, y: 150}
+  range: 15
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -42,8 +44,15 @@ MonoBehaviour:
   diceByLevelBonus: 0
   diceByLevel: 0
   autoCritical: 0
+  scaleOrigin: 0
+  wantedScaleEffect: {fileID: 0}
+  scalingDices:
+    wantedDice: 0
+    numberOfDice: 0
+    wantedDamage: 0
+  diceByScale: 0
+  bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 11400000, guid: f18b03881fcee3b49997c1ffde3a6283, type: 2}
-  applyOnTarget: 1
-  applyOnCaster: 0
-  applyOnGround: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []

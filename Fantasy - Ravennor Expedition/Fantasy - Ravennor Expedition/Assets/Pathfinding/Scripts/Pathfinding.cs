@@ -142,12 +142,12 @@ public class Pathfinding : MonoBehaviour {
 		Node currentNode = endNode;
 
 		int i = 0;
-		/*while ((currentNode.gCost > maxDistance || currentNode.hasCharacterOn) && i < 100)
+		while ((currentNode.gCost > maxDistance || currentNode.hasCharacterOn) && i < 100)
         {
 			i++;
 			currentNode = currentNode.parent;
 			//Debug.Log(currentNode.gCost + " + " + currentNode.hCost + " > " + maxDistance);
-        }*/
+        }
 
 		while (currentNode != startNode)
 		{
