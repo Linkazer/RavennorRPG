@@ -533,7 +533,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
-            SetAnimation("DamageTaken");
+            SetAnimation("AnimDamageTaken");
 
             if (BattleUiManager.instance.GetCurrentChara() == this)
             {
