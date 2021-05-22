@@ -15,40 +15,10 @@ MonoBehaviour:
   effet:
     nom: "Fi\xE9vreux"
     spr: {fileID: 21300000, guid: 62e55264fccdcb24c8d530e9081a8444, type: 3}
-    description: "Le personnage re\xE7oit un malus de -2 (+1 par niveau du lanceur)
-      sur ses jets d'attaques."
-    maxStack: 1
-    effects:
-    - type: 11
-      possiblesTargets: 1
-      value: -2
-      scaleByLevel: -1
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        wantedDamage: 0
-      trigger: 0
-      caster: {fileID: 0}
-    - type: 12
-      possiblesTargets: 1
-      value: -2
-      scaleByLevel: -1
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        wantedDamage: 0
-      trigger: 0
-      caster: {fileID: 0}
-    - type: 13
-      possiblesTargets: 1
-      value: -2
-      scaleByLevel: -1
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        wantedDamage: 0
-      trigger: 0
-      caster: {fileID: 0}
+    description: "Le personnage subit 1D4(+1D4 tous les 3 niveau du lanceur) de d\xE9g\xE2ts
+      brut au d\xE9but de son tour."
+    maxStack: 3
+    effects: []
     actionEffect:
     - spellToUse: {fileID: 11400000, guid: 17a91090d28388d41922e422f6b1b2c4, type: 2}
       trigger: 7

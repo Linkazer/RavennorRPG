@@ -134,8 +134,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
             index++;
         }
-        Debug.Log(index);
-        Debug.Log(spellUtilisations.Count);
         spellUtilisations[index] += 1;
     }
 
@@ -533,7 +531,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
-            SetAnimation("AnimDamageTaken");
+            SetAnimation("DamageTaken");
 
             if (BattleUiManager.instance.GetCurrentChara() == this)
             {
@@ -769,6 +767,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void SetAnimation(string animName)
     {
+        Debug.Log("Playing anim : " + animName);
         anim.Play(animName);
     }
 

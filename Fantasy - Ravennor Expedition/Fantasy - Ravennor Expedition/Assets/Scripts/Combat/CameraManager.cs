@@ -77,6 +77,10 @@ public class CameraManager : MonoBehaviour
 
     public void SetNextChara(Transform newToFollow)
     {
+        if(toFollow == null)
+        {
+            SetCameraPosition(RoomManager.GetCamStartPosition());
+        }
         lerpCoef = Vector2.Distance(newToFollow.position, transform.position) * baselerp;
         if (lerpCoef < baselerp)
             lerpCoef = baselerp;

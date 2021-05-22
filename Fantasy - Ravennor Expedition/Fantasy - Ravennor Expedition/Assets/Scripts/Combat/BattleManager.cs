@@ -71,9 +71,6 @@ public class BattleManager : MonoBehaviour
 
         roomManager = level.GetComponent<RoomManager>();
 
-        Camera.main.transform.position = roomManager.cameraPos;
-        Camera.main.transform.position += new Vector3(0, 0, - 10);
-
         Instantiate(level);
 
         for (int i = 0; i < teamOne.Count; i++)
@@ -820,10 +817,6 @@ public class BattleManager : MonoBehaviour
                 return new List<Dice>();
             }
         }
-        else if (defenseLucky > 0)
-        {
-            //targetDefenseScore = NormalRoll(target.GetCharacterDatas().GetDefenseDice(), target.GetCharacterDatas().GetBrutDefense(), DiceType.D4);
-        }
         
 
         if(casterHitScore >= targetDefenseScore)
@@ -1041,6 +1034,8 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(characterToTeleport.GetCurrentAnimation().clip.length);
+
+        //Application des effets
 
        characterToTeleport.Teleport(teleportPosition);
 

@@ -24,7 +24,7 @@ MonoBehaviour:
   isWeaponBased: 1
   target: 1
   castTarget: 2
-  range: 5
+  range: 15
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0

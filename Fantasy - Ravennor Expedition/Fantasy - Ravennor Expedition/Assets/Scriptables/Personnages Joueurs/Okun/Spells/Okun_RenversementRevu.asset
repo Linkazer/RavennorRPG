@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Okun_RenversementRevu
   m_EditorClassIdentifier: 
-  nom: Renversement
-  icon: {fileID: 21300000, guid: a727a5f542160f441ad599fc6399ab7e, type: 3}
+  nom: Coup de bouclier
+  icon: {fileID: 21300000, guid: e66ac7c74e9ddf74f864b76d623aa756, type: 3}
   description: "Inflige 1D6 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts physiques et renverse
     la cible, l'emp\xEAchant de jouer son prochain tour."
   spellType: 0
   attackType: 0
   actionLevel: 1
   maanaCost: 2
+  maxUtilisation: -1
   incantationTime: 1
+  isWeaponBased: 0
   target: 1
   castTarget: 2
-  range: {x: 0, y: 14}
+  range: 15
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -46,8 +48,15 @@ MonoBehaviour:
   diceByLevelBonus: 0.5
   diceByLevel: 0
   autoCritical: 0
+  scaleOrigin: 0
+  wantedScaleEffect: {fileID: 0}
+  scalingDices:
+    wantedDice: 0
+    numberOfDice: 0
+    wantedDamage: 0
+  diceByScale: 0
+  bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 11400000, guid: a23c540af16702c48be05d47dd44d594, type: 2}
-  applyOnTarget: 1
-  applyOnCaster: 0
-  applyOnGround: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []

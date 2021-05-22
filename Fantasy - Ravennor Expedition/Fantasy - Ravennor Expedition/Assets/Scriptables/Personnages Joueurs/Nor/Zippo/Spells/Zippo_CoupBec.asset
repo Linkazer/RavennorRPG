@@ -20,10 +20,12 @@ MonoBehaviour:
   attackType: 1
   actionLevel: 1
   maanaCost: 0
+  maxUtilisation: -1
   incantationTime: 1
+  isWeaponBased: 0
   target: 1
-  AICastTarget: 0
-  range: {x: 0, y: 14}
+  castTarget: 2
+  range: 15
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -33,20 +35,28 @@ MonoBehaviour:
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 086cb6a13f4320b4ab2e24c7f5e7047e, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
-  animationOnNodeName: 
-  animationOnZoneName: 
+  castAnimation: 
+  soundToPlay: {fileID: 0}
+  maxCooldown: 0
   hasPowerEffect: 1
   dices:
   - wantedDice: 0
     numberOfDice: 1
     wantedDamage: 1
-  useWeaponDamage: 0
+  noBonusSpell: 0
   damageType: 1
   diceByLevelBonus: 0.5
   diceByLevel: 0
   autoCritical: 0
+  scaleOrigin: 0
+  wantedScaleEffect: {fileID: 0}
+  scalingDices:
+    wantedDice: 0
+    numberOfDice: 0
+    wantedDamage: 0
+  diceByScale: 0
+  bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 0}
-  applyOnTarget: 0
-  applyOnCaster: 0
-  applyOnGround: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []

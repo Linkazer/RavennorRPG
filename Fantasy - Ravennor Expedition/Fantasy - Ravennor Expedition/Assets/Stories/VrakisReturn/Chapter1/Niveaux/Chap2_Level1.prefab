@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1838e1ba87a484ea2cfd0f18c3aeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPos: {x: 0, y: 0}
+  cameraPos: {x: -1.8, y: 0.26}
   startDialogue: {fileID: 11400000, guid: 454dbf36748e6554088210af4804d7f0, type: 2}
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
@@ -2202,7 +2202,7 @@ MonoBehaviour:
   - {x: -0.88, y: -0.39999998}
   - {x: -1.36, y: -0.08000001}
   - {x: -0.71999997, y: -0.39999998}
-  usedIndex: 
+  openRoomIndexes: 
   numberOfEnnemiesToKill: 9
   cameraMaxLeftTop: {x: -3, y: 3}
   cameraMaxRightBottom: {x: 3, y: -3}

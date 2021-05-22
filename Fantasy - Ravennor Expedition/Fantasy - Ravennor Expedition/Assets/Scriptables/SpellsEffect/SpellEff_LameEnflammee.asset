@@ -29,11 +29,7 @@ MonoBehaviour:
         wantedDamage: 2
       trigger: 0
       caster: {fileID: 0}
-    actionEffect:
-    - spellToUse: {fileID: 11400000, guid: 93809fbdc011b524cb93acbaa28d9486, type: 2}
-      trigger: 2
-      possiblesTargets: 2
-      caster: {fileID: 0}
+    actionEffect: []
     affliction: 0
   nature: 1
   duree: -1

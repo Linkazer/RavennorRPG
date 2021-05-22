@@ -53,10 +53,10 @@ MonoBehaviour:
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   learnedSpells:
   - {fileID: 11400000, guid: c306b5f830d241644aacad40b66219b1, type: 2}
-  - {fileID: 11400000, guid: ea8a1caf856986e4796db18420f5acab, type: 2}
-  - {fileID: 11400000, guid: 8ce097b06835f68428365999dd8b84d8, type: 2}
+  - {fileID: 11400000, guid: c8e40ff2e8ab49f44b7ec0c7578724ff, type: 2}
+  - {fileID: 11400000, guid: 251df6d41f4480e418e366a2b026b4c6, type: 2}
   sortsDisponibles:
   - {fileID: 11400000, guid: 5f75cf055cd081a41b59760e76fb5e59, type: 2}
   - {fileID: 11400000, guid: c306b5f830d241644aacad40b66219b1, type: 2}
-  - {fileID: 11400000, guid: 8ce097b06835f68428365999dd8b84d8, type: 2}
+  - {fileID: 11400000, guid: c8e40ff2e8ab49f44b7ec0c7578724ff, type: 2}
   passifs: []

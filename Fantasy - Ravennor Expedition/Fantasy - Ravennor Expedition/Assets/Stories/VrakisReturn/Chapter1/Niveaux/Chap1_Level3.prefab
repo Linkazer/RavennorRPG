@@ -47485,7 +47485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd36984c65ba0149b1905438523334b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPos: {x: 0, y: 0}
+  cameraPos: {x: 1, y: 0}
   startDialogue: {fileID: 11400000, guid: 3488664cd8ba9bd40ad7a53a1e7f3e9d, type: 2}
   endDialogue: {fileID: 11400000, guid: b3e742154491aff43a041b7d9f6b8d88, type: 2}
   campDialogue: {fileID: 0}

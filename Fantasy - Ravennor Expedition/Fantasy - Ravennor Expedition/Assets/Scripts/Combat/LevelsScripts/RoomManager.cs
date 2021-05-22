@@ -6,7 +6,9 @@ public class RoomManager : MonoBehaviour
 {
     //public static RoomManager instance;
 
-    public Vector2 cameraPos;
+    [SerializeField]
+    private Vector2 cameraPos;
+    private static Vector2 sCameraPos;
     public ParcheminScriptable startDialogue, endDialogue, campDialogue;
     public List<string> characterInLevel = new List<string>(), characterInCamp = new List<string>();
     public bool endGame;
@@ -46,6 +48,11 @@ public class RoomManager : MonoBehaviour
         characterInCamp.Add("Shedun");
         characterInCamp.Add("Vanyaenn");
         characterInCamp.Add("Mira");
+    }
+
+    private void Awake()
+    {
+        sCameraPos = cameraPos;
     }
 
     private void Start()
@@ -94,6 +101,7 @@ public class RoomManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
+        Debug.Log("Open room : " + index);
         if(!openRoomIndexes.Contains(index) || index == 0)
         {
             openRoomIndexes.Add(index);
@@ -104,6 +112,7 @@ public class RoomManager : MonoBehaviour
     protected virtual void ActivateRoom(int index)
     {
         Room toActivate = rooms[index];
+        Debug.Log(toActivate.ennemisPos[0]);
         for (int i = 0; i < toActivate.ennemis.Count;i++)
         {
             BattleManager.instance.SpawnNewCharacter(toActivate.ennemis[i], toActivate.ennemisPositions[i]);
@@ -136,4 +145,8 @@ public class RoomManager : MonoBehaviour
         BattleManager.instance.EndBattle(true);
     }
 
+    public static Vector2 GetCamStartPosition()
+    {
+        return sCameraPos;
+    }
 }

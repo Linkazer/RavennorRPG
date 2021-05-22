@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Shedun_ViseeAccrueRevu
   m_EditorClassIdentifier: 
-  nom: "Vis\xE9e accrue"
+  nom: Instinct de chasseur
   icon: {fileID: 21300000, guid: fbc47274206d03d41bc0e3672c106717, type: 3}
   description: "Le lanceur gagne un bonus de 2 (+1 par niveaux) \xE0 ses jets d'attaque
     de Dext\xE9rit\xE9."
@@ -20,10 +20,12 @@ MonoBehaviour:
   attackType: 2
   actionLevel: 1
   maanaCost: 2
+  maxUtilisation: -1
   incantationTime: 0
+  isWeaponBased: 0
   target: 0
   castTarget: 2
-  range: {x: 0, y: 5}
+  range: 5
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -43,8 +45,16 @@ MonoBehaviour:
   diceByLevelBonus: 0
   diceByLevel: 1
   autoCritical: 0
+  scaleOrigin: 0
+  wantedScaleEffect: {fileID: 0}
+  scalingDices:
+    wantedDice: 0
+    numberOfDice: 0
+    wantedDamage: 0
+  diceByScale: 0
+  bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffect: {fileID: 11400000, guid: 841cef599252c064cb6a837f7a519f0e, type: 2}
-  applyOnTarget: 0
-  applyOnCaster: 1
-  applyOnGround: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster:
+  - {fileID: 11400000, guid: 841cef599252c064cb6a837f7a519f0e, type: 2}
+  wantedEffectOnGround: []

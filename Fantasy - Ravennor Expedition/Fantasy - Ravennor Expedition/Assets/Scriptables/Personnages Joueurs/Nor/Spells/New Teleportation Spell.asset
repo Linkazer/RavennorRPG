@@ -27,7 +27,6 @@ MonoBehaviour:
   range: 50
   activeZoneCases:
   - {x: 0, y: 0}
-  - {x: 0, y: 1}
   doesFaceCaster: 1
   hasViewOnTarget: 0
   projectile: {fileID: 0}
@@ -38,8 +37,9 @@ MonoBehaviour:
   castAnimation: 
   soundToPlay: {fileID: 0}
   maxCooldown: 0
-  positionToTeleport: {x: 0, y: 1}
+  positionToTeleport: {x: 0, y: 0}
   isJump: 0
-  wantedEffectOnTarget: []
+  wantedEffectOnTarget:
+  - {fileID: 11400000, guid: 8f1c33a2aa19d884d9b2f32cb9c47e8a, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
