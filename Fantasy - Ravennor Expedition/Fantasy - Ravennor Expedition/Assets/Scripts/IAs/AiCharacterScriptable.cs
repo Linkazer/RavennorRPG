@@ -12,10 +12,25 @@ public class AiCharacterScriptable : PersonnageScriptables
     [SerializeField]
     private int aiBonusDegPhyMelee;
     [SerializeField]
-    private int aiBonusDegPhyDistance, aiBonusDegMag, aiBonusInitiative, aiBonusDefense, aiBonusChanceToucheForce, aiBonusChanceToucheDexterite, aiBonusChanceToucheMagic, aiBonusSoinAppli, aiBonusSoinRecu,
+    private int aiBonusDegPhyDistance, aiBonusDegMag, aiBonusInitiative, aiBonusInitiativeDice, aiBonusDefense, aiBonusChanceToucheForce, aiBonusChanceToucheDexterite, aiBonusChanceToucheMagic, aiBonusSoinAppli, aiBonusSoinRecu,
                 aiBonusMaana, aiBonusCriticalChance, aiBonusPhysicalArmor, aiBonusMagicalArmor, aiTouchMeleeDice, aiToucheDistanceDice, aiToucheMagicalDice;
     [SerializeField]
     private List<Dice> aiDiceBonusDegPhy = new List<Dice>(), aiDiceBonusDegMag = new List<Dice>();
+
+    public override int GetInitiativeBrut()
+    {
+        return base.GetInitiativeBrut() + aiBonusInitiative;
+    }
+
+    public override int GetInitiativeDice()
+    {
+        return GetPerception() + aiBonusInitiativeDice;
+    }
+
+    public override int GetInititativeBonus()
+    {
+        return bonusInitiative + aiBonusInitiative;
+    }
 
     public void ResetComportement()
     {

@@ -21,7 +21,7 @@ MonoBehaviour:
   maanaCost: 0
   maxUtilisation: -1
   incantationTime: 1
-  isWeaponBased: 0
+  isWeaponBased: 1
   target: 1
   castTarget: 2
   range: 15

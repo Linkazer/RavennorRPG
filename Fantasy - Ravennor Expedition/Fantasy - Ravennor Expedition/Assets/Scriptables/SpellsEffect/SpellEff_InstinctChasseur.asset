@@ -16,7 +16,7 @@ MonoBehaviour:
     nom: Instinct du chasseur
     spr: {fileID: 21300000, guid: fbc47274206d03d41bc0e3672c106717, type: 3}
     description: "Le personnage gagne un bonus de +2 (+1 par niveaux) sur ses jets
-      d'attaque de Dext\xE9rit\xE9."
+      d'attaque de Dext\xE9rit\xE9 et 1 (+1 tous les 3 niveaux) D\xE9 de Chance."
     maxStack: 1
     effects:
     - type: 12

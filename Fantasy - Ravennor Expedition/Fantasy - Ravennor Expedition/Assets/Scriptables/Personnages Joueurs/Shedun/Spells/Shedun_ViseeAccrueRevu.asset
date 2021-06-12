@@ -19,7 +19,7 @@ MonoBehaviour:
   spellType: 0
   attackType: 2
   actionLevel: 1
-  maanaCost: 2
+  maanaCost: 1
   maxUtilisation: -1
   incantationTime: 0
   isWeaponBased: 0

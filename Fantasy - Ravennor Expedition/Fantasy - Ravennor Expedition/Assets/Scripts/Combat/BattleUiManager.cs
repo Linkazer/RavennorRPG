@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -14,6 +15,7 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private List<Image> turnImages;
 
+    [Header("Actions du joueur")]
     [SerializeField]
     private Image baseAttackImage;
     [SerializeField]
@@ -26,26 +28,35 @@ public class BattleUiManager : MonoBehaviour
     private TextMeshProUGUI currentHpText, currentMaxHpText;
     [SerializeField]
     private TextMeshProUGUI currentMaanaText;
+    [SerializeField]
+    private List<GameObject> actionPoint, baseActionPoint;
 
     private int currentMaxHps;
 
+    [Header("Parchemins")]
     [SerializeField]
     private ParcheminDialogueSystem parcheminStory;
     [SerializeField]
     private CharacterInformationUI charaInfo;
 
+    [Header("Ecrans de fin")]
     [SerializeField]
-    private GameObject winScreen, looseScreen;
+    private GameObject winScreen;
+    private GameObject looseScreen;
 
+    [Header("Information des sorts")]
     [SerializeField]
     private GameObject spellInfo;
     [SerializeField]
     private TextMeshProUGUI spellTitle, spellDescription, spellMaanaCost, spellIncantationTime;
 
-    [SerializeField]
-    private List<GameObject> actionPoint, baseActionPoint;
-
     private RuntimeBattleCharacter currentChara;
+    private int currentIndex;
+
+    [SerializeField]
+    private TextMeshProUGUI errorTxt;
+    [SerializeField]
+    private UnityEvent errorFeedbackEvt;
 
     public RuntimeBattleCharacter GetCurrentChara()
     {
@@ -70,7 +81,7 @@ public class BattleUiManager : MonoBehaviour
     public void SetNewTurn(int turnIndex, List<RuntimeBattleCharacter> roundList)
     {
         int offset = 0;
-        int currentPerso = turnIndex;
+        currentIndex = turnIndex;
 
         currentChara = roundList[turnIndex];
 
@@ -134,6 +145,16 @@ public class BattleUiManager : MonoBehaviour
         newCol.r = 0.5f;
         newCol.g = 0.5f;
         newCol.b = 0.5f;
+
+        
+        if (!BattleManager.instance.IsActionAvailable(currentChara, currentChara.GetActions()[0]))
+        {
+            baseAttackImage.color = newCol;
+        }
+        else
+        {
+            baseAttackImage.color = Color.white;
+        }
 
         for (int i = 0; i < currentChara.GetActions().Count-1; i++)
         {
@@ -231,20 +252,9 @@ public class BattleUiManager : MonoBehaviour
         }
     }
 
-    public void UseActionFeedback(bool weaponBased)
+    public void UseActionFeedback(bool useActionPoint)
     {
-        if(weaponBased)
-        {
-            for(int i = baseActionPoint.Count-1; i >= 0; i--)
-            {
-                if(baseActionPoint[i].activeSelf)
-                {
-                    baseActionPoint[i].SetActive(false);
-                    break;
-                }
-            }
-        }
-        else
+        if(useActionPoint)
         {
             for (int i = actionPoint.Count - 1; i >= 0; i--)
             {
@@ -255,5 +265,32 @@ public class BattleUiManager : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            for (int i = baseActionPoint.Count - 1; i >= 0; i--)
+            {
+                if (baseActionPoint[i].activeSelf)
+                {
+                    baseActionPoint[i].SetActive(false);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void DisplayErrorMessage(string msg)
+    {
+        errorTxt.text = msg;
+        errorFeedbackEvt.Invoke();
+    }
+
+    public void HighlightCharaByTurn(int index)
+    {
+        BattleManager.instance.GetAllChara()[(index + currentIndex) % BattleManager.instance.GetAllChara().Count].SetHighlight(true);
+    }
+
+    public void EndHighlightChara(int index)
+    {
+        BattleManager.instance.GetAllChara()[(index + currentIndex) % BattleManager.instance.GetAllChara().Count].SetHighlight(false);
     }
 }

@@ -16,13 +16,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b0bfaca80ecf67b4da2f4fec236d1334, type: 3}
   portrait: {fileID: 21300000, guid: b0bfaca80ecf67b4da2f4fec236d1334, type: 3}
   spritePerso: {fileID: 21300000, guid: b0bfaca80ecf67b4da2f4fec236d1334, type: 3}
-  spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
+  spriteBras: {fileID: 21300000, guid: 032e5eb70bbff1141a24679fdf45e545, type: 3}
   brasPosition: 0
   description: 
   level: 1
   baseHps: 5
   hpByLevel: 0
-  baseMoveSpeed: 18
+  baseMoveSpeed: 20
   baseMaana: 0
   force: 1
   constitution: 1
@@ -31,23 +31,8 @@ MonoBehaviour:
   perception: 2
   charisme: 0
   puissMag: 2
-  bonusDegPhyMelee: 0
-  bonusDegPhyDistance: 0
-  bonusDegMag: 0
-  bonusInitiative: 0
-  bonusDefense: 0
-  bonusChanceToucheForce: 0
-  bonusChanceToucheDexterite: 0
-  bonusChanceToucheMagic: 0
-  bonusSoinAppli: 0
-  bonusSoinRecu: 0
-  bonusMaana: 0
-  bonusCriticalChance: 0
-  bonusPhysicalArmor: 0
-  bonusMagicalArmor: 0
-  touchMeleeDice: 0
-  toucheDistanceDice: 0
-  toucheMagicalDice: 0
+  actionBonus: 0
+  baseAttackBonus: 0
   levelUpTable: {fileID: 0}
   learnedSpells: []
   sortsDisponibles:
@@ -91,7 +76,8 @@ MonoBehaviour:
   aiBonusDegPhyMelee: 0
   aiBonusDegPhyDistance: 0
   aiBonusDegMag: 0
-  aiBonusInitiative: 0
+  aiBonusInitiative: -2
+  aiBonusInitiativeDice: -1
   aiBonusDefense: -4
   aiBonusChanceToucheForce: 0
   aiBonusChanceToucheDexterite: 0

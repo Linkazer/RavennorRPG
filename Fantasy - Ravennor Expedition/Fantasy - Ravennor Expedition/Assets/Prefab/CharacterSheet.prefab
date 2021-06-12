@@ -38,6 +38,52 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 175}
   m_SizeDelta: {x: 420, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5805986574910932880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501676779732748777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Am\xE9liore les D\xE9g\xE2ts et Jet d'attaques m\xE9l\xE9e
+              ainsi que le D\xE9fense."
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &509131276383459289
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +121,327 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5805986574910932881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162504231785958337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Am\xE9liore les D\xE9g\xE2ts et les Jet d'attaques
+              magiques."
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5805986574910932879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162504231934166351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Augmente les Points de vie.
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5805986574910932877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162504232984631033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Augmente le nombre de sorts que le personnage peut
+              avoir en combat.
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5805986574910932878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162504233220506637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Am\xE9liore la D\xE9fense et les Jet d'attaques \xE0
+              distance."
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5805986574910932876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162504233242638312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "Am\xE9liore l'initiative, le multiplicateur de d\xE9g\xE2ts
+              critique et le nombre de Lucky Dice."
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5805986574910932875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162504233402134202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1238921426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351102931149598097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: ShowTips
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: "D\xE9finit le nombre de d\xE9s prix en compte pour
+              r\xE9ussir une attaque critique. Si le r\xE9sultat d'un ou plusieurs
+              de ces d\xE9s est \xE9gal \xE0 6, le personnage fait une attaque critique."
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UITooltipGestion, Assembly-CSharp
+          m_MethodName: HideTips
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1351604819008149216
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +1294,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 500, y: 50}
+  m_CellSize: {x: 360, y: 50}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1167,7 +1534,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5805986575141663976}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CampManager, Assembly-CSharp
+        m_MethodName: OpenCharacterSpells
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5805986575252095836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1666,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5805986575252095833}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CampManager, Assembly-CSharp
+        m_MethodName: CloseCharacterSheet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5805986575281208001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5805986575495995954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2217,8 +2608,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vanyaenn est une dryade originaire du M\xE9rendil. Elle est souvent consid\xE9r\xE9
-    comme la seule personne sens\xE9 de la confr\xE9rie."
+  m_text: "Nor est la membre la plus jeune du groupe. Et m\xEAme si l'academie pr\xE9f\xE8rerait
+    ne pas ne pas la savoir \xE0 voyager, elle ne quitte plus Okun depuis la mort
+    de son p\xE8re adoptif."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2438,7 +2830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764548473166662661, guid: b59a1d11ee0873541897709255f9af88, type: 3}
       propertyPath: m_text
-      value: "D\xE9placement"
+      value: "D\xE9fense"
       objectReference: {fileID: 0}
     - target: {fileID: 7574759848377126682, guid: b59a1d11ee0873541897709255f9af88, type: 3}
       propertyPath: m_Name
@@ -2950,7 +3342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2958,15 +3350,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2998,11 +3390,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3026,6 +3418,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+--- !u!1 &501676779732748777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5064114336381592153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6766742604198028546 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
@@ -3056,7 +3453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3064,15 +3461,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3104,11 +3501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -225
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3132,6 +3529,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+--- !u!1 &1162504233242638312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5805986573994695768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5421234047036775171 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
@@ -3242,6 +3644,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+--- !u!1 &1162504233402134202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5805986574103921930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5421234047145968209 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
@@ -3272,7 +3679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3280,15 +3687,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3320,11 +3727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -175
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3353,6 +3760,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
   m_PrefabInstance: {fileID: 5805986574254177609}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1162504232984631033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5805986574254177609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5805986574488022973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3378,7 +3790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3386,15 +3798,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3426,11 +3838,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -125
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3459,6 +3871,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
   m_PrefabInstance: {fileID: 5805986574488022973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1162504233220506637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5805986574488022973}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5805986575370661631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3484,7 +3901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3492,15 +3909,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3532,11 +3949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3560,6 +3977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+--- !u!1 &1162504231934166351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5805986575370661631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5421234048412608932 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
@@ -3590,7 +4012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3598,15 +4020,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3638,11 +4060,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3662,6 +4084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+--- !u!1 &1162504231785958337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4661517500070276016, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
+  m_PrefabInstance: {fileID: 5805986575720980593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5421234048763455274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1994836951924295515, guid: dbc93eee7d843a84eb36dc1257a069da, type: 3}
@@ -4214,6 +4641,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Critiques
       objectReference: {fileID: 0}
+    - target: {fileID: 8066789527391672002, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066789527391672002, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066789527391672002, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -85
+      objectReference: {fileID: 0}
     - target: {fileID: 8066789527868474246, guid: 662647d714e66734da61d4eb82b23429, type: 3}
       propertyPath: m_SizeDelta.x
       value: 180
@@ -4231,5 +4670,10 @@ PrefabInstance:
 --- !u!224 &1351102931954647562 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8066789526586653016, guid: 662647d714e66734da61d4eb82b23429, type: 3}
+  m_PrefabInstance: {fileID: 9021530980655872850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1351102931149598097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066789527391672003, guid: 662647d714e66734da61d4eb82b23429, type: 3}
   m_PrefabInstance: {fileID: 9021530980655872850}
   m_PrefabAsset: {fileID: 0}

@@ -96,22 +96,6 @@ public class CampManager : MonoBehaviour
             {
                 characterSprites[i].gameObject.SetActive(false);
             }
-            else
-            {
-                switch (i)
-                {
-                    case 2:
-                        if (GetCharactersId().Contains(5))
-                        {
-                            characterSprites[i].transform.localScale = new Vector3(-1, 1, 1);
-                        }
-                        else
-                        {
-                            characterSprites[i].transform.localScale = new Vector3(1, 1, 1);
-                        }
-                        break;
-                }
-            }
         }
 
         if (RavenorGameManager.instance.dialogueToDisplay != null)
@@ -233,7 +217,7 @@ public class CampManager : MonoBehaviour
 
         defense.text = currentChara.GetBrutDefense().ToString();
         deplacement.text = currentChara.GetMovementSpeed().ToString();
-        initiative.text = currentChara.GetInitiative().ToString() + "D6";
+        initiative.text = currentChara.GetInitiativeDice().ToString() + "D6";
         armurePhy.text = currentChara.GetPhysicalArmor().ToString();
         armureMag.text = currentChara.GetMagicalArmor().ToString();
         chanceCrit.text = currentChara.GetCriticalChanceBonus().ToString();
@@ -523,7 +507,7 @@ public class CampManager : MonoBehaviour
 
         lvlDefense.text = currentChara.GetBrutDefense().ToString();
         lvlDeplacement.text = currentChara.GetMovementSpeed().ToString();
-        lvlInitiative.text = currentChara.GetInitiative().ToString() + "D6";
+        lvlInitiative.text = currentChara.GetInitiativeDice().ToString() + "D6";
         lvlArmurePhy.text = currentChara.GetPhysicalArmor().ToString();
         lvlArmureMag.text = currentChara.GetMagicalArmor().ToString();
         lvlChanceCrit.text = currentChara.GetCriticalChanceBonus().ToString();

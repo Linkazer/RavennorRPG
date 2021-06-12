@@ -9,6 +9,7 @@ public class SpellEffectCommon
 {
     public string nom;
     public Sprite spr;
+    [TextArea(3,5)]
     public string description;
 
     public int maxStack = 1;

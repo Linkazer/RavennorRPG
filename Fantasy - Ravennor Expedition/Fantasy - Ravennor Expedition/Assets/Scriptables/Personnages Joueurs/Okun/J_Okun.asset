@@ -16,15 +16,15 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f6be83e413109f048a165550e4e44a1d, type: 3}
   portrait: {fileID: 21300000, guid: f6be83e413109f048a165550e4e44a1d, type: 3}
   spritePerso: {fileID: 21300000, guid: f6be83e413109f048a165550e4e44a1d, type: 3}
-  spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
+  spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
   brasPosition: 0.01
   description: "Okun est souvent concid\xE9r\xE9 comme le bourrin du groupe, mais
     aussi le plus secret. Toujours de bonne humeur, il esquive chacune des questions
     des autres membres concernant son pass\xE9."
   level: 1
   baseHps: 10
-  hpByLevel: 3
-  baseMoveSpeed: 18
+  hpByLevel: 8
+  baseMoveSpeed: 25
   baseMaana: 2
   force: 2
   constitution: 2
@@ -33,23 +33,8 @@ MonoBehaviour:
   perception: 1
   charisme: 0
   puissMag: 1
-  bonusDegPhyMelee: 0
-  bonusDegPhyDistance: 0
-  bonusDegMag: 0
-  bonusInitiative: 0
-  bonusDefense: 0
-  bonusChanceToucheForce: 0
-  bonusChanceToucheDexterite: 0
-  bonusChanceToucheMagic: 0
-  bonusSoinAppli: 0
-  bonusSoinRecu: 0
-  bonusMaana: 0
-  bonusCriticalChance: 0
-  bonusPhysicalArmor: 0
-  bonusMagicalArmor: 0
-  touchMeleeDice: 0
-  toucheDistanceDice: 0
-  toucheMagicalDice: 0
+  actionBonus: 0
+  baseAttackBonus: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
   - {fileID: 11400000, guid: 9daf92d35e513a64d98b5b75248d3359, type: 2}

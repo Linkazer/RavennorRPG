@@ -16,12 +16,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 33110031b7876264dbcd33792119d7de, type: 3}
   portrait: {fileID: 0}
   spritePerso: {fileID: 21300000, guid: 33110031b7876264dbcd33792119d7de, type: 3}
-  spriteDeMains: {fileID: 0}
-  specialPrefab: {fileID: 0}
+  spriteBras: {fileID: 0}
+  brasPosition: 0
+  description: 
   level: 1
   baseHps: 10
   hpByLevel: 0
   baseMoveSpeed: 30
+  baseMaana: 0
   force: 2
   constitution: 2
   agilite: 2
@@ -29,6 +31,8 @@ MonoBehaviour:
   perception: 2
   charisme: 2
   puissMag: 2
+  actionBonus: 0
+  baseAttackBonus: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
   - {fileID: 11400000, guid: 1555cba4c9ffb654ab04e49e2502f369, type: 2}

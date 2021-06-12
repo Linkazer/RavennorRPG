@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private Vector3 startPos, currentPos;
-    private Vector3 startWorldPos;
+    private Vector2 startPos, currentPos;
+    private Vector2 startWorldPos;
 
     [SerializeField]
-    private float speed;
+    private float mouseSpeed, keySpeed;
     [SerializeField]
     private float lerpCoef;
     private float baselerp = 0;
@@ -16,6 +16,8 @@ public class CameraManager : MonoBehaviour
     public bool followChara;
     [SerializeField]
     private Transform toFollow;
+    Vector2 followingPos => toFollow.position;
+    Vector2 currentPosition => transform.position;
 
     private void Start()
     {
@@ -26,48 +28,60 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(followChara && toFollow != null && Vector2.Distance(toFollow.position, transform.position) > 0)
+        if (followChara && toFollow != null && Vector2.Distance(toFollow.position, transform.position) > 0)
         {
-            //Vector3.Lerp(transform.position, new Vector3(toFollow.position.x, toFollow.position.y, -10), lerpCoef)
+            Vector2 lerpedVector = transform.position + (new Vector3(toFollow.position.x, toFollow.position.y, -10) - transform.position).normalized * lerpCoef * Time.deltaTime;
 
-            if (Vector2.Distance(toFollow.position, transform.position) < (lerpCoef*Time.deltaTime))
+            if (Vector2.Distance(toFollow.position, transform.position) < (lerpCoef * Time.deltaTime))
             {
                 lerpCoef = baselerp;
                 SetCameraPosition(toFollow.position);
             }
             else
             {
-                SetCameraPosition(transform.position + (new Vector3(toFollow.position.x, toFollow.position.y, -10) - transform.position).normalized * lerpCoef * Time.deltaTime);
+                SetCameraPosition(lerpedVector);
             }
         }
 
-        if(Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(2))
         {
             followChara = false;
             startPos = Input.mousePosition;
             startWorldPos = transform.position;
         }
-        else if(Input.GetMouseButton(2))
+        else if (Input.GetMouseButton(2))
         {
-            Vector3 wantedPos = (startPos - Input.mousePosition)*speed*0.00005f;
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 wantedPos = (startPos - mousePos) * mouseSpeed * 0.00005f;
 
-            if (BattleManager.instance.CanCameraGoNextDestination(wantedPos + startWorldPos))
-            {
-                SetCameraPosition(wantedPos + startWorldPos);
-            }
-            else
-            {
-                startPos = Input.mousePosition;
-                startWorldPos = transform.position;
-            }
+            SetCameraPosition(wantedPos + startWorldPos);
         }
+        else
+        {
+            SetCameraPosition(currentPosition + GetKeyDirection() * keySpeed * Time.deltaTime);
+        }
+    }
+
+    private Vector2 GetKeyDirection()
+    {
+        Vector2 toReturn = Vector2.zero;
+        toReturn = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        return toReturn.normalized;
     }
 
     public void SetCameraPosition(Vector2 newPos)
     {
-
+        Vector2 possibleDirection = BattleManager.instance.PossibleCameraDirection(newPos);
+        if (possibleDirection.x == 0)
+        {
+            newPos = new Vector2(transform.position.x, newPos.y);
+        }
+        if (possibleDirection.y == 0)
+        {
+            newPos = new Vector2(newPos.x, transform.position.y);
+        }
         transform.position = new Vector3(newPos.x, newPos.y, -10);
-
     }
 
     public void OnNewTurn()

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: J_Lila
+  m_EditorClassIdentifier: 
+  nom: Lila
+  icon: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
+  portrait: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
+  spritePerso: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
+  spriteBras: {fileID: 21300000, guid: d255138b167195b459492db886286c82, type: 3}
+  brasPosition: 0
+  description: "Lila est une jeune elfe ayant surv\xE9cut plusieurs ann\xE9es dans
+    un tombeau. Elle a rejoint la Confr\xE9rie afin d'en apprendre plus sur les raisons
+    qui ont pouss\xE9 son percepteur \xE0 l'enfermer."
+  level: 1
+  baseHps: 10
+  hpByLevel: 6
+  baseMoveSpeed: 25
+  baseMaana: 4
+  force: 1
+  constitution: 1
+  agilite: 2
+  intelligence: 2
+  perception: 1
+  charisme: 0
+  puissMag: 2
+  actionBonus: 0
+  baseAttackBonus: 0
+  levelUpTable: {fileID: 0}
+  learnedSpells:
+  - {fileID: 11400000, guid: 66fa233117859414abc77d42701b216f, type: 2}
+  sortsDisponibles:
+  - {fileID: 11400000, guid: cbf8bd3b63432634dbba15f7752d3500, type: 2}
+  - {fileID: 11400000, guid: 66fa233117859414abc77d42701b216f, type: 2}
+  passifs: []

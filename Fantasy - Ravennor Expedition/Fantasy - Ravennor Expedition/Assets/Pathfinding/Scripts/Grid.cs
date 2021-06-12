@@ -155,6 +155,11 @@ public class Grid : MonoBehaviour {
 		}
     }
 
+	public void HideZone()
+    {
+		ResetNodeColor(Color.red);
+	}
+
 	public void ShowZone(Vector2 startNode, List<Vector2Int> wantedVectors, Color wantedColor)
 	{
 		Node startN = NodeFromWorldPoint(startNode);

@@ -5,6 +5,22 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.Events;
 
+public struct LaunchActionData
+{
+    public LaunchActionData(CharacterActionScriptable _wantedAction, RuntimeBattleCharacter _caster, Vector2 _positionWanted, bool _effectAction)
+    {
+        wantedAction = _wantedAction;
+        caster = _caster;
+        positionWanted = _positionWanted;
+        effectAction = _effectAction;
+    }
+
+    public CharacterActionScriptable wantedAction;
+    public RuntimeBattleCharacter caster;
+    public Vector2 positionWanted;
+    public bool effectAction;
+}
+
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -24,6 +40,7 @@ public class BattleManager : MonoBehaviour
 
     public static UnityEvent TurnBeginEvent = new UnityEvent();
 
+    [SerializeField]
     private List<int> initiatives = new List<int>();
 
     private CharacterActionScriptable currentWantedAction;
@@ -44,6 +61,8 @@ public class BattleManager : MonoBehaviour
     private AudioClip storyMusic, battleMusic;
     [SerializeField]
     private AudioSource backgroundSource;
+
+    private LaunchActionData actData = default;
 
     #region Set Up
     private void Awake()
@@ -167,7 +186,8 @@ public class BattleManager : MonoBehaviour
 
         diary.AddText(toKill.name + " succombe.");
 
-        toKill.gameObject.SetActive(false);
+        toKill.SetAnimation("DeathAnim");
+        toKill.currentNode.chara = null;
 
         if(currentCharacterTurn == toKill && toKill.GetTeam()==1)
         {
@@ -374,7 +394,7 @@ public class BattleManager : MonoBehaviour
     public void EndCurrentAction(RuntimeBattleCharacter character)
     {
         character.SetAnimation("Default");
-        character.currentNode = Grid.instance.NodeFromWorldPoint(character.transform.position);
+        character.ModifyCurrentNode(Grid.instance.NodeFromWorldPoint(character.transform.position));
         //Grid.instance.ResetUsableNode();
         if (character.GetTeam() == 1)
         {
@@ -399,7 +419,6 @@ public class BattleManager : MonoBehaviour
     public void IncantateAction(string animToPlay)
     {
         currentCharacterTurn.SetAnimation(animToPlay);
-        //SpellIncantation()
     }
 
     IEnumerator SpellIncantation(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction, float timeToWait)
@@ -411,7 +430,24 @@ public class BattleManager : MonoBehaviour
     public void LaunchAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
     {
         caster.SetSpriteDirection((positionWanted.x < caster.transform.position.x));
+        if (effectAction || wantedAction.isWeaponBased)
+        {
+            UseAction(wantedAction, caster, positionWanted, effectAction);
+        }
+        else
+        {
+            caster.SetAnimation("LaunchSpell");
+            actData = new LaunchActionData(wantedAction, caster, positionWanted, effectAction);
+        }
+    }
 
+    public void UseCurrentAction()
+    {
+        UseAction(actData.wantedAction, actData.caster, actData.positionWanted, actData.effectAction);
+    }
+
+    private void UseAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    {
         caster.useActionEvt.Invoke();
         caster.ResolveEffect(EffectTrigger.DoAction);
 
@@ -421,7 +457,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log(caster + " use action " + wantedAction);
         diary.AddText(caster.name + " utilise " + wantedAction.nom);
 
-        switch(wantedAction.spellType)
+        switch (wantedAction.spellType)
         {
             case SpellType.Direct:
                 if (wantedAction.projectile != null)
@@ -524,7 +560,7 @@ public class BattleManager : MonoBehaviour
         {
             nodesPos.Add(n.worldPosition);
 
-            if (n.hasCharacterOn && IsTargetAvailable(caster.GetTeam(), n.chara.GetTeam(), wantedAction.target,caster.GetInvocations().Contains(n.chara)))
+            if (n.HasCharacterOn && IsTargetAvailable(caster.GetTeam(), n.chara.GetTeam(), wantedAction.target,caster.GetInvocations().Contains(n.chara)))
             {
                 ResolveSpell(wantedAction, caster, n.chara);
             }
@@ -580,12 +616,12 @@ public class BattleManager : MonoBehaviour
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
     {
-        if(character.GetSpellCooldown(wantedAction) > 0 || character.HasSpellUtilisationLeft(wantedAction))
+        if (character.GetSpellCooldown(wantedAction) > 0 || character.HasSpellUtilisationLeft(wantedAction))
         {
             return false;
         }
 
-        if(character.GetCurrentMaana() < wantedAction.maanaCost)
+        if (character.GetCurrentMaana() < wantedAction.maanaCost)
         {
             return false;
         }
@@ -699,7 +735,6 @@ public class BattleManager : MonoBehaviour
                 bonusDamages += (int)caster.GetCharacterDatas().GetPhysicalDamageMelee();
                 break;
             case AttackType.Dexterite:
-                Debug.Log("Attack dex");
                 bonusDamages += (int)caster.GetCharacterDatas().GetPhysicalDamageDistance();
                 break;
             case AttackType.PuissMagique:
@@ -771,7 +806,7 @@ public class BattleManager : MonoBehaviour
         }*/
 
         //Jet de la défense
-        int defenseLucky = 0, attackLucky = 0;
+        int attackLucky = 0;
         targetDefenseScore = target.GetCharacterDatas().GetBrutDefense();//AttackRoll(target.GetCharacterDatas().GetDefenseDice(), DiceType.D4, target.GetCharacterDatas().GetBrutDefense(), 1, out defenseLucky);
 
         //Jet de l'attaque
@@ -813,11 +848,13 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                caster.failedActionEvt.Invoke();
                 diary.AddText(currentCaster.name + " rate son action (" + casterHitScore + " vs " + targetDefenseScore + ")");
                 return new List<Dice>();
             }
         }
-        
+
+        string criticalText = " réussit son attaque ";
 
         if(casterHitScore >= targetDefenseScore)
         {
@@ -825,13 +862,15 @@ public class BattleManager : MonoBehaviour
 
             if (attackLucky > 0 || wantedAction.autoCritical)
             {
-                float critBonus = caster.GetCharacterDatas().GetCriticalDamageMultiplier();
+                caster.crititcalActionEvt.Invoke();
+                int critBonus = caster.GetCharacterDatas().GetCriticalDamageMultiplier();
                 Debug.Log("Does crit : " + critBonus);
+                criticalText = " fait un coup critique ! ";
                 int diceNb = neededDices.Count;
 
                 for(int i = 0; i < diceNb; i++)
                 {
-                    int numberDices = (int)(neededDices[i].numberOfDice * critBonus) - neededDices[i].numberOfDice;
+                    int numberDices = (neededDices[i].numberOfDice * critBonus);
                     if(numberDices < 0)
                     {
                         numberDices = 0;
@@ -845,12 +884,13 @@ public class BattleManager : MonoBehaviour
                 neededDices.Add(d);
             }
 
-            diary.AddText(currentCaster.name + " touche (" + casterHitScore + " vs " + targetDefenseScore + ")");
+            diary.AddText(currentCaster.name  + criticalText + "(" + casterHitScore + " vs " + targetDefenseScore + ")");
 
             return neededDices;
         }
         else
         {
+            caster.failedActionEvt.Invoke();
             diary.AddText(currentCaster.name + " rate son action (" + casterHitScore + " vs " + targetDefenseScore + ")");
         }
 
@@ -919,7 +959,7 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < stack; i++)
         {
 
-            if (Grid.instance.NodeFromWorldPoint(positionWanted).hasCharacterOn)
+            if (Grid.instance.NodeFromWorldPoint(positionWanted).HasCharacterOn)
             {
                 RuntimeBattleCharacter target = Grid.instance.NodeFromWorldPoint(positionWanted).chara;
                 foreach (SpellEffect eff in effect.effects)
@@ -973,19 +1013,19 @@ public class BattleManager : MonoBehaviour
         if (!caster.CheckForInvocations(toInvoke) && toInvoke != null)
         {
             Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
-            if (nodeWanted.usableNode && !nodeWanted.hasCharacterOn)
+            if (nodeWanted.usableNode && !nodeWanted.HasCharacterOn)
             {
                 teamOne.Add(toInvoke);
                 SetCharacter(toInvoke, wantedPosition);
 
                 caster.AddInvocation(roundList[roundList.Count-1]);
 
-                SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
-
-                if (roundList[roundList.Count - 1].GetInitiative() < currentCharacterTurn.GetInitiative())
+                if (roundList[roundList.Count - 1].GetInitiative() > currentCharacterTurn.GetInitiative())
                 {
-                    //currentIndexTurn++;
+                    currentIndexTurn++;
                 }
+
+                SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
 
                 Grid.instance.CreateGrid();
             }
@@ -1008,28 +1048,39 @@ public class BattleManager : MonoBehaviour
 
     private void TeleportationSpell(RuntimeBattleCharacter caster, CharacterActionTeleportation spell, Vector2 wantedPosition)
     {
+        Vector2 targetPosition = wantedPosition;
         wantedPosition = GetTargetPosWithFacingPosition(caster.currentNode.worldPosition, wantedPosition, spell.positionToTeleport);
 
         Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
-        if (!nodeWanted.hasCharacterOn && nodeWanted.walkable)
+        if (!nodeWanted.HasCharacterOn && nodeWanted.walkable)
         {
-            StartCoroutine(TeleportationSpellWaiter(spell.isJump, caster, wantedPosition));
+            foreach (SpellEffectScriptables eff in spell.wantedEffectOnCaster)
+            {
+                ApplyEffects(eff, caster, caster);
+            }
+            StartCoroutine(TeleportationSpellWaiter(spell, caster, wantedPosition, targetPosition));
         }
         else
         {
+            BattleUiManager.instance.DisplayErrorMessage("Aucun espace disponible pour attérir/se téléporter");
             CancelCurrentAction();
         }
     }
 
-    private IEnumerator TeleportationSpellWaiter(bool isJump, RuntimeBattleCharacter characterToTeleport, Vector2 teleportPosition)
+    private IEnumerator TeleportationSpellWaiter(CharacterActionTeleportation spell, RuntimeBattleCharacter characterToTeleport, Vector2 teleportPosition, Vector2 spellTargetPosition)
     {
-        if(isJump)
+        if(spell.isJump)
         {
             characterToTeleport.SetAnimation("JumpBegin");
         }
         else
         {
             characterToTeleport.SetAnimation("TeleportBegin");
+        }
+
+        if (spell.jumpEffect != null)
+        {
+            UseAction(spell.jumpEffect, characterToTeleport, characterToTeleport.currentNode.worldPosition, true);
         }
 
         yield return new WaitForEndOfFrame();
@@ -1039,13 +1090,17 @@ public class BattleManager : MonoBehaviour
 
        characterToTeleport.Teleport(teleportPosition);
 
-        if (isJump)
+        if (spell.isJump)
         {
             characterToTeleport.SetAnimation("JumpEnd");
         }
         else
         {
             characterToTeleport.SetAnimation("TeleportEnd");
+        }
+        if (spell.landEffect != null)
+        {
+            UseAction(spell.landEffect, characterToTeleport, spellTargetPosition, true);
         }
 
         yield return new WaitForEndOfFrame();
@@ -1190,18 +1245,6 @@ public class BattleManager : MonoBehaviour
         return roundList[currentIndexTurn];
     }
 
-    /*private bool IsValidTarget(RuntimeBattleCharacter caster, RuntimeBattleCharacter target, ActionTargets targetType)
-    {
-        return (targetType == ActionTargets.All || (targetType == ActionTargets.Ennemies && caster.GetTeam() != target.GetTeam()) || (targetType == ActionTargets.SelfAllies && caster.GetTeam() == target.GetTeam()));
-    }*/
-    #endregion
-
-    //Get Character team
-
-
-    //Kill Someone
-
-    #region Utilities
     public IEnumerable<T> GetEnumerableOfType<T>(params object[] constructorArgs) where T : class//, IComparable<T>
     {
         List<T> objects = new List<T>();
@@ -1219,35 +1262,69 @@ public class BattleManager : MonoBehaviour
 
     protected virtual void SortInitiativeList(List<int> initiativeList, List<RuntimeBattleCharacter> persoList, int start, int end)
     {
-        if (start < end)
+        Quick_Sort(initiativeList, persoList, start, end);
+        persoList.Reverse();
+        initiatives.Reverse();
+        BattleUiManager.instance.SetNewTurn(currentIndexTurn, roundList);
+    }
+
+    private void Quick_Sort(List<int> arr, List<RuntimeBattleCharacter> persoList, int left, int right)
+    {
+        if (left < right)
         {
-            int pivot = initiativeList[end];
-            int pIndex = start;
-            int swap;
-            RuntimeBattleCharacter pSwap;
+            int pivot = Partition(arr, persoList, left, right);
 
-            for (int i = start; i < end; i++)
-            {
-                if (initiativeList[i] > pivot)
-                {
-                    swap = initiativeList[pIndex];
-                    initiativeList[pIndex] = initiativeList[i];
-                    initiativeList[i] = swap;
-
-                    pSwap = persoList[pIndex];
-                    persoList[pIndex] = persoList[i];
-                    persoList[i] = pSwap;
-
-                    pIndex++;
-                }
-            }
-
-            initiativeList[end] = initiativeList[pIndex];
-            initiativeList[pIndex] = pivot;
-
-            SortInitiativeList(initiativeList, persoList, start, pIndex - 1);
-            SortInitiativeList(initiativeList, persoList, pIndex + 1, end);
+            Quick_Sort(arr, persoList, left, pivot - 1);
+            Quick_Sort(arr, persoList, pivot + 1, right);
         }
+    }
+
+    private int Partition(List<int> array, List<RuntimeBattleCharacter> persoList, int low, int high)
+    {
+        //1. Select a pivot point.
+        int pivot = array[high];
+        int hpPivot = persoList[high].GetMaxHp;
+
+        int lowIndex = (low - 1);
+
+        //2. Reorder the collection.
+        for (int j = low; j < high; j++)
+        {
+            if (array[j] < pivot)
+            {
+                lowIndex++;
+
+                int temp = array[lowIndex];
+                array[lowIndex] = array[j];
+                array[j] = temp;
+
+                RuntimeBattleCharacter tempChara = persoList[lowIndex];
+                persoList[lowIndex] = persoList[j];
+                persoList[j] = tempChara;
+            }
+            else if(persoList[j].GetMaxHp < hpPivot)
+            {
+                lowIndex++;
+
+                int temp = array[lowIndex];
+                array[lowIndex] = array[j];
+                array[j] = temp;
+
+                RuntimeBattleCharacter tempChara = persoList[lowIndex];
+                persoList[lowIndex] = persoList[j];
+                persoList[j] = tempChara;
+            }
+        }
+
+        int temp1 = array[lowIndex + 1];
+        array[lowIndex + 1] = array[high];
+        array[high] = temp1;
+
+        RuntimeBattleCharacter tempChara1 = persoList[lowIndex+1];
+        persoList[lowIndex+1] = persoList[high];
+        persoList[high] = tempChara1;
+
+        return lowIndex + 1;
     }
 
     public bool CanCameraGoNextDestination(Vector2 position)
@@ -1255,22 +1332,37 @@ public class BattleManager : MonoBehaviour
         return (position.x < roomManager.cameraMaxRightBottom.x && position.x > roomManager.cameraMaxLeftTop.x && position.y < roomManager.cameraMaxLeftTop.y && position.y > roomManager.cameraMaxRightBottom.y);
     }
 
+    public Vector2 PossibleCameraDirection(Vector2 position)
+    {
+        Vector2 toReturn = Vector2.zero;
+        if(position.x < roomManager.cameraMaxRightBottom.x && position.x > roomManager.cameraMaxLeftTop.x)
+        {
+            toReturn = new Vector2(1, toReturn.y);
+        }
+        if(position.y < roomManager.cameraMaxLeftTop.y && position.y > roomManager.cameraMaxRightBottom.y)
+        {
+            toReturn = new Vector2(toReturn.x, 1);
+        }
+        return toReturn;
+    }
+
     public void OpenRoom(int index)
     {
         roomManager.OpenRoom(index);
     }
 
-    private void CheckForOpportunityAttack()
+    private void CheckForOpportunityAttack(Vector2 nextPosition)
     {
-        if(!currentCharacterTurn.CheckForAffliction(Affliction.Evasion) && !currentCharacterTurn.hasMoved)
+        if(!currentCharacterTurn.CheckForAffliction(Affliction.Evasion))
         {
             List<Node> nodeToCheck = Grid.instance.GetNeighbours(currentCharacterTurn.currentNode);
-
+            Node nextPositionNode = Grid.instance.NodeFromWorldPoint(nextPosition);
+            List<Node> nodeToCheckAfter = Grid.instance.GetNeighbours(nextPositionNode);
             foreach (Node n in nodeToCheck)
             {
-                if (n.hasCharacterOn && n.chara.GetTeam() != currentCharacterTurn.GetTeam())
+                if (n.HasCharacterOn && n.chara.GetTeam() != currentCharacterTurn.GetTeam() && !nodeToCheckAfter.Contains(n))
                 {
-                    n.chara.AttackOfOpportunity(currentCharacterTurn.currentNode.worldPosition);
+                    n.chara.AttackOfOpportunity(currentCharacterTurn);
                 }
             }
         }
@@ -1301,9 +1393,9 @@ public class BattleManager : MonoBehaviour
     {
         if (pathSuccessful)
         {
-            CheckForOpportunityAttack();
             path = newPath;
             targetIndex = 0;
+            CheckForOpportunityAttack(path[0]);
             currentCharacterTurn.SetAnimation("Moving");
             //Grid.instance.ResetUsableNode();
             StopCoroutine(FollowPath());
@@ -1340,8 +1432,6 @@ public class BattleManager : MonoBehaviour
                 posTarget = new Vector2(currentWaypoint.x, currentWaypoint.y);
                 if (Vector2.Distance(posUnit, posTarget) < (0.01f * speed))
                 {
-                    //toMove.transform.position = posTarget;
-
                     targetIndex++;
                     if (targetIndex >= path.Length)
                     {
@@ -1350,13 +1440,16 @@ public class BattleManager : MonoBehaviour
                         EndCurrentAction(currentCharacterTurn);
                         yield break;
                     }
-                    currentWaypoint = path[targetIndex];
-                    lastPathPosition = currentWaypoint;
 
                     if (toMove == currentCharacterTurn.gameObject)
                     {
-                        currentCharacterTurn.SetSpriteDirection((currentWaypoint.x < toMove.transform.position.x));
+                        currentCharacterTurn.SetSpriteDirection((path[targetIndex].x < toMove.transform.position.x));
+                        currentCharacterTurn.ModifyCurrentNode(Grid.instance.NodeFromWorldPoint(currentWaypoint));
+                        CheckForOpportunityAttack(path[targetIndex]);
                     }
+
+                    currentWaypoint = path[targetIndex];
+                    lastPathPosition = currentWaypoint;
                 }
                 direction = new Vector2(currentWaypoint.x - toMove.transform.position.x, currentWaypoint.y - toMove.transform.position.y).normalized;
 

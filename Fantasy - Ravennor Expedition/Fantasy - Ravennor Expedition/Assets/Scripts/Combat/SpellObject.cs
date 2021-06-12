@@ -77,7 +77,7 @@ public class SpellObject : MonoBehaviour
     {
         if (BattleManager.instance.GetCurrentTurnChara() == effectCaster)
         {
-            if (Grid.instance.NodeFromWorldPoint(transform.position).hasCharacterOn)
+            if (Grid.instance.NodeFromWorldPoint(transform.position).HasCharacterOn)
             {
                 RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
 

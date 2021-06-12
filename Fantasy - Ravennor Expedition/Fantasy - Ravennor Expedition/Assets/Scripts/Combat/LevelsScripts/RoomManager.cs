@@ -102,7 +102,12 @@ public class RoomManager : MonoBehaviour
     public void OpenRoom(int index)
     {
         Debug.Log("Open room : " + index);
-        if(!openRoomIndexes.Contains(index) || index == 0)
+        if(index == 0)
+        {
+            openRoomIndexes = new List<int>();
+        }
+
+        if(!openRoomIndexes.Contains(index))
         {
             openRoomIndexes.Add(index);
             ActivateRoom(index);
@@ -112,7 +117,6 @@ public class RoomManager : MonoBehaviour
     protected virtual void ActivateRoom(int index)
     {
         Room toActivate = rooms[index];
-        Debug.Log(toActivate.ennemisPos[0]);
         for (int i = 0; i < toActivate.ennemis.Count;i++)
         {
             BattleManager.instance.SpawnNewCharacter(toActivate.ennemis[i], toActivate.ennemisPositions[i]);

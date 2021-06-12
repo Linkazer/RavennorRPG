@@ -9,6 +9,8 @@ public class CharacterActionTeleportation : CharacterActionScriptable
     public Vector2Int positionToTeleport;
     public bool isJump;
 
+    public CharacterActionDirect jumpEffect, landEffect;
+
     [Header("Effets")]
     public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
 

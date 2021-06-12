@@ -54,5 +54,6 @@ MonoBehaviour:
   bonusByScale: 0
   lifeStealPercent: 0
   wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
+  wantedEffectOnCaster:
+  - {fileID: 11400000, guid: f3315f48548ba23419517d2ff76d81c7, type: 2}
   wantedEffectOnGround: []

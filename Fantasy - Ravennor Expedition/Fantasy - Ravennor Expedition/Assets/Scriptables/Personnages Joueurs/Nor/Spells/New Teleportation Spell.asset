@@ -37,8 +37,10 @@ MonoBehaviour:
   castAnimation: 
   soundToPlay: {fileID: 0}
   maxCooldown: 0
-  positionToTeleport: {x: 0, y: 0}
+  positionToTeleport: {x: 0, y: 1}
   isJump: 0
+  jumpEffect: {fileID: 0}
+  landEffect: {fileID: 11400000, guid: 32d2121a9110d4146a49fca2e385af7a, type: 2}
   wantedEffectOnTarget:
   - {fileID: 11400000, guid: 8f1c33a2aa19d884d9b2f32cb9c47e8a, type: 2}
   wantedEffectOnCaster: []

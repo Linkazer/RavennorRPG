@@ -11,7 +11,7 @@ public class PersonnageScriptables : ScriptableObject
     public Sprite icon;
     public Sprite portrait;
     public Sprite spritePerso;
-    public Sprite spriteDeMains;
+    public Sprite spriteBras;
     public float brasPosition;
     [TextArea(3,5)]
     public string description;
@@ -35,9 +35,9 @@ public class PersonnageScriptables : ScriptableObject
     //[SerializeField]
     private int bonusAgilite, bonusPuissMag, bonusIntelligence, bonusConstit, bonusPerception, bonusCharisme;
     [Header("Bonus Stats secondaires")]
-    [SerializeField]
+    //[SerializeField]
     protected int bonusDegPhyMelee;
-    [SerializeField]
+    //[SerializeField]
     protected int bonusDegPhyDistance, bonusDegMag, bonusInitiative, bonusDefense, bonusChanceToucheForce, bonusChanceToucheDexterite, bonusChanceToucheMagic, bonusSoinAppli, bonusSoinRecu,
                 bonusMaana, bonusCriticalChance, bonusPhysicalArmor, bonusMagicalArmor, touchMeleeDice, toucheDistanceDice, toucheMagicalDice;
     protected List<Dice> diceBonusDegPhy = new List<Dice>(), diceBonusDegMag = new List<Dice>();//, diceBonusDegWeapon = new List<Dice>(), diceBonusDefense = new List<Dice>(), diceBonusToucheForce = new List<Dice>(), diceBonusToucheDexterite = new List<Dice>(), diceBonusToucheMagic = new List<Dice>();
@@ -45,6 +45,7 @@ public class PersonnageScriptables : ScriptableObject
     //[SerializeField]
     private int bonusPhysicalDefense, bonusMagicalDefense;
 
+    [SerializeField]
     private int actionBonus, baseAttackBonus;
 
     //[Header("Autres")]
@@ -101,7 +102,7 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetMaxMaana()
     {
-        maanaMax = level + puissMag + bonusMaana + baseMaana;
+        maanaMax = level + puissMag * 2 + bonusMaana + baseMaana;
         if (maanaMax >= 0)
         {
             return maanaMax;
@@ -202,14 +203,14 @@ public class PersonnageScriptables : ScriptableObject
 
     public List<int> GetAllSecondaryStats()
     {
-        int[] newArr = new int[] { (int)GetPhysicalDamageMelee(), (int)GetMagicalDamage(), GetInitiative(), GetBrutDefense(), GetCharisme(), GetPerception(), GetPuissMag() };
+        int[] newArr = new int[] { (int)GetPhysicalDamageMelee(), (int)GetMagicalDamage(), GetInitiativeDice(), GetBrutDefense(), GetCharisme(), GetPerception(), GetPuissMag() };
         return new List<int>(newArr);
     }
 
     #region Secondary Stats
     public int GetMovementSpeed()
     {
-        return GetAgilite() * 6 + baseMoveSpeed;
+        return GetAgilite() * 5 + baseMoveSpeed;
     }
 
     public int GetMemory()
@@ -240,9 +241,19 @@ public class PersonnageScriptables : ScriptableObject
         return GetPuissMag() + bonusDegMag;
     }
 
-    public int GetInitiative()
+    public virtual int GetInitiativeBrut()
     {
-        return GetPerception() + bonusPerception;
+        return GetPerception() + bonusInitiative;
+    }
+
+    public virtual int GetInitiativeDice()
+    {
+        return GetPerception();
+    }
+
+    public virtual int GetInititativeBonus()
+    {
+        return bonusInitiative;
     }
 
     public int GetBrutDefense()
@@ -329,9 +340,9 @@ public class PersonnageScriptables : ScriptableObject
         return 0;
     }
 
-    public float GetCriticalDamageMultiplier()
+    public int GetCriticalDamageMultiplier()
     {
-        return 1 + (((GetPerception()+1)/ 2) * 0.25f);
+        return Mathf.FloorToInt(0.5f +GetPerception()* 0.5f);
     }
 
     public float GetSoinApplique()
@@ -346,7 +357,7 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetCriticalChanceBonus()
     {
-        return Mathf.RoundToInt(((GetPerception() -1) / 3)) + 1 + bonusCriticalChance;
+        return Mathf.FloorToInt(0.5f + GetPerception() * 0.5f) + bonusCriticalChance;
     }
 
     public int GetPhysicalArmor()
@@ -478,6 +489,15 @@ public class PersonnageScriptables : ScriptableObject
                 break;
             case EffectType.CriticalChance:
                 bonusCriticalChance += value;
+                break;
+            case EffectType.CriticalMultiplier:
+                
+                break;
+            case EffectType.PhysicalArmor:
+                bonusPhysicalArmor += value;
+                break;
+            case EffectType.MagicalArmor:
+                bonusMagicalArmor += value;
                 break;
             //Manque Critical Damage/Physical et magical armor
         }

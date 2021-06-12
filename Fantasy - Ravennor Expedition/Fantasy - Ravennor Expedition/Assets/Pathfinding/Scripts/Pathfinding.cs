@@ -106,7 +106,7 @@ public class Pathfinding : MonoBehaviour {
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-				if ((!neighbour.walkable || (neighbour != targetNode && neighbour.hasCharacterOn)) || closedSet.Contains(neighbour))
+				if ((!neighbour.walkable || (neighbour != targetNode && neighbour.HasCharacterOn)) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
@@ -142,7 +142,7 @@ public class Pathfinding : MonoBehaviour {
 		Node currentNode = endNode;
 
 		int i = 0;
-		while ((currentNode.gCost > maxDistance || currentNode.hasCharacterOn) && i < 100)
+		while ((currentNode.gCost > maxDistance || currentNode.HasCharacterOn) && i < 100)
         {
 			i++;
 			currentNode = currentNode.parent;
@@ -163,8 +163,8 @@ public class Pathfinding : MonoBehaviour {
 		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
 		
 		if (dstX > dstY)
-			return 14*dstY + 10* (dstX-dstY);
-		return 14*dstX + 10 * (dstY-dstX);
+			return 15*dstY + 10* (dstX-dstY);
+		return 15*dstX + 10 * (dstY-dstX);
 	}
 	
 	public List<Node> GetNodesWithMaxDistance(Node startNode, float distance, bool pathCalcul)
@@ -187,7 +187,7 @@ public class Pathfinding : MonoBehaviour {
 
 				foreach (Node neighbour in grid.GetNeighbours(currentNode))
 				{
-					if (((!neighbour.walkable || neighbour.hasCharacterOn) && pathCalcul) || closedSet.Contains(neighbour))
+					if (((!neighbour.walkable || neighbour.HasCharacterOn) && pathCalcul) || closedSet.Contains(neighbour))
 					{
 						continue;
 					}
@@ -244,7 +244,7 @@ public class Pathfinding : MonoBehaviour {
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-				if ((!neighbour.walkable || (neighbour.hasCharacterOn && pathCalcul)) || closedSet.Contains(neighbour))
+				if ((!neighbour.walkable || (neighbour.HasCharacterOn && pathCalcul)) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}

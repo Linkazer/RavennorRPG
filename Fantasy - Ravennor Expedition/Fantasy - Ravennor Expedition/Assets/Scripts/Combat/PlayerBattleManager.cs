@@ -39,14 +39,6 @@ public class PlayerBattleManager : MonoBehaviour
         ActivatePlayerBattleController(true);
     }
 
-    public void EndPlayerTurn()
-    {
-        if (controler.enabled)
-        {
-            BattleManager.instance.EndTurn();
-        }
-    }
-
     public void NextAction(Vector2 position)
     {
         if (Grid.instance.NodeFromWorldPoint(position).usableNode)
@@ -56,10 +48,6 @@ public class PlayerBattleManager : MonoBehaviour
             {
                 if (currentCharacter.HasEnoughMaana(actionList[holdSpellIndex].maanaCost))
                 {
-                    if (actionList[holdSpellIndex].incantationTime != ActionIncantation.Rapide)
-                    {
-                        currentCharacter.UseAction(actionList[holdSpellIndex].isWeaponBased);
-                    }
                     UseSpell(Grid.instance.NodeFromWorldPoint(position).worldPosition);
                 }
                 else
@@ -69,7 +57,7 @@ public class PlayerBattleManager : MonoBehaviour
                 }
                 holdSpellIndex = -1;
             }
-            else// if (Pathfinding.instance.GetDistance(Grid.instance.NodeFromWorldPoint(currentCharacter.transform.position), Grid.instance.NodeFromWorldPoint(position)) < currentCharacter.movementLeft)
+            else
             {
                 MoveCharacter(position);
             }
@@ -84,13 +72,10 @@ public class PlayerBattleManager : MonoBehaviour
     public void ChooseSpell(int index)
     {
         //Grid.instance.ResetUsableNode();
-        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && currentCharacter.CanDoAction(actionList[index].isWeaponBased))
+        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && BattleManager.instance.IsActionAvailable(currentCharacter, actionList[index]))
         {
-            if (BattleManager.instance.IsActionAvailable(currentCharacter, actionList[index]))
-            {
-                ShowSpell(actionList[index]);
-                holdSpellIndex = index;
-            }
+            ShowSpell(actionList[index]);
+            holdSpellIndex = index;
         }
         else
         {

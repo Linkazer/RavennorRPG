@@ -35,13 +35,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private int team;
 
     [HideInInspector]
-    public Node currentNode;
+    public Node currentNode { get; private set; }
 
     private float vulnerability, dangerosity;
 
     [SerializeField]
     private Image hpImage;
 
+    [SerializeField]
     private int initiative;
 
     private List<CharacterActionScriptable> actionsDisponibles;
@@ -55,12 +56,27 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     private List<RuntimeBattleCharacter> invocations = new List<RuntimeBattleCharacter>();
 
+    public UnityEvent<int> damageTakenEvt = new UnityEvent<int>();
     [HideInInspector]
-    public UnityEvent<int> damageTakenEvt = new UnityEvent<int>(), healTakenEvt = new UnityEvent<int>(), movedEvt = new UnityEvent<int>();
+    public UnityEvent<int> healTakenEvt = new UnityEvent<int>(), movedEvt = new UnityEvent<int>();
+
+    public UnityEvent failedActionEvt = new UnityEvent(), crititcalActionEvt = new UnityEvent();
+    [SerializeField]
+    private UnityEvent highlightEvt = new UnityEvent(), endHighlightEvt = new UnityEvent();
     [HideInInspector]
     public UnityEvent useActionEvt = new UnityEvent(), endTurnEvt = new UnityEvent(), beginTurnEvt = new UnityEvent(), deathEvt = new UnityEvent();
 
     private bool hasOpportunity = true;
+
+    private void OnMouseEnter()
+    {
+        highlightEvt.Invoke();
+    }
+
+    private void OnMouseExit()
+    {
+        endHighlightEvt.Invoke();
+    }
 
     #region Varialbes Utilities
     public PersonnageScriptables GetCharacterDatas()
@@ -76,6 +92,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         return currentMaana;
     }
+
+    public int GetMaxHp => currentScriptable.GetMaxHps();
 
     public bool CanDoAction(bool isBaseAttack)
     {
@@ -93,18 +111,19 @@ public class RuntimeBattleCharacter : MonoBehaviour
             if (possibleBaseAttack > 0)
             {
                 possibleBaseAttack--;
+                BattleUiManager.instance.UseActionFeedback(false);
             }
             else
             {
                 possibleAction--;
+                BattleUiManager.instance.UseActionFeedback(true);
             }
         }
         else
         {
             possibleAction--;
+            BattleUiManager.instance.UseActionFeedback(true);
         }
-
-        BattleUiManager.instance.UseActionFeedback(isBaseAttack);
     }
 
     public void UseAllAction()
@@ -282,7 +301,9 @@ public class RuntimeBattleCharacter : MonoBehaviour
         currentHps = currentScriptable.GetMaxHps();
         currentMaana = currentScriptable.GetMaxMaana();
 
-        actionsDisponibles= new List<CharacterActionScriptable>(currentScriptable.sortsDisponibles);
+        movementLeft = currentScriptable.GetMovementSpeed();
+
+        actionsDisponibles = new List<CharacterActionScriptable>(currentScriptable.sortsDisponibles);
 
         for(int i = 0; i < actionsDisponibles.Count; i++)
         {
@@ -292,11 +313,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         currentNode = Grid.instance.NodeFromWorldPoint(transform.position);
 
-        initiative = BattleManager.instance.NormalRoll(currentScriptable.GetInitiative(), 0, DiceType.D6);
+        initiative = currentScriptable.GetInitiativeBrut();//BattleManager.instance.NormalRoll(currentScriptable.GetInitiativeDice(), currentScriptable.GetInititativeBonus(), DiceType.D6);
 
         characterSprite.sprite = currentScriptable.spritePerso;
-        handSpriteRight.sprite = currentScriptable.spriteDeMains;
-        handSpriteLeft.sprite = currentScriptable.spriteDeMains;
+        handSpriteRight.sprite = currentScriptable.spriteBras;
+        handSpriteLeft.sprite = currentScriptable.spriteBras;
 
         brasParent.transform.localPosition = new Vector3(brasParent.transform.localPosition.x, currentScriptable.brasPosition, 0);
     }
@@ -371,9 +392,39 @@ public class RuntimeBattleCharacter : MonoBehaviour
         vulnerability = 0;
         dangerosity = 0;
     }
+
+    public void ModifyCurrentNode(Node newNode)
+    {
+        //currentNode.hasCharacterOn = false;
+        currentNode = newNode;
+        //currentNode.hasCharacterOn = true;
+        currentNode.chara = this;
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void SetHighlight(bool isHighlight)
+    {
+        if(isHighlight)
+        {
+            highlightEvt.Invoke();
+        }
+        else
+        {
+            endHighlightEvt.Invoke();
+        }
+    }
     #endregion
 
     #region Action Interraction
+    public void UseActionAnim()
+    {
+        BattleManager.instance.UseCurrentAction();
+    }
+
     public int TakeDamage(int damageAmount, DamageType typeOfDamage)
     {
         int damageResistance = 0;
@@ -399,8 +450,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
-            SetAnimation("DamageTaken");
-
             if (BattleUiManager.instance.GetCurrentChara() == this)
             {
                 BattleUiManager.instance.SetCurrentHps(currentHps);
@@ -425,7 +474,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         int physicalDamage = 0;
         int brutDamage = 0;
 
-        string damageFeedback = "";
+        string damageFeedback = "", phyArmorFeedback = "", magArmorFeedback = "";
         int dmg = 0;
 
         foreach(Dice d in damageDices)
@@ -434,7 +483,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             {
                 if(dmg != 0)
                 {
-                    damageFeedback += "+ ";
+                    damageFeedback += "+";
                 }
                 dmg = GameDices.RollDice(d.numberOfDice, d.wantedDice);
                 damageFeedback += dmg.ToString() + "(" + d.numberOfDice + d.wantedDice + ") ";
@@ -459,14 +508,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
             {
                 if (bonusAmount > 0)
                 {
-                    damageFeedback += "+ ";
+                    damageFeedback += "+";
                 }
                 else
                 {
-                    damageFeedback += "- ";
+                    damageFeedback += "-";
                 }
             }
-            damageFeedback += Mathf.Abs(bonusAmount).ToString() + " ";
+            damageFeedback += Mathf.Abs(bonusAmount).ToString();
 
             switch (typeOfDamage)
             {
@@ -482,22 +531,29 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
         }
 
-        if(currentScriptable.GetMagicalArmor()<=magicalDamage)
+        if (magicalDamage > 0 && currentScriptable.GetMagicalArmor() > 0)
         {
-            magicalDamage -= currentScriptable.GetMagicalArmor();
+            magArmorFeedback += ("L'armure magique de " + name + " réduit une partie des dégâts.");
+            if (currentScriptable.GetMagicalArmor() <= magicalDamage)
+            {
+                magicalDamage -= currentScriptable.GetMagicalArmor();
+            }
+            else
+            {
+                magicalDamage = 0;
+            }
         }
-        else
+        if (physicalDamage > 0 && currentScriptable.GetPhysicalArmor() > 0)
         {
-            magicalDamage = 0;
-        }
-
-        if(currentScriptable.GetPhysicalArmor()<=physicalDamage)
-        {
-            physicalDamage -= currentScriptable.GetPhysicalArmor();
-        }
-        else
-        {
-            physicalDamage = 0;
+            phyArmorFeedback += ("L'armure de " + name + " réduit une partie des dégâts.");
+            if (currentScriptable.GetPhysicalArmor() <= physicalDamage)
+            {
+                physicalDamage -= currentScriptable.GetPhysicalArmor();
+            }
+            else
+            {
+                physicalDamage = 0;
+            }
         }
 
         damageAmount = physicalDamage + magicalDamage + brutDamage;
@@ -528,10 +584,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
             Debug.Log(name + " a pris " + damageText + " (" + damageFeedback + ")");
             BattleDiary.instance.AddText(name + " a pris " + damageText + " (" + damageFeedback + ")");
+            BattleDiary.instance.AddText(phyArmorFeedback);
+            BattleDiary.instance.AddText(magArmorFeedback);
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
-
-            SetAnimation("DamageTaken");
 
             if (BattleUiManager.instance.GetCurrentChara() == this)
             {
@@ -541,7 +597,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             if (currentHps <= 0)
             {
                 BattleManager.instance.KillCharacter(this);
-                return 0;
+                return damageAmount + currentHps;
             }
             return damageAmount;
         }
@@ -736,7 +792,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return false;
     }
     
-    public void AttackOfOpportunity(Vector2 position)
+    public void AttackOfOpportunity(RuntimeBattleCharacter opportunityTarget)
     {
         bool canUseSpell = true;
         if ((actionsDisponibles[0].attackType != AttackType.PuissMagique && CheckForAffliction(Affliction.Atrophie)) || (actionsDisponibles[0].attackType == AttackType.PuissMagique && CheckForAffliction(Affliction.Silence)))
@@ -746,11 +802,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         if (hasOpportunity && canUseSpell)
         {
-            BattleManager.instance.LaunchAction(actionsDisponibles[0], this, position, true);
+            BattleManager.instance.LaunchAction(actionsDisponibles[0], this, opportunityTarget.currentNode.worldPosition, true);
             hasOpportunity = false;
         }
     }
-    
+
     public void Teleport(Vector2 newPosition)
     {
         transform.position = newPosition;
@@ -767,7 +823,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void SetAnimation(string animName)
     {
-        Debug.Log("Playing anim : " + animName);
         anim.Play(animName);
     }
 

@@ -21,10 +21,10 @@ MonoBehaviour:
   maanaCost: 0
   maxUtilisation: -1
   incantationTime: 1
-  isWeaponBased: 0
+  isWeaponBased: 1
   target: 0
   castTarget: 0
-  range: 15
+  range: 100
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
+  wantedEffectOnTarget:
+  - {fileID: 11400000, guid: f18b03881fcee3b49997c1ffde3a6283, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []

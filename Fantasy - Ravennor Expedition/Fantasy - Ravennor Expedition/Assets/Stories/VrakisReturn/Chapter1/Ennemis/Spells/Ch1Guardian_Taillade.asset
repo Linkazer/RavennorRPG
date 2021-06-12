@@ -21,10 +21,10 @@ MonoBehaviour:
   maanaCost: 0
   maxUtilisation: -1
   incantationTime: 1
-  isWeaponBased: 0
+  isWeaponBased: 1
   target: 1
   castTarget: 1
-  range: 15
+  range: 10
   activeZoneCases:
   - {x: 0, y: 0}
   - {x: 1, y: 0}

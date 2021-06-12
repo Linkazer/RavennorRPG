@@ -18,6 +18,9 @@ public class BattleDiary : MonoBehaviour
 
     public void AddText(string txt)
     {
-        diary.text = diary.text + "\n" + txt;
+        if (txt != "")
+        {
+            diary.text = diary.text + "\n" + txt;
+        }
     }
 }

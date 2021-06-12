@@ -10,6 +10,8 @@ public class AffichageSprites : MonoBehaviour
     [SerializeField]
     private SpriteRenderer originSpr;
 
+    private Material mat;
+
     private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
@@ -17,6 +19,8 @@ public class AffichageSprites : MonoBehaviour
         {
             enabled = false;
         }
+        mat = gameObject.GetComponent<SpriteRenderer>().material;
+        spr.material = Instantiate(mat);
     }
 
     private void Update()

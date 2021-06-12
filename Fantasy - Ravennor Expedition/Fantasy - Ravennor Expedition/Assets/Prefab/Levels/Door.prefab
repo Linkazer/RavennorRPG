@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 3081245067297315835}
   - component: {fileID: 3081245067297315836}
   - component: {fileID: 3081245067297315833}
+  - component: {fileID: 496950708456763518}
+  - component: {fileID: 624149405510440056}
+  - component: {fileID: 798135699926886691}
   m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
@@ -52,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e6cde5ee617a4084cab3c4eee3da379c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,3 +126,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexs: 01000000
+  anim: {fileID: 496950708456763518}
+--- !u!95 &496950708456763518
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3081245067297315837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f281012ae6a9ec745ba763b467d5aa8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &624149405510440056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3081245067297315837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de07037af3683a943921e159cbbb94ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overEvt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798135699926886691}
+        m_TargetAssemblyTypeName: FB_HighlightFeedback, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  exitEvt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798135699926886691}
+        m_TargetAssemblyTypeName: FB_HighlightFeedback, Assembly-CSharp
+        m_MethodName: UnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &798135699926886691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3081245067297315837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449b1376241f52d4394a068b952388af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 0, b: 0, a: 1}
+  outputColor: {r: 1, g: 1, b: 1, a: 1}

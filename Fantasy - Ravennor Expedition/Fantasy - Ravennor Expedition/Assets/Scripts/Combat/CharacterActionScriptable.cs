@@ -51,7 +51,6 @@ public class CharacterActionScriptable : ScriptableObject
     public Sprite zoneSprite;
     public Sprite caseSprite;
     public Sprite caseFeedback;
-    public string castAnimation;
 
     public AudioClip soundToPlay;
 

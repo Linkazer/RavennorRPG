@@ -9,6 +9,9 @@ public class DoorObject : MonoBehaviour
 
     private Node currentNode;
 
+    [SerializeField]
+    private Animator anim;
+
     private void Start()
     {
         currentNode = Grid.instance.NodeFromWorldPoint(transform.position);
@@ -20,28 +23,26 @@ public class DoorObject : MonoBehaviour
 
         if (chara.CanDoAction(true))
         {
-            if (Pathfinding.instance.GetDistance(chara.currentNode, currentNode) < 15)
+            Node n = Grid.instance.NodeFromWorldPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            if (Pathfinding.instance.GetDistance(chara.currentNode, n) < 15)
             {
+                anim.Play("UseObject");
                 chara.UseAction(true);
-                StartCoroutine(OpenDoor());
+                foreach (int i in indexs)
+                {
+                    BattleManager.instance.OpenRoom(i);
+                }
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                PlayerBattleManager.instance.ActivatePlayerBattleController(false);
             }
         }
     }
 
-    IEnumerator OpenDoor()
+    public void DestroyDoor()
     {
-        foreach(int i in indexs)
-        {
-            BattleManager.instance.OpenRoom(i);
-        }
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        PlayerBattleManager.instance.ActivatePlayerBattleController(false);
-        yield return new WaitForSeconds(0.5f);
-        //Grid.instance.ResetUsableNode();
         Grid.instance.CreateGrid();
         PlayerBattleManager.instance.ActivatePlayerBattleController(true);
         PlayerBattleManager.instance.ShowDeplacement();
         gameObject.SetActive(false);
-
     }
 }

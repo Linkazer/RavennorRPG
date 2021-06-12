@@ -26,13 +26,27 @@ public class PlayerBattleControllerManager : MonoBehaviour
     {
         currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        #region Global Input
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (Grid.instance.NodeFromWorldPoint(currentMousePos).HasCharacterOn)
+            {
+                BattleUiManager.instance.ShowCharaInformation(Grid.instance.NodeFromWorldPoint(currentMousePos).chara);
+            }
+            else
+            {
+                BattleUiManager.instance.HideCharaInformation();
+            }
+        }
+        #endregion
 
-        #region Combat Inputs
+        #region Player turn Inputs
         if (isPlayerTurn)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                BattleManager.instance.EndTurn();
+                EndPlayerTurn();
+                return;
             }
 
             if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
@@ -40,42 +54,25 @@ public class PlayerBattleControllerManager : MonoBehaviour
                 PlayerBattleManager.instance.NextAction(currentMousePos);
             }
 
-            /*if(Input.GetKeyDown(KeyCode.A))
+            if (PlayerBattleManager.instance.holdSpellIndex >= 0)
             {
-                PlayerBattleManager.instance.ChooseSpell(0);
-            }*/
-
-            if (PlayerBattleManager.instance.holdSpellIndex >= 0 && Grid.instance.NodeFromWorldPoint(currentMousePos) != Grid.instance.NodeFromWorldPoint(lastMousePos) && Grid.instance.NodeFromWorldPoint(currentMousePos).usableNode)
-            {
-                lastMousePos = currentMousePos;
-                PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (PlayerBattleManager.instance.holdSpellIndex >= 0)
+                if (Grid.instance.NodeFromWorldPoint(currentMousePos) != Grid.instance.NodeFromWorldPoint(lastMousePos))
                 {
-
-                    PlayerBattleManager.instance.ChooseSpell(-1);
-                    return;
+                    lastMousePos = currentMousePos;
+                    if (!Grid.instance.NodeFromWorldPoint(currentMousePos).usableNode)
+                    {
+                        Grid.instance.HideZone();
+                    }
+                    else
+                    {
+                        PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    }
                 }
             }
 
             if (Input.GetMouseButtonDown(1))
             {
                 PlayerBattleManager.instance.ChooseSpell(-1);
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (Grid.instance.NodeFromWorldPoint(currentMousePos).hasCharacterOn)
-                {
-                    BattleUiManager.instance.ShowCharaInformation(Grid.instance.NodeFromWorldPoint(currentMousePos).chara);
-                }
-                else
-                {
-                    BattleUiManager.instance.HideCharaInformation();
-                }
             }
         }
         #endregion
@@ -119,6 +116,15 @@ public class PlayerBattleControllerManager : MonoBehaviour
     public void SetPlayerTurn(bool state)
     {
         isPlayerTurn = state;
+    }
+
+    public void EndPlayerTurn()
+    {
+        if (enabled)
+        {
+            PlayerBattleManager.instance.ChooseSpell(-1);
+            BattleManager.instance.EndTurn();
+        }
     }
 
 }

@@ -16,14 +16,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 338e41e68b9c67944add8489bb6660c0, type: 3}
   portrait: {fileID: 21300000, guid: 338e41e68b9c67944add8489bb6660c0, type: 3}
   spritePerso: {fileID: 21300000, guid: 338e41e68b9c67944add8489bb6660c0, type: 3}
-  spriteDeMains: {fileID: 21300000, guid: 4ba28051f4a008646bbee21a63f1524c, type: 3}
+  spriteBras: {fileID: 21300000, guid: 232dbd9a90959ec4cac8dd64742d3cac, type: 3}
   brasPosition: 0
   description: "Banni de sa tribu, Shedun cherche depuis plusieurs ann\xE9es un rem\xE8de
     qui pourrait l'aider \xE0 sauver sa soeur avec l'aide de la Confr\xE9rie."
   level: 1
   baseHps: 10
-  hpByLevel: 2
-  baseMoveSpeed: 18
+  hpByLevel: 6
+  baseMoveSpeed: 25
   baseMaana: 2
   force: 1
   constitution: 1
@@ -32,23 +32,8 @@ MonoBehaviour:
   perception: 2
   charisme: 0
   puissMag: 2
-  bonusDegPhyMelee: 0
-  bonusDegPhyDistance: 0
-  bonusDegMag: 0
-  bonusInitiative: 0
-  bonusDefense: 0
-  bonusChanceToucheForce: 0
-  bonusChanceToucheDexterite: 0
-  bonusChanceToucheMagic: 0
-  bonusSoinAppli: 0
-  bonusSoinRecu: 0
-  bonusMaana: 0
-  bonusCriticalChance: 0
-  bonusPhysicalArmor: 0
-  bonusMagicalArmor: 0
-  touchMeleeDice: 0
-  toucheDistanceDice: 0
-  toucheMagicalDice: 0
+  actionBonus: 0
+  baseAttackBonus: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
   - {fileID: 11400000, guid: 318a42155d3616046bef39b82c74344f, type: 2}

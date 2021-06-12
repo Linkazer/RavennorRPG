@@ -17,6 +17,7 @@ MonoBehaviour:
     spr: {fileID: 21300000, guid: 43e73daf513a2be4d9aebc086280795a, type: 3}
     description: Augmente l'armure et l'armure magique de la cible de 3 pendant 3
       tours.
+    maxStack: 1
     effects:
     - type: 20
       possiblesTargets: 0
@@ -28,7 +29,7 @@ MonoBehaviour:
         wantedDamage: 0
       trigger: 0
       caster: {fileID: 0}
-    - type: 21
+    - type: 19
       possiblesTargets: 0
       value: 3
       scaleByLevel: 0
