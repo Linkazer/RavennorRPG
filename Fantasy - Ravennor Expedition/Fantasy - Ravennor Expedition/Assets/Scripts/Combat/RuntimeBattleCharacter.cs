@@ -770,6 +770,18 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
     }
 
+    public bool ContainsEffect(SpellEffectCommon effectToCheck)
+    {
+        foreach(RuntimeSpellEffect eff in appliedEffects)
+        {
+            if(eff.effet.nom == effectToCheck.nom)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void AddInvocation(RuntimeBattleCharacter toAdd)
     {
         invocations.Add(toAdd);

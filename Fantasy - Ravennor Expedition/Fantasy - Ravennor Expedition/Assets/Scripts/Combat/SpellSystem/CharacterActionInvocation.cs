@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Invocation Spell", menuName = "Spell/Create Invocation Spell")]
+[CreateAssetMenu(fileName = "New Invocation Spell", menuName = "Spell/Invocation Spell")]
 public class CharacterActionInvocation : CharacterActionScriptable
 {
     public List<PersonnageScriptables> invocations;

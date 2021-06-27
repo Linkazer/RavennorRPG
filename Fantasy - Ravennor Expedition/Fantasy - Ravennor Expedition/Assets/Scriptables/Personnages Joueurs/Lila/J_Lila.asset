@@ -37,8 +37,10 @@ MonoBehaviour:
   baseAttackBonus: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
-  - {fileID: 11400000, guid: 66fa233117859414abc77d42701b216f, type: 2}
+  - {fileID: 11400000, guid: be1227359e6e35048aa8c3069215f877, type: 2}
+  - {fileID: 11400000, guid: e7fa15df79305654fbb6130f9e637962, type: 2}
   sortsDisponibles:
-  - {fileID: 11400000, guid: cbf8bd3b63432634dbba15f7752d3500, type: 2}
-  - {fileID: 11400000, guid: 66fa233117859414abc77d42701b216f, type: 2}
+  - {fileID: 11400000, guid: e2eb90b72e1371449a7f1ece30c70bf7, type: 2}
+  - {fileID: 11400000, guid: be1227359e6e35048aa8c3069215f877, type: 2}
+  - {fileID: 11400000, guid: e7fa15df79305654fbb6130f9e637962, type: 2}
   passifs: []

@@ -75,6 +75,7 @@ public class CharacterInformationUI : MonoBehaviour
             effectsOnChara[i].transform.parent.gameObject.SetActive(true);
 
             effectTimes[i].text = runEff.currentCooldown>=0 ? runEff.currentCooldown.ToString() : "";
+            i++;
         }
     }
 

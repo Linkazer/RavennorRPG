@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Personnage", menuName = "Create New Personnage")]
+[CreateAssetMenu(fileName = "New Personnage", menuName = "Character/Personnage joueur")]
 public class PersonnageScriptables : ScriptableObject
 {
     [Header("Apparence")]
@@ -19,7 +19,7 @@ public class PersonnageScriptables : ScriptableObject
     [Header("Niveau")]
     public int level = 1;
     [SerializeField]
-    private int baseHps = 10, hpByLevel = 0, baseMoveSpeed = 30, baseMaana = 0;
+    private int baseHps = 10, hpByLevel = 0, baseMoveSpeed = 30, startDefense = 0, baseMaana = 0;
     private int maxHp;
     private int maanaMax;
 
@@ -258,7 +258,7 @@ public class PersonnageScriptables : ScriptableObject
 
     public int GetBrutDefense()
     {
-        return GetAgilite()*2+GetForce()+level+bonusDefense;
+        return GetAgilite()*2+GetForce()+level+bonusDefense+startDefense;
     }
 
     /*public List<Dice> GetDefenseDices()

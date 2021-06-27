@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EffectTrigger { Apply, End, DamageTaken, DamageDeal, Heal, DoAction, Die, BeginTurn, EnterZone, ExitZone }
+public enum EffectTrigger { Apply, End, DamageTaken, DamageDeal, Heal, DoAction, Die, BeginTurn, EnterZone, ExitZone, HasEffect }
 
 [System.Serializable]
 public class SpellEffectCommon
@@ -11,6 +11,7 @@ public class SpellEffectCommon
     public Sprite spr;
     [TextArea(3,5)]
     public string description;
+    public SpellEffectScriptables wantedEffectToTrigger;
 
     public int maxStack = 1;
 

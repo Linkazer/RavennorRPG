@@ -22,7 +22,7 @@ public class LevelUpCapacity
     public SpellEffectScriptables passif;
 }
 
-[CreateAssetMenu(fileName = "New Level up Table", menuName = "Create New LevelUp Table")]
+[CreateAssetMenu(fileName = "New Level up Table", menuName = "Character/Table Niveaux")]
 public class CharacterLevelUpTable : ScriptableObject
 {
     [SerializeField]

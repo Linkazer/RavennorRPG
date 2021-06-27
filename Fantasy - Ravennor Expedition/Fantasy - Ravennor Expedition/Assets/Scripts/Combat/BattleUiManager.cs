@@ -41,7 +41,6 @@ public class BattleUiManager : MonoBehaviour
 
     [Header("Ecrans de fin")]
     [SerializeField]
-    private GameObject winScreen;
     private GameObject looseScreen;
 
     [Header("Information des sorts")]
@@ -185,16 +184,6 @@ public class BattleUiManager : MonoBehaviour
         PlayerBattleControllerManager.instance.ChooseSpell(index);
     }
 
-    public void TestFonct()
-    {
-        Debug.Log("Yess");
-    }
-
-    public void WinningScreen()
-    {
-        winScreen.SetActive(true);
-    }
-
     public void LoosingScreen()
     {
         looseScreen.SetActive(true);
@@ -244,11 +233,17 @@ public class BattleUiManager : MonoBehaviour
 
         for (int i = 0; i < possibleAction; i++)
         {
-            actionPoint[i].SetActive(true);
+            if (i < actionPoint.Count)
+            {
+                actionPoint[i].SetActive(true);
+            }
         }
         for (int i = 0; i < possibleAttack; i++)
         {
-            baseActionPoint[i].SetActive(true);
+            if (i < baseActionPoint.Count)
+            {
+                baseActionPoint[i].SetActive(true);
+            }
         }
     }
 

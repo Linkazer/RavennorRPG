@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Lila_BaseAttack
   m_EditorClassIdentifier: 
-  nom: Faucheuse
-  icon: {fileID: 21300000, guid: 674a1268526e0224d807dcae21c8ed63, type: 3}
-  description: 
+  nom: Coup de faux
+  icon: {fileID: 21300000, guid: bce51000eeb674848aea01ab9e2cee4d, type: 3}
+  description: "Inflige 1D6 (+1D6 tous les 2 niveaux) d\xE9g\xE2ts physiques."
   spellType: 0
   attackType: 0
-  actionLevel: 0
+  actionLevel: 1
   maanaCost: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
   target: 1
   castTarget: 2
+  castOnSelf: 0
   range: 15
   activeZoneCases:
   - {x: 0, y: 0}
@@ -32,19 +33,19 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: a2ef13b37a2cb9f408aea61305a2142f, type: 3}
-  caseFeedback: {fileID: 21300000, guid: a69181bc1e4a71443adae3ec225d49e1, type: 3}
+  caseSprite: {fileID: 21300000, guid: 6139337d0ff2b324ab7fadcc05562b64, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
   hasPowerEffect: 1
   dices:
   - wantedDice: 1
     numberOfDice: 1
-    wantedDamage: 2
-  noBonusSpell: 1
-  damageType: 2
+    wantedDamage: 1
+  noBonusSpell: 0
+  damageType: 1
   diceByLevelBonus: 0.5
-  diceByLevel: 0
+  diceByLevel: 1
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

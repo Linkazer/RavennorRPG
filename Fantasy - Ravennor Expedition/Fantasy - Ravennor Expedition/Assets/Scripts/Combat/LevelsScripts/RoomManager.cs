@@ -60,6 +60,18 @@ public class RoomManager : MonoBehaviour
         openRoomIndexes = new List<int>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            BattleManager.instance.EndBattle(false);
+        }
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            BattleManager.instance.EndBattle(true);
+        }
+    }
+
     [ContextMenu("Set Chara positions")]
     protected void SetPositions()
     {
@@ -83,21 +95,6 @@ public class RoomManager : MonoBehaviour
     {
         
     }
-
-    /*public void SetBossChara(List<RuntimeBattleCharacter> characters)
-    {
-        if (bossChara != null)
-        {
-            foreach (RuntimeBattleCharacter chara in characters)
-            {
-                if (chara.GetCharacterDatas().nom == bossToKill.nom)
-                {
-                    bossChara = chara;
-                    break;
-                }
-            }
-        }
-    }*/
 
     public void OpenRoom(int index)
     {

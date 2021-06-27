@@ -16,7 +16,7 @@ public enum EffectType
 public class SpellEffect
 {
     public EffectType type;
-    public ActionTargets possiblesTargets;
+    public ActionTargets possiblesTargets = ActionTargets.All;
     public int value;
     public float scaleByLevel;
     public Dice dicesBonus;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New AI", menuName = "Create New AI Character")]
+[CreateAssetMenu(fileName = "New AI", menuName = "Character/IA Character")]
 public class AiCharacterScriptable : PersonnageScriptables
 {
     [Header("IA")]

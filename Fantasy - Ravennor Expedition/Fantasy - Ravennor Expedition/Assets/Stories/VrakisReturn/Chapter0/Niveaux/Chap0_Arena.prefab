@@ -18791,7 +18791,7 @@ GameObject:
   - component: {fileID: 7560241282882709334}
   - component: {fileID: 2336668606332924307}
   m_Layer: 0
-  m_Name: Chapter0_Arena
+  m_Name: Chap0_Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18885,7 +18885,7 @@ MonoBehaviour:
   - {x: -1.2000002, y: -0.08000004}
   - {x: -1.0400002, y: 0.08000013}
   - {x: -1.0400002, y: -0.23999977}
-  openRoomIndexes: 
+  openRoomIndexes: 00000000
   numberOfEnnemiesToKill: 16
   cameraMaxLeftTop: {x: -0.5, y: 0.5}
   cameraMaxRightBottom: {x: 0.5, y: -0.5}

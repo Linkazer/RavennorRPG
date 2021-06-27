@@ -254,9 +254,13 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            ExitBattle();
-            Debug.Log("Lose");
+            BattleUiManager.instance.LoosingScreen();
         }
+    }
+
+    public void RetryBattle()
+    {
+        RavenorGameManager.instance.LoadBattle();
     }
 
     public void ExitBattle()
@@ -475,6 +479,8 @@ public class BattleManager : MonoBehaviour
             case SpellType.Teleportation:
                 TeleportationSpell(caster, (CharacterActionTeleportation)wantedAction, positionWanted);
                 break;
+            case SpellType.SimpleEffect:
+                break;
         }
     }
 
@@ -483,9 +489,45 @@ public class BattleManager : MonoBehaviour
         DoAction((CharacterActionDirect)currentWantedAction, currentCaster, positionWanted, false);
     }
 
-    public void DoAction(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    private List<Node> GetHitNodes(Vector2 position, Vector2 casterPosition, CharacterActionScriptable spell)
     {
         Vector2 direction = Vector2.one;
+        if (spell.doesFaceCaster)
+        {
+            direction = casterPosition;
+            direction = new Vector2(Grid.instance.NodeFromWorldPoint(position).gridX, Grid.instance.NodeFromWorldPoint(position).gridY) - direction;
+        }
+        List<Vector2Int> spellZone = new List<Vector2Int>();
+        foreach (Vector2Int vect in spell.activeZoneCases)
+        {
+            if (direction.y == 0 && direction.x == 0)
+            {
+                spellZone.Add(new Vector2Int(vect.x, vect.y));
+            }
+            else if (direction.y > 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == direction.y))
+            {
+                spellZone.Add(new Vector2Int(vect.x, vect.y));
+            }
+            else if (direction.x < 0 && (Mathf.Abs(direction.x) > Mathf.Abs(direction.y) || direction.x == -direction.y))
+            {
+                spellZone.Add(new Vector2Int(-vect.y, vect.x));
+            }
+            else if (direction.y < 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == direction.y))
+            {
+                spellZone.Add(new Vector2Int(-vect.x, -vect.y));
+            }
+            else
+            {
+                spellZone.Add(new Vector2Int(vect.y, -vect.x));
+            }
+        }
+
+        return Grid.instance.GetZoneFromPosition(position, spellZone);
+    }
+
+    public void DoAction(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    {
+       /* Vector2 direction = Vector2.one;
         if (wantedAction.doesFaceCaster)
         {
             direction = new Vector2(caster.currentNode.gridX, caster.currentNode.gridY);
@@ -514,15 +556,9 @@ public class BattleManager : MonoBehaviour
             {
                 spellZone.Add(new Vector2Int(vect.y, -vect.x));
             }
-        }
-
-        List<Node> hitNodes = Grid.instance.GetZoneFromPosition(positionWanted, spellZone);
-
-        /*if((!hitNodes[0].hasCharacterOn && wantedAction.castTarget != ActionTargets.All) && !(IsTargetAvailable(caster.GetTeam(),hitNodes[0].chara.GetTeam(),wantedAction.castTarget, caster.GetInvocations().Contains(hitNodes[0].chara))))
-        {
-            EndCurrentActionWithDelay(0.2f);
-            return;
         }*/
+
+        List<Node> hitNodes = GetHitNodes(positionWanted, new Vector2(caster.currentNode.gridX, caster.currentNode.gridY), wantedAction);
 
         if(wantedAction.zoneSprite != null)
         {
@@ -543,8 +579,6 @@ public class BattleManager : MonoBehaviour
                 BattleAnimationManager.instance.AddZoneEffect(positionWanted, eff.spriteZone, caster, eff.duree, eff.effet);
             }
         }
-
-        //wantedAction.SpecialAction();
 
         if(wantedAction.wantedEffectOnCaster.Count>0)
         {
@@ -612,6 +646,11 @@ public class BattleManager : MonoBehaviour
         {
             EndCurrentActionWithDelay(0.2f);
         }
+    }
+
+    private void UseEffectAction(CharacterActionScriptable wantedAction)
+    {
+
     }
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
@@ -928,25 +967,29 @@ public class BattleManager : MonoBehaviour
 
     public void ApplyEffects(SpellEffectScriptables wantedEffect, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
+        if (wantedEffect.effet.wantedEffectToTrigger == null || target.ContainsEffect(wantedEffect.effet.wantedEffectToTrigger.effet))
+        {
+            RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
             wantedEffect.effet,
             wantedEffect.duree,
             caster
             );
 
-        foreach (SpellEffect eff in runEffet.effet.effects)
-        {
-            SetEffectValues(eff, caster);
+            foreach (SpellEffect eff in runEffet.effet.effects)
+            {
+                SetEffectValues(eff, caster);
+            }
+
+
+            target.AddEffect(runEffet);
+
+            foreach (SpellEffectScriptables eff in wantedEffect.bonusToCancel)
+            {
+                target.RemoveEffect(eff);
+            }
+
+            ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
         }
-
-        target.AddEffect(runEffet);
-
-        foreach(SpellEffectScriptables eff in wantedEffect.bonusToCancel)
-        {
-            target.RemoveEffect(eff);
-        }
-
-        ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
     }
 
     public void SetEffectValues(SpellEffect effet, RuntimeBattleCharacter caster)
@@ -983,10 +1026,16 @@ public class BattleManager : MonoBehaviour
 
     public void ResolveEffect(SpellEffectCommon effect, RuntimeBattleCharacter target, EffectTrigger triggerWanted)
     {
-
         foreach (SpellEffect eff in effect.effects)
         {
-            if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
+            /*if (triggerWanted == EffectTrigger.Apply)
+            {
+                if (eff.trigger == EffectTrigger.Apply || (eff.trigger == EffectTrigger.HasEffect && target.ContainsEffect(effect.wantedEffectToTrigger.effet)))
+                {
+                    target.ApplyEffect(eff);
+                }
+            }
+            else*/ if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
             {
                 target.ApplyEffect(eff);
             }
@@ -994,17 +1043,19 @@ public class BattleManager : MonoBehaviour
 
         foreach (SpellEffectAction effAct in effect.actionEffect)
         {
-            if (effAct.trigger == triggerWanted)
+            /*if (triggerWanted == EffectTrigger.Apply)
+            {
+                if (effAct.trigger == EffectTrigger.Apply || (effAct.trigger == EffectTrigger.HasEffect && target.ContainsEffect(effect.wantedEffectToTrigger.effet)))
+                {
+                    LaunchAction(effAct.spellToUse, effAct.caster, target.transform.position, true);
+                }
+            }
+            else*/ if (effAct.trigger == triggerWanted)
             {
                 LaunchAction(effAct.spellToUse, effAct.caster, target.transform.position, true);
             }
         }
     }
-
-    /*public void ApplyTimeEffect(SpellEffectCommon effect, RuntimeBattleCharacter target)
-    {
-        //...
-    }*/
 
     private void InvokeAlly(RuntimeBattleCharacter caster, CharacterActionInvocation spell, Vector2 wantedPosition)
     {
@@ -1302,7 +1353,7 @@ public class BattleManager : MonoBehaviour
                 persoList[lowIndex] = persoList[j];
                 persoList[j] = tempChara;
             }
-            else if(persoList[j].GetMaxHp < hpPivot)
+            else if(array[j] == pivot && persoList[j].GetMaxHp < hpPivot)
             {
                 lowIndex++;
 

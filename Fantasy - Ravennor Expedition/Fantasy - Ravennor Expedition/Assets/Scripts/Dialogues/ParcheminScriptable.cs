@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Parchemin dialogue", menuName = "Create Parchemin Story")]
+[CreateAssetMenu(fileName = "New Parchemin dialogue", menuName = "Histoire/Parchemin de niveaux")]
 public class ParcheminScriptable : ScriptableObject
 {
     [TextArea(5, 25)]

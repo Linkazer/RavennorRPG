@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Damage Spell", menuName = "Spell/Create Damage Spell")]
+[CreateAssetMenu(fileName = "New Damage Spell", menuName = "Spell/Damage Spell")]
 public class CharacterActionDirect : CharacterActionScriptable
 {
     [Header("Dégâts")]
@@ -23,9 +23,6 @@ public class CharacterActionDirect : CharacterActionScriptable
     public float bonusByScale;
 
     public float lifeStealPercent = 0;
-
-    [Header("Effets")]
-    public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
 
     public CharacterActionDirect()
     {

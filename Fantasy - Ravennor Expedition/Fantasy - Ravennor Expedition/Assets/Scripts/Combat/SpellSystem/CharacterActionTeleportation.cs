@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Teleportation Spell", menuName = "Spell/Create Teleportation Spell")]
+[CreateAssetMenu(fileName = "New Teleportation Spell", menuName = "Spell/Teleportation Spell")]
 public class CharacterActionTeleportation : CharacterActionScriptable
 {
     [Header("Teleportation")]
@@ -10,9 +10,6 @@ public class CharacterActionTeleportation : CharacterActionScriptable
     public bool isJump;
 
     public CharacterActionDirect jumpEffect, landEffect;
-
-    [Header("Effets")]
-    public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
 
     public CharacterActionTeleportation()
     {

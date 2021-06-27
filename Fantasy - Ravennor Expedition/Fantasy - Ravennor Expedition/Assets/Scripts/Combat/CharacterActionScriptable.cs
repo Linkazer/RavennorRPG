@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SpellType { Direct, Projectile, Deplacement, Invocation, Teleportation, DamagingTeleportation}
+public enum SpellType { Direct, Projectile, Deplacement, Invocation, Teleportation, DamagingTeleportation, SimpleEffect}
 
 public enum AttackType { Force, Dexterite, PuissMagique}
 
@@ -32,9 +32,9 @@ public class CharacterActionScriptable : ScriptableObject
     public ActionIncantation incantationTime;
     public bool isWeaponBased;
 
-    public ActionTargets target;
+    public ActionTargets target = ActionTargets.All;
     public ActionTargets castTarget = ActionTargets.All;
-    protected int targetNumber;
+    public bool castOnSelf;
 
     [Header("Forme")]
     //public Vector2 range;
@@ -58,6 +58,9 @@ public class CharacterActionScriptable : ScriptableObject
 
     [SerializeField]
     private int maxCooldown = 0;
+
+    [Header("Effets")]
+    public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
 
     public CharacterActionScriptable()
     {
