@@ -9,7 +9,8 @@ public enum EffectType
     Initiative, Defense, Esquive, ChanceToucheForce, ChanceToucheDexterite, ChanceToucheMagic,
     HealApplied, HealRecieved, MaanaBonus,
     CriticalChance, CriticalMultiplier,
-    PhysicalArmor, MagicalArmor
+    PhysicalArmor, MagicalArmor,
+    ActionBonus, AttackBonus
 }
 
 [System.Serializable]

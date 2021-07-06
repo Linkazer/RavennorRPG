@@ -282,7 +282,7 @@ public class PlayerBattleManager : MonoBehaviour
     {
         if (Grid.instance.NodeFromWorldPoint(newPosition).usableNode)
         {
-            BattleManager.instance.MoveCharacter(currentCharacter, newPosition);
+            BattleManager.instance.MoveCharacter(currentCharacter, newPosition, false);
             currentCharacter.movementLeft -= Grid.instance.NodeFromWorldPoint(newPosition).gCost;
         }
     }

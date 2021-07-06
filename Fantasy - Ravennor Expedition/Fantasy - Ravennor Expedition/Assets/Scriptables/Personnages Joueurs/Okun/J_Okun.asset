@@ -25,23 +25,23 @@ MonoBehaviour:
   baseHps: 10
   hpByLevel: 8
   baseMoveSpeed: 25
+  startDefense: 0
   baseMaana: 2
   force: 2
   constitution: 2
-  agilite: 2
-  intelligence: 1
+  agilite: 1
   perception: 1
-  charisme: 0
   puissMag: 1
+  charisme: 0
+  intelligence: 0
   actionBonus: 0
   baseAttackBonus: 0
   levelUpTable: {fileID: 0}
   learnedSpells:
-  - {fileID: 11400000, guid: 9daf92d35e513a64d98b5b75248d3359, type: 2}
-  - {fileID: 11400000, guid: a58b3cc9e7eed47488e7f0f7379d8b2c, type: 2}
-  - {fileID: 11400000, guid: 3d7a3143bfb9ce947a4a70c6c8a17eb6, type: 2}
+  - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
+  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
   sortsDisponibles:
-  - {fileID: 11400000, guid: 34e02775f172d684da5c6fecd411c318, type: 2}
-  - {fileID: 11400000, guid: 9daf92d35e513a64d98b5b75248d3359, type: 2}
-  - {fileID: 11400000, guid: a58b3cc9e7eed47488e7f0f7379d8b2c, type: 2}
+  - {fileID: 11400000, guid: 2edd2558afea45e4e8333f0816ab0650, type: 2}
+  - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
+  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
   passifs: []

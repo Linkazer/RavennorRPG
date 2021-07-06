@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: J_Lila
   m_EditorClassIdentifier: 
   nom: Lila
-  icon: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
-  portrait: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
-  spritePerso: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
+  icon: {fileID: 21300000, guid: e7e7e533d680f1f45b689dd32a0235cf, type: 3}
+  portrait: {fileID: 21300000, guid: e7e7e533d680f1f45b689dd32a0235cf, type: 3}
+  spritePerso: {fileID: 21300000, guid: e7e7e533d680f1f45b689dd32a0235cf, type: 3}
   spriteBras: {fileID: 21300000, guid: d255138b167195b459492db886286c82, type: 3}
   brasPosition: 0
   description: "Lila est une jeune elfe ayant surv\xE9cut plusieurs ann\xE9es dans
@@ -25,14 +25,15 @@ MonoBehaviour:
   baseHps: 10
   hpByLevel: 6
   baseMoveSpeed: 25
+  startDefense: 0
   baseMaana: 4
-  force: 1
-  constitution: 1
-  agilite: 2
-  intelligence: 2
+  force: 2
+  constitution: 2
+  agilite: 1
   perception: 1
+  puissMag: 1
   charisme: 0
-  puissMag: 2
+  intelligence: 0
   actionBonus: 0
   baseAttackBonus: 0
   levelUpTable: {fileID: 0}

@@ -25,14 +25,15 @@ MonoBehaviour:
   baseHps: 10
   hpByLevel: 6
   baseMoveSpeed: 25
+  startDefense: 0
   baseMaana: 2
   force: 1
-  constitution: 2
+  constitution: 1
   agilite: 2
-  intelligence: 1
-  perception: 1
+  perception: 2
+  puissMag: 1
   charisme: 0
-  puissMag: 2
+  intelligence: 0
   actionBonus: 0
   baseAttackBonus: 0
   levelUpTable: {fileID: 0}

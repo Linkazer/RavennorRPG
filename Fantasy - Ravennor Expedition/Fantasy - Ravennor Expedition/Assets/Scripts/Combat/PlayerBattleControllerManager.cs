@@ -115,6 +115,7 @@ public class PlayerBattleControllerManager : MonoBehaviour
 
     public void SetPlayerTurn(bool state)
     {
+        BattleUiManager.instance.SetPlayerUI(state);
         isPlayerTurn = state;
     }
 

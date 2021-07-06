@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lila_AppelProtectrice
   m_EditorClassIdentifier: 
   nom: "Appel d'\xE2mes protretectrices."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: d19482ae738bbcf4ca1c868c86902798, type: 3}
   description: "Convoque temporairement une \xE2me afin de protoger la cible, ce
     qui lui offre un bonus de D\xE9fense de 2 (+1 tous les niveaux) pendant 3 tours."
   spellType: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
-  hasViewOnTarget: 0
+  hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
@@ -38,6 +38,10 @@ MonoBehaviour:
   caseFeedback: {fileID: 21300000, guid: a69181bc1e4a71443adae3ec225d49e1, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
+  wantedEffectOnTarget:
+  - {fileID: 11400000, guid: 2929c572ebf51b34f84550cd0382b78e, type: 2}
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
   hasPowerEffect: 0
   dices: []
   noBonusSpell: 0
@@ -54,7 +58,3 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget:
-  - {fileID: 11400000, guid: 2929c572ebf51b34f84550cd0382b78e, type: 2}
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

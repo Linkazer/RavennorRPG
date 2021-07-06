@@ -77,7 +77,7 @@ public class BattleAnimationManager : MonoBehaviour
         StartCoroutine(ProjectileMovement(toShow[0], endPos, speed));
     }
 
-    public void AddZoneEffect(Vector2 position, Sprite zoneSprite, RuntimeBattleCharacter caster, int turnNeeded, SpellEffectCommon newEffet)
+    public void AddZoneEffect(Vector2 position, Sprite zoneSprite, RuntimeBattleCharacter caster, int turnNeeded, RuntimeSpellEffect newEffet)
     {
         List<SpellObject> toShow = new List<SpellObject>();
         toShow.Add(GetSpellsObject());

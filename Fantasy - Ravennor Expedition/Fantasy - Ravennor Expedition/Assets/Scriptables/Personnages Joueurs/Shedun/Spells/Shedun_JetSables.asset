@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
+  m_Name: Shedun_JetSables
+  m_EditorClassIdentifier: 
+  nom: Jet de sables
+  icon: {fileID: 21300000, guid: 155642351525a3d41b91316c8aa388d6, type: 3}
+  description: "Inflige 1D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts magiques et applique
+    \"Aveugl\xE9\" \xE0 la cible."
+  spellType: 0
+  attackType: 2
+  actionLevel: 1
+  maanaCost: 1
+  maxUtilisation: -1
+  incantationTime: 1
+  isWeaponBased: 0
+  target: 1
+  castTarget: 2
+  castOnSelf: 0
+  range: 35
+  activeZoneCases:
+  - {x: 0, y: 0}
+  doesFaceCaster: 0
+  hasViewOnTarget: 1
+  projectile: {fileID: 0}
+  speed: 0
+  zoneSprite: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: b58e2c72e18b2d640b7f2357833a63d2, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 678f31552fc4b1a45bae0ee64aba1e23, type: 3}
+  soundToPlay: {fileID: 0}
+  maxCooldown: 0
+  wantedEffectOnTarget:
+  - {fileID: 11400000, guid: 4ea8a541df8fffa4197784fd9894fafc, type: 2}
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
+  hasPowerEffect: 1
+  dices:
+  - wantedDice: 0
+    numberOfDice: 1
+    wantedDamage: 2
+  noBonusSpell: 0
+  damageType: 2
+  diceByLevelBonus: 0.5
+  diceByLevel: 0
+  autoCritical: 0
+  scaleOrigin: 0
+  wantedScaleEffect: {fileID: 0}
+  scalingDices:
+    wantedDice: 0
+    numberOfDice: 0
+    wantedDamage: 0
+  diceByScale: 0
+  bonusByScale: 0
+  lifeStealPercent: 0

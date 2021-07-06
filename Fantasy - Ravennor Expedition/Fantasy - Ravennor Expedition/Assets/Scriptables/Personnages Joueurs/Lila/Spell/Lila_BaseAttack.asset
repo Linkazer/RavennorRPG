@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lila_BaseAttack
   m_EditorClassIdentifier: 
   nom: Coup de faux
-  icon: {fileID: 21300000, guid: bce51000eeb674848aea01ab9e2cee4d, type: 3}
+  icon: {fileID: 21300000, guid: f06ecb4d8ee8c954ba2cf176f7d95624, type: 3}
   description: "Inflige 1D6 (+1D6 tous les 2 niveaux) d\xE9g\xE2ts physiques."
   spellType: 0
   attackType: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
-  hasViewOnTarget: 0
+  hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
@@ -37,6 +37,9 @@ MonoBehaviour:
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
   hasPowerEffect: 1
   dices:
   - wantedDice: 1
@@ -56,6 +59,3 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

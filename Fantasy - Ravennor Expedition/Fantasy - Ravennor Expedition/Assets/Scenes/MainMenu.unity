@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a3630bc7521f4f34a9ccaa692edfb787, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8c8dc89393e77548b1478caa8af75bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93e16542554d9f4d8bf59bd66833ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextBattle: {fileID: 7560241282882709333, guid: b23ea81a10a11d344a320a4d5a70c907, type: 3}
+  nextBattle: {fileID: 7560241282882709333, guid: 5e60e57017f561e4aa7c5e69d90affcf, type: 3}
   playerPersos:
   - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
   - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}

@@ -16,11 +16,11 @@ public class Pathfinding : MonoBehaviour {
 	}
 	
 	
-	public void StartFindPath(Vector3 startPos, Vector3 targetPos, int maxDistance) {
-		StartCoroutine(FindPath(startPos,targetPos, maxDistance));
+	public void StartFindPath(Vector3 startPos, Vector3 targetPos, int maxDistance, bool isForNextTurn) {
+		StartCoroutine(FindPath(startPos,targetPos, maxDistance, isForNextTurn));
 	}
 	
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos, int maxDistance) {
+	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos, int maxDistance, bool isForNextTurn) {
 
 		Vector3[] waypoints = new Vector3[0];
 		bool pathSuccess = false;
@@ -29,7 +29,7 @@ public class Pathfinding : MonoBehaviour {
 		Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
 		if (targetNode.walkable) {
-			pathSuccess = SetAllNodes(startNode, targetNode);
+			pathSuccess = SetAllNodes(startNode, targetNode, isForNextTurn);
 		}
 		yield return null;
 		if (pathSuccess) {
@@ -93,7 +93,7 @@ public class Pathfinding : MonoBehaviour {
 		}
 	}*/
 
-	public bool SetAllNodes(Node startNode, Node targetNode)
+	public bool SetAllNodes(Node startNode, Node targetNode, bool isForNextTurn)
 	{
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 		HashSet<Node> closedSet = new HashSet<Node>();
@@ -106,13 +106,14 @@ public class Pathfinding : MonoBehaviour {
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-				if ((!neighbour.walkable || (neighbour != targetNode && neighbour.HasCharacterOn)) || closedSet.Contains(neighbour))
+				if ((!neighbour.walkable || (!isForNextTurn && neighbour != targetNode && neighbour.HasCharacterOn)) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
 
-				if (targetNode != null && currentNode == targetNode)
+				if (targetNode != null && neighbour == targetNode)
 				{
+					neighbour.parent = currentNode;
 					return true;
 				}
 

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: "Br\xFBlure"
-    spr: {fileID: 21300000, guid: a6137f331c6f4b445a12fac8a8f6c5c7, type: 3}
+    spr: {fileID: 21300000, guid: 564a693cb30d7134c9e8f1d0f709c822, type: 3}
     description: "Inflige 1D4 (+1D4 tous les 2 niveaux du lanceur) d\xE9g\xE2ts magique
       au d\xE9but du tour."
+    wantedEffectToTrigger: {fileID: 0}
     maxStack: 3
     effects: []
     actionEffect:
@@ -30,4 +31,4 @@ MonoBehaviour:
   isMalus: 0
   bonusToCancel: []
   spriteZone: {fileID: 0}
-  spriteCase: {fileID: 0}
+  spriteCase: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}

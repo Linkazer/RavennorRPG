@@ -474,7 +474,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         int physicalDamage = 0;
         int brutDamage = 0;
 
-        string damageFeedback = "", phyArmorFeedback = "", magArmorFeedback = "";
+        string damageFeedback = "";
         int dmg = 0;
 
         foreach(Dice d in damageDices)
@@ -533,7 +533,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         if (magicalDamage > 0 && currentScriptable.GetMagicalArmor() > 0)
         {
-            magArmorFeedback += ("L'armure magique de " + name + " réduit une partie des dégâts.");
+            BattleDiary.instance.AddText("L'armure magique de " + name + " réduit les dégâts magiques de " + currentScriptable.GetMagicalArmor().ToString() + ".");
             if (currentScriptable.GetMagicalArmor() <= magicalDamage)
             {
                 magicalDamage -= currentScriptable.GetMagicalArmor();
@@ -545,7 +545,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
         if (physicalDamage > 0 && currentScriptable.GetPhysicalArmor() > 0)
         {
-            phyArmorFeedback += ("L'armure de " + name + " réduit une partie des dégâts.");
+            BattleDiary.instance.AddText("L'armure de " + name + " réduit les dégâts physiques de " + currentScriptable.GetPhysicalArmor().ToString() + ".");
             if (currentScriptable.GetPhysicalArmor() <= physicalDamage)
             {
                 physicalDamage -= currentScriptable.GetPhysicalArmor();
@@ -584,8 +584,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
             Debug.Log(name + " a pris " + damageText + " (" + damageFeedback + ")");
             BattleDiary.instance.AddText(name + " a pris " + damageText + " (" + damageFeedback + ")");
-            BattleDiary.instance.AddText(phyArmorFeedback);
-            BattleDiary.instance.AddText(magArmorFeedback);
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
@@ -659,7 +657,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
             currentHps += healAmount + bonusAmount;
 
-            Mathf.Clamp(currentHps, 0, currentScriptable.GetMaxHps());
+            if(currentHps > currentScriptable.GetMaxHps())
+            {
+                currentHps = currentScriptable.GetMaxHps();
+            }
 
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
@@ -672,7 +673,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void AddEffect(RuntimeSpellEffect runEffect)
     {
-        if (appliedEffects.Contains(runEffect))
+        if (ContainsEffect(runEffect.effet))
         {
             foreach (RuntimeSpellEffect eff in appliedEffects)
             {

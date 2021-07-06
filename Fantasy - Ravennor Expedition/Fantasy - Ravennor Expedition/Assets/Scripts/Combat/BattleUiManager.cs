@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class BattleUiManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class BattleUiManager : MonoBehaviour
 
     [SerializeField]
     private GameObject mainBattleUI;
+    [SerializeField]
+    private List<EventTrigger> playerButtons;
 
     [SerializeField]
     private List<Image> turnImages;
@@ -75,6 +78,14 @@ public class BattleUiManager : MonoBehaviour
     public void SetUI()
     {
         mainBattleUI.SetActive(true);
+    }
+
+    public void SetPlayerUI(bool state)
+    {
+        foreach(EventTrigger e in playerButtons)
+        {
+            e.enabled = state;
+        }
     }
 
     public void SetNewTurn(int turnIndex, List<RuntimeBattleCharacter> roundList)

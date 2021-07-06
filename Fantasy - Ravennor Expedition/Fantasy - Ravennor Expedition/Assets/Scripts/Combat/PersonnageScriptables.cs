@@ -27,7 +27,7 @@ public class PersonnageScriptables : ScriptableObject
     [SerializeField]
     private int force;
     [SerializeField]
-    private int constitution, agilite, intelligence, perception, charisme, puissMag;
+    private int constitution, agilite, perception, puissMag, charisme, intelligence;
 
     [Header("Caractéristiques de Combat - IA")]
     //[SerializeField]
@@ -498,6 +498,9 @@ public class PersonnageScriptables : ScriptableObject
                 break;
             case EffectType.MagicalArmor:
                 bonusMagicalArmor += value;
+                break;
+            case EffectType.ActionBonus:
+                actionBonus += value;
                 break;
             //Manque Critical Damage/Physical et magical armor
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nor_CoupTraitre
   m_EditorClassIdentifier: 
   nom: Coup en traitre
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: aa7afa16803c0414f9a76e4f4e5b79b9, type: 3}
   description: Nor utilise ses dagues en visant un point sensible de la cible, lui
     infligeant un coup critique automatique.
   spellType: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
-  hasViewOnTarget: 0
+  hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
@@ -38,6 +38,9 @@ MonoBehaviour:
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
   hasPowerEffect: 1
   dices:
   - wantedDice: 0
@@ -57,6 +60,3 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

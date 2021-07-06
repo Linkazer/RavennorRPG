@@ -27,14 +27,14 @@ MonoBehaviour:
   baseMoveSpeed: 25
   startDefense: 0
   baseMaana: 4
-  force: 2
+  force: 1
   constitution: 1
   agilite: 1
-  intelligence: 1
   perception: 2
-  charisme: 0
   puissMag: 2
-  actionBonus: 5
+  charisme: 0
+  intelligence: 0
+  actionBonus: 0
   baseAttackBonus: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   learnedSpells:

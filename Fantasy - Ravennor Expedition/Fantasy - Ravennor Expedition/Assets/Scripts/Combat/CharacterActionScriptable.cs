@@ -41,8 +41,8 @@ public class CharacterActionScriptable : ScriptableObject
     public int range;
     //public bool straightLine, diagonal;
     public List<Vector2Int> activeZoneCases = new List<Vector2Int>();
-    public bool doesFaceCaster;
-    public bool hasViewOnTarget;
+    public bool doesFaceCaster = true;
+    public bool hasViewOnTarget = true;
     [Header("Projectile")]
     public Sprite projectile;
     public float speed;

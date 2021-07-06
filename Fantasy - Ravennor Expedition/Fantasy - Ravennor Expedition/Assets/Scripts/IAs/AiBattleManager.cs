@@ -59,7 +59,7 @@ public class AiBattleManager : MonoBehaviour
                 if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
                     //Debug.Log(currentChara + " move for action");
-                    BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition);
+                    BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
                     currentChara.movementLeft -= nodeToMoveTo.gCost;
                 }
                 else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) <= wantedAction.range))
@@ -89,7 +89,7 @@ public class AiBattleManager : MonoBehaviour
                     if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                     {
                         //Debug.Log(" Movement Left Moving : " + nodeToMoveTo.worldPosition + " != " + currentChara.currentNode.worldPosition);
-                        BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition);
+                        BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
                         currentChara.movementLeft -= nodeToMoveTo.gCost;
                     }
                     else

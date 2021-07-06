@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6124c6608535e4cafe374448867c2a, type: 3}
+  m_Name: Effect_Aveugle
+  m_EditorClassIdentifier: 
+  effet:
+    nom: "Aveugl\xE9"
+    spr: {fileID: 21300000, guid: 155642351525a3d41b91316c8aa388d6, type: 3}
+    description: "R\xE9duit les Jet d'attaques de 2 (+1 par niveau du lanceur) Work
+      in progress : (et emp\xEAche de lancer des attaques d'opportunit\xE9s)"
+    wantedEffectToTrigger: {fileID: 0}
+    maxStack: 1
+    effects:
+    - type: 11
+      possiblesTargets: 2
+      value: 2
+      scaleByLevel: 1
+      dicesBonus:
+        wantedDice: 0
+        numberOfDice: 0
+        wantedDamage: 0
+      trigger: 0
+      caster: {fileID: 0}
+    actionEffect: []
+    affliction: 0
+  nature: 0
+  duree: 2
+  isMalus: 0
+  bonusToCancel: []
+  spriteZone: {fileID: 0}
+  spriteCase: {fileID: 0}

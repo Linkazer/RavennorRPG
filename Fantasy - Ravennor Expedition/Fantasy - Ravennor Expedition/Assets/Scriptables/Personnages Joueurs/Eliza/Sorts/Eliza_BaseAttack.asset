@@ -12,36 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Eliza_BaseAttack
   m_EditorClassIdentifier: 
-  nom: 
-  icon: {fileID: 0}
-  description: 
+  nom: Flamiche
+  icon: {fileID: 21300000, guid: 4caeb65da49fb594aa7d56bb54471656, type: 3}
+  description: "Inflige 1D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts magiques."
   spellType: 0
-  attackType: 0
+  attackType: 2
   actionLevel: 0
   maanaCost: 0
   maxUtilisation: -1
-  incantationTime: 0
+  incantationTime: 1
   isWeaponBased: 0
-  target: 0
+  target: 1
   castTarget: 2
   castOnSelf: 0
-  range: 0
+  range: 35
   activeZoneCases:
   - {x: 0, y: 0}
-  doesFaceCaster: 0
-  hasViewOnTarget: 0
+  doesFaceCaster: 1
+  hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 0}
-  caseFeedback: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: af51ce6d9e87a2743a58c737d47c4c7f, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
   hasPowerEffect: 1
-  dices: []
+  dices:
+  - wantedDice: 0
+    numberOfDice: 1
+    wantedDamage: 2
   noBonusSpell: 0
-  damageType: 0
-  diceByLevelBonus: 0
+  damageType: 2
+  diceByLevelBonus: 0.5
   diceByLevel: 0
   autoCritical: 0
   scaleOrigin: 0
@@ -53,6 +59,3 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

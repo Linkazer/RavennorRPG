@@ -18,7 +18,7 @@ public class SpellObject : MonoBehaviour
     [SerializeField]
     private AffichageSprites spriteAffichage;
 
-    private SpellEffectCommon effet;
+    private RuntimeSpellEffect effet;
 
     [SerializeField]
     private AudioSource audioSource;
@@ -52,7 +52,7 @@ public class SpellObject : MonoBehaviour
         SetPosition(position);
     }
 
-    public void SetCaster(RuntimeBattleCharacter newCaster, int turn, SpellEffectCommon newEffet)
+    public void SetCaster(RuntimeBattleCharacter newCaster, int turn, RuntimeSpellEffect newEffet)
     {
         effet = newEffet;
         turnLeft = turn;
@@ -81,7 +81,7 @@ public class SpellObject : MonoBehaviour
             {
                 RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
 
-                BattleManager.instance.ResolveEffect(effet, transform.position, EffectTrigger.BeginTurn, 1);
+                BattleManager.instance.ResolveEffect(effet.effet, transform.position, EffectTrigger.BeginTurn, 1);
 
                 /*if (effet.possiblesTargets == ActionTargets.All || (effet.possiblesTargets == ActionTargets.Ennemies && chara.GetTeam() != effectCaster.GetTeam()) || (effet.possiblesTargets == ActionTargets.SelfAllies && chara.GetTeam() == effectCaster.GetTeam()))
                 {

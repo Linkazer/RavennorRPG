@@ -10,39 +10,46 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: New Damage Spell
+  m_Name: Okun_BaseAttack
   m_EditorClassIdentifier: 
-  nom: 
-  icon: {fileID: 0}
-  description: 
+  nom: "Ep\xE9e batarde"
+  icon: {fileID: 21300000, guid: c49383ea1aa2bf74bb919dcc4d089959, type: 3}
+  description: "Inflige 1D6 (+1D6 tous les 2 niveaux) d\xE9g\xE2ts physiques \xE0
+    la cible."
   spellType: 0
   attackType: 0
-  actionLevel: 0
+  actionLevel: 1
   maanaCost: 0
   maxUtilisation: -1
-  incantationTime: 0
-  isWeaponBased: 0
-  target: 0
+  incantationTime: 1
+  isWeaponBased: 1
+  target: 1
   castTarget: 2
   castOnSelf: 0
-  range: 0
+  range: 15
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
-  hasViewOnTarget: 0
+  hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 0}
-  caseFeedback: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: 41b857560026c7f47b0e38812e79fdff, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
   hasPowerEffect: 1
-  dices: []
+  dices:
+  - wantedDice: 1
+    numberOfDice: 1
+    wantedDamage: 1
   noBonusSpell: 0
-  damageType: 0
-  diceByLevelBonus: 0
-  diceByLevel: 0
+  damageType: 1
+  diceByLevelBonus: 0.5
+  diceByLevel: 1
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
@@ -53,6 +60,3 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

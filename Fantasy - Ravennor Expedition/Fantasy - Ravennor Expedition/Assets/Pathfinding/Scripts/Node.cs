@@ -49,13 +49,7 @@ public class Node : IHeapItem<Node> {
         {
 			if (BattleManager.instance.GetCurrentTurnChara() == casterList[i])
 			{
-				Debug.Log("New Effect application");
-
-				if (HasCharacterOn)
-				{
-					BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, EffectTrigger.BeginTurn, effectsOnNode[i].currentStack);
-				}
-
+				Debug.Log("Update Effect time");
 				if (effectsOnNode[i].currentCooldown >= 0)
 				{
 					effectsOnNode[i].currentCooldown--;
@@ -68,7 +62,13 @@ public class Node : IHeapItem<Node> {
 					}
 				}
 			}
-        }
+
+			if (HasCharacterOn && BattleManager.instance.GetCurrentTurnChara() == chara)
+			{
+				Debug.Log("New Effect application");
+				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, EffectTrigger.BeginTurn, 1);
+			}
+		}
     }
 
 	public int fCost {
