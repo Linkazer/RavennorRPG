@@ -35,6 +35,10 @@ public class Pathfinding : MonoBehaviour {
 		if (pathSuccess) {
 			waypoints = RetracePath(startNode,targetNode, maxDistance);
 		}
+		if(waypoints.Length <= 0 || waypoints[0] == null)
+        {
+			pathSuccess = false;
+        }
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
 		
 	}
@@ -113,7 +117,9 @@ public class Pathfinding : MonoBehaviour {
 
 				if (targetNode != null && neighbour == targetNode)
 				{
+					neighbour.gCost = currentNode.gCost + GetDistance(currentNode, neighbour);
 					neighbour.parent = currentNode;
+					Debug.Log(currentNode);
 					return true;
 				}
 
@@ -146,16 +152,30 @@ public class Pathfinding : MonoBehaviour {
 		while ((currentNode.gCost > maxDistance || currentNode.HasCharacterOn) && i < 100)
         {
 			i++;
-			currentNode = currentNode.parent;
+			if (currentNode.parent != null)
+			{
+				currentNode = currentNode.parent;
+			}
+			else
+            {
+				break;
+            }
 			//Debug.Log(currentNode.gCost + " + " + currentNode.hCost + " > " + maxDistance);
-        }
+		}
 
 		while (currentNode != startNode)
 		{
-			i++;
-			path.Add(currentNode);
+			if (currentNode.HasCharacterOn && currentNode != endNode)
+			{
+				path = new List<Node>();
+			}
+			else
+			{
+				path.Add(currentNode);
+			}
 			currentNode = currentNode.parent;
 		}
+
 		return path;
 	}
 	
