@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Nor utilise ses dagues en visant un point sensible de la cible, lui
     infligeant un coup critique automatique.
   spellType: 0
-  attackType: 1
+  attackType: 0
   actionLevel: 1
   maanaCost: 1
   maxUtilisation: -1

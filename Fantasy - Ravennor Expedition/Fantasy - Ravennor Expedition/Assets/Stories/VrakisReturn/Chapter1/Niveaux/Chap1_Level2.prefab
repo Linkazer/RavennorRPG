@@ -25492,6 +25492,7 @@ MonoBehaviour:
   - Okun
   - Shedun
   - Vanyaenn
+  - Lila
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: 9b01d169f4f24f846a29c996a74ceb4f, type: 3}
   levelAtEnd: 0
@@ -65454,6 +65455,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.16
       objectReference: {fileID: 0}
+    - target: {fileID: 3081245067297315836, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 3081245067297315837, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: m_Name
       value: Door (1)
@@ -65543,6 +65548,10 @@ PrefabInstance:
     - target: {fileID: 3081245067297315836, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: m_Offset.y
       value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081245067297315836, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 3081245067297315837, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: m_Name

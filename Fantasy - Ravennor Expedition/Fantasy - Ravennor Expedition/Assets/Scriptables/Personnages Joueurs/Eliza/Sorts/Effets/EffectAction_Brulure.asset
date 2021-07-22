@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   spellType: 0
-  attackType: 2
+  attackType: 1
   actionLevel: 1
   maanaCost: 0
   maxUtilisation: -1
@@ -24,6 +24,7 @@ MonoBehaviour:
   isWeaponBased: 0
   target: 2
   castTarget: 2
+  castOnSelf: 0
   range: 0
   activeZoneCases:
   - {x: 0, y: 0}
@@ -36,6 +37,9 @@ MonoBehaviour:
   caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
   hasPowerEffect: 1
   dices:
   - wantedDice: 0
@@ -55,6 +59,3 @@ MonoBehaviour:
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

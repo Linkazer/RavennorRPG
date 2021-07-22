@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "La cible peut faire une action suppl\xE9mentaire lors de son prochain
     tour."
   spellType: 0
-  attackType: 2
+  attackType: 1
   actionLevel: 1
   maanaCost: 2
   maxUtilisation: -1

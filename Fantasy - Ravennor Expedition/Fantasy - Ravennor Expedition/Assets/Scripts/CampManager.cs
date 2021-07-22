@@ -16,10 +16,17 @@ public class CampManager : MonoBehaviour
     private Color nonSelectedColor;
 
     [Header("Character Sheet")]
-    [SerializeField]
-    private List<TextMeshProUGUI> mainStats; //Force; Constitution; Agilité; Intel; Perception; Flux Magique
-    [SerializeField]
-    private TextMeshProUGUI maxHps, maxMaana, meleeTouch, meleeDamage, distTouch, distDamage, magTouch, magDamage, defense, deplacement, initiative, armurePhy, armureMag, chanceCrit, multCrit;
+    [SerializeField] private TextMeshProUGUI maxHps;
+    [SerializeField] private TextMeshProUGUI maxMaana;
+    [SerializeField] private TextMeshProUGUI hitDice;
+    [SerializeField] private TextMeshProUGUI physicalPower;
+    [SerializeField] private TextMeshProUGUI magicalPower;
+    [SerializeField] private TextMeshProUGUI defense;
+    [SerializeField] private TextMeshProUGUI movement;
+    [SerializeField] private TextMeshProUGUI armurePhy;
+    [SerializeField] private TextMeshProUGUI armureMag;
+    [SerializeField] private TextMeshProUGUI chanceCrit;
+    [SerializeField] private TextMeshProUGUI multCrit;
 
     [SerializeField]
     private Image characterPortrait;
@@ -32,56 +39,36 @@ public class CampManager : MonoBehaviour
 
     [Header("Spell Management")]
     [SerializeField]
-    private GameObject spellManagementParent;
-    [SerializeField]
-    private List<Image> knownSpells = new List<Image>(), usedSpells = new List<Image>();
+    private List<Image> knownSpells = new List<Image>();
     [SerializeField]
     private GameObject spellInfo;
     [SerializeField]
     private TextMeshProUGUI spellNom, spellDescription, spellMaana, spellIncantation, spellPortee;
 
     [Header("Level Up")]
-    [SerializeField]
-    private GameObject levelUpParent;
-    //Chara info
-    [SerializeField]
-    private Image lvlPortrait;
-    [SerializeField]
-    private TextMeshProUGUI lvlName;
-    //Stats
-    [SerializeField]
-    private GameObject levelUpStatParent;
-    [SerializeField]
-    private List<TextMeshProUGUI> lvlMainStats; //Force; Constitution; Agilité; Intel; Perception; Flux Magique
-    [SerializeField]
-    private TextMeshProUGUI lvlMaxHps, lvlMaxMaana, lvlMeleeTouch, lvlMeleeDamage, lvlDistTouch, lvlDistDamage, lvlMagTouch, lvlMagDamage, lvlDefense, lvlDeplacement, lvlInitiative, lvlArmurePhy, lvlArmureMag, lvlChanceCrit, lvlMultCrit;
-    private int statToUp = -1;
-    //Spells
-    [SerializeField]
-    private GameObject levelUpSpellParent;
-    [SerializeField]
-    private List<Image> imgUnlockSpells = new List<Image>(), lvlKnownSpells = new List<Image>();
-    [SerializeField]
-    private Image imgWantedNewSpell;
-    private CharacterActionScriptable wantedNewSpell;
-    private List<CharacterActionScriptable> unlockableSpells;
-    //Capacités
-    [SerializeField]
-    private GameObject levelUpCapacityParent;
-    [SerializeField]
-    private List<TextMeshProUGUI> capacityNameDescription;
-    [SerializeField]
-    private List<GameObject> feedbackChosenCapacity;
-    private int chosenCapacityIndex;
-    private LevelTable currentTable;
+    [SerializeField] private GameObject levelUpParent;
+
+    [SerializeField] private Image levelUpcharacterPortrait;
+    [SerializeField] private TextMeshProUGUI levelUpCharacterName;
+
+    [SerializeField] private TextMeshProUGUI levelUpStats;
+    [SerializeField] private Image levelUpSpellsIcon;
+    [SerializeField] private TextMeshProUGUI levelUpSpells;
+    [SerializeField] private Image levelUpCapacitiesIcon;
+    [SerializeField] private TextMeshProUGUI levelUpCapacities;
+
+    [SerializeField] private ParcheminDialogueSystem dialogSysteme;
+
+    private LevelUpCapacity capacityUpShowed;
+    private CharacterActionScriptable spellUpShowed;
 
     [SerializeField]
-    private ParcheminDialogueSystem dialogSysteme;
+    private GameObject capacityInfo;
+    [SerializeField]
+    private TextMeshProUGUI capacityNom, capacityDescription;
 
     private void Start()
     {
-        //persos = RavenorGameManager.instance.playerPersos;
-
         foreach (PersonnageScriptables perso in RavenorGameManager.instance.playerPersos)
         {
             if (RavenorGameManager.instance.GetBattle().GetComponent<RoomManager>().characterInCamp.Contains(perso.nom))
@@ -118,7 +105,7 @@ public class CampManager : MonoBehaviour
         int newLevelUp = RavenorGameManager.instance.GetNextLevelUp();
         if (newLevelUp >= 0)
         {
-            OpenLevelUpTable(newLevelUp);
+            LevelUpCharacter(newLevelUp);
         }
     }
 
@@ -126,6 +113,61 @@ public class CampManager : MonoBehaviour
     {
         RavenorGameManager.instance.LoadBattle();
     }
+
+    #region Level Up
+    private void LevelUpCharacter(int characterIndex)
+    {
+        LevelTable table = persos[characterIndex].levelUpTable.GetLevelTable(persos[characterIndex].GetLevel);
+
+        string statDisplay = "";
+
+        for(int i = 0; i < table.stats.Count; i++)
+        {
+            persos[characterIndex].LevelUpStat(table.stats[i].value, table.stats[i].stat);
+            statDisplay += table.stats[i].stat.ToString() + " + " + table.stats[i].value.ToString() + "\n";
+        }
+
+        levelUpStats.text = statDisplay;
+
+        for(int i = 0; i < table.possibleSpells.Count; i++)
+        {
+            persos[characterIndex].knownSpells.Add(table.possibleSpells[i]);
+        }
+
+        for(int i = 0; i < table.capacities.Count; i++)
+        {
+            persos[characterIndex].passifs.Add(table.capacities[i].passif);
+        }
+
+        persos[characterIndex].UpLevel();
+
+        levelUpParent.SetActive(true);
+    }
+
+    public void ShowCapacityLevelUp()
+    {
+        capacityNom.text = capacityUpShowed.nom;
+        capacityDescription.text = capacityUpShowed.description;
+
+        capacityInfo.SetActive(true);
+    }
+
+    public void HideCapacity()
+    {
+        capacityInfo.SetActive(false);
+    }
+
+    public void ShowSpellLevelUp()
+    {
+        SpellInfo(spellUpShowed);
+    }
+
+    public void QuitLevelUp()
+    {
+        levelUpParent.SetActive(false);
+        CheckForNewLevelUp();
+    }
+    #endregion
 
     #region Feedbacks
     public void Outline(Image matToChange)
@@ -150,7 +192,6 @@ public class CampManager : MonoBehaviour
             if(persos[i].nom == GetCharaNameByIndex(index))
             {
                 charaIndex = i;
-                Debug.Log(persos[i]);
                 break;
             }
         }
@@ -178,160 +219,47 @@ public class CampManager : MonoBehaviour
 
         characterDescription.text = currentChara.description;
 
-        List<int> mainStatsValues = currentChara.GetAllMainStats();
+        hitDice.text = currentChara.GetHitDice().ToString() + "D6 + " + currentChara.GetHitBonus().ToString();
+        physicalPower.text = currentChara.GetPhysicalDamage().ToString();
+        magicalPower.text = currentChara.GetMagicalDamage().ToString();
 
-        for (int i = 0; i < mainStats.Count; i++)
-        {
-            mainStats[i].text = mainStatsValues[i].ToString();
-        }
-
-        //Melee
-        meleeTouch.text = currentChara.GetTouchDices(1).ToString() + "D6 + " + currentChara.GetBrutToucheMelee();
-        string dicePrint = "";
-        foreach (Dice d in currentChara.GetBonusDice(EffectType.PhysicalMeleDamage))
-        {
-            dicePrint += d.numberOfDice.ToString() + d.wantedDice + " + ";
-        }
-        dicePrint += currentChara.GetPhysicalDamageMelee().ToString();
-        meleeDamage.text = dicePrint;
-
-        //Distance
-        distTouch.text = currentChara.GetTouchDices(2).ToString() + "D6 + " + currentChara.GetBrutToucheDistance();
-        dicePrint = "";
-        foreach (Dice d in currentChara.GetBonusDice(EffectType.PhysicalMeleDamage))
-        {
-            dicePrint += d.numberOfDice.ToString() + d.wantedDice + " + ";
-        }
-        dicePrint += currentChara.GetPhysicalDamageDistance().ToString();
-        distDamage.text = dicePrint;
-
-        //Magical
-        magTouch.text = currentChara.GetTouchDices(3).ToString() + "D6 + " + currentChara.GetBrutToucheMagical();
-        dicePrint = "";
-        foreach (Dice d in currentChara.GetBonusDice(EffectType.MagicalDamage))
-        {
-            dicePrint += d.numberOfDice.ToString() + d.wantedDice + " + ";
-        }
-        dicePrint += currentChara.GetMagicalDamage().ToString();
-        magDamage.text = dicePrint;
-
-        defense.text = currentChara.GetBrutDefense().ToString();
-        deplacement.text = currentChara.GetMovementSpeed().ToString();
-        initiative.text = currentChara.GetInitiativeDice().ToString() + "D6";
+        defense.text = currentChara.GetDefense().ToString();
+        movement.text = currentChara.GetMovementSpeed().ToString();
         armurePhy.text = currentChara.GetPhysicalArmor().ToString();
         armureMag.text = currentChara.GetMagicalArmor().ToString();
         chanceCrit.text = currentChara.GetCriticalChanceBonus().ToString();
         multCrit.text = currentChara.GetCriticalDamageMultiplier().ToString();
+
+        for (int i = 0; i < knownSpells.Count; i++)
+        {
+            if (currentChara.knownSpells.Count > i && currentChara.knownSpells[i] != null)
+            {
+                knownSpells[i].sprite = currentChara.knownSpells[i].icon;
+                knownSpells[i].transform.parent.gameObject.SetActive(true);
+            }
+            else
+            {
+                knownSpells[i].transform.parent.gameObject.SetActive(false);
+            }
+        }
 
         characterSheet.SetActive(true);
     }
     #endregion
 
     #region Spell Gestion
-    public void AddSpell(CharacterActionScriptable newSpell)
-    {
-        if (!currentChara.learnedSpells.Contains(newSpell))
-        {
-            currentChara.learnedSpells.Add(newSpell);
-        }
-    }
-
     public void CloseCharacterSheet()
     {
         characterSheet.SetActive(false);
-        CloseSpellManager();
         ClosePannel();
         currentChara = null;
     }
 
-    public void OpenCharacterSpells()
-    {
-        if (currentChara != null)
-        {
-            for (int i = 0; i < knownSpells.Count; i++)
-            {
-                if (currentChara.learnedSpells.Count > i && currentChara.learnedSpells[i] != null)
-                {
-                    knownSpells[i].sprite = currentChara.learnedSpells[i].icon;
-                    knownSpells[i].transform.parent.gameObject.SetActive(true);
-                }
-                else
-                {
-                    knownSpells[i].transform.parent.gameObject.SetActive(false);
-                }
-            }
-
-            Color emptyColor = Color.white;
-            emptyColor.a = 0;
-
-            for (int i = 0; i < usedSpells.Count; i++)
-            {
-                if(i < currentChara.GetMemory()-1)
-                {
-                    if (currentChara.sortsDisponibles.Count > i + 1 && currentChara.sortsDisponibles[i + 1] != null)
-                    {
-                        usedSpells[i].sprite = currentChara.sortsDisponibles[i + 1].icon;
-                        usedSpells[i].color = Color.white;
-                    }
-                    else
-                    {
-                        usedSpells[i].color = emptyColor;
-                    }
-                    usedSpells[i].transform.parent.gameObject.SetActive(true);
-                }
-                else
-                {
-                    usedSpells[i].transform.parent.gameObject.SetActive(false);
-                }
-
-            }
-
-            spellManagementParent.SetActive(true);
-        }
-    }
-
-    public void AddSpell(int index)
-    {
-        if (currentChara != null && index < currentChara.learnedSpells.Count && currentChara.sortsDisponibles.Count < currentChara.GetMemory() && currentChara.learnedSpells[index] != null && !currentChara.sortsDisponibles.Contains(currentChara.learnedSpells[index]))
-        {
-            currentChara.sortsDisponibles.Add(currentChara.learnedSpells[index]);
-            OpenCharacterSpells();
-        }
-    }
-
-    public void RemoveSpell(int spellIndex)
-    {
-        spellIndex++;
-        if (currentChara != null && currentChara.sortsDisponibles.Count > spellIndex && currentChara.sortsDisponibles[spellIndex] != null)
-        {
-            currentChara.sortsDisponibles.RemoveAt(spellIndex);
-            OpenCharacterSpells();
-        }
-    }
-
-    public void ShowSpellInfo(int index)
-    {
-        if (currentChara != null && currentChara.learnedSpells.Count > index && currentChara.learnedSpells[index] != null)
-        {
-            SpellInfo(currentChara.learnedSpells[index]);
-        }
-    }
-
     public void ShowUseSpellInfo(int index)
     {
-        index++;
-        if (currentChara != null && currentChara.sortsDisponibles.Count > index && currentChara.sortsDisponibles[index] != null)
+        if (currentChara != null && currentChara.knownSpells.Count > index && currentChara.knownSpells[index] != null)
         {
-            SpellInfo(currentChara.sortsDisponibles[index]);
-        }
-    }
-
-    public void ShowUnlockableSpellInfo(int index)
-    {
-        index++;
-        if (currentChara != null && currentChara.sortsDisponibles.Count > index && currentChara.sortsDisponibles[index] != null)
-        {
-            SpellInfo(currentChara.sortsDisponibles[index]);
+            SpellInfo(currentChara.knownSpells[index]);
         }
     }
 
@@ -346,259 +274,12 @@ public class CampManager : MonoBehaviour
         spellInfo.SetActive(true);
     }
 
-    public void ShowLockSpellInfo(int index)
-    {
-        if (index < unlockableSpells.Count)
-        {
-            SpellInfo(unlockableSpells[index]);
-        }
-    }
-
     public void HideSpellInfo()
     {
         spellInfo.SetActive(false);
     }
-
-    public void CloseSpellManager()
-    {
-        spellManagementParent.SetActive(false);
-    }
     #endregion
 
-    #region Level Up
-    public void OpenLevelUpTable(int index)
-    {
-        currentChara = RavenorGameManager.instance.playerPersos[index];
-
-        unlockableSpells = new List<CharacterActionScriptable>();
-
-        int inc = 0;
-        foreach (LevelTable table in currentChara.levelUpTable.GetUsableTables(currentChara.level))
-        {
-            inc++;
-            if (!table.autoLevelUp)
-            {
-                foreach (CharacterActionScriptable act in table.possibleSpells)
-                {
-                    if (!currentChara.learnedSpells.Contains(act))
-                    {
-                        unlockableSpells.Add(act);
-                    }
-                }
-            }
-            
-            if (currentChara.level == inc)
-            {
-                currentChara.LevelUpStat(table.levelUpStat);
-                foreach (CharacterActionScriptable act in table.possibleSpells)
-                {
-                    currentChara.learnedSpells.Add(act);
-                }
-                CheckForNewLevelUp();
-                return;
-            }
-        }
-
-        lvlPortrait.sprite = currentChara.portrait;
-        lvlName.text = currentChara.nom;
-
-        statToUp = -1;
-
-        wantedNewSpell = null;
-
-        SetLevepUpSheet();
-
-        #region Spell Unlock
-        Color hidingColor = Color.black;
-        hidingColor.a = 0;
-        for(int i = 0; i < imgUnlockSpells.Count; i++)
-        {
-            if(i < unlockableSpells.Count)
-            {
-                imgUnlockSpells[i].sprite = unlockableSpells[i].icon;
-                imgUnlockSpells[i].color = Color.white;
-                imgUnlockSpells[i].transform.parent.GetComponent<Image>().color = Color.white;
-            }
-            else
-            {
-                Debug.Log("Hide color ??");
-                imgUnlockSpells[i].transform.parent.GetComponent<Image>().color = hidingColor;
-                imgUnlockSpells[i].color = hidingColor;
-            }
-        }
-
-        for (int i = 0; i < lvlKnownSpells.Count; i++)
-        {
-            if (i < currentChara.learnedSpells.Count)
-            {
-                lvlKnownSpells[i].sprite = currentChara.learnedSpells[i].icon;
-                lvlKnownSpells[i].color = Color.white;
-            }
-            else
-            {
-                lvlKnownSpells[i].color = hidingColor;
-            }
-        }
-        #endregion
-
-        #region Capacity Unlock
-
-        currentTable = currentChara.levelUpTable.GetLevelTable(currentChara.level-1);
-        for (int i = 0; i < 3; i++)
-        {
-            feedbackChosenCapacity[i].SetActive(false);
-            if (i < currentTable.capacities.Count && currentTable.capacities[i] != null)
-            {
-                capacityNameDescription[i].text = currentTable.capacities[i].nom;
-                capacityNameDescription[i+3].text = currentTable.capacities[i].description;
-                capacityNameDescription[i].transform.parent.gameObject.SetActive(true);
-            }
-            else
-            {
-                capacityNameDescription[i].transform.parent.gameObject.SetActive(false);
-            }
-        }
-        #endregion
-
-        levelUpParent.SetActive(true);
-    }
-
-    public void SetLevepUpSheet()
-    {
-        //lvlMaxHps.text = currentChara.GetMaxHps().ToString();
-        //lvlMaxMaana.text = currentChara.GetMaxMaana().ToString();
-
-        List<int> mainStatsValues = currentChara.GetAllMainStats();
-
-        for (int i = 0; i < mainStats.Count; i++)
-        {
-            lvlMainStats[i].text = mainStatsValues[i].ToString();
-        }
-
-        //Melee
-        lvlMeleeTouch.text = currentChara.GetTouchDices(1).ToString() + "D6 + " + currentChara.GetBrutToucheMelee();
-        string dicePrint = "";
-        foreach (Dice d in currentChara.GetBonusDice(EffectType.PhysicalMeleDamage))
-        {
-            dicePrint += d.numberOfDice.ToString() + d.wantedDice + " + ";
-        }
-        dicePrint += currentChara.GetPhysicalDamageMelee().ToString();
-        lvlMeleeDamage.text = dicePrint;
-
-        //Distance
-        lvlDistTouch.text = currentChara.GetTouchDices(2).ToString() + "D6 + " + currentChara.GetBrutToucheDistance();
-        dicePrint = "";
-        foreach (Dice d in currentChara.GetBonusDice(EffectType.PhysicalMeleDamage))
-        {
-            dicePrint += d.numberOfDice.ToString() + d.wantedDice + " + ";
-        }
-        dicePrint += currentChara.GetPhysicalDamageDistance().ToString();
-        lvlDistDamage.text = dicePrint;
-
-        //Magical
-        lvlMagTouch.text = currentChara.GetTouchDices(3).ToString() + "D6 + " + currentChara.GetBrutToucheMagical();
-        dicePrint = "";
-        foreach (Dice d in currentChara.GetBonusDice(EffectType.MagicalDamage))
-        {
-            dicePrint += d.numberOfDice.ToString() + d.wantedDice + " + ";
-        }
-        dicePrint += currentChara.GetMagicalDamage().ToString();
-        lvlMagDamage.text = dicePrint;
-
-        lvlDefense.text = currentChara.GetBrutDefense().ToString();
-        lvlDeplacement.text = currentChara.GetMovementSpeed().ToString();
-        lvlInitiative.text = currentChara.GetInitiativeDice().ToString() + "D6";
-        lvlArmurePhy.text = currentChara.GetPhysicalArmor().ToString();
-        lvlArmureMag.text = currentChara.GetMagicalArmor().ToString();
-        lvlChanceCrit.text = currentChara.GetCriticalChanceBonus().ToString();
-        lvlMultCrit.text = currentChara.GetCriticalDamageMultiplier().ToString();
-
-        levelUpStatParent.SetActive(true);
-    }
-
-    public void AddStat(int index)
-    {
-        if (currentChara.CanLevelUpStat(index))
-        {
-            if (statToUp != -1)
-            {
-                currentChara.RemoveUpStat(statToUp);
-            }
-            statToUp = index;
-            currentChara.LevelUpStat(statToUp);
-            SetLevepUpSheet();
-        }
-    }
-
-    public void ValidateNewStats()
-    {
-        levelUpStatParent.SetActive(false);
-        if (currentTable.possibleSpells.Count > 0)
-        {
-            levelUpSpellParent.SetActive(true);
-        }
-        else
-        {
-            CheckForNewLevelUp();
-        }
-    }
-
-    public void ChooseUnlockedSpell(int index)
-    {
-        wantedNewSpell = unlockableSpells[index];
-        imgWantedNewSpell.sprite = wantedNewSpell.icon;
-    }
-
-    public void UnlockNewSpell()
-    {
-        currentChara.learnedSpells.Add(wantedNewSpell);
-    }
-
-    public void ValidateNewSpell()
-    {
-        if (wantedNewSpell != null)
-        {
-            UnlockNewSpell();
-            levelUpSpellParent.SetActive(false);
-            if (currentTable.capacities.Count > 0)
-            {
-                levelUpCapacityParent.SetActive(true);
-            }
-            else
-            {
-                levelUpParent.SetActive(false);
-                CheckForNewLevelUp();
-            }
-        }
-    }
-
-    public void ChooseNewCapacity(int index)
-    {
-        feedbackChosenCapacity[chosenCapacityIndex].SetActive(false);
-        chosenCapacityIndex = index;
-        feedbackChosenCapacity[index].SetActive(true);
-    }
-
-    private void UnlockNewCapacity()
-    {
-        if (currentTable.capacities[chosenCapacityIndex].passif != null)
-        {
-            currentChara.passifs.Add(currentTable.capacities[chosenCapacityIndex].passif);
-        }
-
-        currentChara.StatBonus(currentTable.capacities[chosenCapacityIndex].bonusValue, currentTable.capacities[chosenCapacityIndex].bonusType, null, false);
-    }
-
-    public void ValidateNewCapacity()
-    {
-        UnlockNewCapacity();
-        levelUpCapacityParent.SetActive(false);
-        levelUpParent.SetActive(false);
-        CheckForNewLevelUp();
-    }
-
-    #endregion
-    
     public void ClosePannel()
     {
         for (int i = 0; i < characterSprites.Count; i++)
@@ -629,7 +310,7 @@ public class CampManager : MonoBehaviour
                 case "Vanyaenn":
                     toReturn.Add(4);
                     break;
-                case "Mira":
+                case "Lila":
                     toReturn.Add(5);
                     break;
             }
@@ -653,7 +334,7 @@ public class CampManager : MonoBehaviour
             case 4:
                 return "Vanyaenn";
             case 5:
-                return "Mira";
+                return "Lila";
         }
         return "";
     }
@@ -672,7 +353,7 @@ public class CampManager : MonoBehaviour
                 return 3;
             case "Vanyaenn":
                 return 4;
-            case "Mira":
+            case "Lila":
                 return 5;
         }
         return -1;

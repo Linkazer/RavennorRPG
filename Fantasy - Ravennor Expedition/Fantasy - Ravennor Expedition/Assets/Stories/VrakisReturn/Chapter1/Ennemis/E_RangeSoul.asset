@@ -20,24 +20,21 @@ MonoBehaviour:
   brasPosition: 0
   description: 
   level: 1
-  baseHps: 5
-  hpByLevel: 0
-  baseMoveSpeed: 20
-  baseMaana: 0
-  force: 1
-  constitution: 1
-  agilite: 1
-  intelligence: 1
-  perception: 2
-  charisme: 0
-  puissMag: 2
-  actionBonus: 0
-  baseAttackBonus: 0
+  healthPoints: 15
+  maana: 0
+  movementSpeed: 20
+  hitDices: 1
+  defense: 1
+  physicalPower: 0
+  magicalPower: 0
+  luckyDice: 1
+  criticalMultiplicator: 1
+  physicalArmor: 0
+  magicalArmor: 0
   levelUpTable: {fileID: 0}
-  learnedSpells: []
-  sortsDisponibles:
-  - {fileID: 11400000, guid: 3435053c28bcf6c4184afd22c32a2e07, type: 2}
+  knownSpells: []
   passifs: []
+  initiative: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3435053c28bcf6c4184afd22c32a2e07, type: 2}
     conditionWanted: 0
@@ -73,23 +70,3 @@ MonoBehaviour:
       calculImportance: 1
     maxCooldown: 0
     cooldown: 0
-  aiBonusDegPhyMelee: 0
-  aiBonusDegPhyDistance: 0
-  aiBonusDegMag: 0
-  aiBonusInitiative: -2
-  aiBonusInitiativeDice: -1
-  aiBonusDefense: -4
-  aiBonusChanceToucheForce: 0
-  aiBonusChanceToucheDexterite: 0
-  aiBonusChanceToucheMagic: 0
-  aiBonusSoinAppli: 0
-  aiBonusSoinRecu: 0
-  aiBonusMaana: 0
-  aiBonusCriticalChance: 0
-  aiBonusPhysicalArmor: 0
-  aiBonusMagicalArmor: 0
-  aiTouchMeleeDice: 0
-  aiToucheDistanceDice: 0
-  aiToucheMagicalDice: 0
-  aiDiceBonusDegPhy: []
-  aiDiceBonusDegMag: []

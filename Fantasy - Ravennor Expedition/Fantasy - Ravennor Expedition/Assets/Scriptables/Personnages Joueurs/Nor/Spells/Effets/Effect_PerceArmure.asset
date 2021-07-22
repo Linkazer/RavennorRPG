@@ -17,9 +17,10 @@ MonoBehaviour:
     spr: {fileID: 0}
     description: "L'Armure de la cible est r\xE9duite de 1 (+1 tous les niveaux du
       lanceur)."
+    wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 19
+    - type: 12
       possiblesTargets: 2
       value: 1
       scaleByLevel: 1

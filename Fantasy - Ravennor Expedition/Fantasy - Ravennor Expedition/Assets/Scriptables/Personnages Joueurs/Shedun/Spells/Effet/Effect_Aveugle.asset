@@ -20,10 +20,10 @@ MonoBehaviour:
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 11
+    - type: 6
       possiblesTargets: 2
-      value: 2
-      scaleByLevel: 1
+      value: -2
+      scaleByLevel: -1
       dicesBonus:
         wantedDice: 0
         numberOfDice: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     affliction: 0
   nature: 0
   duree: 2
-  isMalus: 0
+  isMalus: 1
   bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 0}

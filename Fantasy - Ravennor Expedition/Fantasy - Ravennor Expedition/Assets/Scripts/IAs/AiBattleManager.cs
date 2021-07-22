@@ -228,7 +228,7 @@ public class AiBattleManager : MonoBehaviour
             return false;
         }
 
-        if ((actionToTry.attackType != AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Atrophie)) || (actionToTry.attackType == AttackType.PuissMagique && currentChara.CheckForAffliction(Affliction.Silence)))
+        if ((actionToTry.attackType != AttackType.Magical && currentChara.CheckForAffliction(Affliction.Atrophie)) || (actionToTry.attackType == AttackType.Magical && currentChara.CheckForAffliction(Affliction.Silence)))
         {
             return false;
         }

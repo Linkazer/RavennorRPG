@@ -19,7 +19,7 @@ MonoBehaviour:
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 21
+    - type: 14
       possiblesTargets: 2
       value: 1
       scaleByLevel: 0

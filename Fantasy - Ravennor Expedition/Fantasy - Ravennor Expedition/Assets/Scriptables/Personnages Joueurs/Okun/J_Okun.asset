@@ -22,26 +22,21 @@ MonoBehaviour:
     aussi le plus secret. Toujours de bonne humeur, il esquive chacune des questions
     des autres membres concernant son pass\xE9."
   level: 1
-  baseHps: 10
-  hpByLevel: 8
-  baseMoveSpeed: 25
-  startDefense: 0
-  baseMaana: 2
-  force: 2
-  constitution: 2
-  agilite: 1
-  perception: 1
-  puissMag: 1
-  charisme: 0
-  intelligence: 0
-  actionBonus: 0
-  baseAttackBonus: 0
+  healthPoints: 26
+  maana: 3
+  movementSpeed: 30
+  hitDices: 1
+  defense: 3
+  physicalPower: 0
+  magicalPower: 0
+  luckyDice: 1
+  criticalMultiplicator: 1
+  physicalArmor: 0
+  magicalArmor: 0
   levelUpTable: {fileID: 0}
-  learnedSpells:
-  - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
-  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
-  sortsDisponibles:
+  knownSpells:
   - {fileID: 11400000, guid: 2edd2558afea45e4e8333f0816ab0650, type: 2}
   - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
   - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
   passifs: []
+  initiative: 7

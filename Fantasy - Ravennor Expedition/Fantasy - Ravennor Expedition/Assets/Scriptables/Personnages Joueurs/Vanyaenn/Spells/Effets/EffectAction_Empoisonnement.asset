@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   spellType: 0
-  attackType: 2
+  attackType: 1
   actionLevel: 0
   maanaCost: 0
   maxUtilisation: -1

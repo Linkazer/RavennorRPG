@@ -5,9 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class LevelTable
 {
-    public bool autoLevelUp;
-    public int levelUpStat;
-    public int levelNeeded;
+    [System.Serializable]
+    public class StatLevelUp
+    {
+        public CharacterStats stat;
+        public int value;
+    }
+
+    public List<StatLevelUp> stats;
     public List<CharacterActionScriptable> possibleSpells = new List<CharacterActionScriptable>();
     public List<LevelUpCapacity> capacities = new List<LevelUpCapacity>();
 }
@@ -17,8 +22,6 @@ public class LevelUpCapacity
 {
     public string nom;
     public string description;
-    public EffectType bonusType;
-    public int bonusValue;
     public SpellEffectScriptables passif;
 }
 
@@ -28,21 +31,8 @@ public class CharacterLevelUpTable : ScriptableObject
     [SerializeField]
     private List<LevelTable> tables;
 
-    public List<LevelTable> GetUsableTables(int levelWanted)
-    {
-        List<LevelTable> toReturn = new List<LevelTable>();
-        for(int i = 0; i < levelWanted; i++)
-        {
-            if (!tables[i].autoLevelUp)
-            {
-                toReturn.Add(tables[i]);
-            }
-        }
-        return toReturn;
-    }
-
     public LevelTable GetLevelTable(int levelWanted)
     {
-        return tables[levelWanted];
+        return tables[levelWanted-1];
     }
 }

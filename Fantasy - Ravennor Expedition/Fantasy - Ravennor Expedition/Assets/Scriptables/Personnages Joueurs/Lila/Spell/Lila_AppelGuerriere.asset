@@ -18,7 +18,7 @@ MonoBehaviour:
     ce qui lui offre un bonus de Jet d'attaque de 2 (+1 tous les niveaux) pendant
     3 tours."
   spellType: 0
-  attackType: 2
+  attackType: 1
   actionLevel: 1
   maanaCost: 1
   maxUtilisation: -1

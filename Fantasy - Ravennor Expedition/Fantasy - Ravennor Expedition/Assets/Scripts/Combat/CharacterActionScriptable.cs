@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SpellType { Direct, Projectile, Deplacement, Invocation, Teleportation, DamagingTeleportation, SimpleEffect}
 
-public enum AttackType { Force, Dexterite, PuissMagique}
+public enum AttackType { Physical, Magical}
 
 public enum ActionIncantation { Rapide, Simple, Lent, Hard}
 

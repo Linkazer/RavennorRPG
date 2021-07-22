@@ -20,27 +20,7 @@ MonoBehaviour:
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 11
-      possiblesTargets: 2
-      value: 1
-      scaleByLevel: 1
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        wantedDamage: 0
-      trigger: 0
-      caster: {fileID: 0}
-    - type: 12
-      possiblesTargets: 2
-      value: 1
-      scaleByLevel: 1
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        wantedDamage: 0
-      trigger: 0
-      caster: {fileID: 0}
-    - type: 13
+    - type: 6
       possiblesTargets: 2
       value: 1
       scaleByLevel: 1

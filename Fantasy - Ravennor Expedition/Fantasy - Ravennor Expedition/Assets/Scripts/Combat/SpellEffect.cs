@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum EffectType
 {
-    Force, Agilite, PuissMagique, Constitution, Perception,
-    PhysicalMeleDamage, PhysicalDistanceDamage, MagicalDamage, 
-    Initiative, Defense, Esquive, ChanceToucheForce, ChanceToucheDexterite, ChanceToucheMagic,
+    None,
+    PhysicalDamage, MagicalDamage, 
+    Initiative, Defense, HitDice, HitBonus,
     HealApplied, HealRecieved, MaanaBonus,
     CriticalChance, CriticalMultiplier,
     PhysicalArmor, MagicalArmor,

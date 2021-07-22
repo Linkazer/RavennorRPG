@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
-  m_Name: J_Lila
+  m_Name: J_Lila TestLvlUp
   m_EditorClassIdentifier: 
   nom: Lila
   icon: {fileID: 21300000, guid: e7e7e533d680f1f45b689dd32a0235cf, type: 3}
@@ -22,21 +22,31 @@ MonoBehaviour:
     un tombeau. Elle a rejoint la Confr\xE9rie afin d'en apprendre plus sur les raisons
     qui ont pouss\xE9 son percepteur \xE0 l'enfermer."
   level: 1
-  healthPoints: 21
-  maana: 5
-  movementSpeed: 30
-  hitDices: 1
-  defense: 3
-  physicalPower: 0
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
+  healthPoints: 100
+  maana: 50
+  movementSpeed: 0
+  hitDices: 0
+  defense: 0
+  physicalPower: 24
+  magicalPower: 36
+  luckyDice: 0
+  criticalMultiplicator: 0
   physicalArmor: 0
   magicalArmor: 0
-  levelUpTable: {fileID: 0}
+  levelUpTable: {fileID: 11400000, guid: fd3cd82335fc2fd4e8bf131efebfb7bb, type: 2}
   knownSpells:
   - {fileID: 11400000, guid: e2eb90b72e1371449a7f1ece30c70bf7, type: 2}
   - {fileID: 11400000, guid: e7fa15df79305654fbb6130f9e637962, type: 2}
   - {fileID: 11400000, guid: be1227359e6e35048aa8c3069215f877, type: 2}
-  passifs: []
+  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
+  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
+  - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
+  - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
+  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
+  passifs:
+  - {fileID: 11400000, guid: 0d4cc400eddb0034aac6913b4e0e6883, type: 2}
+  - {fileID: 11400000, guid: 0d4cc400eddb0034aac6913b4e0e6883, type: 2}
+  - {fileID: 11400000, guid: 4bf2b325018ba0c4c96be5138226ee67, type: 2}
+  - {fileID: 11400000, guid: 4bf2b325018ba0c4c96be5138226ee67, type: 2}
+  - {fileID: 11400000, guid: 0d4cc400eddb0034aac6913b4e0e6883, type: 2}
   initiative: 3

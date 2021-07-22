@@ -303,7 +303,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         movementLeft = currentScriptable.GetMovementSpeed();
 
-        actionsDisponibles = new List<CharacterActionScriptable>(currentScriptable.sortsDisponibles);
+        actionsDisponibles = new List<CharacterActionScriptable>(currentScriptable.knownSpells);
 
         for(int i = 0; i < actionsDisponibles.Count; i++)
         {
@@ -808,7 +808,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void AttackOfOpportunity(RuntimeBattleCharacter opportunityTarget)
     {
         bool canUseSpell = true;
-        if ((actionsDisponibles[0].attackType != AttackType.PuissMagique && CheckForAffliction(Affliction.Atrophie)) || (actionsDisponibles[0].attackType == AttackType.PuissMagique && CheckForAffliction(Affliction.Silence)))
+        if ((actionsDisponibles[0].attackType != AttackType.Magical && CheckForAffliction(Affliction.Atrophie)) || (actionsDisponibles[0].attackType == AttackType.Magical && CheckForAffliction(Affliction.Silence)))
         {
             canUseSpell = false;
         }

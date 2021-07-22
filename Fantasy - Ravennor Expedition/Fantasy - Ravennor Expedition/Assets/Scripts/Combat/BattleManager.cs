@@ -625,7 +625,7 @@ public class BattleManager : MonoBehaviour
             return false;
         }
 
-        if ((wantedAction.attackType != AttackType.PuissMagique && character.CheckForAffliction(Affliction.Atrophie)) || (wantedAction.attackType == AttackType.PuissMagique && character.CheckForAffliction(Affliction.Silence)))
+        if ((wantedAction.attackType != AttackType.Magical && character.CheckForAffliction(Affliction.Atrophie)) || (wantedAction.attackType == AttackType.Magical && character.CheckForAffliction(Affliction.Silence)))
         {
             return false;
         }
@@ -714,9 +714,9 @@ public class BattleManager : MonoBehaviour
     public void DoHeal(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         List<Dice> neededDices = new List<Dice>(wantedAction.GetDices());
-        if (wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level) != null)
+        if (wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().GetLevel) != null)
         {
-            neededDices.Add(wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level));
+            neededDices.Add(wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().GetLevel));
         }
 
         Debug.Log("Heal Dices : " + neededDices.Count);
@@ -730,13 +730,10 @@ public class BattleManager : MonoBehaviour
 
         switch (wantedAction.attackType)
         {
-            case AttackType.Force:
-                bonusDamages += (int)caster.GetCharacterDatas().GetPhysicalDamageMelee();
+            case AttackType.Physical:
+                bonusDamages += (int)caster.GetCharacterDatas().GetPhysicalDamage();
                 break;
-            case AttackType.Dexterite:
-                bonusDamages += (int)caster.GetCharacterDatas().GetPhysicalDamageDistance();
-                break;
-            case AttackType.PuissMagique:
+            case AttackType.Magical:
                 bonusDamages += (int)caster.GetCharacterDatas().GetMagicalDamage();
                 break;
         }
@@ -768,9 +765,9 @@ public class BattleManager : MonoBehaviour
         int targetDefenseScore = 0, casterHitScore = 0;
 
         List<Dice> neededDices = new List<Dice>(wantedAction.GetDices());
-        if (wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level) != null)
+        if (wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().GetLevel) != null)
         {
-            neededDices.Add(wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().level));
+            neededDices.Add(wantedAction.GetLevelBonusDices(caster.GetCharacterDatas().GetLevel));
         }
         switch (wantedAction.scaleOrigin)
         {
@@ -794,7 +791,7 @@ public class BattleManager : MonoBehaviour
                 break;
         }
 
-        EffectType wantedDiceBonus = EffectType.Agilite;
+        EffectType wantedDiceBonus = EffectType.None;
 
         //Jet de la défense
         int attackLucky = 0;
@@ -802,20 +799,17 @@ public class BattleManager : MonoBehaviour
 
         if (!isEffectSpell)
         {
-            targetDefenseScore = target.GetCharacterDatas().GetBrutDefense();
+            targetDefenseScore = target.GetCharacterDatas().GetDefense();
 
             //Jet de l'attaque
+            casterHitScore = AttackRoll(caster.GetCharacterDatas().GetHitDice(), DiceType.D6, caster.GetCharacterDatas().GetHitBonus(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
+
             switch (wantedAction.attackType)
             {
-                case AttackType.Force:
-                    casterHitScore = AttackRoll(caster.GetCharacterDatas().GetTouchDices(1), DiceType.D6, caster.GetCharacterDatas().GetBrutToucheMelee(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
-                    wantedDiceBonus = EffectType.PhysicalMeleDamage;
+                case AttackType.Physical:
+                    wantedDiceBonus = EffectType.PhysicalDamage;
                     break;
-                case AttackType.Dexterite:
-                    casterHitScore = AttackRoll(caster.GetCharacterDatas().GetTouchDices(2), DiceType.D6, caster.GetCharacterDatas().GetBrutToucheDistance(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
-                    break;
-                case AttackType.PuissMagique:
-                    casterHitScore = AttackRoll(caster.GetCharacterDatas().GetTouchDices(3), DiceType.D6, caster.GetCharacterDatas().GetBrutToucheMagical(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
+                case AttackType.Magical:
                     wantedDiceBonus = EffectType.MagicalDamage;
                     break;
             }
@@ -827,14 +821,11 @@ public class BattleManager : MonoBehaviour
                 {
                     switch (wantedAction.attackType)
                     {
-                        case AttackType.Force:
-                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetTouchDices(1), caster.GetCharacterDatas().GetBrutToucheMelee(), DiceType.D6);
+                        case AttackType.Physical:
+                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetHitDice(), caster.GetCharacterDatas().GetHitBonus(), DiceType.D6);
                             break;
-                        case AttackType.Dexterite:
-                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetTouchDices(2), caster.GetCharacterDatas().GetBrutToucheDistance(), DiceType.D6);
-                            break;
-                        case AttackType.PuissMagique:
-                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetTouchDices(3), caster.GetCharacterDatas().GetBrutToucheMagical(), DiceType.D6);
+                        case AttackType.Magical:
+                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetHitDice(), caster.GetCharacterDatas().GetHitBonus(), DiceType.D6);
                             break;
                     }
                 }
@@ -922,7 +913,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetEffectValues(SpellEffect effet, RuntimeBattleCharacter caster)
     {
-        effet.value = (int)((effet.value + effet.scaleByLevel * caster.GetCharacterDatas().level));
+        effet.value = (int)((effet.value + effet.scaleByLevel * caster.GetCharacterDatas().GetLevel));
     }
 
     public void ResolveEffect(SpellEffectCommon effect, Vector2 positionWanted, EffectTrigger triggerWanted, int stack)
@@ -973,7 +964,7 @@ public class BattleManager : MonoBehaviour
 
     private void InvokeAlly(RuntimeBattleCharacter caster, CharacterActionInvocation spell, Vector2 wantedPosition)
     {
-        PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations, caster.GetCharacterDatas().level);
+        PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations, caster.GetCharacterDatas().GetLevel);
 
         if (!caster.CheckForInvocations(toInvoke) && toInvoke != null)
         {

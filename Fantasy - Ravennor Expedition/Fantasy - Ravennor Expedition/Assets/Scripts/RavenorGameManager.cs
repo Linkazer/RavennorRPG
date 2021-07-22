@@ -42,6 +42,17 @@ public class RavenorGameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        PersonnageScriptables tChara = new PersonnageScriptables();
+        for (int i = 0; i < playerPersos.Count; i++)
+        {
+            tChara = Instantiate(playerPersos[i]);
+
+            playerPersos[i] = tChara;
+        }
+    }
+
     public void SetNextBattle(GameObject newBattle)
     {
         nextBattle = newBattle;
