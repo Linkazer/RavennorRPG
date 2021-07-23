@@ -233,11 +233,10 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                if(roomManager.levelAtEnd != 0)
+                if(roomManager.levelUp)
                 {
                     foreach(PersonnageScriptables p in RavenorGameManager.instance.playerPersos)
                     {
-                        p.SetLevel(roomManager.levelAtEnd);
                         RavenorGameManager.instance.SetLevelUp();
                     }
                 }
@@ -369,7 +368,8 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            AskToMove(character.gameObject, destination, character.movementLeft +50, isForNextTurn);
+            Debug.Log("Test AI");
+            AskToMove(character.gameObject, destination, character.movementLeft + character.GetMaxMovement(), isForNextTurn);
         }
     }
     
@@ -641,7 +641,7 @@ public class BattleManager : MonoBehaviour
                 }
                 return false;
             case ActionIncantation.Lent:
-                if (character.CanDoAction(wantedAction.isWeaponBased) && !character.hasMoved)
+                if (character.CanDoAction(wantedAction.isWeaponBased) && character.CanMove)
                 {
                     return true;
                 }
@@ -702,11 +702,19 @@ public class BattleManager : MonoBehaviour
             applyEffect = 1;
         }
 
-        if (applyEffect > 0 && wantedAction.wantedEffectOnTarget.Count>0)
+        if (applyEffect > 0)
         {
-            foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
+            if (!isEffectSpell)
             {
-                ApplyEffects(eff, caster, target);
+                caster.ResolveEffect(EffectTrigger.DamageDealSelf);
+                caster.ResolveEffect(EffectTrigger.DamageDealTarget, target.currentNode.worldPosition);
+            }
+            if (wantedAction.wantedEffectOnTarget.Count > 0)
+            {
+                foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
+                {
+                    ApplyEffects(eff, caster, target);
+                }
             }
         }
     }
@@ -916,13 +924,13 @@ public class BattleManager : MonoBehaviour
         effet.value = (int)((effet.value + effet.scaleByLevel * caster.GetCharacterDatas().GetLevel));
     }
 
-    public void ResolveEffect(SpellEffectCommon effect, Vector2 positionWanted, EffectTrigger triggerWanted, int stack)
+    public void ResolveEffect(SpellEffectCommon effect, Vector2 casterPosition, Vector2 targetPosition, EffectTrigger triggerWanted, int stack)
     {
         for (int i = 0; i < stack; i++)
         {
-            if (Grid.instance.NodeFromWorldPoint(positionWanted).HasCharacterOn)
+            if (Grid.instance.NodeFromWorldPoint(casterPosition).HasCharacterOn)
             {
-                RuntimeBattleCharacter target = Grid.instance.NodeFromWorldPoint(positionWanted).chara;
+                RuntimeBattleCharacter target = Grid.instance.NodeFromWorldPoint(casterPosition).chara;
 
                 foreach (SpellEffect eff in effect.effects)
                 {
@@ -937,7 +945,14 @@ public class BattleManager : MonoBehaviour
             {
                 if (effAct.trigger == triggerWanted)
                 {
-                    LaunchAction(effAct.spellToUse, effAct.caster, positionWanted, true);
+                    if (triggerWanted == EffectTrigger.DamageDealTarget)
+                    {
+                        LaunchAction(effAct.spellToUse, effAct.caster, targetPosition, true);
+                    }
+                    else
+                    {
+                        LaunchAction(effAct.spellToUse, effAct.caster, casterPosition, true);
+                    }
                 }
             }
         }
@@ -1159,12 +1174,12 @@ public class BattleManager : MonoBehaviour
         return new List<RuntimeBattleCharacter>(roundList);
     }
 
-    public List<RuntimeBattleCharacter> GetTeamOne()
+    public List<RuntimeBattleCharacter> GetPlayerChara()
     {
         return new List<RuntimeBattleCharacter>(charaTeamOne);
     }
 
-    public List<RuntimeBattleCharacter> GetTeamTwo()
+    public List<RuntimeBattleCharacter> GetEnemyChara()
     {
         return new List<RuntimeBattleCharacter>(charaTeamTwo);
     }
@@ -1365,7 +1380,6 @@ public class BattleManager : MonoBehaviour
                     if (targetIndex >= path.Length)
                     {
                         Grid.instance.CreateGrid();
-                        currentCharacterTurn.hasMoved = true;
                         EndCurrentAction(currentCharacterTurn);
                         yield break;
                     }

@@ -2367,8 +2367,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
   - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
   - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
-  - {fileID: 11400000, guid: 65fd4eb32440e9e4e8df4c5d164458b7, type: 2}
-  characterToLevelUp: 05000000
+  - {fileID: 11400000, guid: ceba63cf49da10e448ca66548b63afd0, type: 2}
+  characterToLevelUp: 
   dialogueToDisplay: {fileID: 0}
   difficultyMultiplier: 1
 --- !u!4 &399407457

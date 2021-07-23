@@ -22,7 +22,7 @@ MonoBehaviour:
   level: 1
   healthPoints: 15
   maana: 0
-  movementSpeed: 20
+  movementSpeed: 30
   hitDices: 1
   defense: 1
   physicalPower: 0
@@ -32,7 +32,8 @@ MonoBehaviour:
   physicalArmor: 0
   magicalArmor: 0
   levelUpTable: {fileID: 0}
-  knownSpells: []
+  knownSpells:
+  - {fileID: 11400000, guid: 3435053c28bcf6c4184afd22c32a2e07, type: 2}
   passifs: []
   initiative: 1
   comportement:
@@ -64,8 +65,8 @@ MonoBehaviour:
       calculImportance: 1
     - calculType: 1
       abscissaValue: 0
-      maxValue: 50
-      constant: 50
+      maxValue: 150
+      constant: 150
       coeficient: -1
       calculImportance: 1
     maxCooldown: 0

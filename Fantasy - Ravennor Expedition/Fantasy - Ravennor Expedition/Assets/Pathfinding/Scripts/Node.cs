@@ -66,7 +66,7 @@ public class Node : IHeapItem<Node> {
 			if (HasCharacterOn && BattleManager.instance.GetCurrentTurnChara() == chara)
 			{
 				Debug.Log("New Effect application");
-				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, EffectTrigger.BeginTurn, 1);
+				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.BeginTurn, 1);
 			}
 		}
     }

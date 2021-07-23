@@ -25,6 +25,8 @@ public class CharacterInformationUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI defense;
     [SerializeField] private TextMeshProUGUI physicalPower;
     [SerializeField] private TextMeshProUGUI magicalPower;
+    [SerializeField] private TextMeshProUGUI physicalArmor;
+    [SerializeField] private TextMeshProUGUI magicalArmor;
 
     [SerializeField]
     private GameObject effectResume;
@@ -68,6 +70,8 @@ public class CharacterInformationUI : MonoBehaviour
         hitDice.text = p.GetHitDice().ToString() + "D6";
         physicalPower.text = p.GetPhysicalDamage().ToString();
         magicalPower.text = p.GetMagicalDamage().ToString();
+        physicalArmor.text = p.GetPhysicalArmor().ToString();
+        magicalArmor.text = p.GetMagicalArmor().ToString();
 
         effectDescriptions = new List<string>();
         effectNames = new List<string>();

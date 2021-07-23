@@ -132,11 +132,15 @@ public class CampManager : MonoBehaviour
         for(int i = 0; i < table.possibleSpells.Count; i++)
         {
             persos[characterIndex].knownSpells.Add(table.possibleSpells[i]);
+            levelUpSpells.text = table.possibleSpells[i].nom;
+            levelUpSpellsIcon.sprite = table.possibleSpells[i].icon;
         }
 
         for(int i = 0; i < table.capacities.Count; i++)
         {
             persos[characterIndex].passifs.Add(table.capacities[i].passif);
+            levelUpCapacities.text = table.capacities[i].nom;
+            levelUpCapacitiesIcon.sprite = table.capacities[i].passif.effet.spr;
         }
 
         persos[characterIndex].UpLevel();

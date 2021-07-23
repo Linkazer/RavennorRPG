@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     public bool endGame;
 
     public GameObject nextLvl;
-    public int levelAtEnd;
+    public bool levelUp;
 
     [SerializeField]
     protected List<Room> rooms;
@@ -123,7 +123,7 @@ public class RoomManager : MonoBehaviour
     public virtual bool CheckForEnd()
     {
         int killedChara = 0;
-        foreach(RuntimeBattleCharacter chara in BattleManager.instance.GetTeamTwo())
+        foreach(RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara())
         {
             if(chara.GetCurrentHps()<=0)
             {

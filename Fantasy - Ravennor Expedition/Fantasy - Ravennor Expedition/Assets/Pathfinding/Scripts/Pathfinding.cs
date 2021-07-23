@@ -61,41 +61,47 @@ public class Pathfinding : MonoBehaviour {
 		return waypoints.ToArray();
 	}
 
-	/*public void SetAllNodes(Node startNode)
+	public void SetAllNodes(Node startNode, float distance)
     {
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
-		int fullSet = grid.MaxSize;
 		HashSet<Node> closedSet = new HashSet<Node>();
 		openSet.Add(startNode);
 
-		while (fullSet > 0 && openSet.Count>0)
+		while (openSet.Count > 0)
 		{
 			Node currentNode = openSet.RemoveFirst();
 			closedSet.Add(currentNode);
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-				if ((!neighbour.walkable || neighbour.hasCharacterOn) || closedSet.Contains(neighbour))
+				if ((!neighbour.walkable || neighbour.HasCharacterOn) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+				if (newMovementCostToNeighbour <= distance)
 				{
-					neighbour.gCost = newMovementCostToNeighbour;
-					//neighbour.hCost = GetDistance(neighbour, targetNode);
-					neighbour.parent = currentNode;
-
-					if (!openSet.Contains(neighbour))
+					if (neighbour.HasCharacterOn)
 					{
-						openSet.Add(neighbour);
-						fullSet--;
+						newMovementCostToNeighbour += 50;
+						neighbour.gCost = newMovementCostToNeighbour;
+					}
+
+					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+					{
+						neighbour.gCost = newMovementCostToNeighbour;
+						neighbour.parent = currentNode;
+
+						if (!openSet.Contains(neighbour))
+						{
+							openSet.Add(neighbour);
+						}
 					}
 				}
 			}
 		}
-	}*/
+	}
 
 	public bool SetAllNodes(Node startNode, Node targetNode, bool isForNextTurn)
 	{
@@ -119,11 +125,16 @@ public class Pathfinding : MonoBehaviour {
 				{
 					neighbour.gCost = currentNode.gCost + GetDistance(currentNode, neighbour);
 					neighbour.parent = currentNode;
-					Debug.Log(currentNode);
 					return true;
 				}
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+				if(isForNextTurn && neighbour.HasCharacterOn)
+                {
+					newMovementCostToNeighbour += 50;
+					neighbour.gCost = newMovementCostToNeighbour;
+				}
+
 				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
 				{
 					neighbour.gCost = newMovementCostToNeighbour;
@@ -187,9 +198,9 @@ public class Pathfinding : MonoBehaviour {
 			return 15*dstY + 10* (dstX-dstY);
 		return 15*dstX + 10 * (dstY-dstX);
 	}
-	
+
 	public List<Node> GetNodesWithMaxDistance(Node startNode, float distance, bool pathCalcul)
-    {
+	{
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
 		int fullSet = grid.MaxSize;
@@ -197,102 +208,56 @@ public class Pathfinding : MonoBehaviour {
 		openSet.Add(startNode);
 		usableNode.Add(startNode);
 
-		bool gotAllNodes = true;
-
-		while (gotAllNodes)
-		{
-			if (openSet.currentItemCount > 0)
-			{
-				Node currentNode = openSet.RemoveFirst();
-				closedSet.Add(currentNode);
-
-				foreach (Node neighbour in grid.GetNeighbours(currentNode))
-				{
-					if (((!neighbour.walkable || neighbour.HasCharacterOn) && pathCalcul) || closedSet.Contains(neighbour))
-					{
-						continue;
-					}
-
-					//neighbour.parent = currentNode;
-
-					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-
-					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
-					{
-						neighbour.gCost = newMovementCostToNeighbour;
-
-						neighbour.parent = currentNode;
-
-						if ((GetDistance(startNode, neighbour) <= distance && !pathCalcul) || (neighbour.fCost <= distance && pathCalcul))
-						{
-							openSet.Add(neighbour);
-							usableNode.Add(neighbour);
-							fullSet--;
-						}
-					}
-
-					/*if (openSet.currentItemCount < 1)
-					{
-						gotAllNodes = false;
-						break;
-					}*/
-				}
-			}
-			else
-            {
-				gotAllNodes = false;
-			}
-		}
-
-		return usableNode;
-	}
-	
-	public IEnumerator TestAffichageGetDistance (Node startNode, float distance, bool pathCalcul)
-    {
-		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
-		List<Node> usableNode = new List<Node>();
-		int fullSet = grid.MaxSize;
-		HashSet<Node> closedSet = new HashSet<Node>();
-		openSet.Add(startNode);
-		usableNode.Add(startNode);
-
-		bool gotAllNodes = true;
-
-		while (gotAllNodes)
+		while (openSet.currentItemCount > 0)
 		{
 			Node currentNode = openSet.RemoveFirst();
 			closedSet.Add(currentNode);
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-				if ((!neighbour.walkable || (neighbour.HasCharacterOn && pathCalcul)) || closedSet.Contains(neighbour))
+				if (((!neighbour.walkable || neighbour.HasCharacterOn) && pathCalcul) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-				if (newMovementCostToNeighbour < neighbour.gCost || (GetDistance(startNode, neighbour) < distance && !pathCalcul) || (neighbour.fCost < distance && pathCalcul))
+				if (newMovementCostToNeighbour <= distance)
 				{
-					if (!openSet.Contains(neighbour) && GetDistance(startNode, neighbour) < distance)
+					if (neighbour.HasCharacterOn)
+					{
+						newMovementCostToNeighbour += 50;
+						neighbour.gCost = newMovementCostToNeighbour;
+					}
+
+					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+					{
+						neighbour.gCost = newMovementCostToNeighbour;
+						neighbour.parent = currentNode;
+
+						if (!openSet.Contains(neighbour))
+						{
+							openSet.Add(neighbour);
+							usableNode.Add(neighbour);
+						}
+					}
+				}
+
+/*				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+				{
+					neighbour.gCost = newMovementCostToNeighbour;
+
+					neighbour.parent = currentNode;
+
+					if ((GetDistance(startNode, neighbour) <= distance && !pathCalcul) || (neighbour.fCost <= distance && pathCalcul))
 					{
 						openSet.Add(neighbour);
 						usableNode.Add(neighbour);
 						fullSet--;
 					}
-				}
-
-				if (GetDistance(startNode, neighbour) > distance)
-				{
-					gotAllNodes = false;
-					break;
-				}
+				}*/
 			}
 		}
 
-		foreach (Node n in usableNode)
-        {
-			//n.nodeAnim.SetFeedbackColor(Color.red);
-			yield return new WaitForSeconds(0.2f);
-		}
+		return usableNode;
 	}
 }

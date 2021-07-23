@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Lila_AppelGuerriere
   m_EditorClassIdentifier: 
-  nom: "Appel d'\xE2mes protretectrices."
+  nom: "Appel d'\xE2me guerri\xE8re"
   icon: {fileID: 21300000, guid: 16707705f98dc2241a4f8c945f4e8d1a, type: 3}
   description: "Convoque temporairement une \xE2me guidant les attaques de sa cible,
     ce qui lui offre un bonus de Jet d'attaque de 2 (+1 tous les niveaux) pendant

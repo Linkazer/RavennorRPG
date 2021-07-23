@@ -23,7 +23,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private int possibleAction, possibleBaseAttack;
     
     [HideInInspector]
-    public bool hasMoved;
+    public bool CanMove => movementLeft >= 10;
 
     //[HideInInspector]
     public int movementLeft;
@@ -335,8 +335,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 }
             }
 
-            hasMoved = false;
-
             currentScriptable.GetPossibleActions(out possibleAction, out possibleBaseAttack);
 
             hasOpportunity = true;
@@ -362,7 +360,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return (float)currentHps / (float)currentScriptable.GetMaxHps();
     }
 
-    public float GetMaxMovement()
+    public int GetMaxMovement()
     {
         return currentScriptable.GetMovementSpeed();
     }
@@ -767,7 +765,15 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         for (int i = 0; i < appliedEffects.Count; i++)
         {
-            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, triggerWanted, appliedEffects[i].currentStack);
+            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, transform.position, triggerWanted, appliedEffects[i].currentStack);
+        }
+    }
+
+    public void ResolveEffect(EffectTrigger triggerWanted, Vector2 targetPosition)
+    {
+        for (int i = 0; i < appliedEffects.Count; i++)
+        {
+            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, targetPosition, triggerWanted, appliedEffects[i].currentStack);
         }
     }
 

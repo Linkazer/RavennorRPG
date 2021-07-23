@@ -190,7 +190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2750557042608311790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3599999, y: -0.07999998, z: 0}
+  m_LocalPosition: {x: 0.39999992, y: -0.07999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -314,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3272336872446394169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: -0.23999998, z: 0}
+  m_LocalPosition: {x: -0.07999998, y: -0.23999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -560,7 +560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4846332422985038200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: -0.07999998, z: 0}
+  m_LocalPosition: {x: 0.07999998, y: -0.07999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -690,7 +690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5230764540862996879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: 0.08000001, z: 0}
+  m_LocalPosition: {x: -0.07999998, y: 0.08000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -3167,6 +3167,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -1, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 7
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 11, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -3723,6 +3733,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: db318138f60294148b76227ff19f0345, type: 2}
   - m_RefCount: 67
     m_Data: {fileID: 11400000, guid: b73849a70b40b4747a203a8c8e1bb8d9, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 9b0d065a1b9a8df458d89a85cd2f7a9f, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: 3172204308278409280, guid: adec3085187944c4b8344a38ff7f50b7, type: 3}
@@ -3738,8 +3750,10 @@ Tilemap:
     m_Data: {fileID: 6302450770724571294, guid: adec3085187944c4b8344a38ff7f50b7, type: 3}
   - m_RefCount: 67
     m_Data: {fileID: -5525035058451228109, guid: e3119d736c5d0da4088a2ed632536d08, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 5886640827898951111, guid: e3119d736c5d0da4088a2ed632536d08, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 87
+  - m_RefCount: 88
     m_Data:
       e00: 1
       e01: 0
@@ -3760,7 +3774,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 3.022141e-39, g: 3.022141e-39, b: 3.022141e-39, a: 3.022141e-39}
-  - m_RefCount: 87
+  - m_RefCount: 88
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -18723,7 +18737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6766939721577049004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1999999, y: 0.08000001, z: 0}
+  m_LocalPosition: {x: 0.23999995, y: 0.08000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -18848,7 +18862,7 @@ MonoBehaviour:
   - Vanyaenn
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
-  levelAtEnd: 0
+  levelUp: 0
   rooms:
   - ennemis:
     - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
@@ -18865,12 +18879,12 @@ MonoBehaviour:
     - {fileID: 2178066594704809870}
     - {fileID: 5286541599564282707}
     ennemisPositions:
-    - {x: 1.3599999, y: -0.07999998}
-    - {x: 1.1999999, y: 0.08000001}
-    - {x: 1.1999999, y: -0.23999998}
-    - {x: 1.04, y: -0.07999998}
-    - {x: 0.88, y: 0.08000001}
-    - {x: 0.88, y: -0.23999998}
+    - {x: 0.39999992, y: -0.07999998}
+    - {x: 0.23999995, y: 0.08000001}
+    - {x: 0.23999995, y: -0.23999998}
+    - {x: 0.07999998, y: -0.07999998}
+    - {x: -0.07999998, y: 0.08000001}
+    - {x: -0.07999998, y: -0.23999998}
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
@@ -19918,7 +19932,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524586653687084437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1999999, y: -0.23999998, z: 0}
+  m_LocalPosition: {x: 0.23999995, y: -0.23999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}

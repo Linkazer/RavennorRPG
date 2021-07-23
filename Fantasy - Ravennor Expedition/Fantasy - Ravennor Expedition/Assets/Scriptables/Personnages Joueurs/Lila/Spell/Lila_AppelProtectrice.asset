@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Lila_AppelProtectrice
   m_EditorClassIdentifier: 
-  nom: "Appel d'\xE2mes protretectrices."
+  nom: "Appel d'\xE2me protrectrice"
   icon: {fileID: 21300000, guid: d19482ae738bbcf4ca1c868c86902798, type: 3}
   description: "Convoque temporairement une \xE2me afin de protoger la cible, ce
     qui lui offre un bonus de D\xE9fense de 2 (+1 tous les niveaux) pendant 3 tours."

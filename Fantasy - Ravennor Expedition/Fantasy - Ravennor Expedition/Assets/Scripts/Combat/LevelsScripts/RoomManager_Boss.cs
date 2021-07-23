@@ -29,7 +29,7 @@ public class RoomManager_Boss : RoomManager
     {
         base.ActivateRoom(index);
 
-        foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetTeamTwo())
+        foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara())
         {
             if (chara.name == bossWanted.nom)
             {

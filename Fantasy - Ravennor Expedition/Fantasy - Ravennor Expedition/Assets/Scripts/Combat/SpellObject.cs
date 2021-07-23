@@ -81,12 +81,8 @@ public class SpellObject : MonoBehaviour
             {
                 RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
 
-                BattleManager.instance.ResolveEffect(effet.effet, transform.position, EffectTrigger.BeginTurn, 1);
+                BattleManager.instance.ResolveEffect(effet.effet, transform.position, transform.position, EffectTrigger.BeginTurn, 1);
 
-                /*if (effet.possiblesTargets == ActionTargets.All || (effet.possiblesTargets == ActionTargets.Ennemies && chara.GetTeam() != effectCaster.GetTeam()) || (effet.possiblesTargets == ActionTargets.SelfAllies && chara.GetTeam() == effectCaster.GetTeam()))
-                {
-                    BattleManager.instance.ApplyTimeEffect(effet, chara);
-                }*/
             }
 
             turnLeft--;

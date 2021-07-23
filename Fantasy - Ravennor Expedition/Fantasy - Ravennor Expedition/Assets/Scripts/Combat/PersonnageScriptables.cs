@@ -353,11 +353,6 @@ public class PersonnageScriptables : ScriptableObject
         }
     }
 
-    public void SetLevel(int levelWanted)
-    {
-        level = levelWanted;
-    }
-
     public void UpLevel()
     {
         level++;

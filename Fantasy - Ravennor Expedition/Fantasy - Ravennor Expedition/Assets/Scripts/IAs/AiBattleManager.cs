@@ -73,9 +73,9 @@ public class AiBattleManager : MonoBehaviour
                     BattleManager.instance.EndTurn();
                 }
             }
-            else if (!currentChara.hasMoved)
+            else if (currentChara.CanMove)
             {
-                if (target != null && target.GetCurrentHps() > 0)
+                if (target != null && (target.GetCurrentHps() > 0 || Pathfinding.instance.GetDistance(target.currentNode, currentChara.currentNode) <= 15))
                 {
                     BattleManager.instance.EndTurn();
                 }
@@ -94,8 +94,12 @@ public class AiBattleManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(" Movement Left EndTurn");
-                        BattleManager.instance.EndTurn();
+                        nodeToMoveTo = GetClosestTargetNode(BattleManager.instance.GetPlayerChara());
+                        if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
+                        {
+                            BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
+                            currentChara.movementLeft -= nodeToMoveTo.gCost;
+                        }
                     }
                 }
             }
@@ -144,7 +148,7 @@ public class AiBattleManager : MonoBehaviour
                             {
                                 if (askForNextTurn)
                                 {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, currentChara.GetCharacterDatas().GetMovementSpeed());
+                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 150);
                                 }
                                 else
                                 {
@@ -161,10 +165,10 @@ public class AiBattleManager : MonoBehaviour
                 }
             }
 
-            if(target == null)
+            /*if(target == null)
             {
                 nodeToMoveTo = GetClosestTargetNode(targets, 0);
-            }
+            }*/
 
             if (considToCooldown != null && !askForNextTurn)
             {
@@ -235,16 +239,12 @@ public class AiBattleManager : MonoBehaviour
 
         List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
 
-        if (askForNextTurn || currentChara.movementLeft > 50)
+        if (askForNextTurn)
         {
-            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 50, true);
+            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 150, true);
         }
 
         float rangeNeeded = actionToTry.range;
-        /*if(askForNextTurn)
-        {
-            rangeNeeded += currentChara.GetMaxMovement();
-        }*/
 
         bool foundSomething = false;
 
@@ -256,11 +256,6 @@ public class AiBattleManager : MonoBehaviour
 
                 if(hit.collider == null || !actionToTry.hasViewOnTarget || askForNextTurn)
                 {
-                    /*if (Pathfinding.instance.GetDistance(currentChara.currentNode, n) < currentDistance)
-                    {
-                        nodeToMoveTo = n;
-                    }*/
-                    //foundSomething = true;
                     return true;
                 }
             }
@@ -271,7 +266,6 @@ public class AiBattleManager : MonoBehaviour
 
     private Node GetNodeToHitTarget(RuntimeBattleCharacter wantedTarget, float rangeWanted, bool needView, int deplacementBoost)
     {
-        //float range = 1000;
         Node nodeToReturn = currentChara.currentNode;
 
         List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft + deplacementBoost, true);
@@ -298,17 +292,20 @@ public class AiBattleManager : MonoBehaviour
         return nodeToReturn;
     }
 
-    private Node GetClosestTargetNode(List<RuntimeBattleCharacter> possiblesTargets, float rangeWanted)
+    private Node GetClosestTargetNode(List<RuntimeBattleCharacter> possiblesTargets)
     {
         float range = 1000;
         Node nodeToReturn = currentChara.currentNode;
 
         foreach(RuntimeBattleCharacter r in possiblesTargets)
         {
-            if(r.GetTeam() != currentChara.GetTeam() &&  Vector2.Distance(r.currentNode.worldPosition, currentChara.currentNode.worldPosition) < range)
+            foreach (Node n in Grid.instance.GetNeighbours(r.currentNode))
             {
-                range = Vector2.Distance(r.currentNode.worldPosition, currentChara.currentNode.worldPosition);
-                nodeToReturn = r.currentNode;
+                if (Vector2.Distance(n.worldPosition, currentChara.currentNode.worldPosition) < range)
+                {
+                    range = Vector2.Distance(n.worldPosition, currentChara.currentNode.worldPosition);
+                    nodeToReturn = n;
+                }
             }
         }
 

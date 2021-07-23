@@ -22,7 +22,7 @@ MonoBehaviour:
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
-  target: 1
+  target: 2
   castTarget: 2
   castOnSelf: 0
   range: 15
