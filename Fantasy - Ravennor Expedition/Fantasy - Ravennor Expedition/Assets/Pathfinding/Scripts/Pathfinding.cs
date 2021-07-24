@@ -29,10 +29,11 @@ public class Pathfinding : MonoBehaviour {
 		Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
 		if (targetNode.walkable) {
-			pathSuccess = SetAllNodes(startNode, targetNode, isForNextTurn);
+			pathSuccess = SearchPath(startNode, targetNode, isForNextTurn);
 		}
 		yield return null;
 		if (pathSuccess) {
+			Debug.Log("Path success");
 			waypoints = RetracePath(startNode,targetNode, maxDistance);
 		}
 		if(waypoints.Length <= 0 || waypoints[0] == null)
@@ -103,7 +104,7 @@ public class Pathfinding : MonoBehaviour {
 		}
 	}
 
-	public bool SetAllNodes(Node startNode, Node targetNode, bool isForNextTurn)
+	public bool SearchPath(Node startNode, Node targetNode, bool isForNextTurn)
 	{
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 		HashSet<Node> closedSet = new HashSet<Node>();
@@ -116,7 +117,7 @@ public class Pathfinding : MonoBehaviour {
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-				if ((!neighbour.walkable || (!isForNextTurn && neighbour != targetNode && neighbour.HasCharacterOn)) || closedSet.Contains(neighbour))
+				if ((!neighbour.walkable || (!isForNextTurn && neighbour.HasCharacterOn && neighbour != targetNode)) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
@@ -129,13 +130,16 @@ public class Pathfinding : MonoBehaviour {
 				}
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-				if(isForNextTurn && neighbour.HasCharacterOn)
+				if(neighbour.HasCharacterOn)
                 {
 					newMovementCostToNeighbour += 50;
-					neighbour.gCost = newMovementCostToNeighbour;
+					if(neighbour.gCost < 50)
+                    {
+						neighbour.gCost = newMovementCostToNeighbour;
+					}
 				}
 
-				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+				if (newMovementCostToNeighbour <= neighbour.gCost)
 				{
 					neighbour.gCost = newMovementCostToNeighbour;
 					if (targetNode != null)
@@ -223,7 +227,7 @@ public class Pathfinding : MonoBehaviour {
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 				if (newMovementCostToNeighbour <= distance)
 				{
-					if (neighbour.HasCharacterOn)
+					if (neighbour.HasCharacterOn && pathCalcul)
 					{
 						newMovementCostToNeighbour += 50;
 						neighbour.gCost = newMovementCostToNeighbour;

@@ -60,7 +60,9 @@ public class AiBattleManager : MonoBehaviour
                 {
                     //Debug.Log(currentChara + " move for action");
                     BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
+                    Debug.Log(currentChara.movementLeft + " -= " + nodeToMoveTo.gCost);
                     currentChara.movementLeft -= nodeToMoveTo.gCost;
+                    Debug.Log(currentChara.movementLeft);
                 }
                 else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) <= wantedAction.range))
                 {
@@ -85,6 +87,8 @@ public class AiBattleManager : MonoBehaviour
                     SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
 
                     //Debug.Log(currentChara.name + " Move for next round : " + nodeToMoveTo.worldPosition);
+
+                    Debug.Log(nodeToMoveTo);
 
                     if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                     {
@@ -148,7 +152,7 @@ public class AiBattleManager : MonoBehaviour
                             {
                                 if (askForNextTurn)
                                 {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 150);
+                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 1000);
                                 }
                                 else
                                 {
@@ -164,11 +168,6 @@ public class AiBattleManager : MonoBehaviour
                     }
                 }
             }
-
-            /*if(target == null)
-            {
-                nodeToMoveTo = GetClosestTargetNode(targets, 0);
-            }*/
 
             if (considToCooldown != null && !askForNextTurn)
             {
@@ -308,7 +307,7 @@ public class AiBattleManager : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(nodeToReturn.worldPosition.ToString("F4"));
         return nodeToReturn;
     }
 

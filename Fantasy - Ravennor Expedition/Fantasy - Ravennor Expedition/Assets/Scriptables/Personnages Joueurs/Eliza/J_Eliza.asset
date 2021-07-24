@@ -24,7 +24,7 @@ MonoBehaviour:
   level: 1
   healthPoints: 18
   maana: 6
-  movementSpeed: 30
+  movementSpeed: 35
   hitDices: 1
   defense: 2
   physicalPower: 0

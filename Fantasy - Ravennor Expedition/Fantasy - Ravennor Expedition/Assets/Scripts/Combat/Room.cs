@@ -10,4 +10,7 @@ public class Room
 
     //[HideInInspector]
     public List<Vector2> ennemisPositions;
+
+    public List<GameObject> toEnable;
+    public List<GameObject> toDisable;
 }

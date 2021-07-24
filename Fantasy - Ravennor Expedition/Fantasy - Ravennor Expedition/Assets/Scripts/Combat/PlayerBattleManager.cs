@@ -110,8 +110,9 @@ public class PlayerBattleManager : MonoBehaviour
                 }
             }
         }
-
-        Grid.instance.SetUsableNodes(canSpellOn, Color.blue);
+        Color tColor = Color.blue;
+        tColor.a = 0.5f;
+        Grid.instance.SetUsableNodes(canSpellOn, tColor);
     }
 
     private bool IsNodeVisible(Node startNode, Node targetNode)
@@ -220,6 +221,25 @@ public class PlayerBattleManager : MonoBehaviour
         #endregion
     }
 
+    public void ShowPath(Vector2 mousePos)
+    {
+        PathRequestManager.RequestPath(currentCharacter.currentNode.worldPosition, mousePos, currentCharacter.movementLeft, false, DisplayPath);
+
+    }
+
+    private void DisplayPath(Vector3[] newPath, bool pathSuccessful)
+    {
+        List<Vector2Int> path = new List<Vector2Int>();
+        for(int i = 0; i < newPath.Length; i++)
+        {
+            Node n = Grid.instance.NodeFromWorldPoint(newPath[i]);
+            path.Add(new Vector2Int(n.gridX, n.gridY));
+        }
+        Color tColor = Color.green;
+        tColor.a = 0.75f;
+        Grid.instance.ShowZone(newPath, tColor);
+    }
+
     public void ShowCurrentSpell(Vector2 mousePos)
     {
         CharacterActionScriptable wantedAction = actionList[holdSpellIndex];
@@ -259,7 +279,9 @@ public class PlayerBattleManager : MonoBehaviour
                 Debug.Log("J'ai merdé");
             }*/
         }
-        Grid.instance.ShowZone(mousePos, spellZone, Color.red);
+        Color tColor = Color.red;
+        tColor.a = 0.5f;
+        Grid.instance.ShowZone(mousePos, spellZone, tColor);
     }
 
     public void UseSpell(Vector2 position)
@@ -307,6 +329,8 @@ public class PlayerBattleManager : MonoBehaviour
         Grid.instance.CreateGrid();
         List<Node> canMoveTo = Pathfinding.instance.GetNodesWithMaxDistance(currentCharacter.currentNode, currentCharacter.movementLeft, true);
         canMoveTo.RemoveAt(0);
-        Grid.instance.SetUsableNodes(canMoveTo, Color.green);
+        Color tColor = Color.green;
+        tColor.a = 0.5f;
+        Grid.instance.SetUsableNodes(canMoveTo, tColor);
     }
 }

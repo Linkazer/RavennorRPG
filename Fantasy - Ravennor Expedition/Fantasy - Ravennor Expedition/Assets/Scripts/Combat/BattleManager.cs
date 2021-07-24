@@ -94,6 +94,8 @@ public class BattleManager : MonoBehaviour
 
         Instantiate(level);
 
+        roomManager.SetRoomManager();
+
         for (int i = 0; i < teamOne.Count; i++)
         {
             if (i < roomManager.playerStartPositions.Count)
@@ -110,8 +112,6 @@ public class BattleManager : MonoBehaviour
         }
 
         SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
-
-        roomManager.SetRoomManager();
 
         LoadingScreenManager.instance.HideScreen();
 
@@ -204,7 +204,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        return roomManager.CheckForEnd();
+        return roomManager.CheckEndTurn();
     }
 
     public void EndBattle(bool doesWin)
@@ -323,7 +323,7 @@ public class BattleManager : MonoBehaviour
 
         if (character.GetCurrentHps() > 0 && !character.CheckForAffliction(Affliction.Paralysie))
         {
-            Pathfinding.instance.SetAllNodes(Grid.instance.NodeFromWorldPoint(character.transform.position), null, false);
+            Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(character.transform.position), null, false);
 
             if (character.GetTeam() == 1)
             {
@@ -362,15 +362,7 @@ public class BattleManager : MonoBehaviour
     #region Character Actions
     public void MoveCharacter(RuntimeBattleCharacter character, Vector2 destination, bool isForNextTurn)
     {
-        if (character.GetTeam() != 1)
-        {
-            AskToMove(character.gameObject, destination, character.movementLeft, isForNextTurn);
-        }
-        else
-        {
-            Debug.Log("Test AI");
-            AskToMove(character.gameObject, destination, character.movementLeft + character.GetMaxMovement(), isForNextTurn);
-        }
+        AskToMove(character.gameObject, destination, character.movementLeft, isForNextTurn);
     }
     
     public void EndCurrentActionWithDelay(float timeDelay)
@@ -396,7 +388,7 @@ public class BattleManager : MonoBehaviour
         //Grid.instance.ResetUsableNode();
         if (character.GetTeam() == 1)
         {
-            Pathfinding.instance.SetAllNodes(Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position), null, false);
+            Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position), null, false);
             PlayerBattleManager.instance.ActivatePlayerBattleController(true);
         }
         else if(character.GetTeam() > -1)

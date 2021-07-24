@@ -22,7 +22,7 @@ MonoBehaviour:
     effects: []
     actionEffect:
     - spellToUse: {fileID: 11400000, guid: be22234ae2091ee4ca164ea74a22072e, type: 2}
-      trigger: 7
+      trigger: 8
       possiblesTargets: 2
       caster: {fileID: 0}
     affliction: 0

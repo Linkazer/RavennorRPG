@@ -18796,7 +18796,7 @@ GameObject:
   - component: {fileID: 2336668606332924307}
   - component: {fileID: 4850284551274847440}
   m_Layer: 0
-  m_Name: Chap0_Arena
+  m_Name: Chap0_Arena 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18859,27 +18859,9 @@ MonoBehaviour:
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
   levelUp: 0
   rooms:
-  - ennemis:
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    ennemisPos:
-    - {fileID: 5286541599564282707}
-    - {fileID: 2178066594704809870}
-    - {fileID: 2883841227036701449}
-    - {fileID: 5414908045646933544}
-    - {fileID: 5118355067676682905}
-    - {fileID: 2600873587656351773}
-    ennemisPositions:
-    - {x: 0.88, y: -0.23999998}
-    - {x: 0.88, y: 0.08000001}
-    - {x: 1.04, y: -0.07999998}
-    - {x: 1.1999999, y: -0.23999998}
-    - {x: 1.1999999, y: 0.08000001}
-    - {x: 1.3599999, y: -0.07999998}
+  - ennemis: []
+    ennemisPos: []
+    ennemisPositions: []
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}

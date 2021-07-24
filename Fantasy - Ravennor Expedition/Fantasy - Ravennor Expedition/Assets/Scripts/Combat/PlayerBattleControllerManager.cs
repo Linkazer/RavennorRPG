@@ -24,7 +24,7 @@ public class PlayerBattleControllerManager : MonoBehaviour
 
     private void Update()
     {
-        currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        currentMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - new Vector3(0.06f,0,0);
 
         #region Global Input
         if (Input.GetMouseButtonDown(1))
@@ -67,6 +67,14 @@ public class PlayerBattleControllerManager : MonoBehaviour
                     {
                         PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                     }
+                }
+            }
+            else
+            {
+                if (Grid.instance.NodeFromWorldPoint(currentMousePos) != Grid.instance.NodeFromWorldPoint(lastMousePos))
+                {
+                    lastMousePos = currentMousePos;
+                    PlayerBattleManager.instance.ShowPath(currentMousePos);
                 }
             }
 

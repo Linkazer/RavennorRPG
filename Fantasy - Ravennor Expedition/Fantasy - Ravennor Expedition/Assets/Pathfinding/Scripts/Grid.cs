@@ -166,6 +166,16 @@ public class Grid : MonoBehaviour {
 		ShowZone(startN, wantedVectors, wantedColor);
 	}
 
+	public void ShowZone(Vector3[] wantedPos, Color wantedColor)
+    {
+		ResetNodeColor(wantedColor);
+
+		foreach (Vector3 v in wantedPos)
+		{
+			SetNodeFeedback(NodeFromWorldPoint(v).worldPosition, wantedColor, 7);
+		}
+	}
+
 	public void ResetUsableNode()
     {
 		for (int x = 0; x < gridSizeX; x++)
@@ -249,13 +259,18 @@ public class Grid : MonoBehaviour {
 
 	public void SetNodeFeedback(Vector2 position, Color newColor, int layerIndex)
     {
-		freeNodeFeedback[0].transform.position = position;
-		freeNodeFeedback[0].GetComponent<SpriteRenderer>().enabled = true;
-		freeNodeFeedback[0].GetComponent<SpriteRenderer>().color = newColor;
-		freeNodeFeedback[0].GetComponent<SpriteRenderer>().sortingOrder = layerIndex;
+		if (freeNodeFeedback.Count > 0)
+		{
+			freeNodeFeedback[0].transform.position = position;
+			freeNodeFeedback[0].GetComponent<SpriteRenderer>().enabled = true;
+			freeNodeFeedback[0].GetComponent<SpriteRenderer>().color = newColor;
+			freeNodeFeedback[0].GetComponent<SpriteRenderer>().sortingOrder = layerIndex;
 
-		usedNodeFeedback.Add(freeNodeFeedback[0]);
-		freeNodeFeedback.RemoveAt(0);
+			freeNodeFeedback[0].GetComponent<TempCaseFeedbackCost>().cost = NodeFromWorldPoint(position).gCost;
+
+			usedNodeFeedback.Add(freeNodeFeedback[0]);
+			freeNodeFeedback.RemoveAt(0);
+		}
     }
 
 	public void ResetNodeFeedback()

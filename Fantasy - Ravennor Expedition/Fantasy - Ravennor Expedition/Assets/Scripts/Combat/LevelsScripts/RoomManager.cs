@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,10 +29,14 @@ public class RoomManager : MonoBehaviour
     protected List<int> openRoomIndexes = new List<int>();
 
     [SerializeField]
-    private int numberOfEnnemiesToKill = 0;
-
-    [SerializeField]
     public Vector2 cameraMaxLeftTop, cameraMaxRightBottom;
+
+    public Action<int> openRoomAct;
+    public Action checkTurnAct;
+
+    [SerializeField] private RoomEnd end;
+
+    private bool hasEnd;
 
     public RoomManager()
     {
@@ -91,57 +96,67 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public virtual void SetRoomManager()
+    public void SetRoomManager()
     {
-        
+        end.SetEnd();
     }
 
     public void OpenRoom(int index)
     {
         Debug.Log("Open room : " + index);
-        if(index == 0)
+        if (index == 0)
         {
             openRoomIndexes = new List<int>();
         }
-
-        if(!openRoomIndexes.Contains(index))
+        
+        if (index >= 0)
         {
-            openRoomIndexes.Add(index);
-            ActivateRoom(index);
-        }
-    }
-
-    protected virtual void ActivateRoom(int index)
-    {
-        Room toActivate = rooms[index];
-        for (int i = 0; i < toActivate.ennemis.Count;i++)
-        {
-            BattleManager.instance.SpawnNewCharacter(toActivate.ennemis[i], toActivate.ennemisPositions[i]);
-        }
-    }
-
-    public virtual bool CheckForEnd()
-    {
-        int killedChara = 0;
-        foreach(RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara())
-        {
-            if(chara.GetCurrentHps()<=0)
+            if (!openRoomIndexes.Contains(index))
             {
-                killedChara++;
+                openRoomIndexes.Add(index);
+                ActivateRoom(index);
             }
         }
-        if (killedChara >= numberOfEnnemiesToKill)
-        {
-            WinLevel();
-            return true;
-        }
+    }
 
-        return false;
+    public void ActivateRoom(int index)
+    {
+        openRoomAct?.Invoke(index);
+        if (!hasEnd)
+        {
+            Room toActivate = rooms[index];
+
+            for (int i = 0; i < toActivate.toEnable.Count; i++)
+            {
+                toActivate.toEnable[i].SetActive(true);
+            }
+
+            for (int i = 0; i < toActivate.toDisable.Count; i++)
+            {
+                toActivate.toDisable[i].SetActive(false);
+            }
+
+            for (int i = 0; i < toActivate.ennemis.Count; i++)
+            {
+                BattleManager.instance.SpawnNewCharacter(toActivate.ennemis[i], toActivate.ennemisPositions[i]);
+            }
+
+        }
+    }
+
+    public virtual bool CheckEndTurn()
+    {
+        checkTurnAct?.Invoke();
+        return hasEnd;
     }
 
     public void WinLevel()
     {
-        RavenorGameManager.instance.dialogueToDisplay = campDialogue;
+        hasEnd = true;
+        if (campDialogue != null)
+        {
+            RavenorGameManager.instance.dialogueToDisplay = campDialogue;
+        }
 
         BattleManager.instance.EndBattle(true);
     }

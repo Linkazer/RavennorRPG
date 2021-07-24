@@ -19,6 +19,7 @@ public class PathRequestManager : MonoBehaviour {
 	}
 
 	public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, int maxDistance, bool isForNextTurn, Action<Vector3[], bool> callback) {
+		Debug.Log("RequestPath");
 		PathRequest newRequest = new PathRequest(pathStart,pathEnd, maxDistance,callback, isForNextTurn);
 		instance.pathRequestQueue.Enqueue(newRequest);
 		instance.TryProcessNext();
