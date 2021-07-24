@@ -139,7 +139,7 @@ public class Pathfinding : MonoBehaviour {
 					}
 				}
 
-				if (newMovementCostToNeighbour <= neighbour.gCost)
+				if (newMovementCostToNeighbour <= neighbour.gCost || (isForNextTurn && !openSet.Contains(neighbour)))
 				{
 					neighbour.gCost = newMovementCostToNeighbour;
 					if (targetNode != null)
