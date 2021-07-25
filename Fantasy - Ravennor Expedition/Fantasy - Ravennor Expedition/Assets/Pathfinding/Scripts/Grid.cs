@@ -18,6 +18,7 @@ public class Grid : MonoBehaviour {
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
 
+	[SerializeField]
 	private List<GameObject> usedNodeFeedback = new List<GameObject>();
 	[SerializeField]
 	private List<GameObject> freeNodeFeedback;
@@ -102,13 +103,13 @@ public class Grid : MonoBehaviour {
 	}
 	
 	public Node NodeFromWorldPoint(Vector3 worldPosition) {
-		float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-		float percentY = (worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
+		float percentX = (worldPosition.x + nodeRadius + gridWorldSize.x/2) / gridWorldSize.x;
+		float percentY = (worldPosition.y + nodeRadius + gridWorldSize.y/2) / gridWorldSize.y;
 		percentX = Mathf.Clamp01(percentX);
 		percentY = Mathf.Clamp01(percentY);
 
-		int x = Mathf.RoundToInt((gridSizeX-1) * percentX);
-		int y = Mathf.RoundToInt((gridSizeY-1) * percentY);
+		int x = Mathf.RoundToInt((gridSizeX) * percentX)-1;
+		int y = Mathf.RoundToInt((gridSizeY) * percentY)-1;
 
 		return grid[x,y];
 	}
@@ -276,7 +277,7 @@ public class Grid : MonoBehaviour {
 	public void ResetNodeFeedback()
     {
 		foreach(GameObject g in usedNodeFeedback)
-        {
+		{
 			g.GetComponent<SpriteRenderer>().enabled = false;
 			freeNodeFeedback.Add(g);
         }

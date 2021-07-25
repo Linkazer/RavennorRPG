@@ -26,6 +26,18 @@ public class SpellEffect
     [HideInInspector]
     public RuntimeBattleCharacter caster;
 
+    public int RealValue()
+    {
+        if(caster != null)
+        {
+            return value + Mathf.FloorToInt((caster.GetCharacterDatas().GetLevel-1) * scaleByLevel);
+        }
+        else
+        {
+            return value;
+        }
+    }
+
     public SpellEffect()
     {
 

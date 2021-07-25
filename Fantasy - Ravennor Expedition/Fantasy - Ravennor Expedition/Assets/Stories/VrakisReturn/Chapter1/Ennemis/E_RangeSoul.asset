@@ -20,7 +20,7 @@ MonoBehaviour:
   brasPosition: 0
   description: 
   level: 1
-  healthPoints: 15
+  healthPoints: 14
   maana: 0
   movementSpeed: 30
   hitDices: 1

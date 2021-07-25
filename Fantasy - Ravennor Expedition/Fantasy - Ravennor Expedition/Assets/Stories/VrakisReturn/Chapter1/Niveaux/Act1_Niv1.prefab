@@ -21927,6 +21927,8 @@ MonoBehaviour:
     - {x: -2, y: -0.24000001}
     - {x: -1.9999999, y: 0.08000004}
     - {x: -1.52, y: -0.07999998}
+    toEnable: []
+    toDisable: []
   - ennemis:
     - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
     - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
@@ -21942,6 +21944,8 @@ MonoBehaviour:
     - {x: -1.0400001, y: -0.88000005}
     - {x: -1.5200001, y: -0.88000005}
     - {x: -0.72, y: -0.72}
+    toEnable: []
+    toDisable: []
   - ennemis:
     - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
     - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
@@ -21960,6 +21964,8 @@ MonoBehaviour:
     - {x: -0.08000007, y: -1.1999999}
     - {x: -0.24000007, y: -1.52}
     - {x: -0.56000006, y: -1.0400001}
+    toEnable: []
+    toDisable: []
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
@@ -21989,7 +21995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomManager: {fileID: 2336668606332924307}
-  ennemiesToDown: 2
+  ennemiesToDown: 12
 --- !u!1 &8412524457342843277
 GameObject:
   m_ObjectHideFlags: 0

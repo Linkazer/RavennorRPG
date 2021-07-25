@@ -650,6 +650,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             healTakenEvt.Invoke(healAmount+bonusAmount);
             ResolveEffect(EffectTrigger.Heal);
 
+            toPrint += "+ " + bonusAmount;
+
             Debug.Log(this + " healed of " + (healAmount + bonusAmount));
             BattleDiary.instance.AddText(toPrint);
 
@@ -704,7 +706,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ApplyEffect(SpellEffect wantedEffect)
     {
-        currentScriptable.StatBonus(wantedEffect.value, wantedEffect.type, wantedEffect.dicesBonus, true);
+        currentScriptable.StatBonus(wantedEffect.RealValue(), wantedEffect.type, wantedEffect.dicesBonus, true);
     }
 
     public void UpdateEffects()
@@ -750,7 +752,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         foreach (SpellEffect eff in appliedEffects[index].effet.effects)
         {
-            currentScriptable.StatBonus(-eff.value, eff.type, eff.dicesBonus, false);
+            currentScriptable.StatBonus(-eff.RealValue(), eff.type, eff.dicesBonus, false);
         }
 
         if(appliedEffects[index].effet.affliction != Affliction.None && CheckToDeleteAffliction(appliedEffects[index].effet.affliction))

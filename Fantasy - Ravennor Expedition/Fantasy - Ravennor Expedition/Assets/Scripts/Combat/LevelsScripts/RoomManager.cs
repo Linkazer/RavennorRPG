@@ -134,6 +134,7 @@ public class RoomManager : MonoBehaviour
             for (int i = 0; i < toActivate.toDisable.Count; i++)
             {
                 toActivate.toDisable[i].SetActive(false);
+                Debug.Log(toActivate.toDisable[i].activeSelf);
             }
 
             for (int i = 0; i < toActivate.ennemis.Count; i++)

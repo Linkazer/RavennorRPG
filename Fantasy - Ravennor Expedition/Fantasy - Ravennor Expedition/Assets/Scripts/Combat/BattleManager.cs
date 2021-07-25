@@ -76,7 +76,7 @@ public class BattleManager : MonoBehaviour
 
         if (RavenorGameManager.instance != null)
         {
-            level = RavenorGameManager.instance.GetBattle();
+            level = Instantiate(RavenorGameManager.instance.GetBattle());
             teamOne = new List<PersonnageScriptables>();
 
             roomManager = level.GetComponent<RoomManager>();
@@ -91,8 +91,6 @@ public class BattleManager : MonoBehaviour
         }
 
         roomManager = level.GetComponent<RoomManager>();
-
-        Instantiate(level);
 
         roomManager.SetRoomManager();
 
@@ -562,11 +560,6 @@ public class BattleManager : MonoBehaviour
                         caster
                         );
 
-                    foreach (SpellEffect effS in runEffet.effet.effects)
-                    {
-                        SetEffectValues(effS, caster);
-                    }
-
                     n.AddEffect(runEffet, caster);
 
                     if (eff.spriteCase != null)
@@ -721,12 +714,15 @@ public class BattleManager : MonoBehaviour
 
         Debug.Log("Heal Dices : " + neededDices.Count);
 
-        target.TakeHeal(neededDices, (int)caster.GetCharacterDatas().GetSoinApplique());
+        int baseHeal = wantedAction.GetBaseDamage(caster.GetCharacterDatas().GetLevel) + caster.GetCharacterDatas().GetSoinApplique();
+        Debug.Log(wantedAction.GetBaseDamage(caster.GetCharacterDatas().GetLevel));
+        Debug.Log(caster.GetCharacterDatas().GetSoinApplique());
+        target.TakeHeal(neededDices, baseHeal);
     }
 
     public int DoDamage(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, bool isEffectSpell)
     {
-        int bonusDamages = 0;
+        int bonusDamages = wantedAction.GetBaseDamage(caster.GetCharacterDatas().GetLevel);
 
         switch (wantedAction.attackType)
         {
@@ -840,11 +836,11 @@ public class BattleManager : MonoBehaviour
             criticalText = " réussit son attaque ";
         }
 
-        if(casterHitScore >= targetDefenseScore || isEffectSpell)
+        if(casterHitScore > targetDefenseScore || isEffectSpell)
         {
             //Récupération de tous les Dé nécessaires aux dégâts
 
-            if (attackLucky > 0 || wantedAction.autoCritical)
+            if ((attackLucky > 0 || wantedAction.autoCritical) && caster.GetTeam() == 0)
             {
                 caster.crititcalActionEvt.Invoke();
                 int critBonus = caster.GetCharacterDatas().GetCriticalDamageMultiplier();
@@ -895,11 +891,6 @@ public class BattleManager : MonoBehaviour
             caster
             );
 
-            foreach (SpellEffect eff in runEffet.effet.effects)
-            {
-                SetEffectValues(eff, caster);
-            }
-
             target.AddEffect(runEffet);
 
             foreach (SpellEffectScriptables eff in wantedEffect.bonusToCancel)
@@ -909,11 +900,6 @@ public class BattleManager : MonoBehaviour
 
             ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
         }
-    }
-
-    public void SetEffectValues(SpellEffect effet, RuntimeBattleCharacter caster)
-    {
-        effet.value = (int)((effet.value + effet.scaleByLevel * caster.GetCharacterDatas().GetLevel));
     }
 
     public void ResolveEffect(SpellEffectCommon effect, Vector2 casterPosition, Vector2 targetPosition, EffectTrigger triggerWanted, int stack)
@@ -1279,7 +1265,7 @@ public class BattleManager : MonoBehaviour
         {
             toReturn = new Vector2(toReturn.x, 1);
         }
-        return toReturn;
+        return position;
     }
 
     public void OpenRoom(int index)

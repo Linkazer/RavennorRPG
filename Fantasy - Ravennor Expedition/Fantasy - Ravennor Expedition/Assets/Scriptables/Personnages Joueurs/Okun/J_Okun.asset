@@ -22,7 +22,7 @@ MonoBehaviour:
     aussi le plus secret. Toujours de bonne humeur, il esquive chacune des questions
     des autres membres concernant son pass\xE9."
   level: 1
-  healthPoints: 26
+  healthPoints: 32
   maana: 3
   movementSpeed: 35
   hitDices: 1

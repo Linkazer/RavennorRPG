@@ -79,7 +79,10 @@ public class PlayerBattleManager : MonoBehaviour
         }
         else
         {
-            ShowDeplacement();
+            if (controler.IsPlayerTurn)
+            {
+                ShowDeplacement();
+            }
             holdSpellIndex = -1;
         }
     }
@@ -117,25 +120,6 @@ public class PlayerBattleManager : MonoBehaviour
 
     private bool IsNodeVisible(Node startNode, Node targetNode)
     {
-        /*int i = 0;
-        Node checkNode = targetNode;
-
-        while(i < 10 && checkNode != startNode)
-        {
-            i++;
-            if (checkNode != null)
-            {
-                if (!checkNode.walkable)
-                {
-                    Debug.Log("Not walkable");
-                    return false;
-                }
-                checkNode = checkNode.parent;
-            }
-        }
-        return true;*/
-
-        #region Tentative sans parent
         int x = targetNode.gridX;
         int y = targetNode.gridY;
         int j = y;
@@ -218,7 +202,6 @@ public class PlayerBattleManager : MonoBehaviour
         }
 
         return true;
-        #endregion
     }
 
     public void ShowPath(Vector2 mousePos)

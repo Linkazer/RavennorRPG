@@ -13,7 +13,7 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private GameObject mainBattleUI;
     [SerializeField]
-    private List<EventTrigger> playerButtons;
+    private List<CanvasGroup> playerInterractionCanvas;
 
     [SerializeField]
     private List<Image> turnImages;
@@ -82,9 +82,10 @@ public class BattleUiManager : MonoBehaviour
 
     public void SetPlayerUI(bool state)
     {
-        foreach(EventTrigger e in playerButtons)
+        foreach(CanvasGroup canvGroup in playerInterractionCanvas)
         {
-            e.enabled = state;
+            canvGroup.interactable = state;
+            canvGroup.blocksRaycasts = state;
         }
     }
 

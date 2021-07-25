@@ -33,7 +33,6 @@ public class Pathfinding : MonoBehaviour {
 		}
 		yield return null;
 		if (pathSuccess) {
-			Debug.Log("Path success");
 			waypoints = RetracePath(startNode,targetNode, maxDistance);
 		}
 		if(waypoints.Length <= 0 || waypoints[0] == null)

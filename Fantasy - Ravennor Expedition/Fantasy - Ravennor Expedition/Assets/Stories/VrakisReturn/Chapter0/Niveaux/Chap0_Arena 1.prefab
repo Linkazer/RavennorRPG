@@ -18862,6 +18862,8 @@ MonoBehaviour:
   - ennemis: []
     ennemisPos: []
     ennemisPositions: []
+    toEnable: []
+    toDisable: []
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
@@ -18877,8 +18879,8 @@ MonoBehaviour:
   - {x: -1.0400002, y: 0.08000013}
   - {x: -1.0400002, y: -0.23999977}
   openRoomIndexes: 00000000
-  cameraMaxLeftTop: {x: -0.5, y: 0.5}
-  cameraMaxRightBottom: {x: 0.5, y: -0.5}
+  cameraMaxLeftTop: {x: -1, y: 1}
+  cameraMaxRightBottom: {x: 1, y: -1}
   end: {fileID: 4850284551274847440}
 --- !u!114 &4850284551274847440
 MonoBehaviour:

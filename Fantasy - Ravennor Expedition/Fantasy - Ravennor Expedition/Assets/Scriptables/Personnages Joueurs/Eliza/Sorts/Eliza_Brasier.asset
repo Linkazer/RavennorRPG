@@ -43,6 +43,7 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
+  damageBase: 0
   dices:
   - wantedDice: 1
     numberOfDice: 1
@@ -51,6 +52,7 @@ MonoBehaviour:
   damageType: 2
   diceByLevelBonus: 0.5
   diceByLevel: 1
+  damageBaseByLevel: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

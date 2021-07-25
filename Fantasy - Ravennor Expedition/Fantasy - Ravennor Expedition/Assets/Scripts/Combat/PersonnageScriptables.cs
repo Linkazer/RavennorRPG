@@ -158,7 +158,7 @@ public class PersonnageScriptables : ScriptableObject
         return criticalMultiplicator + criticalMultiplicatorBonus;
     }
 
-    public float GetSoinApplique()
+    public int GetSoinApplique()
     {
         return bonusSoinAppli;
     }

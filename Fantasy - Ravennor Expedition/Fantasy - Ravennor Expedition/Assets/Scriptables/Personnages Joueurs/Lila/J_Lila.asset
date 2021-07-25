@@ -22,7 +22,7 @@ MonoBehaviour:
     un tombeau. Elle a rejoint la Confr\xE9rie afin d'en apprendre plus sur les raisons
     qui ont pouss\xE9 son percepteur \xE0 l'enfermer."
   level: 1
-  healthPoints: 21
+  healthPoints: 28
   maana: 5
   movementSpeed: 35
   hitDices: 1

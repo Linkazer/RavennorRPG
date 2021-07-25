@@ -9,11 +9,15 @@ public class CharacterActionDirect : CharacterActionScriptable
     public bool hasPowerEffect = true;
 
     [SerializeField]
+    protected int damageBase;
+    [SerializeField]
     protected List<Dice> dices;
     public bool noBonusSpell;
     public DamageType damageType;
     public float diceByLevelBonus;
     public DiceType diceByLevel;
+    [SerializeField]
+    protected float damageBaseByLevel;
     public bool autoCritical = false;
 
     public ScalePossibility scaleOrigin;
@@ -27,6 +31,11 @@ public class CharacterActionDirect : CharacterActionScriptable
     public CharacterActionDirect()
     {
         spellType = SpellType.Direct;
+    }
+
+    public int GetBaseDamage(int casterLevel)
+    {
+        return damageBase + Mathf.FloorToInt((casterLevel-actionLevel) * damageBaseByLevel);
     }
 
     public List<Dice> GetDices()
