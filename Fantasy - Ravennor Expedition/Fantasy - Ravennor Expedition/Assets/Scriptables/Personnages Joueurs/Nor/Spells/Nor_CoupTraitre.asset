@@ -42,14 +42,16 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
+  damageBase: 0
   dices:
   - wantedDice: 0
-    numberOfDice: 2
+    numberOfDice: 1
     wantedDamage: 1
   noBonusSpell: 0
   damageType: 1
-  diceByLevelBonus: 1
+  diceByLevelBonus: 0.5
   diceByLevel: 0
+  damageBaseByLevel: 0
   autoCritical: 1
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

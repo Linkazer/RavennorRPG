@@ -108,14 +108,11 @@ public class RoomManager : MonoBehaviour
         {
             openRoomIndexes = new List<int>();
         }
-        
-        if (index >= 0)
+
+        if (!openRoomIndexes.Contains(index))
         {
-            if (!openRoomIndexes.Contains(index))
-            {
-                openRoomIndexes.Add(index);
-                ActivateRoom(index);
-            }
+            openRoomIndexes.Add(index);
+            ActivateRoom(index);
         }
     }
 

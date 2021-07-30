@@ -6,6 +6,11 @@ public enum DiceType { D4, D6, D8, D10, D12, D20}
 
 public class GameDices
 {
+    public static void SetRandomInit()
+    {
+        Random.InitState((int)System.DateTime.Now.Ticks);
+    }
+
     public static int RollD4()
     {
         return Random.Range(1, 5);

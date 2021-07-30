@@ -179,13 +179,13 @@ public class AiBattleManager : MonoBehaviour
         switch (actionToTry.castTarget)
         {
             case ActionTargets.Ennemies:
-                if (targetToTry.GetTeam() != 1)
+                if (targetToTry.GetTeam() != 0)
                 {
                     return false;
                 }
                 break;
             case ActionTargets.SelfAllies:
-                if (targetToTry.GetTeam() == 1)
+                if (targetToTry.GetTeam() == 0)
                 {
                     return false;
                 }

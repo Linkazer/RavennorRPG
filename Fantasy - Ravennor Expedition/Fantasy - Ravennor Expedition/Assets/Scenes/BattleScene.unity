@@ -1573,6 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &93110244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4511,6 +4512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &190609106
 GameObject:
   m_ObjectHideFlags: 0
@@ -9665,7 +9667,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10980393, g: 0.06666667, b: 0.09019608, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -20576,6 +20578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &1104153292
 GameObject:
   m_ObjectHideFlags: 0
@@ -22487,6 +22490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &1205525755
 GameObject:
   m_ObjectHideFlags: 0
@@ -25314,6 +25318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &1358273927
 GameObject:
   m_ObjectHideFlags: 0
@@ -29395,6 +29400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &1555916577
 GameObject:
   m_ObjectHideFlags: 0
@@ -29485,6 +29491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0.27058825, g: 0.1137255, b: 0.015686275, a: 1}
   outputColor: {r: 0.7169812, g: 0.42036107, b: 0.21982914, a: 1}
+  renderer: {fileID: 0}
 --- !u!1 &1562965367
 GameObject:
   m_ObjectHideFlags: 0
@@ -35295,13 +35302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundList: []
-  teamOne:
-  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
-  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
-  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
-  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
-  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
-  - {fileID: 11400000, guid: ceba63cf49da10e448ca66548b63afd0, type: 2}
+  playerTeam: []
   usableRuntimeCharacter:
   - {fileID: 471259168}
   - {fileID: 990695531}
@@ -35327,7 +35328,7 @@ MonoBehaviour:
   charaTeamOne: []
   charaTeamTwo: []
   initiatives: 
-  level: {fileID: 7560241282882709333, guid: 7baedb94dcafa7540b3a2c9ccb602d5e, type: 3}
+  level: {fileID: 7560241282882709333, guid: 2ea6a7ab87e53994d8d6a81be5cd9204, type: 3}
   battleState: 0
   diary: {fileID: 1935258964}
   passiveCheater: {fileID: 1056730443}
@@ -39773,6 +39774,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
+--- !u!1 &2142452472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142452474}
+  - component: {fileID: 2142452473}
+  m_Layer: 0
+  m_Name: MainManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2142452473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142452472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93e16542554d9f4d8bf59bd66833ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextBattle: {fileID: 7560241282882709333, guid: 14715835ab470034f968a6c33e5d7147, type: 3}
+  playerPersos:
+  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
+  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
+  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
+  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
+  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
+  - {fileID: 11400000, guid: ceba63cf49da10e448ca66548b63afd0, type: 2}
+  characterToLevelUp: 
+  dialogueToDisplay: {fileID: 0}
+  difficultyMultiplier: 1
+--- !u!4 &2142452474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142452472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2147260942
 GameObject:
   m_ObjectHideFlags: 0

@@ -559,7 +559,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         string damageText = damageAmount + " de dégâts";
         if ((damageAmount - bonusAmount) > 0 && damageAmount > 0)
         {
-            if (RavenorGameManager.instance != null && team == 1 && RavenorGameManager.instance.GetDifficulty() != 1)
+            if (RavenorGameManager.instance != null && team == 0 && RavenorGameManager.instance.GetDifficulty() != 1)
             {
                 damageAmount = Mathf.RoundToInt(damageAmount * RavenorGameManager.instance.GetDifficulty());
                 if (damageAmount <= 0)

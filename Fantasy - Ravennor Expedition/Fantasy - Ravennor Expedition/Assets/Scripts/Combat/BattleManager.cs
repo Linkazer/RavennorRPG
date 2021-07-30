@@ -30,7 +30,7 @@ public class BattleManager : MonoBehaviour
     private int currentIndexTurn;
 
     [SerializeField]
-    private List<PersonnageScriptables> teamOne = new List<PersonnageScriptables>();//, teamTwo = new List<PersonnageScriptables>();
+    private List<PersonnageScriptables> playerTeam = new List<PersonnageScriptables>();//, teamTwo = new List<PersonnageScriptables>();
 
     [SerializeField]
     private List<RuntimeBattleCharacter> usableRuntimeCharacter = new List<RuntimeBattleCharacter>();
@@ -72,12 +72,12 @@ public class BattleManager : MonoBehaviour
 
     public void Start()
     {
-        //TurnBeginEvent = new UnityEvent();
+        GameDices.SetRandomInit();
 
         if (RavenorGameManager.instance != null)
         {
             level = Instantiate(RavenorGameManager.instance.GetBattle());
-            teamOne = new List<PersonnageScriptables>();
+            playerTeam = new List<PersonnageScriptables>();
 
             roomManager = level.GetComponent<RoomManager>();
 
@@ -85,7 +85,7 @@ public class BattleManager : MonoBehaviour
             {
                 if(roomManager.characterInLevel.Contains(perso.nom))
                 {
-                    teamOne.Add(perso);
+                    playerTeam.Add(perso);
                 }
             }
         }
@@ -94,11 +94,11 @@ public class BattleManager : MonoBehaviour
 
         roomManager.SetRoomManager();
 
-        for (int i = 0; i < teamOne.Count; i++)
+        for (int i = 0; i < playerTeam.Count; i++)
         {
             if (i < roomManager.playerStartPositions.Count)
             {
-                SetCharacter(teamOne[i], roomManager.playerStartPositions[i]);
+                SetCharacter(playerTeam[i], roomManager.playerStartPositions[i]);
             }
         }
 
@@ -150,14 +150,14 @@ public class BattleManager : MonoBehaviour
     private void SetCharacter(PersonnageScriptables newPerso, Vector2 position)
     {
         int team = 0;
-        if (teamOne.Contains(newPerso))
+        if (playerTeam.Contains(newPerso))
         {
             charaTeamOne.Add(usableRuntimeCharacter[0]);
-            team = 1;
         }
         else
         {
             charaTeamTwo.Add(usableRuntimeCharacter[0]);
+            team = 1;
         }
         usableRuntimeCharacter[0].UseRuntimeCharacter(newPerso, team, position);
         roundList.Add(usableRuntimeCharacter[0]);
@@ -181,7 +181,7 @@ public class BattleManager : MonoBehaviour
         toKill.SetAnimation("DeathAnim");
         toKill.currentNode.chara = null;
 
-        if(currentCharacterTurn == toKill && toKill.GetTeam()==1)
+        if(currentCharacterTurn == toKill && toKill.GetTeam()==0)
         {
             EndTurn();
         }
@@ -323,7 +323,7 @@ public class BattleManager : MonoBehaviour
         {
             Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(character.transform.position), null, false);
 
-            if (character.GetTeam() == 1)
+            if (character.GetTeam() == 0)
             {
                 //Debug.Log("Player Turn: " + character);
                 PlayerBattleManager.instance.NewPlayerTurn(character);
@@ -384,7 +384,7 @@ public class BattleManager : MonoBehaviour
         character.SetAnimation("Default");
         character.ModifyCurrentNode(Grid.instance.NodeFromWorldPoint(character.transform.position));
         //Grid.instance.ResetUsableNode();
-        if (character.GetTeam() == 1)
+        if (character.GetTeam() == 0)
         {
             Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position), null, false);
             PlayerBattleManager.instance.ActivatePlayerBattleController(true);
@@ -964,7 +964,7 @@ public class BattleManager : MonoBehaviour
             Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
             if (nodeWanted.usableNode && !nodeWanted.HasCharacterOn)
             {
-                teamOne.Add(toInvoke);
+                playerTeam.Add(toInvoke);
                 SetCharacter(toInvoke, wantedPosition);
 
                 caster.AddInvocation(roundList[roundList.Count-1]);
@@ -1326,7 +1326,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             Debug.Log(currentCharacterTurn + "No Path");
-            if(currentCharacterTurn.GetTeam() != 1)
+            if(currentCharacterTurn.GetTeam() != 0)
             {
                 EndTurn();
             }
