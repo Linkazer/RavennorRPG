@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Okun_PeauFer
   m_EditorClassIdentifier: 
-  nom: Peau de fer
+  nom: Renforcement de bouclier
   icon: {fileID: 21300000, guid: e232320d5e92c4747938643c2464c07e, type: 3}
   description: "Augmente la D\xE9fense du lanceur de 2 (+1 par niveau du lanceur)"
   spellType: 0
@@ -42,11 +42,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7cf10f1fe23a4fe4e8b2b6fd8c4e8078, type: 2}
   wantedEffectOnGround: []
   hasPowerEffect: 0
+  damageBase: 0
   dices: []
   noBonusSpell: 0
   damageType: 0
   diceByLevelBonus: 0
   diceByLevel: 0
+  damageBaseByLevel: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

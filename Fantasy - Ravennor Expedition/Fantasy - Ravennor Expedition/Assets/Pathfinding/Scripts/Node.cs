@@ -6,6 +6,7 @@ using UnityEngine;
 public class Node : IHeapItem<Node> {
 
 	public bool walkable;//, HasCharacterOn;
+	public bool blockVision;
 	public RuntimeBattleCharacter chara;
 	public Vector3 worldPosition;
 	public int gridX;
@@ -25,8 +26,9 @@ public class Node : IHeapItem<Node> {
 
 	public bool HasCharacterOn => chara != null && chara.GetCurrentHps() > 0;
 
-	public Node(bool _walkable, bool _hasCharacter, RuntimeBattleCharacter newChara, Vector3 _worldPos, int _gridX, int _gridY) {
+	public Node(bool _walkable, bool _blockVision, RuntimeBattleCharacter newChara, Vector3 _worldPos, int _gridX, int _gridY) {
 		walkable = _walkable;
+		blockVision = _blockVision;
 		worldPosition = _worldPos;
 		gridX = _gridX;
 		gridY = _gridY;

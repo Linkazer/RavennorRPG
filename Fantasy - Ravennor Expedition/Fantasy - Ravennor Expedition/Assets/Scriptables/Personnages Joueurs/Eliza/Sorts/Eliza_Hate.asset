@@ -21,7 +21,7 @@ MonoBehaviour:
   actionLevel: 1
   maanaCost: 2
   maxUtilisation: -1
-  incantationTime: 1
+  incantationTime: 0
   isWeaponBased: 0
   target: 0
   castTarget: 2
@@ -43,11 +43,13 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 0
+  damageBase: 0
   dices: []
   noBonusSpell: 0
   damageType: 2
   diceByLevelBonus: 0
   diceByLevel: 0
+  damageBaseByLevel: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

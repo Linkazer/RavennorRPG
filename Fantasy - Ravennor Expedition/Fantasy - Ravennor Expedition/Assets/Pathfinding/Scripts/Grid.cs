@@ -7,7 +7,7 @@ public class Grid : MonoBehaviour {
 	public static Grid instance;
 
 	public bool displayGridGizmos;
-	public LayerMask unwalkableMask, characterMasks;
+	public LayerMask unwalkableMask, visionMasks, characterMasks;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
 	Node[,] grid;
@@ -64,13 +64,13 @@ public class Grid : MonoBehaviour {
 			for (int y = 0; y < gridSizeY; y ++) {
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics2D.OverlapCircle(worldPoint,nodeRadius*0.2f,unwalkableMask));
-				bool hasChara = (Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, characterMasks));
+				bool blockVision = (!walkable && !(Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, visionMasks)));
 				RuntimeBattleCharacter newChara = null;
-				if (hasChara)
+				if (Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, characterMasks))
 				{
 					newChara = (Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, characterMasks)).GetComponent<RuntimeBattleCharacter>();
 				}
-				grid[x,y] = new Node(walkable, hasChara, newChara, worldPoint, x, y);
+				grid[x,y] = new Node(walkable, blockVision, newChara, worldPoint, x, y);
 			}
 		}
 

@@ -26,9 +26,9 @@ MonoBehaviour:
   maana: 6
   movementSpeed: 35
   hitDices: 1
-  defense: 2
+  defense: 1
   physicalPower: 0
-  magicalPower: 1
+  magicalPower: 0
   luckyDice: 1
   criticalMultiplicator: 1
   physicalArmor: 0

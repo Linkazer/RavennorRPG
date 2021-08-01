@@ -26,13 +26,15 @@ MonoBehaviour:
   maana: 4
   movementSpeed: 45
   hitDices: 1
-  defense: 2
+  defense: 1
   physicalPower: 1
   magicalPower: 0
   luckyDice: 1
   criticalMultiplicator: 1
   physicalArmor: 0
   magicalArmor: 0
+  actionNumber: 0
+  baseAttackNumber: 1
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: cd4fa297310393c4f8477c50a320c4ca, type: 2}

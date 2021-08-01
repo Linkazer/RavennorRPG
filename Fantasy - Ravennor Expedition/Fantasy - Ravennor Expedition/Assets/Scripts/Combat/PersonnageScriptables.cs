@@ -53,6 +53,8 @@ public class PersonnageScriptables : ScriptableObject
     [SerializeField] private int criticalMultiplicator;
     [SerializeField] private int physicalArmor;
     [SerializeField] private int magicalArmor;
+    [SerializeField] private int actionNumber;
+    [SerializeField] private int baseAttackNumber;
 
     protected int healthPointsBonus;
     protected int maanaBonus;
@@ -67,14 +69,14 @@ public class PersonnageScriptables : ScriptableObject
     protected int bonusSoinRecu;
     protected int bonusPhysicalArmor;
     protected int bonusMagicalArmor;
+    protected int actionBonus;
+    protected int baseAttackBonus;
 
     protected int hitBonus;
 
 
     protected List<Dice> diceBonusDegPhy = new List<Dice>();
     protected List<Dice> diceBonusDegMag = new List<Dice>();
-
-    private int actionBonus, baseAttackBonus;
 
     [Header("Arbre de compétences")]
     public CharacterLevelUpTable levelUpTable;
@@ -297,8 +299,8 @@ public class PersonnageScriptables : ScriptableObject
 
     public void GetPossibleActions(out int _possibleAction, out int _possibleAttack)
     {
-        _possibleAction = actionBonus+1;
-        _possibleAttack = baseAttackBonus;
+        _possibleAction = actionNumber + actionBonus + 1;
+        _possibleAttack = baseAttackNumber + baseAttackBonus;
     }
 
     public void LevelUpStat(int value, CharacterStats effType)
@@ -345,10 +347,10 @@ public class PersonnageScriptables : ScriptableObject
                 magicalArmor += value;
                 break;
             case CharacterStats.ActionBonus:
-                actionBonus += value;
+                actionNumber += value;
                 break;
             case CharacterStats.AttackBonus:
-                baseAttackBonus += value;
+                baseAttackNumber += value;
                 break;
         }
     }

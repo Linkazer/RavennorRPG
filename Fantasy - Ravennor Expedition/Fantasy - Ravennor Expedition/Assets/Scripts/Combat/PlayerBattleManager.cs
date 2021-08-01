@@ -106,7 +106,7 @@ public class PlayerBattleManager : MonoBehaviour
             for (int i = 1; i < canSpellOn.Count; i++)
             {
 
-                if (!IsNodeVisible(canSpellOn[0], canSpellOn[i]))
+                if (!BattleManager.instance.IsNodeVisible(canSpellOn[0], canSpellOn[i]))
                 {
                     canSpellOn.RemoveAt(i);
                     i--;
@@ -157,7 +157,7 @@ public class PlayerBattleManager : MonoBehaviour
         {
             for (int i = x; i != startNode.gridX; i-=xCoef)
             {
-                if(!Grid.instance.GetNode(i, j).walkable)
+                if(Grid.instance.GetNode(i, j).blockVision)
                 {
                     return false;
                 }
@@ -169,8 +169,8 @@ public class PlayerBattleManager : MonoBehaviour
         else if(absX > absY)
         {
             for (int i = x; i != startNode.gridX; i -= xCoef)
-            { 
-                if (!Grid.instance.GetNode(i, j).walkable)
+            {
+                if (Grid.instance.GetNode(i, j).blockVision)
                 {
                     return false;
                 }
@@ -188,7 +188,7 @@ public class PlayerBattleManager : MonoBehaviour
             j = x;
             for (int i = y; i != startNode.gridY; i -= yCoef)
             {
-                if (!Grid.instance.GetNode(j, i).walkable)
+                if (Grid.instance.GetNode(j, i).blockVision)
                 {
                     return false;
                 }

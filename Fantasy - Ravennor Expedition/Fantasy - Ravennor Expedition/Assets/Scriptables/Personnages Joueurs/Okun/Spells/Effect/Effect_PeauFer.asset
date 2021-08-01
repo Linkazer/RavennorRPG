@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Effect_PeauFer
   m_EditorClassIdentifier: 
   effet:
-    nom: Peau de fer
+    nom: Renforcement de bouclier
     spr: {fileID: 21300000, guid: e232320d5e92c4747938643c2464c07e, type: 3}
     description: "Augmente la D\xE9fense de 1 (+1 tous les 2 niveaux du lanceur)"
     wantedEffectToTrigger: {fileID: 0}

@@ -1289,6 +1289,93 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    public bool IsNodeVisible(Node startNode, Node targetNode)
+    {
+        int x = targetNode.gridX;
+        int y = targetNode.gridY;
+        int j = y;
+
+        float realJ = y;
+
+        int diffX = targetNode.gridX - startNode.gridX;
+        int diffY = targetNode.gridY - startNode.gridY;
+
+        float absX = Mathf.Abs((float)diffX);
+        float absY = Mathf.Abs((float)diffY);
+
+        int xCoef = 1;
+        int yCoef = 1;
+
+        if (diffX < 0)
+        {
+            xCoef = -1;
+        }
+        else if (diffX == 0)
+        {
+            xCoef = 0;
+        }
+
+        if (diffY < 0)
+        {
+            yCoef = -1;
+        }
+        else if (diffY == 0)
+        {
+            yCoef = 0;
+        }
+
+        if (absX == absY)
+        {
+            for (int i = x; i != startNode.gridX; i -= xCoef)
+            {
+                if (Grid.instance.GetNode(i, j).blockVision)
+                {
+                    return false;
+                }
+
+                realJ -= yCoef;
+                j = Mathf.RoundToInt(realJ);
+            }
+        }
+        else if (absX > absY)
+        {
+            for (int i = x; i != startNode.gridX; i -= xCoef)
+            {
+                if (Grid.instance.GetNode(i, j).blockVision)
+                {
+                    return false;
+                }
+
+                if (yCoef != 0 && diffY != 0)
+                {
+                    realJ -= (absY / absX) * (float)yCoef;
+                    j = Mathf.RoundToInt(realJ);
+                }
+            }
+        }
+        else if (absX < absY)
+        {
+            realJ = x;
+            j = x;
+            for (int i = y; i != startNode.gridY; i -= yCoef)
+            {
+                if (Grid.instance.GetNode(j, i).blockVision)
+                {
+                    return false;
+                }
+
+                if (xCoef != 0 && diffX != 0)
+                {
+                    realJ -= (absX / absY) * (float)xCoef;
+                    j = Mathf.RoundToInt(realJ);
+                }
+            }
+        }
+
+        return true;
+    }
+
     #endregion
 
     #region Déplacement

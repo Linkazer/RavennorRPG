@@ -45,14 +45,14 @@ public class RoomManager : MonoBehaviour
         characterInLevel.Add("Okun");
         characterInLevel.Add("Shedun");
         characterInLevel.Add("Vanyaenn");
-        characterInLevel.Add("Mira");
+        characterInLevel.Add("Lila");
 
         characterInCamp.Add("Eliza");
         characterInCamp.Add("Nor");
         characterInCamp.Add("Okun");
         characterInCamp.Add("Shedun");
         characterInCamp.Add("Vanyaenn");
-        characterInCamp.Add("Mira");
+        characterInCamp.Add("Lila");
     }
 
     private void Awake()
