@@ -249,12 +249,16 @@ public class AiBattleManager : MonoBehaviour
         {
             if(Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded)
             {
-                hit = Physics2D.Raycast(n.worldPosition, (targetToTry.transform.position - n.worldPosition).normalized, Vector2.Distance(targetToTry.transform.position, n.worldPosition), layerMaskObstacle);
+                if(actionToTry.hasViewOnTarget && BattleManager.instance.IsNodeVisible(targetToTry.currentNode, n) || !actionToTry.hasViewOnTarget || askForNextTurn)
+                {
+                    return true;
+                }
+                /*hit = Physics2D.Raycast(n.worldPosition, (targetToTry.transform.position - n.worldPosition).normalized, Vector2.Distance(targetToTry.transform.position, n.worldPosition), layerMaskObstacle);
 
                 if(hit.collider == null || !actionToTry.hasViewOnTarget || askForNextTurn)
                 {
                     return true;
-                }
+                }*/
             }
         }
 

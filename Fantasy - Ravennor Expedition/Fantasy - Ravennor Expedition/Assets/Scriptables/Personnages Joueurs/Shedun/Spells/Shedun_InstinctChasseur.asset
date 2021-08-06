@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Shedun_ArmureSable
+  m_Name: Shedun_InstinctChasseur
   m_EditorClassIdentifier: 
-  nom: Armure de sable
-  icon: {fileID: 21300000, guid: 4dfec05b9babe5a42b1b00b2eaf14eca, type: 3}
-  description: Augmente l'Armure de la cible de 2 (+1 par niveau).
+  nom: Instinct de chasseur
+  icon: {fileID: 21300000, guid: fdc0635a502acb048bcfec1e5526e667, type: 3}
+  description: Augmente les Jets d'attaques de la cible de 1 (+1 par niveau).
   spellType: 0
   attackType: 1
   actionLevel: 1
   maanaCost: 1
   maxUtilisation: -1
-  incantationTime: 1
+  incantationTime: 0
   isWeaponBased: 0
   target: 0
   castTarget: 2
   castOnSelf: 1
-  range: 25
+  range: 0
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -33,20 +33,22 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 8ec3995e7449ad34c944efca2fea036c, type: 3}
+  caseSprite: {fileID: 21300000, guid: b5249b8cbb16af64c80658c1af9afd87, type: 3}
   caseFeedback: {fileID: 21300000, guid: 678f31552fc4b1a45bae0ee64aba1e23, type: 3}
   soundToPlay: {fileID: 0}
   maxCooldown: 0
   wantedEffectOnTarget:
-  - {fileID: 11400000, guid: 038a8591446ca8345848fad52f7a9646, type: 2}
+  - {fileID: 11400000, guid: d5fc3b41856cbb24a8e76693427b9b95, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 0
+  damageBase: 0
   dices: []
   noBonusSpell: 0
   damageType: 0
   diceByLevelBonus: 0
   diceByLevel: 0
+  damageBaseByLevel: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

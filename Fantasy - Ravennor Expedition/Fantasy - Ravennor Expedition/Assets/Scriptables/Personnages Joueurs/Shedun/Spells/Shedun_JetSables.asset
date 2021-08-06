@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Jet de sables
   icon: {fileID: 21300000, guid: 155642351525a3d41b91316c8aa388d6, type: 3}
-  description: "Inflige 1D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts magiques et applique
-    \"Aveugl\xE9\" \xE0 la cible."
+  description: "Inflige 1D6 (+1D6 tous les 2 niveaux) d\xE9g\xE2ts magiques aux cibles."
   spellType: 0
   attackType: 1
   actionLevel: 1
@@ -26,10 +25,12 @@ MonoBehaviour:
   target: 1
   castTarget: 2
   castOnSelf: 0
-  range: 35
+  range: 10
   activeZoneCases:
   - {x: 0, y: 0}
-  doesFaceCaster: 0
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  doesFaceCaster: 1
   hasViewOnTarget: 1
   projectile: {fileID: 0}
   speed: 0
@@ -43,6 +44,7 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
+  damageBase: 0
   dices:
   - wantedDice: 0
     numberOfDice: 1
@@ -51,6 +53,7 @@ MonoBehaviour:
   damageType: 2
   diceByLevelBonus: 0.5
   diceByLevel: 0
+  damageBaseByLevel: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

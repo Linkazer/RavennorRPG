@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: Tir instinctif
-    spr: {fileID: 0}
-    description: "Augmente le nombre de D\xE9 critiques de 1."
+    spr: {fileID: 21300000, guid: fdc0635a502acb048bcfec1e5526e667, type: 3}
+    description: Augmente les Jet d'attaques de 1(+1 par niveau du lanceur).
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 10
+    - type: 6
       possiblesTargets: 0
       value: 1
-      scaleByLevel: 0
+      scaleByLevel: 1
       dicesBonus:
         wantedDice: 0
         numberOfDice: 0
