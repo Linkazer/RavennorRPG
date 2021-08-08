@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Drain
   icon: {fileID: 21300000, guid: 3c2ccbc9b2ef42241bf6725961f942d3, type: 3}
-  description: "Inflige 1D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts magiques \xE0
+  description: "Inflige 1D4 (+1D4 par charge de Maana) d\xE9g\xE2ts magiques \xE0
     la cible et r\xE9cup\xE8re la moiti\xE9 des d\xE9g\xE2ts inflig\xE9 en points
     de vie."
   spellType: 0
   attackType: 1
-  actionLevel: 1
   maanaCost: 1
+  canUseMoreMaana: 1
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -43,20 +43,22 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
+  damageBase: 0
   dices:
   - wantedDice: 0
     numberOfDice: 1
+    diceByMaanaSpent: 1
     wantedDamage: 2
   noBonusSpell: 0
   damageType: 2
-  diceByLevelBonus: 0.5
-  diceByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

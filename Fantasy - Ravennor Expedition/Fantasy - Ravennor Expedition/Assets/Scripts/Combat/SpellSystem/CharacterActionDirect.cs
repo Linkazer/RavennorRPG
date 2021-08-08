@@ -14,10 +14,8 @@ public class CharacterActionDirect : CharacterActionScriptable
     protected List<Dice> dices;
     public bool noBonusSpell;
     public DamageType damageType;
-    public float diceByLevelBonus;
-    public DiceType diceByLevel;
     [SerializeField]
-    protected float damageBaseByLevel;
+    protected float damageBaseByMaana;
     public bool autoCritical = false;
 
     public ScalePossibility scaleOrigin;
@@ -33,9 +31,9 @@ public class CharacterActionDirect : CharacterActionScriptable
         spellType = SpellType.Direct;
     }
 
-    public int GetBaseDamage(int casterLevel)
+    public int GetBaseDamage(int maanaSpent)
     {
-        return damageBase + Mathf.FloorToInt((casterLevel-actionLevel) * damageBaseByLevel);
+        return damageBase + Mathf.FloorToInt(maanaSpent * damageBaseByMaana);
     }
 
     public List<Dice> GetDices()
@@ -43,30 +41,22 @@ public class CharacterActionDirect : CharacterActionScriptable
         return dices;
     }
 
-    public Dice GetLevelBonusDices(int casterLevel)
+    public List<Dice> GetDices(int maanaSpent)
     {
-        if (Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus) > 0)
+        List<Dice> toReturn = new List<Dice>(dices);
+        for(int i = 0; i < toReturn.Count; i++)
         {
-            return new Dice(diceByLevel, Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus), damageType);
+            toReturn[i] = new Dice(toReturn[i].wantedDice, toReturn[i].numberOfDice + Mathf.RoundToInt(maanaSpent * toReturn[i].diceByMaanaSpent), toReturn[i].wantedDamage, toReturn[i].diceByMaanaSpent);
+        }
+        return toReturn;
+    }
+
+    /*public Dice GetLevelBonusDices(int maanaSpent)
+    {
+        if (Mathf.RoundToInt(maanaSpent* diceByLevelBonus) > 0)
+        {
+            return new Dice(diceByLevel, Mathf.RoundToInt(maanaSpent* diceByLevelBonus), damageType);
         }
         return null;
-    }
-
-    public int DamageRoll(int casterLevel)
-    {
-        int result = 0;
-
-        for (int i = 0; i < dices.Count; i++)
-        {
-            result += GameDices.RollDice(dices[i].numberOfDice, dices[i].wantedDice);
-        }
-
-        if (Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus) > 0)
-        {
-            result += GameDices.RollDice(Mathf.RoundToInt((casterLevel - actionLevel) * diceByLevelBonus), diceByLevel);
-        }
-
-        return result;
-    }
-
+    }*/
 }

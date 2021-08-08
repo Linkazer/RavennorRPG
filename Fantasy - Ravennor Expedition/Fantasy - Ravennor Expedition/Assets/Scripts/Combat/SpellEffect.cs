@@ -19,18 +19,18 @@ public class SpellEffect
     public EffectType type;
     public ActionTargets possiblesTargets = ActionTargets.All;
     public int value;
-    public float scaleByLevel;
+    public float scaleByMaana;
     public Dice dicesBonus;
     public EffectTrigger trigger;
 
     [HideInInspector]
-    public RuntimeBattleCharacter caster;
+    public int maanaSpent;
 
     public int RealValue()
     {
-        if(caster != null)
+        if(maanaSpent != 0)
         {
-            return value + Mathf.FloorToInt((caster.GetCharacterDatas().GetLevel-1) * scaleByLevel);
+            return value + Mathf.FloorToInt((maanaSpent) * scaleByMaana);
         }
         else
         {
@@ -48,9 +48,9 @@ public class SpellEffect
         possiblesTargets = toCopy.possiblesTargets;
         type = toCopy.type;
         value = toCopy.value;
-        scaleByLevel = toCopy.scaleByLevel;
-        dicesBonus = new Dice(toCopy.dicesBonus.wantedDice, toCopy.dicesBonus.numberOfDice, toCopy.dicesBonus.wantedDamage);
+        scaleByMaana = toCopy.scaleByMaana;
+        dicesBonus = new Dice(toCopy.dicesBonus.wantedDice, toCopy.dicesBonus.numberOfDice, toCopy.dicesBonus.wantedDamage, toCopy.dicesBonus.diceByMaanaSpent);
         trigger = toCopy.trigger;
-        caster = toCopy.caster;
+        maanaSpent = toCopy.maanaSpent;
     }
 }

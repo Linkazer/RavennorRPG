@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Instinct de chasseur
   icon: {fileID: 21300000, guid: fdc0635a502acb048bcfec1e5526e667, type: 3}
-  description: Augmente les Jets d'attaques de la cible de 1 (+1 par niveau).
+  description: Augmente les Jets d'attaques de la cible de 1 (+1 par charge de Maana).
   spellType: 0
   attackType: 1
-  actionLevel: 1
-  maanaCost: 1
+  maanaCost: 0
+  canUseMoreMaana: 1
   maxUtilisation: -1
   incantationTime: 0
   isWeaponBased: 0
@@ -46,15 +46,14 @@ MonoBehaviour:
   dices: []
   noBonusSpell: 0
   damageType: 0
-  diceByLevelBonus: 0
-  diceByLevel: 0
-  damageBaseByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

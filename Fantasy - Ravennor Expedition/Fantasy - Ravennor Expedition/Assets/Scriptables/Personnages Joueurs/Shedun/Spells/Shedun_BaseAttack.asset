@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Shakram
   icon: {fileID: 21300000, guid: cbbe7c921b30a8d4abbffe4ef972a014, type: 3}
-  description: "Inflige 1D8 (+1D8 tous les 2 niveaux) de d\xE9g\xE2ts physiques."
+  description: "Inflige 1D8 de d\xE9g\xE2ts physiques."
   spellType: 0
   attackType: 0
-  actionLevel: 1
   maanaCost: 0
+  canUseMoreMaana: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
@@ -45,18 +45,18 @@ MonoBehaviour:
   dices:
   - wantedDice: 1
     numberOfDice: 1
+    diceByMaanaSpent: 0
     wantedDamage: 1
   noBonusSpell: 0
   damageType: 1
-  diceByLevelBonus: 0.5
-  diceByLevel: 1
-  damageBaseByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

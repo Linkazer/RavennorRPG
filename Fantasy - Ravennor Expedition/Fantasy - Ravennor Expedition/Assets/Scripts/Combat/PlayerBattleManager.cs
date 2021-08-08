@@ -23,6 +23,8 @@ public class PlayerBattleManager : MonoBehaviour
     private LayerMask layerMaskObstacle;
     private RaycastHit2D hit;
 
+    private Vector2 actionPosition;
+
     private void Start()
     {
         instance = this;
@@ -43,19 +45,18 @@ public class PlayerBattleManager : MonoBehaviour
     {
         if (Grid.instance.NodeFromWorldPoint(position).usableNode)
         {
-            ActivatePlayerBattleController(false);
             if (holdSpellIndex >= 0)
             {
                 if (currentCharacter.HasEnoughMaana(actionList[holdSpellIndex].maanaCost))
                 {
-                    UseSpell(Grid.instance.NodeFromWorldPoint(position).worldPosition);
+                    actionPosition = Grid.instance.NodeFromWorldPoint(position).worldPosition;
+                    AskUseSpell(actionPosition);
                 }
                 else
                 {
                     ShowDeplacement();
                     ActivatePlayerBattleController(true);
                 }
-                holdSpellIndex = -1;
             }
             else
             {
@@ -64,8 +65,7 @@ public class PlayerBattleManager : MonoBehaviour
         }
         else if (holdSpellIndex >= 0)
         {
-            holdSpellIndex = -1;
-            ShowDeplacement();
+            ChooseSpell(-1);
         }
     }
 
@@ -83,6 +83,7 @@ public class PlayerBattleManager : MonoBehaviour
             {
                 ShowDeplacement();
             }
+            BattleUiManager.instance.HideMaanaSpentAsker();
             holdSpellIndex = -1;
         }
     }
@@ -170,29 +171,52 @@ public class PlayerBattleManager : MonoBehaviour
             {
                 spellZone.Add(new Vector2Int(-vect.x, -vect.y));
             }
-            else //if (direction.x > 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == -direction.y))
+            else 
             {
                 spellZone.Add(new Vector2Int(vect.y, -vect.x));
             }
-            /*else
-            {
-                Debug.Log("J'ai merdé");
-            }*/
         }
         Color tColor = Color.red;
         tColor.a = 0.5f;
         Grid.instance.ShowZone(mousePos, spellZone, tColor);
     }
 
-    public void UseSpell(Vector2 position)
+    public bool CanAskSpell()
     {
-        currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost);
+        return !BattleUiManager.instance.IsAskingSpell();
+    }
+
+    public void AskUseSpell(Vector2 position)
+    {
+        int maxMaanaUsed = actionList[holdSpellIndex].maanaCost;
+        if (actionList[holdSpellIndex].canUseMoreMaana)
+        {
+            maxMaanaUsed += currentCharacter.GetCharacterDatas().GetLevel;
+            if (maxMaanaUsed > currentCharacter.GetCurrentMaana())
+            {
+                maxMaanaUsed = currentCharacter.GetCurrentMaana();
+            }
+            BattleUiManager.instance.ShowMaanaSpentAsker(position, actionList[holdSpellIndex].maanaCost, maxMaanaUsed);
+        }
+        else
+        {
+            UseSpell(maxMaanaUsed);
+        }
+    }
+
+    public void UseSpell(int maanaSpent)
+    {
+        ActivatePlayerBattleController(false);
+
+        currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost + maanaSpent);
 
         currentCharacter.SetCooldown(actionList[holdSpellIndex]);
 
         currentCharacter.UseSpell(actionList[holdSpellIndex]);
 
-        BattleManager.instance.LaunchAction(actionList[holdSpellIndex], currentCharacter, position, false);
+        BattleManager.instance.LaunchAction(actionList[holdSpellIndex], maanaSpent, currentCharacter, actionPosition, false);
+
+        holdSpellIndex = -1;
     }
 
     public void ShowDeplacement()

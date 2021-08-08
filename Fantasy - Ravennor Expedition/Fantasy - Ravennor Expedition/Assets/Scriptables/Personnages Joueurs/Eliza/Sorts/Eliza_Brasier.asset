@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Brasier
   icon: {fileID: 21300000, guid: 564a693cb30d7134c9e8f1d0f709c822, type: 3}
-  description: "Inflige 1D6 (+1D6 tous les 2 niveaux) d\xE9g\xE2ts magique \xE0 la
-    cible et applique l'effet \"Br\xFBlure\" pendant 3 tours."
+  description: "Inflige 1D6 (+1D6 par charge de Maana) d\xE9g\xE2ts magique \xE0
+    la cible et applique l'effet \"Br\xFBlure\" pendant 3 tours."
   spellType: 0
   attackType: 1
-  actionLevel: 1
-  maanaCost: 1
+  maanaCost: 0
+  canUseMoreMaana: 1
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -47,18 +47,18 @@ MonoBehaviour:
   dices:
   - wantedDice: 2
     numberOfDice: 1
+    diceByMaanaSpent: 0
     wantedDamage: 2
   noBonusSpell: 0
   damageType: 2
-  diceByLevelBonus: 0.5
-  diceByLevel: 2
-  damageBaseByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

@@ -23,7 +23,7 @@ MonoBehaviour:
     des autres membres concernant son pass\xE9."
   level: 1
   healthPoints: 32
-  maana: 3
+  maana: 1
   movementSpeed: 35
   hitDices: 1
   defense: 2
@@ -33,6 +33,8 @@ MonoBehaviour:
   criticalMultiplicator: 1
   physicalArmor: 0
   magicalArmor: 0
+  actionNumber: 0
+  baseAttackNumber: 0
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: 2edd2558afea45e4e8333f0816ab0650, type: 2}

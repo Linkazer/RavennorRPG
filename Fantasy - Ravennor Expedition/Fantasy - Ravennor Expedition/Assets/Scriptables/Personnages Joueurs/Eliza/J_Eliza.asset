@@ -23,7 +23,7 @@ MonoBehaviour:
     de l'Acad\xE9mie."
   level: 1
   healthPoints: 24
-  maana: 6
+  maana: 3
   movementSpeed: 35
   hitDices: 1
   defense: 1
@@ -33,6 +33,8 @@ MonoBehaviour:
   criticalMultiplicator: 1
   physicalArmor: 0
   magicalArmor: 0
+  actionNumber: 0
+  baseAttackNumber: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   knownSpells:
   - {fileID: 11400000, guid: f6a28cfa59a8a2d4d870bdeda6e1ce34, type: 2}

@@ -23,7 +23,7 @@ MonoBehaviour:
     bon sens."
   level: 1
   healthPoints: 24
-  maana: 7
+  maana: 3
   movementSpeed: 35
   hitDices: 1
   defense: 1
@@ -33,6 +33,8 @@ MonoBehaviour:
   criticalMultiplicator: 1
   physicalArmor: 0
   magicalArmor: 0
+  actionNumber: 0
+  baseAttackNumber: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   knownSpells:
   - {fileID: 11400000, guid: 23c20bed5833e5540a6251929fcf09c7, type: 2}

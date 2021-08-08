@@ -823,7 +823,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         if (hasOpportunity && canUseSpell)
         {
-            BattleManager.instance.LaunchAction(actionsDisponibles[0], this, opportunityTarget.currentNode.worldPosition, true);
+            BattleManager.instance.LaunchAction(actionsDisponibles[0], 0, this, opportunityTarget.currentNode.worldPosition, true);
             hasOpportunity = false;
         }
     }

@@ -66,7 +66,7 @@ public class AiBattleManager : MonoBehaviour
                 {
                     //Debug.Log(currentChara + " do action");
                     currentChara.SetCooldown(wantedAction);
-                    BattleManager.instance.LaunchAction(wantedAction, currentChara, target.transform.position, false);
+                    BattleManager.instance.LaunchAction(wantedAction, 0, currentChara, target.transform.position, false);
                 }
                 else
                 {

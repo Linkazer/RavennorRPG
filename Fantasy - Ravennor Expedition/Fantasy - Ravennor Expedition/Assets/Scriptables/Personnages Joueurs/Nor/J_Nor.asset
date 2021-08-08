@@ -23,7 +23,7 @@ MonoBehaviour:
     depuis la mort de son p\xE8re adoptif."
   level: 1
   healthPoints: 28
-  maana: 4
+  maana: 2
   movementSpeed: 45
   hitDices: 1
   defense: 1

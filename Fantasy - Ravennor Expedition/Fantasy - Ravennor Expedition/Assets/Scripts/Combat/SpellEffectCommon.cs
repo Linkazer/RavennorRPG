@@ -28,7 +28,7 @@ public class SpellEffectCommon
 
     }
 
-    public SpellEffectCommon(SpellEffectCommon toCopy, RuntimeBattleCharacter caster)
+    public SpellEffectCommon(SpellEffectCommon toCopy, int maanaSpent, RuntimeBattleCharacter caster)
     {
         nom = toCopy.nom;
         spr = toCopy.spr;
@@ -40,13 +40,14 @@ public class SpellEffectCommon
         foreach(SpellEffect eff in toCopy.effects)
         {
             newList.Add(new SpellEffect(eff));
-            newList[newList.Count - 1].caster = caster;
+            newList[newList.Count - 1].maanaSpent = maanaSpent;
         }
 
         foreach(SpellEffectAction eff in toCopy.actionEffect)
         {
             newListAct.Add(new SpellEffectAction(eff));
             newListAct[newListAct.Count - 1].caster = caster;
+            newListAct[newListAct.Count - 1].maanaSpent = maanaSpent;
         }
 
         effects = newList;

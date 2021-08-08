@@ -14,6 +14,7 @@ public class BattleUiManager : MonoBehaviour
     private GameObject mainBattleUI;
     [SerializeField]
     private List<CanvasGroup> playerInterractionCanvas;
+    [SerializeField] private Camera mainCam;
 
     [SerializeField]
     private List<Image> turnImages;
@@ -52,9 +53,14 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI spellTitle, spellDescription, spellMaanaCost, spellIncantationTime;
 
+    [Header("Maana Spent")]
+    [SerializeField] private GameObject maanaSpentParent;
+    [SerializeField] private List<TextMeshProUGUI> maanaToUseText;
+
     private RuntimeBattleCharacter currentChara;
     private int currentIndex;
 
+    [Header("Error management")]
     [SerializeField]
     private TextMeshProUGUI errorTxt;
     [SerializeField]
@@ -257,6 +263,47 @@ public class BattleUiManager : MonoBehaviour
                 baseActionPoint[i].SetActive(true);
             }
         }
+    }
+
+    public bool IsAskingSpell()
+    {
+        return maanaSpentParent.activeSelf;
+    }
+
+    public void ShowMaanaSpentAsker(Vector2 position, int minUse, int maxUse)
+    {
+        int currentUse = minUse;
+        for(int i = 0; i < maanaToUseText.Count; i++)
+        {
+            if(currentUse <= maxUse)
+            {
+                maanaToUseText[i].text = currentUse.ToString();
+                maanaToUseText[i].transform.parent.gameObject.SetActive(true);
+            }
+            else
+            {
+                maanaToUseText[i].transform.parent.gameObject.SetActive(false);
+            }
+            currentUse++;
+        }
+        Vector2 newPos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        maanaSpentParent.transform.position = newPos;
+        maanaSpentParent.SetActive(true);
+    }
+
+    public void HideMaanaSpentAsker()
+    {
+        maanaSpentParent.SetActive(false);
+    }
+
+    /// <summary>
+    /// Called in editor (Button)
+    /// </summary>
+    /// <param name="usedMaanaIndex">Index of the button</param>
+    public void UseSpell(int usedMaanaIndex)
+    {
+        maanaSpentParent.SetActive(false);
+        PlayerBattleManager.instance.UseSpell(usedMaanaIndex);
     }
 
     public void UseActionFeedback(bool useActionPoint)

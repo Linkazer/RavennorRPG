@@ -22,7 +22,7 @@ MonoBehaviour:
     qui pourrait l'aider \xE0 sauver sa soeur avec l'aide de la Confr\xE9rie."
   level: 1
   healthPoints: 28
-  maana: 4
+  maana: 2
   movementSpeed: 45
   hitDices: 1
   defense: 1
@@ -32,6 +32,8 @@ MonoBehaviour:
   criticalMultiplicator: 1
   physicalArmor: 0
   magicalArmor: 0
+  actionNumber: 0
+  baseAttackNumber: 0
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: 9048d273438045944a1f96561720c99c, type: 2}

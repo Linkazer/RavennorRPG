@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: "Ep\xE9e batarde"
   icon: {fileID: 21300000, guid: c49383ea1aa2bf74bb919dcc4d089959, type: 3}
-  description: "Inflige 1D6 (+1D6 tous les 2 niveaux) d\xE9g\xE2ts physiques \xE0
-    la cible."
+  description: "Inflige 1D6 d\xE9g\xE2ts physiques \xE0 la cible."
   spellType: 0
   attackType: 0
-  actionLevel: 1
   maanaCost: 0
+  canUseMoreMaana: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
@@ -42,20 +41,22 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
+  damageBase: 0
   dices:
   - wantedDice: 1
     numberOfDice: 1
+    diceByMaanaSpent: 0
     wantedDamage: 1
   noBonusSpell: 0
   damageType: 1
-  diceByLevelBonus: 0.5
-  diceByLevel: 1
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

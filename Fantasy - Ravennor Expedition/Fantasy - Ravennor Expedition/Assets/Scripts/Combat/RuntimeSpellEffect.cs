@@ -9,10 +9,10 @@ public class RuntimeSpellEffect
 
     public SpellEffectCommon effet;
 
-    public RuntimeSpellEffect(SpellEffectCommon common, int startCooldown, RuntimeBattleCharacter caster)
+    public RuntimeSpellEffect(SpellEffectCommon common, int maanaSpent, int startCooldown, RuntimeBattleCharacter caster)
     {
         Debug.Log(caster);
-        effet = new SpellEffectCommon(common, caster);
+        effet = new SpellEffectCommon(common, maanaSpent, caster);
 
         currentCooldown = startCooldown;
     }

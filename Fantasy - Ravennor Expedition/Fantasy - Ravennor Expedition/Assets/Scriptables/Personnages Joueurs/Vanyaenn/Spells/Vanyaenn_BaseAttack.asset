@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Moisissure
   icon: {fileID: 21300000, guid: e5246578c7333ee4898ffb154895393b, type: 3}
-  description: "Inflige 1D4 (+1D4 tous les 2 niveaux) d\xE9g\xE2ts magiques."
+  description: "Inflige 1D4 (+1D4 par charge de Maana) d\xE9g\xE2ts magiques."
   spellType: 0
   attackType: 1
-  actionLevel: 1
   maanaCost: 0
+  canUseMoreMaana: 1
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
-  target: 1
+  target: 2
   castTarget: 2
   castOnSelf: 0
   range: 25
@@ -41,20 +41,22 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
+  damageBase: 0
   dices:
   - wantedDice: 0
     numberOfDice: 1
+    diceByMaanaSpent: 1
     wantedDamage: 2
   noBonusSpell: 0
   damageType: 2
-  diceByLevelBonus: 0.5
-  diceByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

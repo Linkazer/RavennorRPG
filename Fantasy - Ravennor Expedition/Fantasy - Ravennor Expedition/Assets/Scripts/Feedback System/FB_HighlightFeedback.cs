@@ -16,7 +16,6 @@ public class FB_HighlightFeedback : MonoBehaviour, IFeedbackSystem
 
     public void Play()
     {
-        Debug.Log(gameObject);
         renderer.material.SetColor("_Color1in", targetColor);
         renderer.material.SetColor("_Color1out", outputColor);
     }

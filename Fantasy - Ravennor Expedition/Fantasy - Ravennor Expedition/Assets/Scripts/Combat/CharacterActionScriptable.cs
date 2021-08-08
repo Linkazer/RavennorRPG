@@ -26,8 +26,8 @@ public class CharacterActionScriptable : ScriptableObject
     public SpellType spellType;
 
     public AttackType attackType;
-    public int actionLevel;
     public int maanaCost;
+    public bool canUseMoreMaana = true;
     public int maxUtilisation = -1;
     public ActionIncantation incantationTime;
     public bool isWeaponBased;
