@@ -23,6 +23,8 @@ public class SpellEffectCommon
     public int onTimeEffectValue;*/
     public Affliction affliction;
 
+    public int maana;
+
     public SpellEffectCommon()
     {
 
@@ -33,6 +35,7 @@ public class SpellEffectCommon
         nom = toCopy.nom;
         spr = toCopy.spr;
         description = toCopy.description;
+        maana = maanaSpent;
 
         List<SpellEffect> newList = new List<SpellEffect>();
         List<SpellEffectAction> newListAct = new List<SpellEffectAction>();

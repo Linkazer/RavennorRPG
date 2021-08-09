@@ -894,7 +894,7 @@ public class BattleManager : MonoBehaviour
 
             foreach (SpellEffectScriptables eff in wantedEffect.bonusToCancel)
             {
-                target.RemoveEffect(eff);
+                target.RemoveEffect(eff.effet);
             }
 
             ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);

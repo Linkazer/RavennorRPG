@@ -675,32 +675,15 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         if (ContainsEffect(runEffect.effet))
         {
-            foreach (RuntimeSpellEffect eff in appliedEffects)
-            {
-                if (eff.effet.nom == runEffect.effet.nom && eff.currentCooldown < runEffect.currentCooldown)
-                {
-                    eff.currentCooldown = runEffect.currentCooldown;
-                    if(eff.currentStack < eff.effet.maxStack)
-                    {
-                        eff.currentStack++;
-                    }
-                }
-            }
+            RemoveEffect(runEffect.effet);
         }
-        else
+
+        appliedEffects.Add(runEffect);
+        runEffect.currentStack++;
+
+        if (!CheckForAffliction(runEffect.effet.affliction) && runEffect.effet.affliction != Affliction.None)
         {
-            appliedEffects.Add(runEffect);
-            runEffect.currentStack++;
-
-            /*foreach (SpellEffect eff in runEffect.effet.effects)
-            {
-                currentScriptable.StatBonus(eff.value, eff.type, eff.dicesBonus, true);
-            }*/
-
-            if(!CheckForAffliction(runEffect.effet.affliction) && runEffect.effet.affliction != Affliction.None)
-            {
-                AddAffliction(runEffect.effet.affliction);
-            }
+            AddAffliction(runEffect.effet.affliction);
         }
     }
 
@@ -729,12 +712,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
     }
 
-    public void RemoveEffect(SpellEffectScriptables effectToRemove)
+    public void RemoveEffect(SpellEffectCommon effectToRemove)
     {
         int index = 0;
         foreach(RuntimeSpellEffect eff in appliedEffects)
         {
-            if (eff.effet.nom == effectToRemove.effet.nom)
+            if (eff.effet.nom == effectToRemove.nom)
             {
                 break;
             }
@@ -743,7 +726,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         if (index < appliedEffects.Count)
         {
-            Debug.Log("Effect remove");
             RemoveEffect(index);
         }
     }

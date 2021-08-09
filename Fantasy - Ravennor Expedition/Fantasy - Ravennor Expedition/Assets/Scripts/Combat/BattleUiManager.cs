@@ -23,7 +23,15 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private Image baseAttackImage;
     [SerializeField]
+    private Image baseAttackCooldownImage;
+    [SerializeField]
+    private TextMeshProUGUI baseAttackCooldownText;
+    [SerializeField]
     private List<Image> spellImages;
+    [SerializeField]
+    private List<Image> spellCooldownImages;
+    [SerializeField]
+    private List<TextMeshProUGUI> spellCooldownText;
     [SerializeField]
     private Image currentPersoIcon;
     [SerializeField]
@@ -158,30 +166,39 @@ public class BattleUiManager : MonoBehaviour
 
     public void UpdateSpells()
     {
-        Color newCol = Color.black;
-        newCol.r = 0.5f;
-        newCol.g = 0.5f;
-        newCol.b = 0.5f;
-
         
         if (!BattleManager.instance.IsActionAvailable(currentChara, currentChara.GetActions()[0]))
         {
-            baseAttackImage.color = newCol;
+            baseAttackCooldownImage.gameObject.SetActive(true);
+            baseAttackCooldownText.text = "";
+            int cooldown = currentChara.GetSpellCooldown(currentChara.GetActions()[0]);
+            if (cooldown != 0)
+            {
+                baseAttackCooldownText.text = cooldown.ToString();
+                baseAttackCooldownImage.fillAmount = (float)cooldown / (float)currentChara.GetActions()[0].GetMaxCooldown();
+            }
         }
         else
         {
-            baseAttackImage.color = Color.white;
+            baseAttackCooldownImage.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < currentChara.GetActions().Count-1; i++)
         {
             if(!BattleManager.instance.IsActionAvailable(currentChara, currentChara.GetActions()[i+1]))
             {
-                spellImages[i].color = newCol;
+                spellCooldownImages[i].gameObject.SetActive(true);
+                spellCooldownText[i].text = "";
+                int cooldown = currentChara.GetSpellCooldown(currentChara.GetActions()[i + 1]);
+                if (cooldown != 0)
+                {
+                    spellCooldownText[i].text = cooldown.ToString();
+                    spellCooldownImages[i].fillAmount = (float)cooldown / (float)currentChara.GetActions()[i + 1].GetMaxCooldown();
+                }
             }
             else
             {
-                spellImages[i].color = Color.white;
+                spellCooldownImages[i].gameObject.SetActive(false);
             }
         }
     }

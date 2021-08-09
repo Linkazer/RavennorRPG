@@ -28,6 +28,8 @@ public class CharacterActionScriptable : ScriptableObject
     public AttackType attackType;
     public int maanaCost;
     public bool canUseMoreMaana = true;
+    [SerializeField]
+    private int maxCooldown = 0;
     public int maxUtilisation = -1;
     public ActionIncantation incantationTime;
     public bool isWeaponBased;
@@ -55,9 +57,6 @@ public class CharacterActionScriptable : ScriptableObject
     public AudioClip soundToPlay;
 
     //public string animationOnNodeName, animationOnZoneName;
-
-    [SerializeField]
-    private int maxCooldown = 0;
 
     [Header("Effets")]
     public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;

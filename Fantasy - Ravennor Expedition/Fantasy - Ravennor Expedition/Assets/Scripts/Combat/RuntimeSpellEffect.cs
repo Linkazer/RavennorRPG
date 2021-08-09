@@ -11,7 +11,6 @@ public class RuntimeSpellEffect
 
     public RuntimeSpellEffect(SpellEffectCommon common, int maanaSpent, int startCooldown, RuntimeBattleCharacter caster)
     {
-        Debug.Log(caster);
         effet = new SpellEffectCommon(common, maanaSpent, caster);
 
         currentCooldown = startCooldown;
