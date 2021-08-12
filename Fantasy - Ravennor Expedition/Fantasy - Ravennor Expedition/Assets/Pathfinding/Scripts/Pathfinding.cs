@@ -179,7 +179,12 @@ public class Pathfinding : MonoBehaviour {
 
 		while (currentNode != startNode)
 		{
-			if (currentNode.HasCharacterOn && currentNode != endNode)
+			if(currentNode.parent == null)
+            {
+				path = new List<Node>();
+				break;
+			}
+			else if (currentNode.HasCharacterOn && currentNode != endNode)
 			{
 				path = new List<Node>();
 			}

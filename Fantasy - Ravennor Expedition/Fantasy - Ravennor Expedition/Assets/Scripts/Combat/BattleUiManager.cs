@@ -20,12 +20,12 @@ public class BattleUiManager : MonoBehaviour
     private List<Image> turnImages;
 
     [Header("Actions du joueur")]
-    [SerializeField]
+    /*[SerializeField]
     private Image baseAttackImage;
     [SerializeField]
     private Image baseAttackCooldownImage;
     [SerializeField]
-    private TextMeshProUGUI baseAttackCooldownText;
+    private TextMeshProUGUI baseAttackCooldownText;*/
     [SerializeField]
     private List<Image> spellImages;
     [SerializeField]
@@ -73,6 +73,8 @@ public class BattleUiManager : MonoBehaviour
     private TextMeshProUGUI errorTxt;
     [SerializeField]
     private UnityEvent errorFeedbackEvt;
+
+    private bool isOvercharging;
 
     public RuntimeBattleCharacter GetCurrentChara()
     {
@@ -134,25 +136,26 @@ public class BattleUiManager : MonoBehaviour
     
     public void SetNewCharacter(RuntimeBattleCharacter newChara)
     {
+        isOvercharging = false;
+
         currentMaxHps = newChara.GetCharacterDatas().GetMaxHps();
         currentMaxHpText.text = currentMaxHps.ToString();
         SetCurrentHps(newChara.GetCurrentHps());
         SetCurrentMaana(newChara.GetCurrentMaana());
 
-        currentPersoIcon.sprite = newChara.GetCharacterDatas().icon;
+        List<CharacterActionScriptable> actionList = newChara.GetActions(isOvercharging);
 
-        baseAttackImage.color = Color.white;
-        baseAttackImage.sprite = newChara.GetActions()[0].icon;
+        currentPersoIcon.sprite = newChara.GetCharacterDatas().icon;
 
         for (int i = 0; i < spellImages.Count; i++)
         {
             Color newCol = Color.white;
             newCol.a = 0;
-            if(i<newChara.GetActions().Count-1)
+            if(i < actionList.Count)
             {
                 spellImages[i].gameObject.SetActive(true);
                 spellImages[i].color = Color.white;
-                spellImages[i].sprite = newChara.GetActions()[i+1].icon;
+                spellImages[i].sprite = actionList[i].icon;
             }
             else
             {
@@ -164,41 +167,70 @@ public class BattleUiManager : MonoBehaviour
         UpdatePossibleAction();
     }
 
-    public void UpdateSpells()
+    public void SetOvercharge(bool nValue)
     {
-        
-        if (!BattleManager.instance.IsActionAvailable(currentChara, currentChara.GetActions()[0]))
+        isOvercharging = nValue;
+
+        PlayerBattleManager.instance.UpdateActionList(isOvercharging);
+        UpdateSpellVisual();
+    }
+
+    public void ChangeOvercharge()
+    {
+        if(isOvercharging)
         {
-            baseAttackCooldownImage.gameObject.SetActive(true);
-            baseAttackCooldownText.text = "";
-            int cooldown = currentChara.GetSpellCooldown(currentChara.GetActions()[0]);
-            if (cooldown != 0)
-            {
-                baseAttackCooldownText.text = cooldown.ToString();
-                baseAttackCooldownImage.fillAmount = (float)cooldown / (float)currentChara.GetActions()[0].GetMaxCooldown();
-            }
+            SetOvercharge(false);
         }
         else
         {
-            baseAttackCooldownImage.gameObject.SetActive(false);
+            SetOvercharge(true);
         }
+    }
 
-        for (int i = 0; i < currentChara.GetActions().Count-1; i++)
+    public void UpdateSpellVisual()
+    {
+        List<CharacterActionScriptable> actionList = currentChara.GetActions(isOvercharging);
+
+        for (int i = 0; i < spellImages.Count; i++)
         {
-            if(!BattleManager.instance.IsActionAvailable(currentChara, currentChara.GetActions()[i+1]))
+            Color newCol = Color.white;
+            newCol.a = 0;
+            if (i < actionList.Count)
             {
-                spellCooldownImages[i].gameObject.SetActive(true);
-                spellCooldownText[i].text = "";
-                int cooldown = currentChara.GetSpellCooldown(currentChara.GetActions()[i + 1]);
-                if (cooldown != 0)
-                {
-                    spellCooldownText[i].text = cooldown.ToString();
-                    spellCooldownImages[i].fillAmount = (float)cooldown / (float)currentChara.GetActions()[i + 1].GetMaxCooldown();
-                }
+                spellImages[i].gameObject.SetActive(true);
+                spellImages[i].color = Color.white;
+                spellImages[i].sprite = actionList[i].icon;
             }
             else
             {
+                spellImages[i].color = newCol;
+                spellImages[i].gameObject.SetActive(false);
+            }
+        }
+
+        UpdateSpells();
+    }
+
+    public void UpdateSpells()
+    {
+        List<CharacterActionScriptable> actionList = currentChara.GetActions(isOvercharging);
+
+        for (int i = 0; i < actionList.Count; i++)
+        {
+            if(isOvercharging || BattleManager.instance.IsActionAvailable(currentChara, actionList[i]))
+            {
                 spellCooldownImages[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                spellCooldownImages[i].gameObject.SetActive(true);
+                spellCooldownText[i].text = "";
+                int cooldown = currentChara.GetSpellCooldown(actionList[i]);
+                if (cooldown != 0)
+                {
+                    spellCooldownText[i].text = cooldown.ToString();
+                    spellCooldownImages[i].fillAmount = (float)cooldown / actionList[i].GetMaxCooldown();
+                }
             }
         }
     }
@@ -320,7 +352,7 @@ public class BattleUiManager : MonoBehaviour
     public void UseSpell(int usedMaanaIndex)
     {
         maanaSpentParent.SetActive(false);
-        PlayerBattleManager.instance.UseSpell(usedMaanaIndex);
+        PlayerBattleManager.instance.UseSpell(0);
     }
 
     public void UseActionFeedback(bool useActionPoint)

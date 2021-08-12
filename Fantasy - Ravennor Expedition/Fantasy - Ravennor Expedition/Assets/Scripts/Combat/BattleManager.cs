@@ -716,8 +716,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Heal Dices : " + neededDices.Count);
 
         int baseHeal = wantedAction.GetBaseDamage(maanaSpent) + caster.GetCharacterDatas().GetSoinApplique();
-        Debug.Log(wantedAction.GetBaseDamage(maanaSpent));
-        Debug.Log(caster.GetCharacterDatas().GetSoinApplique());
+
         target.TakeHeal(neededDices, baseHeal);
     }
 

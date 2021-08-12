@@ -39,6 +39,5 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: 2edd2558afea45e4e8333f0816ab0650, type: 2}
   - {fileID: 11400000, guid: 91541c6d41f7a394ca219492a85f71d0, type: 2}
-  - {fileID: 11400000, guid: 6b73c5978359a344d8d6c66b681b2ab8, type: 2}
   passifs: []
   initiative: 7

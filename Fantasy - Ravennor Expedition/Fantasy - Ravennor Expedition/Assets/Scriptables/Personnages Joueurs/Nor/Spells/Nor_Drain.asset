@@ -17,10 +17,11 @@ MonoBehaviour:
   description: "Inflige 1D4 (+1D4 par charge de Maana) d\xE9g\xE2ts magiques \xE0
     la cible et r\xE9cup\xE8re la moiti\xE9 des d\xE9g\xE2ts inflig\xE9 en points
     de vie."
-  spellType: 0
+  overchargedAction: {fileID: 11400000}
   attackType: 1
   maanaCost: 1
   canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -38,10 +39,10 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 39d0f935e788ca842925b05407fe4b39, type: 3}
   caseFeedback: {fileID: 21300000, guid: 91444d9e8a7806149af68f1956e6a7a0, type: 3}
   soundToPlay: {fileID: 0}
-  maxCooldown: 0
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   dices:

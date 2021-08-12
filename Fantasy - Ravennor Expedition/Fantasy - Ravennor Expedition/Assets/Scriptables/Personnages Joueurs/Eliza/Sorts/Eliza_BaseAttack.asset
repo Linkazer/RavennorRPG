@@ -15,10 +15,11 @@ MonoBehaviour:
   nom: Flamiche
   icon: {fileID: 21300000, guid: 4caeb65da49fb594aa7d56bb54471656, type: 3}
   description: "Inflige 1D4 (+1D4 par charge de Maana) d\xE9g\xE2ts magiques."
-  spellType: 0
+  overchargedAction: {fileID: 11400000, guid: ebbff8e9a664e094f8441468b40d028e, type: 2}
   attackType: 1
   maanaCost: 0
   canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -36,10 +37,10 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: af51ce6d9e87a2743a58c737d47c4c7f, type: 3}
   caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
-  maxCooldown: 0
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   dices:

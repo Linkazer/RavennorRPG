@@ -16,10 +16,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 155642351525a3d41b91316c8aa388d6, type: 3}
   description: "Inflige 1D6 (+1D6 par charge de Maana) d\xE9g\xE2ts magiques aux
     cibles."
-  spellType: 0
+  overchargedAction: {fileID: 11400000}
   attackType: 1
   maanaCost: 0
   canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -39,11 +40,11 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: b58e2c72e18b2d640b7f2357833a63d2, type: 3}
   caseFeedback: {fileID: 21300000, guid: 678f31552fc4b1a45bae0ee64aba1e23, type: 3}
   soundToPlay: {fileID: 0}
-  maxCooldown: 0
   wantedEffectOnTarget:
   - {fileID: 11400000, guid: 4ea8a541df8fffa4197784fd9894fafc, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   dices:

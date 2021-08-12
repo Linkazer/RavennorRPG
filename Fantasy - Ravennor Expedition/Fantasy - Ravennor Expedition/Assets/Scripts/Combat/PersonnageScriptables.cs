@@ -107,6 +107,16 @@ public class PersonnageScriptables : ScriptableObject
         return 0;
     }
     
+    public List<CharacterActionScriptable> GetOverchargedSpell()
+    {
+        List<CharacterActionScriptable> toReturn = new List<CharacterActionScriptable>();
+        for(int i = 0; i< knownSpells.Count; i++)
+        {
+            toReturn.Add(knownSpells[i].overchargedAction);
+        }
+        return toReturn;
+    }
+
     #endregion
 
     #region Secondary Stats

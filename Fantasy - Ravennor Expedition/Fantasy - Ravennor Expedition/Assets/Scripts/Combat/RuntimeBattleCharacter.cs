@@ -145,13 +145,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void UseSpell(CharacterActionScriptable spell)
     {
         int index = 0;
-        foreach (CharacterActionScriptable s in actionsDisponibles)
+        for (index = 0; index < actionsDisponibles.Count; index++)
         {
-            if (s.nom == spell.nom)
+            if (actionsDisponibles[index].IsSameSpell(spell.nom))
             {
                 break;
             }
-            index++;
         }
         spellUtilisations[index] += 1;
     }
@@ -159,23 +158,24 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public bool HasSpellUtilisationLeft(CharacterActionScriptable spell)
     {
         int index = 0;
-        foreach (CharacterActionScriptable s in actionsDisponibles)
+        for (index = 0; index < actionsDisponibles.Count; index++)
         {
-            if (s.nom == spell.nom)
+            if (actionsDisponibles[index].IsSameSpell(spell.nom))
             {
-                if(spell.maxUtilisation > 0 && spellUtilisations[index] < spell.maxUtilisation)
+                if (spell.maxUtilisation > 0 && spellUtilisations[index] < spell.maxUtilisation)
                 {
                     return true;
                 }
                 break;
             }
-            index++;
         }
         return false;
     }
 
     public bool UseMaana(int maanaSpent)
     {
+        Debug.Log(currentMaana);
+        Debug.Log(maanaSpent);
         if (maanaSpent <= currentMaana)
         {
             currentMaana -= maanaSpent;
@@ -184,11 +184,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
             {
                 BattleUiManager.instance.SetCurrentMaana(currentMaana);
             }
-
+            Debug.Log(currentMaana);
             return true;
         }
         return false;
     }
+
     public void UseMaanaWithoutrestriction(int maanaSpent)
     {
         currentMaana -= maanaSpent;
@@ -212,9 +213,16 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         return initiative;
     }
-    public List<CharacterActionScriptable> GetActions()
+    public List<CharacterActionScriptable> GetActions(bool isOvercharged)
     {
-        return actionsDisponibles;
+        if (isOvercharged)
+        {
+            return currentScriptable.GetOverchargedSpell();
+        }
+        else
+        {
+            return actionsDisponibles;
+        }
     }
 
     public void AddAffliction(Affliction affToAdd)
@@ -255,13 +263,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public int GetSpellCooldown(CharacterActionScriptable spell)
     {
         int index = 0;
-        foreach (CharacterActionScriptable s in actionsDisponibles)
+        for (index = 0; index < actionsDisponibles.Count; index++)
         {
-            if (s.nom == spell.nom)
+            if (actionsDisponibles[index].IsSameSpell(spell.nom))
             {
                 break;
             }
-            index++;
         }
         return cooldowns[index];
     }
@@ -269,13 +276,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void SetCooldown(CharacterActionScriptable spell)
     {
         int index = 0;
-        foreach(CharacterActionScriptable s in actionsDisponibles)
+        for(index = 0; index < actionsDisponibles.Count; index++)
         {
-            if(s.nom == spell.nom)
+            if(actionsDisponibles[index].IsSameSpell(spell.nom))
             {
                 break;
             }
-            index++;
         }
         cooldowns[index] = actionsDisponibles[index].GetMaxCooldown();
     }

@@ -17,14 +17,16 @@ public enum ScalePossibility { None, EffectStack, HpLostPercent, Distance}
 //[CreateAssetMenu(fileName = "New Battle Action", menuName = "Create New Battle Action")]
 public class CharacterActionScriptable : ScriptableObject
 {
+    [Header("Global Informations")]
     public string nom;
     public Sprite icon;
     [TextArea(3,5)]
     public string description;
 
-    [HideInInspector]
-    public SpellType spellType;
+    [Header("Overcharge")]
+    public CharacterActionScriptable overchargedAction;
 
+    [Header("Spell Datas")]
     public AttackType attackType;
     public int maanaCost;
     public bool canUseMoreMaana = true;
@@ -61,6 +63,10 @@ public class CharacterActionScriptable : ScriptableObject
     [Header("Effets")]
     public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
 
+
+    [HideInInspector]
+    public SpellType spellType;
+
     public CharacterActionScriptable()
     {
         if(!activeZoneCases.Contains(Vector2Int.zero))
@@ -78,5 +84,10 @@ public class CharacterActionScriptable : ScriptableObject
     public int GetMaxCooldown()
     {
         return maxCooldown;
+    }
+
+    public bool IsSameSpell(string sNom)
+    {
+        return sNom == nom || sNom == overchargedAction.nom;
     }
 }

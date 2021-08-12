@@ -15,10 +15,11 @@ MonoBehaviour:
   nom: Shakram
   icon: {fileID: 21300000, guid: cbbe7c921b30a8d4abbffe4ef972a014, type: 3}
   description: "Inflige 1D8 de d\xE9g\xE2ts physiques."
-  spellType: 0
+  overchargedAction: {fileID: 11400000}
   attackType: 0
   maanaCost: 0
   canUseMoreMaana: 0
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
@@ -36,10 +37,10 @@ MonoBehaviour:
   caseSprite: {fileID: 0}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
-  maxCooldown: 0
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   dices:

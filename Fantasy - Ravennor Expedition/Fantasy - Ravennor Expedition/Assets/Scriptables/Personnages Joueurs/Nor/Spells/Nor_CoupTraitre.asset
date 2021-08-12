@@ -16,10 +16,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: aa7afa16803c0414f9a76e4f4e5b79b9, type: 3}
   description: Nor utilise ses dagues en visant un point sensible de la cible, lui
     infligeant un coup critique automatique.
-  spellType: 0
+  overchargedAction: {fileID: 11400000}
   attackType: 0
   maanaCost: 1
   canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
@@ -37,10 +38,10 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 1d77cee709537c24f838952311b51a19, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
-  maxCooldown: 0
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   dices:

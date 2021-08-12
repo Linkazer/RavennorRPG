@@ -17,10 +17,11 @@ MonoBehaviour:
   description: "Convoque temporairement une \xE2me guidant les attaques de sa cible,
     ce qui lui offre un bonus de Jet d'attaque de 2 (+1 tous les niveaux) pendant
     3 tours."
-  spellType: 0
+  overchargedAction: {fileID: 11400000}
   attackType: 1
-  actionLevel: 1
   maanaCost: 1
+  canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -38,23 +39,24 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 839658bf6d352cd49bad938a15016672, type: 3}
   caseFeedback: {fileID: 21300000, guid: a69181bc1e4a71443adae3ec225d49e1, type: 3}
   soundToPlay: {fileID: 0}
-  maxCooldown: 0
   wantedEffectOnTarget:
   - {fileID: 11400000, guid: f2879749b1491ea4494b90db6fea3016, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 0
+  damageBase: 0
   dices: []
   noBonusSpell: 0
   damageType: 0
-  diceByLevelBonus: 0
-  diceByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0

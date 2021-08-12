@@ -25,6 +25,8 @@ public class PlayerBattleManager : MonoBehaviour
 
     private Vector2 actionPosition;
 
+    private bool isOvercharging;
+
     private void Start()
     {
         instance = this;
@@ -36,9 +38,17 @@ public class PlayerBattleManager : MonoBehaviour
 
         currentCharacter = nextChara;
 
-        actionList = currentCharacter.GetActions();
+        isOvercharging = false;
+
+        UpdateActionList(false);
 
         ActivatePlayerBattleController(true);
+    }
+
+    public void UpdateActionList(bool isOvercharged)
+    {
+        isOvercharging = isOvercharged;
+        actionList = currentCharacter.GetActions(isOvercharged);
     }
 
     public void NextAction(Vector2 position)
@@ -50,7 +60,7 @@ public class PlayerBattleManager : MonoBehaviour
                 if (currentCharacter.HasEnoughMaana(actionList[holdSpellIndex].maanaCost))
                 {
                     actionPosition = Grid.instance.NodeFromWorldPoint(position).worldPosition;
-                    AskUseSpell(actionPosition);
+                    UseSpell(0);
                 }
                 else
                 {
@@ -72,7 +82,7 @@ public class PlayerBattleManager : MonoBehaviour
     public void ChooseSpell(int index)
     {
         //Grid.instance.ResetUsableNode();
-        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && BattleManager.instance.IsActionAvailable(currentCharacter, actionList[index]))
+        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && (isOvercharging || BattleManager.instance.IsActionAvailable(currentCharacter, actionList[index])))
         {
             ShowSpell(actionList[index]);
             holdSpellIndex = index;
@@ -186,28 +196,11 @@ public class PlayerBattleManager : MonoBehaviour
         return !BattleUiManager.instance.IsAskingSpell();
     }
 
-    public void AskUseSpell(Vector2 position)
-    {
-        int maxMaanaUsed = actionList[holdSpellIndex].maanaCost;
-        if (actionList[holdSpellIndex].canUseMoreMaana)
-        {
-            maxMaanaUsed += currentCharacter.GetCharacterDatas().GetLevel;
-            if (maxMaanaUsed > currentCharacter.GetCurrentMaana())
-            {
-                maxMaanaUsed = currentCharacter.GetCurrentMaana();
-            }
-            BattleUiManager.instance.ShowMaanaSpentAsker(position, actionList[holdSpellIndex].maanaCost, maxMaanaUsed);
-        }
-        else
-        {
-            UseSpell(maxMaanaUsed);
-        }
-    }
-
     public void UseSpell(int maanaSpent)
     {
         ActivatePlayerBattleController(false);
 
+        Debug.Log(maanaSpent);
         currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost + maanaSpent);
 
         currentCharacter.SetCooldown(actionList[holdSpellIndex]);
@@ -217,6 +210,7 @@ public class PlayerBattleManager : MonoBehaviour
         BattleManager.instance.LaunchAction(actionList[holdSpellIndex], maanaSpent, currentCharacter, actionPosition, false);
 
         holdSpellIndex = -1;
+        BattleUiManager.instance.SetOvercharge(false);
     }
 
     public void ShowDeplacement()
