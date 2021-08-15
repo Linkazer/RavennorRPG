@@ -84,12 +84,9 @@ public class BattleManager : MonoBehaviour
 
             roomManager = level.GetComponent<RoomManager>();
 
-            foreach (PersonnageScriptables perso in RavenorGameManager.instance.playerPersos)
+            for(int i = 0; i < roomManager.characterInLevel.Count; i++)
             {
-                if(roomManager.characterInLevel.Contains(perso.nom))
-                {
-                    playerTeam.Add(perso);
-                }
+                playerTeam.Add(Instantiate(roomManager.characterInLevel[i]));
             }
         }
 
@@ -234,16 +231,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                /*if(roomManager.levelUp)
-                {
-                    foreach(PersonnageScriptables p in RavenorGameManager.instance.playerPersos)
-                    {
-                        RavenorGameManager.instance.SetLevelUp();
-                    }
-                }*/
-
                 ExitBattle();
-
             }
         }
         else
@@ -713,17 +701,7 @@ public class BattleManager : MonoBehaviour
 
     public int DoDamage(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        int bonusDamages = wantedAction.GetBaseDamage(maanaSpent);
-
-        switch (wantedAction.attackType)
-        {
-            case AttackType.Physical:
-                bonusDamages += caster.GetCharacterDatas().GetPhysicalDamage();
-                break;
-            case AttackType.Magical:
-                bonusDamages += caster.GetCharacterDatas().GetMagicalDamage();
-                break;
-        }
+        int bonusDamages = 0;
 
         switch (wantedAction.scaleOrigin)
         {
@@ -783,6 +761,11 @@ public class BattleManager : MonoBehaviour
 
 
         targetDefenseScore = target.GetCharacterDatas().GetDefense();
+
+        if(neededDices <= 0 && wantedAction.GetBaseDamage(maanaSpent) > 0)
+        {
+            dealtDamage += caster.GetCharacterDatas().GetPhysicalDamage() + wantedAction.GetBaseDamage(maanaSpent);
+        }
 
         int resultAtt = 0;
         for (int i = 0; i < neededDices; i++)
@@ -886,7 +869,7 @@ public class BattleManager : MonoBehaviour
 
     private void InvokeAlly(RuntimeBattleCharacter caster, CharacterActionInvocation spell, Vector2 wantedPosition)
     {
-        PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations, caster.GetCharacterDatas().GetLevel);
+        PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations);
 
         if (!caster.CheckForInvocations(toInvoke) && toInvoke != null)
         {
@@ -911,11 +894,11 @@ public class BattleManager : MonoBehaviour
         EndCurrentAction();
     }
 
-    private PersonnageScriptables CharacterToInvoke(List<PersonnageScriptables> possibleInvoc, int level)
+    private PersonnageScriptables CharacterToInvoke(List<PersonnageScriptables> possibleInvoc)
     {
         for(int i = possibleInvoc.Count-1; i >= 0; i--)
         {
-            if(possibleInvoc[i] != null && i < level)
+            if(possibleInvoc[i] != null && i < 1)
             {
                 return possibleInvoc[i];
             }

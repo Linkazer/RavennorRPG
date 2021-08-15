@@ -21,9 +21,8 @@ MonoBehaviour:
   description: "Vanyaenn est une dryade originaire du M\xE9rendil. Elle est souvent
     consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
     bon sens."
-  level: 1
   healthPoints: 8
-  maana: 3
+  maana: 4
   movementSpeed: 35
   accuracy: 0
   defense: 1

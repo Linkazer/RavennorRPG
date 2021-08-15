@@ -10,30 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Shedun_Unknown 1
+  m_Name: Shedun_PicSables
   m_EditorClassIdentifier: 
-  nom: Unknown 1
-  icon: {fileID: 0}
+  nom: Pics de sables
+  icon: {fileID: 21300000, guid: 89693d44e1e6eba4d924d65cb6d71f60, type: 3}
   description: "Attaque la cible avec 4 d\xE9s."
   overchargedAction: {fileID: 0}
-  attackType: 0
+  attackType: 1
   maanaCost: 1
   maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
-  isWeaponBased: 1
+  isWeaponBased: 0
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 45
+  range: 35
   activeZoneCases:
   - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: -1}
   doesFaceCaster: 1
   hasViewOnTarget: 1
-  projectile: {fileID: 21300000, guid: 409b34ee20e40dc4e8f597c7b3cfccec, type: 3}
-  speed: 5
+  projectile: {fileID: 0}
+  speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: 3ab9cf96bdecd52439b9c34e821323a8, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget: []
@@ -42,7 +46,7 @@ MonoBehaviour:
   spellType: 0
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 4
+  diceNumber: 2
   damageType: 1
   autoCritical: 0
   scaleOrigin: 0

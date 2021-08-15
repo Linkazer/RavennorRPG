@@ -36,7 +36,6 @@ public class PersonnageScriptables : ScriptableObject
     public string description;
 
     [Header("Statistique de base")]
-    [SerializeField] private int level = 1;
     private int maxHp;
     private int maanaMax;
 
@@ -72,8 +71,6 @@ public class PersonnageScriptables : ScriptableObject
     [SerializeField] private int initiative;
 
     #region Main Stats
-    public int GetLevel => level;
-
     public int GetMaxHps()
     {
         maxHp = healthPoints + healthPointsBonus;
@@ -212,45 +209,6 @@ public class PersonnageScriptables : ScriptableObject
     public int GetPossibleActions()
     {
         return actionNumber + actionBonus + 1;
-    }
-
-    public void LevelUpStat(int value, CharacterStats effType)
-    {
-        switch (effType)
-        {
-            case CharacterStats.Health:
-                healthPoints += value;
-                break;
-            case CharacterStats.Power:
-                power += value;
-                break;
-            case CharacterStats.Defense:
-                defense += value;
-                break;
-            case CharacterStats.Accuracy:
-                accuracy += value;
-                break;
-            case CharacterStats.HealApplied:
-                bonusSoinAppli += value;
-                break;
-            case CharacterStats.HealRecieved:
-                bonusSoinRecu += value;
-                break;
-            case CharacterStats.Maana:
-                maana += value;
-                break;
-            case CharacterStats.Armor:
-                armor += value;
-                break;
-            case CharacterStats.ActionBonus:
-                actionNumber += value;
-                break;
-        }
-    }
-
-    public void UpLevel()
-    {
-        level++;
     }
 }
 

@@ -2,33 +2,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class RoomManager : MonoBehaviour
 {
     //public static RoomManager instance;
 
+    [Header("Camera")]
     [SerializeField]
     private Vector2 cameraPos;
+    [SerializeField]
+    public Vector2 cameraMaxLeftTop, cameraMaxRightBottom;
     private static Vector2 sCameraPos;
-    public ParcheminScriptable startDialogue, endDialogue, campDialogue;
-    public List<string> characterInLevel = new List<string>(), characterInCamp = new List<string>();
+    [Header("Dialogues")]
+    public ParcheminScriptable startDialogue;
+    public ParcheminScriptable endDialogue;
+    public ParcheminScriptable campDialogue;
+    [Header("Global Informations")]
+    public List<PersonnageScriptables> characterInLevel = new List<PersonnageScriptables>();
     public bool endGame;
-
     public GameObject nextLvl;
 
+    [Header("Camps")]
+    public Sprite backgroundCamp;
+    public Sprite fireSprite;
+    public List<CampDisplayableCharacter> characterInCamp = new List<CampDisplayableCharacter>();
+
+    [Header("Rooms Informations")]
     [SerializeField]
     protected List<Room> rooms;
 
+    [Header("Player Informations")]
     [SerializeField]
     protected List<Transform> playerPos;
-    //[HideInInspector]
+    [HideInInspector]
     public List<Vector2> playerStartPositions;
 
     [SerializeField]
     protected List<int> openRoomIndexes = new List<int>();
-
-    [SerializeField]
-    public Vector2 cameraMaxLeftTop, cameraMaxRightBottom;
 
     public Action<int> openRoomAct;
     public Action checkTurnAct;
@@ -39,19 +50,7 @@ public class RoomManager : MonoBehaviour
 
     public RoomManager()
     {
-        characterInLevel.Add("Eliza");
-        characterInLevel.Add("Nor");
-        characterInLevel.Add("Okun");
-        characterInLevel.Add("Shedun");
-        characterInLevel.Add("Vanyaenn");
-        characterInLevel.Add("Lila");
-
-        characterInCamp.Add("Eliza");
-        characterInCamp.Add("Nor");
-        characterInCamp.Add("Okun");
-        characterInCamp.Add("Shedun");
-        characterInCamp.Add("Vanyaenn");
-        characterInCamp.Add("Lila");
+        
     }
 
     private void Awake()

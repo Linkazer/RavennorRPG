@@ -20,9 +20,8 @@ MonoBehaviour:
   brasPosition: 0
   description: "Banni de sa tribu, Shedun cherche depuis plusieurs ann\xE9es un rem\xE8de
     qui pourrait l'aider \xE0 sauver sa soeur avec l'aide de la Confr\xE9rie."
-  level: 1
   healthPoints: 8
-  maana: 2
+  maana: 3
   movementSpeed: 45
   accuracy: 0
   defense: 2
@@ -33,5 +32,6 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: 716856e3e94c54e4aa5320302d47778b, type: 2}
   - {fileID: 11400000, guid: 1f193a567b2b43e44bfff6788d029462, type: 2}
+  - {fileID: 11400000, guid: 206d279544345a0499c21e02a20d3638, type: 2}
   passifs: []
   initiative: 5

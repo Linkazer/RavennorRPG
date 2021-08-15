@@ -18754,24 +18754,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPos: {x: 0, y: 0}
+  cameraMaxLeftTop: {x: -1, y: 1}
+  cameraMaxRightBottom: {x: 1, y: -1}
   startDialogue: {fileID: 11400000, guid: 454dbf36748e6554088210af4804d7f0, type: 2}
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
   characterInLevel:
-  - Eliza
-  - Nor
-  - Okun
-  - Shedun
-  - Vanyaenn
-  characterInCamp:
-  - Eliza
-  - Nor
-  - Okun
-  - Shedun
-  - Vanyaenn
+  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
+  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
+  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
+  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
+  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
   endGame: 0
-  nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
-  levelUp: 0
+  nextLvl: {fileID: 7560241282882709333}
+  backgroundCamp: {fileID: 21300000, guid: 6b9d5b32001d0d94f834de0ea045d175, type: 3}
+  characterInCamp:
+  - {fileID: 11400000, guid: 98e9569f0257ee543a1dc564fb82cc30, type: 2}
+  - {fileID: 11400000, guid: 061deea5da899644fb6488150c6c8007, type: 2}
+  - {fileID: 11400000, guid: e3fdad8ba72d35f439f77f7ac7cc38c9, type: 2}
+  - {fileID: 11400000, guid: 98cfef47be3db6045b3510c2512f1df9, type: 2}
+  - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
   rooms:
   - ennemis:
     - {fileID: 11400000, guid: f00a877c7b0c6db4998b20600438438b, type: 2}
@@ -18808,8 +18810,6 @@ MonoBehaviour:
   - {x: -1.0400002, y: 0.08000013}
   - {x: -1.0400002, y: -0.23999977}
   openRoomIndexes: 00000000
-  cameraMaxLeftTop: {x: -1, y: 1}
-  cameraMaxRightBottom: {x: 1, y: -1}
   end: {fileID: 4850284551274847440}
 --- !u!114 &4850284551274847440
 MonoBehaviour:
@@ -18824,7 +18824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomManager: {fileID: 2336668606332924307}
-  ennemiesToDown: 6
+  ennemiesToDown: 5
 --- !u!1 &8412524457342843277
 GameObject:
   m_ObjectHideFlags: 0

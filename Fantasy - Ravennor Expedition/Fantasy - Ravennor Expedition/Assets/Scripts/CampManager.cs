@@ -6,24 +6,26 @@ using TMPro;
 
 public class CampManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject characterSheet;
-
+    [SerializeField] private Image background;
     [SerializeField]
     private List<Image> characterSprites;
+    [SerializeField]
+    private List<RectTransform> characterTransforms;
 
     [SerializeField]
     private Color nonSelectedColor;
 
     [Header("Character Sheet")]
+    [SerializeField]
+    private GameObject characterSheet;
+
     [SerializeField] private TextMeshProUGUI maxHps;
     [SerializeField] private TextMeshProUGUI maxMaana;
     [SerializeField] private TextMeshProUGUI accuracy;
-    [SerializeField] private TextMeshProUGUI physicalPower;
-    [SerializeField] private TextMeshProUGUI magicalPower;
+    [SerializeField] private TextMeshProUGUI power;
     [SerializeField] private TextMeshProUGUI defense;
     [SerializeField] private TextMeshProUGUI movement;
-    [SerializeField] private TextMeshProUGUI armurePhy;
+    [SerializeField] private TextMeshProUGUI armor;
 
     [SerializeField]
     private Image characterPortrait;
@@ -32,6 +34,7 @@ public class CampManager : MonoBehaviour
 
     [SerializeField]
     private List<PersonnageScriptables> persos = new List<PersonnageScriptables>();
+    private List<CampDisplayableCharacter> displayableCharas = new List<CampDisplayableCharacter>();
     private PersonnageScriptables currentChara;
 
     [Header("Spell Management")]
@@ -42,23 +45,13 @@ public class CampManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI spellNom, spellDescription, spellMaana, spellIncantation, spellPortee;
 
-    [Header("Level Up")]
-    [SerializeField] private GameObject levelUpParent;
-
-    [SerializeField] private Image levelUpcharacterPortrait;
-    [SerializeField] private TextMeshProUGUI levelUpCharacterName;
-
-    [SerializeField] private TextMeshProUGUI levelUpStats;
-    [SerializeField] private Image levelUpSpellsIcon;
-    [SerializeField] private TextMeshProUGUI levelUpSpells;
-    [SerializeField] private Image levelUpCapacitiesIcon;
-    [SerializeField] private TextMeshProUGUI levelUpCapacities;
-
+    [Header("Dialogue")]
     [SerializeField] private ParcheminDialogueSystem dialogSysteme;
 
     private LevelUpCapacity capacityUpShowed;
     private CharacterActionScriptable spellUpShowed;
 
+    [Header("Capacities")]
     [SerializeField]
     private GameObject capacityInfo;
     [SerializeField]
@@ -66,20 +59,25 @@ public class CampManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (PersonnageScriptables perso in RavenorGameManager.instance.playerPersos)
+        List<CampDisplayableCharacter> displays = RavenorGameManager.instance.GetCurrentBattle().characterInCamp;
+        for (int i = 0; i < displays.Count; i++)
         {
-            if (RavenorGameManager.instance.GetBattle().GetComponent<RoomManager>().characterInCamp.Contains(perso.nom))
+            if (displays[i].Scriptable != null)
             {
-                persos.Add(perso);
+                persos.Add(displays[i].Scriptable);
             }
+            displayableCharas.Add(displays[i]);
         }
 
-        for(int i = 0; i < characterSprites.Count; i++)
+        background.sprite = RavenorGameManager.instance.GetCurrentBattle().backgroundCamp;
+
+        for (int i = 0; i < displayableCharas.Count; i++)
         {
-            if (!GetCharactersId().Contains(i))
-            {
-                characterSprites[i].gameObject.SetActive(false);
-            }
+            Image displayImage = characterSprites[GetCharaIndexByName(displayableCharas[i].ID)];
+            displayImage.gameObject.SetActive(true);
+            displayImage.sprite = displayableCharas[i].Sprite;
+            characterTransforms[i].localPosition = displayableCharas[i].Position;
+            characterTransforms[i].localScale = displayableCharas[i].Scale;
         }
 
         if (RavenorGameManager.instance.dialogueToDisplay != null)
@@ -89,98 +87,14 @@ public class CampManager : MonoBehaviour
 
             dialogSysteme.EndDialogueEvent.AddListener(EndDialogue);
         }
-        else
-        {
-            CheckForNewLevelUp();
-        }
 
         LoadingScreenManager.instance.HideScreen();
-    }
-
-     private void CheckForNewLevelUp()
-    {
-        int newLevelUp = RavenorGameManager.instance.GetNextLevelUp();
-        if (newLevelUp >= 0)
-        {
-            LevelUpCharacter(newLevelUp);
-        }
     }
 
     public void GoToNextScene()
     {
         RavenorGameManager.instance.LoadBattle();
     }
-
-    #region Level Up
-    private void LevelUpCharacter(int characterIndex)
-    {
-        LevelTable table = persos[characterIndex].levelUpTable.GetLevelTable(persos[characterIndex].GetLevel);
-
-        string statDisplay = "";
-
-        for(int i = 0; i < table.stats.Count; i++)
-        {
-            persos[characterIndex].LevelUpStat(table.stats[i].value, table.stats[i].stat);
-            statDisplay += table.stats[i].stat.ToString() + " + " + table.stats[i].value.ToString() + "\n";
-        }
-
-        levelUpStats.text = statDisplay;
-
-        for(int i = 0; i < table.possibleSpells.Count; i++)
-        {
-            persos[characterIndex].knownSpells.Add(table.possibleSpells[i]);
-            levelUpSpells.text = table.possibleSpells[i].nom;
-            levelUpSpellsIcon.sprite = table.possibleSpells[i].icon;
-        }
-
-        for(int i = 0; i < table.capacities.Count; i++)
-        {
-            persos[characterIndex].passifs.Add(table.capacities[i].passif);
-            levelUpCapacities.text = table.capacities[i].nom;
-            levelUpCapacitiesIcon.sprite = table.capacities[i].passif.effet.spr;
-        }
-
-        persos[characterIndex].UpLevel();
-
-        levelUpParent.SetActive(true);
-    }
-
-    public void ShowCapacityLevelUp()
-    {
-        capacityNom.text = capacityUpShowed.nom;
-        capacityDescription.text = capacityUpShowed.description;
-
-        capacityInfo.SetActive(true);
-    }
-
-    public void HideCapacity()
-    {
-        capacityInfo.SetActive(false);
-    }
-
-    public void ShowSpellLevelUp()
-    {
-        SpellInfo(spellUpShowed);
-    }
-
-    public void QuitLevelUp()
-    {
-        levelUpParent.SetActive(false);
-        CheckForNewLevelUp();
-    }
-    #endregion
-
-    #region Feedbacks
-    public void Outline(Image matToChange)
-    {
-        //matToChange.material.color = Color.white;
-    }
-
-    public void HideOutline(Image matToChange)
-    {
-        //matToChange.material.color = Color.black;
-    }
-    #endregion
 
     #region CharacterSheet
     public void OpenCharacterSheet(int index)
@@ -221,12 +135,11 @@ public class CampManager : MonoBehaviour
         characterDescription.text = currentChara.description;
 
         accuracy.text = currentChara.GetAccuracy().ToString();
-        physicalPower.text = currentChara.GetPhysicalDamage().ToString();
-        magicalPower.text = currentChara.GetMagicalDamage().ToString();
+        power.text = currentChara.GetPhysicalDamage().ToString();
 
         defense.text = currentChara.GetDefense().ToString();
         movement.text = currentChara.GetMovementSpeed().ToString();
-        armurePhy.text = currentChara.GetArmor().ToString();
+        armor.text = currentChara.GetArmor().ToString();
 
         for (int i = 0; i < knownSpells.Count; i++)
         {
@@ -289,9 +202,9 @@ public class CampManager : MonoBehaviour
     private List<int> GetCharactersId()
     {
         List<int> toReturn = new List<int>();
-        foreach(PersonnageScriptables perso in persos)
+        for(int i = 0; i < displayableCharas.Count; i++)
         {
-            switch(perso.nom)
+            switch (displayableCharas[i].ID)
             {
                 case "Eliza":
                     toReturn.Add(0);
@@ -308,12 +221,11 @@ public class CampManager : MonoBehaviour
                 case "Vanyaenn":
                     toReturn.Add(4);
                     break;
-                case "Lila":
+                case "Free 1":
                     toReturn.Add(5);
                     break;
             }
         }
-
         return toReturn;
     }
 
@@ -332,7 +244,7 @@ public class CampManager : MonoBehaviour
             case 4:
                 return "Vanyaenn";
             case 5:
-                return "Lila";
+                return "Free 1";
         }
         return "";
     }
@@ -351,7 +263,7 @@ public class CampManager : MonoBehaviour
                 return 3;
             case "Vanyaenn":
                 return 4;
-            case "Lila":
+            case "Free 1":
                 return 5;
         }
         return -1;
@@ -359,6 +271,6 @@ public class CampManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        CheckForNewLevelUp();
+        
     }
 }

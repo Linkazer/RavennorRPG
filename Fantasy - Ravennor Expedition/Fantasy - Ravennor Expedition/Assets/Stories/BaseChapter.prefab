@@ -5669,90 +5669,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPos: {x: -2.32, y: -1.36}
+  cameraMaxLeftTop: {x: -2.5, y: -0.5}
+  cameraMaxRightBottom: {x: 0, y: -2}
   startDialogue: {fileID: 11400000, guid: 454dbf36748e6554088210af4804d7f0, type: 2}
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
   characterInLevel:
-  - Eliza
-  - Nor
-  - Okun
-  - Shedun
-  - Vanyaenn
-  - Lila
-  characterInCamp:
-  - Eliza
-  - Nor
-  - Okun
-  - Shedun
-  - Vanyaenn
-  - Lila
+  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
+  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
+  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
+  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
+  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
-  levelUp: 0
-  rooms:
-  - ennemis:
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    ennemisPos:
-    - {fileID: 2600873587656351773}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    ennemisPositions:
-    - {x: -2, y: -1.52}
-    - {x: -1.9999999, y: -1.04}
-    - {x: -1.2, y: -1.04}
-    - {x: -1.2, y: -1.52}
-    - {x: -0.8800001, y: -1.2}
-    - {x: -0.88000005, y: -1.36}
-    toEnable: []
-    toDisable: []
-  - ennemis:
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    ennemisPos:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    ennemisPositions:
-    - {x: -0.7200002, y: -2.32}
-    - {x: -0.5600002, y: -2.32}
-    - {x: -0.5600002, y: -1.2}
-    - {x: -0.08000019, y: -1.2}
-    toEnable: []
-    toDisable: []
-  - ennemis:
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    ennemisPos:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    ennemisPositions:
-    - {x: -0.72000015, y: -0.24000007}
-    - {x: 0.079999804, y: -0.24000007}
-    - {x: -0.8800002, y: -0.72}
-    - {x: 0.23999983, y: -0.72}
-    - {x: 0.23999983, y: -0.40000004}
-    - {x: -0.8800002, y: -0.40000004}
-    toEnable: []
-    toDisable: []
+  backgroundCamp: {fileID: 21300000, guid: 6b9d5b32001d0d94f834de0ea045d175, type: 3}
+  characterInCamp:
+  - {fileID: 11400000, guid: 98e9569f0257ee543a1dc564fb82cc30, type: 2}
+  - {fileID: 11400000, guid: 061deea5da899644fb6488150c6c8007, type: 2}
+  - {fileID: 11400000, guid: e3fdad8ba72d35f439f77f7ac7cc38c9, type: 2}
+  - {fileID: 11400000, guid: 98cfef47be3db6045b3510c2512f1df9, type: 2}
+  - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
+  rooms: []
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
@@ -5767,8 +5704,6 @@ MonoBehaviour:
   - {x: -2.8000002, y: -1.2}
   - {x: -2.8000002, y: -1.3599999}
   openRoomIndexes: 
-  cameraMaxLeftTop: {x: -2.5, y: -0.5}
-  cameraMaxRightBottom: {x: 0, y: -2}
   end: {fileID: 0}
 --- !u!1 &8412524457342843277
 GameObject:

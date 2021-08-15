@@ -16643,13 +16643,10 @@ MonoBehaviour:
   - Vanyaenn
   characterInCamp:
   - Eliza
-  - Nor
-  - Okun
-  - Shedun
   - Vanyaenn
+  - Shedun
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: 17f26627ee8d5864285aded67f3156fd, type: 3}
-  levelUp: 0
   rooms:
   - ennemis:
     - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}

@@ -40,9 +40,7 @@ public class CharacterActionScriptable : ScriptableObject
     public bool castOnSelf;
 
     [Header("Forme")]
-    //public Vector2 range;
     public int range;
-    //public bool straightLine, diagonal;
     public List<Vector2Int> activeZoneCases = new List<Vector2Int>();
     public bool doesFaceCaster = true;
     public bool hasViewOnTarget = true;
@@ -56,8 +54,6 @@ public class CharacterActionScriptable : ScriptableObject
     public Sprite caseFeedback;
 
     public AudioClip soundToPlay;
-
-    //public string animationOnNodeName, animationOnZoneName;
 
     [Header("Effets")]
     public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;

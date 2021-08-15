@@ -17,11 +17,9 @@ public class RavenorGameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject nextBattle;
+    private RoomManager nextRoom;
 
-    public List<PersonnageScriptables> playerPersos;
-
-    [SerializeField]
-    private List<int> characterToLevelUp = new List<int>();
+    //public List<PersonnageScriptables> playerPersos;
 
     public ParcheminScriptable dialogueToDisplay;
 
@@ -44,23 +42,23 @@ public class RavenorGameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PersonnageScriptables tChara = new PersonnageScriptables();
-        for (int i = 0; i < playerPersos.Count; i++)
-        {
-            tChara = Instantiate(playerPersos[i]);
-
-            playerPersos[i] = tChara;
-        }
+        nextRoom = nextBattle.GetComponent<RoomManager>();
     }
 
     public void SetNextBattle(GameObject newBattle)
     {
         nextBattle = newBattle;
+        nextRoom = nextBattle.GetComponent<RoomManager>();
     }
 
     public GameObject GetBattle()
     {
         return nextBattle;
+    }
+
+    public RoomManager GetCurrentBattle()
+    {
+        return nextRoom;
     }
 
     #region Loading
@@ -109,25 +107,6 @@ public class RavenorGameManager : MonoBehaviour
         }
     }
     #endregion
-
-    public void SetLevelUp()
-    {
-        for(int i = 0; i < playerPersos.Count; i++)
-        {
-            characterToLevelUp.Add(i);
-        }
-    }
-
-    public int GetNextLevelUp()
-    {
-        if(characterToLevelUp.Count>0)
-        {
-            int toReturn = characterToLevelUp[0];
-            characterToLevelUp.RemoveAt(0);
-            return toReturn;
-        }
-        return -1;
-    }
 
     public void CloseGame()
     {
