@@ -21,23 +21,17 @@ MonoBehaviour:
   description: "Banni de sa tribu, Shedun cherche depuis plusieurs ann\xE9es un rem\xE8de
     qui pourrait l'aider \xE0 sauver sa soeur avec l'aide de la Confr\xE9rie."
   level: 1
-  healthPoints: 28
+  healthPoints: 8
   maana: 2
   movementSpeed: 45
-  hitDices: 1
-  defense: 1
-  physicalPower: 1
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
-  physicalArmor: 0
-  magicalArmor: 0
+  accuracy: 0
+  defense: 2
+  power: 1
+  armor: 0
   actionNumber: 0
-  baseAttackNumber: 0
   levelUpTable: {fileID: 0}
   knownSpells:
-  - {fileID: 11400000, guid: 9048d273438045944a1f96561720c99c, type: 2}
-  - {fileID: 11400000, guid: d0868246b8c3a4f44abe64e01abc9707, type: 2}
-  - {fileID: 11400000, guid: 2acb0c808ef3dfa4291268f119fe997c, type: 2}
+  - {fileID: 11400000, guid: 716856e3e94c54e4aa5320302d47778b, type: 2}
+  - {fileID: 11400000, guid: 1f193a567b2b43e44bfff6788d029462, type: 2}
   passifs: []
   initiative: 5

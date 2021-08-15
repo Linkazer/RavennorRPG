@@ -22,23 +22,19 @@ MonoBehaviour:
     consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
     bon sens."
   level: 1
-  healthPoints: 24
+  healthPoints: 8
   maana: 3
   movementSpeed: 35
-  hitDices: 1
+  accuracy: 0
   defense: 1
-  physicalPower: 0
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
-  physicalArmor: 0
-  magicalArmor: 0
+  power: 0
+  armor: 0
   actionNumber: 0
-  baseAttackNumber: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   knownSpells:
-  - {fileID: 11400000, guid: 23c20bed5833e5540a6251929fcf09c7, type: 2}
-  - {fileID: 11400000, guid: bbccfa664369d4646ad708b34dd5f048, type: 2}
-  - {fileID: 11400000, guid: 58466a2dc4d16e24e951699f227ca92c, type: 2}
+  - {fileID: 11400000, guid: a2419c1d202274242ba834e6c0d656e8, type: 2}
+  - {fileID: 11400000, guid: d395e164aa7d0f8498c29acbe5fd4562, type: 2}
+  - {fileID: 11400000, guid: f810e894ab170c146a6025e01960e08d, type: 2}
+  - {fileID: 11400000, guid: c9632762fa6baca428fcef83bad0b8b8, type: 2}
   passifs: []
   initiative: 4

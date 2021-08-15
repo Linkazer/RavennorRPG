@@ -21,7 +21,7 @@ public class DoorObject : MonoBehaviour
     {
         RuntimeBattleCharacter chara = BattleManager.instance.GetCurrentTurnChara();
 
-        if (chara.CanDoAction(true))
+        if (chara.CanDoAction())
         {
             Node n = Grid.instance.NodeFromWorldPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             if (Pathfinding.instance.GetDistance(chara.currentNode, n) < 15)

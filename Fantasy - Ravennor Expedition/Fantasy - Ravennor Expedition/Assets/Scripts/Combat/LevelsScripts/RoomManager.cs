@@ -15,7 +15,6 @@ public class RoomManager : MonoBehaviour
     public bool endGame;
 
     public GameObject nextLvl;
-    public bool levelUp;
 
     [SerializeField]
     protected List<Room> rooms;

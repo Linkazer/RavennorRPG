@@ -113,7 +113,6 @@ public class Pathfinding : MonoBehaviour {
 		{
 			Node currentNode = openSet.RemoveFirst();
 			closedSet.Add(currentNode);
-
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
 				if ((!neighbour.walkable || (!isForNextTurn && neighbour.HasCharacterOn && neighbour != targetNode)) || closedSet.Contains(neighbour))
@@ -211,7 +210,6 @@ public class Pathfinding : MonoBehaviour {
 	{
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
-		int fullSet = grid.MaxSize;
 		HashSet<Node> closedSet = new HashSet<Node>();
 		openSet.Add(startNode);
 		usableNode.Add(startNode);
@@ -223,6 +221,7 @@ public class Pathfinding : MonoBehaviour {
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
+
 				if (((!neighbour.walkable || neighbour.HasCharacterOn) && pathCalcul) || closedSet.Contains(neighbour))
 				{
 					continue;
@@ -249,20 +248,6 @@ public class Pathfinding : MonoBehaviour {
 						}
 					}
 				}
-
-/*				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
-				{
-					neighbour.gCost = newMovementCostToNeighbour;
-
-					neighbour.parent = currentNode;
-
-					if ((GetDistance(startNode, neighbour) <= distance && !pathCalcul) || (neighbour.fCost <= distance && pathCalcul))
-					{
-						openSet.Add(neighbour);
-						usableNode.Add(neighbour);
-						fullSet--;
-					}
-				}*/
 			}
 		}
 

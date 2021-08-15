@@ -10,7 +10,7 @@ public enum ActionIncantation { Rapide, Simple, Lent, Hard}
 
 public enum ActionTargets { SelfAllies, Ennemies, All, FreeSpace, Invocations}
 
-public enum DamageType { Heal, Physical, Magical, Brut}
+public enum DamageType { Heal, Damage, Brut}
 
 public enum ScalePossibility { None, EffectStack, HpLostPercent, Distance}
 
@@ -29,11 +29,10 @@ public class CharacterActionScriptable : ScriptableObject
     [Header("Spell Datas")]
     public AttackType attackType;
     public int maanaCost;
-    public bool canUseMoreMaana = true;
     [SerializeField]
     private int maxCooldown = 0;
     public int maxUtilisation = -1;
-    public ActionIncantation incantationTime;
+    public ActionIncantation incantationTime = ActionIncantation.Simple;
     public bool isWeaponBased;
 
     public ActionTargets target = ActionTargets.All;
@@ -88,6 +87,10 @@ public class CharacterActionScriptable : ScriptableObject
 
     public bool IsSameSpell(string sNom)
     {
+        if(overchargedAction == null)
+        {
+            return sNom == nom;
+        }
         return sNom == nom || sNom == overchargedAction.nom;
     }
 }

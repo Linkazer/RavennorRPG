@@ -22,22 +22,18 @@ MonoBehaviour:
     la destruction de son village, elle fut recueillie par Varanya, la directrice
     de l'Acad\xE9mie."
   level: 1
-  healthPoints: 24
+  healthPoints: 10
   maana: 3
-  movementSpeed: 55
-  hitDices: 1
-  defense: 1
-  physicalPower: 0
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
-  physicalArmor: 0
-  magicalArmor: 0
+  movementSpeed: 35
+  accuracy: 0
+  defense: 2
+  power: 0
+  armor: 0
   actionNumber: 0
-  baseAttackNumber: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
   knownSpells:
-  - {fileID: 11400000, guid: f6a28cfa59a8a2d4d870bdeda6e1ce34, type: 2}
-  - {fileID: 11400000, guid: 738c132c12984294697033c683d866d5, type: 2}
+  - {fileID: 11400000, guid: 3a5f668bc0fd9e44a9bf7241cf16a67c, type: 2}
+  - {fileID: 11400000, guid: 0a9ac512635f2ed40bab91cb30e4d945, type: 2}
+  - {fileID: 11400000, guid: 81ecbe87c8387e8418a89ae1bb771eab, type: 2}
   passifs: []
   initiative: 6

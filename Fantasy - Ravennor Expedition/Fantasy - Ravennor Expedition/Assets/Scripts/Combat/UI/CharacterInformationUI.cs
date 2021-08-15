@@ -21,12 +21,10 @@ public class CharacterInformationUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI movespeed;
-    [SerializeField] private TextMeshProUGUI hitDice;
+    [SerializeField] private TextMeshProUGUI accuracy;
     [SerializeField] private TextMeshProUGUI defense;
-    [SerializeField] private TextMeshProUGUI physicalPower;
-    [SerializeField] private TextMeshProUGUI magicalPower;
-    [SerializeField] private TextMeshProUGUI physicalArmor;
-    [SerializeField] private TextMeshProUGUI magicalArmor;
+    [SerializeField] private TextMeshProUGUI power;
+    [SerializeField] private TextMeshProUGUI armor;
 
     [SerializeField]
     private GameObject effectResume;
@@ -67,11 +65,9 @@ public class CharacterInformationUI : MonoBehaviour
         health.text = chara.GetCurrentHps() + "/" + p.GetMaxHps();
         movespeed.text = p.GetMovementSpeed().ToString();
         defense.text = p.GetDefense().ToString();
-        hitDice.text = p.GetHitDice().ToString() + "D6";
-        physicalPower.text = p.GetPhysicalDamage().ToString();
-        magicalPower.text = p.GetMagicalDamage().ToString();
-        physicalArmor.text = p.GetPhysicalArmor().ToString();
-        magicalArmor.text = p.GetMagicalArmor().ToString();
+        accuracy.text = p.GetAccuracy().ToString();
+        power.text = p.GetPhysicalDamage().ToString();
+        armor.text = p.GetArmor().ToString();
 
         effectDescriptions = new List<string>();
         effectNames = new List<string>();

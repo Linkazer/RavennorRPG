@@ -22,23 +22,17 @@ MonoBehaviour:
     Toujours accompagn\xE9e de son fid\xE8le Zippo, elle suit Okun o\xF9 qu'il aille
     depuis la mort de son p\xE8re adoptif."
   level: 1
-  healthPoints: 28
+  healthPoints: 10
   maana: 2
   movementSpeed: 45
-  hitDices: 1
-  defense: 1
-  physicalPower: 1
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
-  physicalArmor: 0
-  magicalArmor: 0
+  accuracy: 1
+  defense: 2
+  power: 0
+  armor: 0
   actionNumber: 0
-  baseAttackNumber: 1
   levelUpTable: {fileID: 0}
   knownSpells:
-  - {fileID: 11400000, guid: cd4fa297310393c4f8477c50a320c4ca, type: 2}
-  - {fileID: 11400000, guid: 9bda80b26d6cd2447a00f578fc362263, type: 2}
-  - {fileID: 11400000, guid: 6ae6d36b0e0298947940184c68cb1bac, type: 2}
+  - {fileID: 11400000, guid: b8f9982ae89ff1742a56180e7d288325, type: 2}
+  - {fileID: 11400000, guid: ebb52f8b1f4375344982e4f04816bf70, type: 2}
   passifs: []
   initiative: 8

@@ -20,7 +20,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private GameObject brasParent;
 
     [HideInInspector]
-    private int possibleAction, possibleBaseAttack;
+    private int possibleAction;
     
     [HideInInspector]
     public bool CanMove => movementLeft >= 10;
@@ -43,6 +43,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private Image hpImage;
 
     [SerializeField]
+    private CharacterUI uiManagement;
+
     private int initiative;
 
     private List<CharacterActionScriptable> actionsDisponibles;
@@ -95,40 +97,19 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public int GetMaxHp => currentScriptable.GetMaxHps();
 
-    public bool CanDoAction(bool isBaseAttack)
+    public bool CanDoAction()
     {
-        if(isBaseAttack)
-        {
-            return (possibleBaseAttack > 0 || possibleAction > 0);
-        }
         return (possibleAction > 0);
     }
 
     public void UseAction(bool isBaseAttack)
     {
-        if (isBaseAttack)
-        {
-            if (possibleBaseAttack > 0)
-            {
-                possibleBaseAttack--;
-                BattleUiManager.instance.UseActionFeedback(false);
-            }
-            else
-            {
-                possibleAction--;
-                BattleUiManager.instance.UseActionFeedback(true);
-            }
-        }
-        else
-        {
-            possibleAction--;
-            BattleUiManager.instance.UseActionFeedback(true);
-        }
+        possibleAction--;
+        BattleUiManager.instance.UseActionFeedback();
     }
 
     public void UseAllAction()
     {
-        possibleBaseAttack = 0;
         possibleAction = 0;
     }
 
@@ -174,8 +155,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public bool UseMaana(int maanaSpent)
     {
-        Debug.Log(currentMaana);
-        Debug.Log(maanaSpent);
+
         if (maanaSpent <= currentMaana)
         {
             currentMaana -= maanaSpent;
@@ -184,7 +164,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             {
                 BattleUiManager.instance.SetCurrentMaana(currentMaana);
             }
-            Debug.Log(currentMaana);
             return true;
         }
         return false;
@@ -230,7 +209,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (affToAdd == Affliction.InstantKill)
         {
             Debug.Log("Affliction de Mort");
-            TakeDamage(currentHps,DamageType.Brut);
+            TakeDamage(DamageType.Brut, currentHps);
         }
         else
         {
@@ -341,7 +320,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 }
             }
 
-            currentScriptable.GetPossibleActions(out possibleAction, out possibleBaseAttack);
+            possibleAction = currentScriptable.GetPossibleActions();
 
             hasOpportunity = true;
 
@@ -429,130 +408,20 @@ public class RuntimeBattleCharacter : MonoBehaviour
         BattleManager.instance.UseCurrentAction();
     }
 
-    public int TakeDamage(int damageAmount, DamageType typeOfDamage)
-    {
-        int damageResistance = 0;
-        switch(typeOfDamage)
-        {
-            case DamageType.Physical:
-                damageResistance = currentScriptable.GetPhysicalArmor();
-                break;
-            case DamageType.Magical:
-                damageResistance = currentScriptable.GetMagicalArmor();
-                break;
-        }
-
-        damageAmount -= damageResistance;
-
-        if (damageAmount > 0)
-        {
-            damageTakenEvt.Invoke(damageAmount);
-            ResolveEffect(EffectTrigger.DamageTaken);
-
-            Debug.Log(this + " took " + damageAmount);
-            BattleDiary.instance.AddText(name + " a pris " + damageAmount.ToString() + " de dégâts");
-            currentHps -= damageAmount;
-            hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
-
-            if (BattleUiManager.instance.GetCurrentChara() == this)
-            {
-                BattleUiManager.instance.SetCurrentHps(currentHps);
-            }
-
-            if (currentHps <= 0)
-            {
-                BattleManager.instance.KillCharacter(this);
-                return 0;
-            }
-            return damageAmount;
-        }
-
-        return 0;
-    }
-
-    public int TakeDamage(DamageType typeOfDamage, List<Dice> damageDices, int bonusAmount)
+    public int TakeDamage(DamageType typeOfDamage, int damageDealt)
     {
         int damageAmount;
 
-        int magicalDamage = 0;
-        int physicalDamage = 0;
         int brutDamage = 0;
 
-        string damageFeedback = "";
-        int dmg = 0;
+        int physicalDamage = damageDealt;
 
-        foreach(Dice d in damageDices)
+        if (physicalDamage > 0 && currentScriptable.GetArmor() > 0)
         {
-            if (d.numberOfDice > 0)
+            BattleDiary.instance.AddText("L'armure de " + name + " réduit les dégâts de " + currentScriptable.GetArmor().ToString() + ".");
+            if (currentScriptable.GetArmor() <= physicalDamage)
             {
-                if(dmg != 0)
-                {
-                    damageFeedback += "+";
-                }
-                dmg = GameDices.RollDice(d.numberOfDice, d.wantedDice);
-                damageFeedback += dmg.ToString() + "(" + d.numberOfDice + d.wantedDice + ") ";
-                switch (d.wantedDamage)
-                {
-                    case DamageType.Physical:
-                        physicalDamage += dmg;
-                        break;
-                    case DamageType.Magical:
-                        magicalDamage += dmg;
-                        break;
-                    case DamageType.Brut:
-                        brutDamage += dmg;
-                        break;
-                }
-            }
-        }
-
-        if (bonusAmount != 0)
-        {
-            if(damageFeedback != "")
-            {
-                if (bonusAmount > 0)
-                {
-                    damageFeedback += "+";
-                }
-                else
-                {
-                    damageFeedback += "-";
-                }
-            }
-            damageFeedback += Mathf.Abs(bonusAmount).ToString();
-
-            switch (typeOfDamage)
-            {
-                case DamageType.Physical:
-                    physicalDamage += bonusAmount;
-                    break;
-                case DamageType.Magical:
-                    magicalDamage += bonusAmount;
-                    break;
-                case DamageType.Brut:
-                    brutDamage += bonusAmount;
-                    break;
-            }
-        }
-
-        if (magicalDamage > 0 && currentScriptable.GetMagicalArmor() > 0)
-        {
-            BattleDiary.instance.AddText("L'armure magique de " + name + " réduit les dégâts magiques de " + currentScriptable.GetMagicalArmor().ToString() + ".");
-            if (currentScriptable.GetMagicalArmor() <= magicalDamage)
-            {
-                magicalDamage -= currentScriptable.GetMagicalArmor();
-            }
-            else
-            {
-                magicalDamage = 0;
-            }
-        }
-        if (physicalDamage > 0 && currentScriptable.GetPhysicalArmor() > 0)
-        {
-            BattleDiary.instance.AddText("L'armure de " + name + " réduit les dégâts physiques de " + currentScriptable.GetPhysicalArmor().ToString() + ".");
-            if (currentScriptable.GetPhysicalArmor() <= physicalDamage)
-            {
-                physicalDamage -= currentScriptable.GetPhysicalArmor();
+                physicalDamage -= currentScriptable.GetArmor();
             }
             else
             {
@@ -560,10 +429,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
         }
 
-        damageAmount = physicalDamage + magicalDamage + brutDamage;
+        damageAmount = physicalDamage + brutDamage;
 
         string damageText = damageAmount + " de dégâts";
-        if ((damageAmount - bonusAmount) > 0 && damageAmount > 0)
+        if (damageAmount > 0)
         {
             if (RavenorGameManager.instance != null && team == 0 && RavenorGameManager.instance.GetDifficulty() != 1)
             {
@@ -586,8 +455,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
 
-            Debug.Log(name + " a pris " + damageText + " (" + damageFeedback + ")");
-            BattleDiary.instance.AddText(name + " a pris " + damageText + " (" + damageFeedback + ")");
+            Debug.Log(name + " a pris " + damageText);
+            BattleDiary.instance.AddText(name + " a pris " + damageText + " points de dégâts.");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
@@ -604,8 +473,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             return damageAmount;
         }
 
-        //Debug.Log(this + " took " + damageFeedback);
-
         return 0;
     }
 
@@ -617,56 +484,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
             ResolveEffect(EffectTrigger.Heal);
 
             Debug.Log(this + " healed of " + healAmount);
-            BattleDiary.instance.AddText(name + " est soigné de " + healAmount);
+            BattleDiary.instance.AddText(name + " est soigné de " + healAmount + ".");
 
             currentHps += healAmount;
 
             currentHps = Mathf.Clamp(currentHps, 0, currentScriptable.GetMaxHps());
-
-            hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
-
-            if (BattleUiManager.instance.GetCurrentChara() == this)
-            {
-                BattleUiManager.instance.SetCurrentHps(currentHps);
-            }
-        }
-    }
-
-    public void TakeHeal(List<Dice> healedDice, int bonusAmount)
-    {
-        if (healedDice.Count > 0)
-        {
-            int healAmount = 0, newAmount = 0;
-            string toPrint = name + " est soigné de ";
-            foreach (Dice d in healedDice)
-            {
-                if (d.numberOfDice > 0)
-                {
-                    if (newAmount != 0)
-                    {
-                        toPrint += "+ ";
-                    }
-                    newAmount = GameDices.RollDice(d.numberOfDice, d.wantedDice);
-                    toPrint += newAmount.ToString() + "(" + d.numberOfDice + d.wantedDice + ") ";
-
-                    healAmount += newAmount;
-                }
-            }
-
-            healTakenEvt.Invoke(healAmount+bonusAmount);
-            ResolveEffect(EffectTrigger.Heal);
-
-            toPrint += "+ " + bonusAmount;
-
-            Debug.Log(this + " healed of " + (healAmount + bonusAmount));
-            BattleDiary.instance.AddText(toPrint);
-
-            currentHps += healAmount + bonusAmount;
-
-            if(currentHps > currentScriptable.GetMaxHps())
-            {
-                currentHps = currentScriptable.GetMaxHps();
-            }
 
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
@@ -821,6 +643,13 @@ public class RuntimeBattleCharacter : MonoBehaviour
         transform.position = newPosition;
         currentNode = Grid.instance.NodeFromWorldPoint(newPosition);
         Grid.instance.CreateGrid();
+    }
+    #endregion
+
+    #region UI
+    public void DisplayDice(List<int> values, List<bool> results, int total)
+    {
+        uiManagement.ShowDiceResults(values, results, total);
     }
     #endregion
 

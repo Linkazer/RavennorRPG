@@ -5,12 +5,13 @@ using UnityEngine;
 public enum EffectType
 {
     None,
-    PhysicalDamage, MagicalDamage, 
-    Initiative, Defense, HitDice, HitBonus,
-    HealApplied, HealRecieved, MaanaBonus,
-    CriticalChance, CriticalMultiplier,
-    PhysicalArmor, MagicalArmor,
-    ActionBonus, AttackBonus
+    Power,
+    Defense,
+    Armor,
+    Accuracy,
+    HealApplied, 
+    HealRecieved, 
+    ActionBonus
 }
 
 [System.Serializable]

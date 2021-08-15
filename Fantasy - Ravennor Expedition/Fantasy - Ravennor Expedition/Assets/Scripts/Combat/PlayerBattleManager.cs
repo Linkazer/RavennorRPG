@@ -110,23 +110,23 @@ public class PlayerBattleManager : MonoBehaviour
     }
 
     public void ShowSpell(CharacterActionScriptable wantedAction)
-    {
+    { 
         List<Node> canSpellOn = Pathfinding.instance.GetNodesWithMaxDistance(Grid.instance.NodeFromWorldPoint(currentCharacter.transform.position), wantedAction.range, false);
-        if(!wantedAction.castOnSelf)
-        {
-            canSpellOn.RemoveAt(0);
-        }
+
         if (wantedAction.hasViewOnTarget)
         {
             for (int i = 1; i < canSpellOn.Count; i++)
             {
-
                 if (!BattleManager.instance.IsNodeVisible(canSpellOn[0], canSpellOn[i]))
                 {
                     canSpellOn.RemoveAt(i);
                     i--;
                 }
             }
+        }
+        if (!wantedAction.castOnSelf)
+        {
+            canSpellOn.RemoveAt(0);
         }
         Color tColor = Color.blue;
         tColor.a = 0.5f;
@@ -200,7 +200,6 @@ public class PlayerBattleManager : MonoBehaviour
     {
         ActivatePlayerBattleController(false);
 
-        Debug.Log(maanaSpent);
         currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost + maanaSpent);
 
         currentCharacter.SetCooldown(actionList[holdSpellIndex]);

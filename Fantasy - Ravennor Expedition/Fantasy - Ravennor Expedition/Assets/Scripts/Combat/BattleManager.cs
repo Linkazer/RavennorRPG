@@ -234,13 +234,13 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                if(roomManager.levelUp)
+                /*if(roomManager.levelUp)
                 {
                     foreach(PersonnageScriptables p in RavenorGameManager.instance.playerPersos)
                     {
                         RavenorGameManager.instance.SetLevelUp();
                     }
-                }
+                }*/
 
                 ExitBattle();
 
@@ -447,7 +447,7 @@ public class BattleManager : MonoBehaviour
             caster.useActionEvt.Invoke();
             caster.ResolveEffect(EffectTrigger.DoAction);
 
-            diary.AddText(caster.name + " utilise " + wantedAction.nom);
+            diary.AddText(caster.name + " utilise " + wantedAction.nom + ".");
         }
 
         currentWantedAction = wantedAction;
@@ -598,11 +598,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void UseEffectAction(CharacterActionScriptable wantedAction)
-    {
-
-    }
-
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
     {
         if (character.GetSpellCooldown(wantedAction) > 0 || character.HasSpellUtilisationLeft(wantedAction))
@@ -625,19 +620,19 @@ public class BattleManager : MonoBehaviour
             case ActionIncantation.Rapide:
                 return true;
             case ActionIncantation.Simple:
-                if (character.CanDoAction(wantedAction.isWeaponBased))
+                if (character.CanDoAction())
                 {
                     return true;
                 }
                 return false;
             case ActionIncantation.Lent:
-                if (character.CanDoAction(wantedAction.isWeaponBased) && character.CanMove)
+                if (character.CanDoAction() && character.CanMove)
                 {
                     return true;
                 }
                 return false;
             case ActionIncantation.Hard:
-                if (character.CanDoAction(wantedAction.isWeaponBased))
+                if (character.CanDoAction())
                 {
                     return true;
                 }
@@ -683,7 +678,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                applyEffect = DoDamage(wantedAction, maanaSpent, caster, target, isEffectSpell);
+                applyEffect = DoDamage(wantedAction, maanaSpent, caster, target);
                 caster.TakeHeal(Mathf.CeilToInt(applyEffect * wantedAction.lifeStealPercent));
             }
         }
@@ -711,26 +706,22 @@ public class BattleManager : MonoBehaviour
 
     public void DoHeal(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        List<Dice> neededDices = new List<Dice>(wantedAction.GetDices(maanaSpent));
-
-        Debug.Log("Heal Dices : " + neededDices.Count);
-
         int baseHeal = wantedAction.GetBaseDamage(maanaSpent) + caster.GetCharacterDatas().GetSoinApplique();
 
-        target.TakeHeal(neededDices, baseHeal);
+        target.TakeHeal(baseHeal);
     }
 
-    public int DoDamage(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, bool isEffectSpell)
+    public int DoDamage(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         int bonusDamages = wantedAction.GetBaseDamage(maanaSpent);
 
         switch (wantedAction.attackType)
         {
             case AttackType.Physical:
-                bonusDamages += (int)caster.GetCharacterDatas().GetPhysicalDamage();
+                bonusDamages += caster.GetCharacterDatas().GetPhysicalDamage();
                 break;
             case AttackType.Magical:
-                bonusDamages += (int)caster.GetCharacterDatas().GetMagicalDamage();
+                bonusDamages += caster.GetCharacterDatas().GetMagicalDamage();
                 break;
         }
 
@@ -753,16 +744,21 @@ public class BattleManager : MonoBehaviour
                 break;
         }
 
-        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, maanaSpent, caster, target, isEffectSpell), wantedAction.noBonusSpell? 0 : bonusDamages);
+        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, maanaSpent, caster, target));
     }
 
-    public List<Dice> DoesHit(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, bool isEffectSpell)
+    public int DoesHit(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        int targetDefenseScore = 0, casterHitScore = 0;
+        int targetDefenseScore = 0;
+        int dealtDamage = 0;
 
-        List<Dice> neededDices = new List<Dice>(wantedAction.GetDices(maanaSpent));
+        List<int> diceValues = new List<int>();
+        List<bool> diceResult = new List<bool>();
 
-        switch (wantedAction.scaleOrigin)
+        int neededDices = wantedAction.GetDices(maanaSpent);
+
+        #region Scaling
+        /*switch (wantedAction.scaleOrigin)
         {
             case ScalePossibility.EffectStack:
                 foreach (RuntimeSpellEffect eff in target.GetAppliedEffects())
@@ -782,106 +778,41 @@ public class BattleManager : MonoBehaviour
                 neededDices.Add(wantedAction.scalingDices);
                 neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.diceByScale);
                 break;
-        }
+        }*/
+        #endregion
 
-        EffectType wantedDiceBonus = EffectType.None;
 
-        //Jet de la défense
-        int attackLucky = 0;
-        string criticalText = "";
+        targetDefenseScore = target.GetCharacterDatas().GetDefense();
 
-        if (!isEffectSpell)
+        int resultAtt = 0;
+        for (int i = 0; i < neededDices; i++)
         {
-            targetDefenseScore = target.GetCharacterDatas().GetDefense();
-
-            //Jet de l'attaque
-            casterHitScore = AttackRoll(caster.GetCharacterDatas().GetHitDice(), DiceType.D6, caster.GetCharacterDatas().GetHitBonus(), caster.GetCharacterDatas().GetCriticalChanceBonus(), out attackLucky);
-
-            switch (wantedAction.attackType)
+            resultAtt = GameDices.RollD6() + caster.GetCharacterDatas().GetAccuracy();
+            diceResult.Add(resultAtt <= targetDefenseScore);
+            diceValues.Add(resultAtt);
+            if (resultAtt > targetDefenseScore)
             {
-                case AttackType.Physical:
-                    wantedDiceBonus = EffectType.PhysicalDamage;
-                    break;
-                case AttackType.Magical:
-                    wantedDiceBonus = EffectType.MagicalDamage;
-                    break;
-            }
-
-            //Résolution des Touches et des LuckyDices
-            if (casterHitScore < targetDefenseScore)
-            {
-                if (attackLucky > 0)
+                if(dealtDamage <= 0)
                 {
-                    switch (wantedAction.attackType)
-                    {
-                        case AttackType.Physical:
-                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetHitDice(), caster.GetCharacterDatas().GetHitBonus(), DiceType.D6);
-                            break;
-                        case AttackType.Magical:
-                            casterHitScore = NormalRoll(caster.GetCharacterDatas().GetHitDice(), caster.GetCharacterDatas().GetHitBonus(), DiceType.D6);
-                            break;
-                    }
+                    dealtDamage += caster.GetCharacterDatas().GetPhysicalDamage() + wantedAction.GetBaseDamage(maanaSpent);
                 }
-                else
-                {
-                    caster.failedActionEvt.Invoke();
-                    diary.AddText(currentCaster.name + " rate son action (" + casterHitScore + " vs " + targetDefenseScore + ")");
-                    return new List<Dice>();
-                }
+                dealtDamage++;
             }
-
-            criticalText = " réussit son attaque ";
         }
 
-        if(casterHitScore > targetDefenseScore || isEffectSpell)
-        {
-            //Récupération de tous les Dé nécessaires aux dégâts
+        target.DisplayDice(diceValues, diceResult, dealtDamage);
 
-            if ((attackLucky > 0 || wantedAction.autoCritical) && caster.GetTeam() == 0)
-            {
-                caster.crititcalActionEvt.Invoke();
-                int critBonus = caster.GetCharacterDatas().GetCriticalDamageMultiplier();
-                Debug.Log("Does crit : " + critBonus);
-                criticalText = " fait un coup critique ! ";
-                int diceNb = neededDices.Count;
+        //BattleUiManager.instance.ShowDiceResults(diceValues, diceResult, dealtDamage);
 
-                for(int i = 0; i < diceNb; i++)
-                {
-                    int numberDices = (neededDices[i].numberOfDice * critBonus);
-                    if(numberDices < 0)
-                    {
-                        numberDices = 0;
-                    }
-                    neededDices.Add(new Dice(neededDices[i].wantedDice, numberDices, neededDices[i].wantedDamage, neededDices[i].diceByMaanaSpent));
-                }
-            }
-
-            foreach (Dice d in caster.GetCharacterDatas().GetBonusDice(wantedDiceBonus))
-            {
-                neededDices.Add(d);
-            }
-
-            if (!isEffectSpell)
-            {
-                diary.AddText(currentCaster.name + criticalText + "(" + casterHitScore + " vs " + targetDefenseScore + ")");
-            }
-
-            return neededDices;
-        }
-        else
-        {
-            caster.failedActionEvt.Invoke();
-            diary.AddText(currentCaster.name + " rate son action (" + casterHitScore + " vs " + targetDefenseScore + ")");
-        }
-
-        Debug.Log("Nothing happen ? : " + casterHitScore +" >= "+targetDefenseScore);
-        return new List<Dice>();
+        return dealtDamage;
     }
 
     public void ApplyEffects(SpellEffectScriptables wantedEffect, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         if (wantedEffect.effet.wantedEffectToTrigger == null || target.ContainsEffect(wantedEffect.effet.wantedEffectToTrigger.effet))
         {
+            BattleDiary.instance.AddText(target.name + " est affecté par " + wantedEffect.effet.nom + ".");
+
             RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
             wantedEffect.effet,
             maanaSpent,
@@ -1405,6 +1336,7 @@ public class BattleManager : MonoBehaviour
             CheckForOpportunityAttack(path[0]);
             currentCharacterTurn.SetAnimation("Moving");
             //Grid.instance.ResetUsableNode();
+            Grid.instance.ResetNodeFeedback();
             StopCoroutine(FollowPath());
             StartCoroutine(FollowPath());
         }
@@ -1461,13 +1393,6 @@ public class BattleManager : MonoBehaviour
 
                 toMove.transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
 
-              /*if(currentCharacterTurn.currentNode != Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position))
-                {
-                    CheckForOpportunityAttack();
-                    currentCharacterTurn.currentNode = Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position);
-                }*/
-                //	Vector3.MoveTowards(transform.position,currentWaypoint,speed * Time.deltaTime);
-                //testFollowPath = false;
                 yield return null;
             }
         }

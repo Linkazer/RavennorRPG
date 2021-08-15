@@ -15,15 +15,17 @@ MonoBehaviour:
   nom: "Ep\xE9e"
   icon: {fileID: 21300000, guid: c860e632be43bc14f9e1019042a856e5, type: 3}
   description: 
-  spellType: 0
+  overchargedAction: {fileID: 0}
   attackType: 0
-  actionLevel: 1
   maanaCost: 0
+  canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
   target: 1
   castTarget: 1
+  castOnSelf: 0
   range: 15
   activeZoneCases:
   - {x: 0, y: 0}
@@ -34,28 +36,25 @@ MonoBehaviour:
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: 41b857560026c7f47b0e38812e79fdff, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
-  castAnimation: 
   soundToPlay: {fileID: 8300000, guid: e896886af7780424b8ffa83a37754d23, type: 3}
-  maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
-  dices:
-  - wantedDice: 1
-    numberOfDice: 1
-    wantedDamage: 1
+  damageBase: 0
+  diceNumber: 2
   noBonusSpell: 0
   damageType: 1
-  diceByLevelBonus: 0.5
-  diceByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

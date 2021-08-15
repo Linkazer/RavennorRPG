@@ -7,20 +7,19 @@ public enum CharacterStats
 {
     Health,
     Maana, 
-    PhysicalDamage,
+    Power,
     MagicalDamage,
     Initiative, 
     Defense,
     HitDice, 
-    HitBonus,
+    Accuracy,
     HealApplied, 
     HealRecieved,
     CriticalChance, 
     CriticalMultiplier,
-    PhysicalArmor,
+    Armor,
     MagicalArmor,
     ActionBonus, 
-    AttackBonus
 }
 
 [CreateAssetMenu(fileName = "New Personnage", menuName = "Character/Personnage joueur")]
@@ -45,38 +44,22 @@ public class PersonnageScriptables : ScriptableObject
     [SerializeField] private int healthPoints;
     [SerializeField] private int maana;
     [SerializeField] private int movementSpeed;
-    [SerializeField] private int hitDices;
+    [SerializeField] private int accuracy;
     [SerializeField] private int defense;
-    [SerializeField] private int physicalPower;
-    [SerializeField] private int magicalPower;
-    [SerializeField] private int luckyDice;
-    [SerializeField] private int criticalMultiplicator;
-    [SerializeField] private int physicalArmor;
-    [SerializeField] private int magicalArmor;
+    [SerializeField] private int power;
+    [SerializeField] private int armor;
     [SerializeField] private int actionNumber;
-    [SerializeField] private int baseAttackNumber;
 
     protected int healthPointsBonus;
     protected int maanaBonus;
     protected int movementSpeedBonus;
-    protected int hitDicesBonus;
+    protected int accuracyBonus;
     protected int defenseBonus;
-    protected int physicalPowerBonus;
-    protected int magicalPowerBonus;
-    protected int luckyDiceBonus;
-    protected int criticalMultiplicatorBonus;
+    protected int powerBonus;
     protected int bonusSoinAppli;
     protected int bonusSoinRecu;
-    protected int bonusPhysicalArmor;
-    protected int bonusMagicalArmor;
+    protected int bonusArmor;
     protected int actionBonus;
-    protected int baseAttackBonus;
-
-    protected int hitBonus;
-
-
-    protected List<Dice> diceBonusDegPhy = new List<Dice>();
-    protected List<Dice> diceBonusDegMag = new List<Dice>();
 
     [Header("Arbre de compétences")]
     public CharacterLevelUpTable levelUpTable;
@@ -125,14 +108,14 @@ public class PersonnageScriptables : ScriptableObject
         return movementSpeed + movementSpeedBonus;
     }
 
-    public float GetPhysicalDamage()
+    public int GetPhysicalDamage()
     {
-        return physicalPower + physicalPowerBonus;
+        return power + powerBonus;
     }
 
-    public float GetMagicalDamage()
+    public int GetMagicalDamage()
     {
-        return magicalPower + magicalPowerBonus;
+        return 0;// magicalPower + magicalPowerBonus;
     }
 
     public virtual int GetInitiativeBrut()
@@ -155,19 +138,9 @@ public class PersonnageScriptables : ScriptableObject
         return defense + defenseBonus;
     }
 
-    public int GetHitDice()
+    public int GetAccuracy()
     {
-        return hitDices + hitDicesBonus;
-    }
-
-    public int GetHitBonus()
-    {
-        return hitBonus;
-    }
-
-    public int GetCriticalDamageMultiplier()
-    {
-        return criticalMultiplicator + criticalMultiplicatorBonus;
+        return accuracy + accuracyBonus;
     }
 
     public int GetSoinApplique()
@@ -180,32 +153,11 @@ public class PersonnageScriptables : ScriptableObject
         return bonusSoinRecu;
     }
 
-    public int GetCriticalChanceBonus()
+    public int GetArmor()
     {
-        return luckyDice + luckyDiceBonus;
+        return armor + bonusArmor;
     }
 
-    public int GetPhysicalArmor()
-    {
-        return physicalArmor + bonusPhysicalArmor;
-    }
-
-    public int GetMagicalArmor()
-    {
-        return magicalArmor + bonusMagicalArmor;
-    }
-
-    public List<Dice> GetBonusDice(EffectType wantedType)
-    {
-        switch(wantedType)
-        {
-            case EffectType.PhysicalDamage:
-                return diceBonusDegPhy;
-            case EffectType.MagicalDamage:
-                return diceBonusDegMag;
-        }
-        return new List<Dice>();
-    }
     #endregion
 
     #region Utilitaries
@@ -215,25 +167,15 @@ public class PersonnageScriptables : ScriptableObject
         healthPointsBonus = 0;
         maanaBonus = 0;
         movementSpeedBonus = 0;
-        hitDicesBonus = 0;
+
         defenseBonus = 0;
-        physicalPowerBonus = 0;
-        magicalPowerBonus = 0;
-        luckyDiceBonus = 0;
-        criticalMultiplicatorBonus = 0;
+        powerBonus = 0;
+
         bonusSoinAppli = 0;
         bonusSoinRecu = 0;
-        bonusPhysicalArmor = 0;
-        bonusMagicalArmor = 0;
-
-        hitBonus = 0;
-
-
-        diceBonusDegPhy = new List<Dice>();
-        diceBonusDegMag = new List<Dice>();
+        bonusArmor = 0;
 
         actionBonus = 0;
-        baseAttackBonus = 0;
 }
     #endregion
 
@@ -242,42 +184,14 @@ public class PersonnageScriptables : ScriptableObject
     {
         switch (effType)
         {
-            case EffectType.PhysicalDamage:
-                physicalPowerBonus += value;
-                if (bonusDice != null)
-                {
-                    if (adding)
-                    {
-                        diceBonusDegPhy.Add(bonusDice);
-                    }
-                    else
-                    {
-                        diceBonusDegPhy.Remove(bonusDice);
-                    }
-                }
+            case EffectType.Accuracy:
+                accuracy += value;
                 break;
-            case EffectType.MagicalDamage:
-                magicalPowerBonus += value;
-                if (bonusDice != null)
-                {
-                    if (adding)
-                    {
-                        diceBonusDegMag.Add(bonusDice);
-                    }
-                    else
-                    {
-                        diceBonusDegMag.Remove(bonusDice);
-                    }
-                }
+            case EffectType.Power:
+                powerBonus += value;
                 break;
             case EffectType.Defense:
                 defenseBonus += value;
-                break;
-            case EffectType.HitDice:
-                hitDicesBonus += value;
-                break;
-            case EffectType.HitBonus:
-                hitBonus += value;
                 break;
             case EffectType.HealApplied:
                 bonusSoinAppli += value;
@@ -285,20 +199,8 @@ public class PersonnageScriptables : ScriptableObject
             case EffectType.HealRecieved:
                 bonusSoinRecu += value;
                 break;
-            case EffectType.MaanaBonus:
-                maanaBonus += value;
-                break;
-            case EffectType.CriticalChance:
-                luckyDiceBonus += value;
-                break;
-            case EffectType.CriticalMultiplier:
-                criticalMultiplicatorBonus += value;
-                break;
-            case EffectType.PhysicalArmor:
-                bonusPhysicalArmor += value;
-                break;
-            case EffectType.MagicalArmor:
-                bonusMagicalArmor += value;
+            case EffectType.Armor:
+                bonusArmor += value;
                 break;
             case EffectType.ActionBonus:
                 actionBonus += value;
@@ -307,10 +209,9 @@ public class PersonnageScriptables : ScriptableObject
     }
     #endregion
 
-    public void GetPossibleActions(out int _possibleAction, out int _possibleAttack)
+    public int GetPossibleActions()
     {
-        _possibleAction = actionNumber + actionBonus + 1;
-        _possibleAttack = baseAttackNumber + baseAttackBonus;
+        return actionNumber + actionBonus + 1;
     }
 
     public void LevelUpStat(int value, CharacterStats effType)
@@ -320,20 +221,14 @@ public class PersonnageScriptables : ScriptableObject
             case CharacterStats.Health:
                 healthPoints += value;
                 break;
-            case CharacterStats.PhysicalDamage:
-                physicalPower += value;
-                break;
-            case CharacterStats.MagicalDamage:
-                magicalPower += value;
+            case CharacterStats.Power:
+                power += value;
                 break;
             case CharacterStats.Defense:
                 defense += value;
                 break;
-            case CharacterStats.HitDice:
-                hitDices += value;
-                break;
-            case CharacterStats.HitBonus:
-                hitBonus += value;
+            case CharacterStats.Accuracy:
+                accuracy += value;
                 break;
             case CharacterStats.HealApplied:
                 bonusSoinAppli += value;
@@ -344,23 +239,11 @@ public class PersonnageScriptables : ScriptableObject
             case CharacterStats.Maana:
                 maana += value;
                 break;
-            case CharacterStats.CriticalChance:
-                luckyDice += value;
-                break;
-            case CharacterStats.CriticalMultiplier:
-                criticalMultiplicator += value;
-                break;
-            case CharacterStats.PhysicalArmor:
-                physicalArmor += value;
-                break;
-            case CharacterStats.MagicalArmor:
-                magicalArmor += value;
+            case CharacterStats.Armor:
+                armor += value;
                 break;
             case CharacterStats.ActionBonus:
                 actionNumber += value;
-                break;
-            case CharacterStats.AttackBonus:
-                baseAttackNumber += value;
                 break;
         }
     }

@@ -5245,7 +5245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6800671016915125161
 Transform:
   m_ObjectHideFlags: 0
@@ -5460,7 +5460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3994124516403502811
 Transform:
   m_ObjectHideFlags: 0
@@ -16617,7 +16617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2265437782506305726
 Transform:
   m_ObjectHideFlags: 0
@@ -17136,6 +17136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7560241282882709334}
   - component: {fileID: 2336668606332924307}
+  - component: {fileID: 8937624995854738098}
   m_Layer: 0
   m_Name: Manor 2
   m_TagString: Untagged
@@ -17186,71 +17187,84 @@ MonoBehaviour:
   - Okun
   - Shedun
   - Vanyaenn
-  - Lila
   characterInCamp:
   - Eliza
   - Nor
   - Okun
   - Shedun
   - Vanyaenn
-  - Lila
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
   levelUp: 0
   rooms:
   - ennemis:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
+    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
     ennemisPos:
     - {fileID: 2600873587656351773}
     - {fileID: 6981133077843655938}
     - {fileID: 7353092864098440899}
-    ennemisPositions: []
+    ennemisPositions:
+    - {x: -0.08, y: -0.88}
+    - {x: 0.08, y: -0.56}
+    - {x: -0.08, y: -0.4}
     toEnable: []
     toDisable: []
   - ennemis:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
     ennemisPos:
     - {fileID: 7909716677542197146}
     - {fileID: 3298459304837085730}
-    ennemisPositions: []
+    ennemisPositions:
+    - {x: -0.71999997, y: -0.72}
+    - {x: -0.71999997, y: -1.36}
     toEnable: []
     toDisable: []
   - ennemis:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
     ennemisPos:
     - {fileID: 8060894031407969352}
     - {fileID: 4138841561389313968}
     - {fileID: 684462650790235278}
-    ennemisPositions: []
+    ennemisPositions:
+    - {x: -0.39999998, y: -0.08000004}
+    - {x: -0.71999997, y: -0.08000004}
+    - {x: -0.39999998, y: 0.23999995}
     toEnable: []
     toDisable: []
   - ennemis:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
     ennemisPos:
     - {fileID: 5949503578152935350}
     - {fileID: 8988215220693431164}
     - {fileID: 524513286296200802}
     - {fileID: 1054806198516854681}
-    ennemisPositions: []
+    ennemisPositions:
+    - {x: 0.72, y: -0.40000004}
+    - {x: 0.72, y: -0.08000004}
+    - {x: 0.56000006, y: 0.07999995}
+    - {x: -0.07999992, y: 0.23999995}
     toEnable: []
     toDisable: []
   - ennemis:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: cbef718f2c8e69543a32e64c229a9bc6, type: 2}
     ennemisPos:
     - {fileID: 7626351653091780613}
     - {fileID: 4183587241623645569}
     - {fileID: 8850885936833403970}
-    ennemisPositions: []
+    ennemisPositions:
+    - {x: -0.07999995, y: 0.87999994}
+    - {x: -0.39999992, y: 0.87999994}
+    - {x: 0.40000004, y: 0.87999994}
     toEnable: []
     toDisable: []
   playerPos:
@@ -17261,15 +17275,30 @@ MonoBehaviour:
   - {fileID: 2495437387191324909}
   - {fileID: 8120343879943029358}
   playerStartPositions:
-  - {x: -2.64, y: -1.52}
-  - {x: -2.6400003, y: -1.1999999}
-  - {x: -2.4800003, y: -1.3599999}
-  - {x: -2.8000002, y: -1.2}
-  - {x: -2.8000002, y: -1.3599999}
+  - {x: 0.39999998, y: -1.1999999}
+  - {x: 0.24, y: -1.3599999}
+  - {x: 0.24, y: -1.1999999}
+  - {x: 0.39999998, y: -1.3599999}
+  - {x: 0.55999994, y: -1.3599999}
+  - {x: 0.08, y: 0.08}
   openRoomIndexes: 
   cameraMaxLeftTop: {x: -2.5, y: -0.5}
   cameraMaxRightBottom: {x: 0, y: -2}
-  end: {fileID: 0}
+  end: {fileID: 8937624995854738098}
+--- !u!114 &8937624995854738098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560241282882709333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8930e32c21b5c3f47b1374446616c951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomManager: {fileID: 2336668606332924307}
+  ennemiesToDown: 15
 --- !u!1 &8072579829160611408
 GameObject:
   m_ObjectHideFlags: 0
@@ -22635,6 +22664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3598159004608509154}
     m_Modifications:
+    - target: {fileID: 6716491805812217129, guid: b84dfd9c2423c374d9ad84dfb21d4246, type: 3}
+      propertyPath: indexs.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6716491805812217130, guid: b84dfd9c2423c374d9ad84dfb21d4246, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -22897,6 +22930,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5026475156658686486, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
+      propertyPath: indexs.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
 --- !u!4 &192472543048848304 stripped
@@ -23032,6 +23069,10 @@ PrefabInstance:
     - target: {fileID: 5026475156658686485, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026475156658686486, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
+      propertyPath: indexs.Array.data[0]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
@@ -23320,6 +23361,10 @@ PrefabInstance:
     - target: {fileID: 5026475156658686485, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026475156658686486, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}
+      propertyPath: indexs.Array.data[0]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d3b457f67d7f654c8fb1d25d2f97838, type: 3}

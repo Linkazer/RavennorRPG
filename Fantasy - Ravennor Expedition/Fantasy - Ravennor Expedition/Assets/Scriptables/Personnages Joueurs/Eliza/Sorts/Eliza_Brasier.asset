@@ -14,18 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Brasier
   icon: {fileID: 21300000, guid: 564a693cb30d7134c9e8f1d0f709c822, type: 3}
-  description: "Inflige 1D6 (+1D6 par charge de Maana) d\xE9g\xE2ts magique \xE0
-    la cible et applique l'effet \"Br\xFBlure\" pendant 3 tours."
-  overchargedAction: {fileID: 11400000}
+  description: "Applique \"Br\xFBlure\" pendant 3 tours.\nBr\xFBlure : Inflige 1
+    de d\xE9g\xE2ts \xE0 chaque d\xE9but de tour."
+  overchargedAction: {fileID: 0}
   attackType: 1
-  maanaCost: 0
-  canUseMoreMaana: 1
+  maanaCost: 1
   maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
-  target: 2
-  castTarget: 2
+  target: 1
+  castTarget: 1
   castOnSelf: 0
   range: 35
   activeZoneCases:
@@ -39,20 +38,14 @@ MonoBehaviour:
   caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget:
-  - {fileID: 11400000, guid: 0d4cc400eddb0034aac6913b4e0e6883, type: 2}
+  - {fileID: 11400000, guid: f16b815b933d5344c8b41e06f3c4cf08, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   spellType: 0
-  hasPowerEffect: 1
+  hasPowerEffect: 0
   damageBase: 0
-  dices:
-  - wantedDice: 2
-    numberOfDice: 1
-    diceByMaanaSpent: 0
-    wantedDamage: 2
-  noBonusSpell: 0
-  damageType: 2
-  damageBaseByMaana: 0
+  diceNumber: 0
+  damageType: 1
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}

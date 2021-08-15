@@ -18,15 +18,12 @@ public class CampManager : MonoBehaviour
     [Header("Character Sheet")]
     [SerializeField] private TextMeshProUGUI maxHps;
     [SerializeField] private TextMeshProUGUI maxMaana;
-    [SerializeField] private TextMeshProUGUI hitDice;
+    [SerializeField] private TextMeshProUGUI accuracy;
     [SerializeField] private TextMeshProUGUI physicalPower;
     [SerializeField] private TextMeshProUGUI magicalPower;
     [SerializeField] private TextMeshProUGUI defense;
     [SerializeField] private TextMeshProUGUI movement;
     [SerializeField] private TextMeshProUGUI armurePhy;
-    [SerializeField] private TextMeshProUGUI armureMag;
-    [SerializeField] private TextMeshProUGUI chanceCrit;
-    [SerializeField] private TextMeshProUGUI multCrit;
 
     [SerializeField]
     private Image characterPortrait;
@@ -100,7 +97,7 @@ public class CampManager : MonoBehaviour
         LoadingScreenManager.instance.HideScreen();
     }
 
-    private void CheckForNewLevelUp()
+     private void CheckForNewLevelUp()
     {
         int newLevelUp = RavenorGameManager.instance.GetNextLevelUp();
         if (newLevelUp >= 0)
@@ -223,16 +220,13 @@ public class CampManager : MonoBehaviour
 
         characterDescription.text = currentChara.description;
 
-        hitDice.text = currentChara.GetHitDice().ToString() + "D6 + " + currentChara.GetHitBonus().ToString();
+        accuracy.text = currentChara.GetAccuracy().ToString();
         physicalPower.text = currentChara.GetPhysicalDamage().ToString();
         magicalPower.text = currentChara.GetMagicalDamage().ToString();
 
         defense.text = currentChara.GetDefense().ToString();
         movement.text = currentChara.GetMovementSpeed().ToString();
-        armurePhy.text = currentChara.GetPhysicalArmor().ToString();
-        armureMag.text = currentChara.GetMagicalArmor().ToString();
-        chanceCrit.text = currentChara.GetCriticalChanceBonus().ToString();
-        multCrit.text = currentChara.GetCriticalDamageMultiplier().ToString();
+        armurePhy.text = currentChara.GetArmor().ToString();
 
         for (int i = 0; i < knownSpells.Count; i++)
         {

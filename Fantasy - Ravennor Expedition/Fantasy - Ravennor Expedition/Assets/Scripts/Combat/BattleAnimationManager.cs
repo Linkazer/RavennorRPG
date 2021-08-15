@@ -90,7 +90,7 @@ public class BattleAnimationManager : MonoBehaviour
     {
         Vector3 direction = new Vector3(targetPos.x - toMove.transform.position.x, targetPos.y - toMove.transform.position.y, 0);
 
-        toMove.transform.right = direction;
+        toMove.transform.up = direction;
 
         while (Vector2.Distance(toMove.transform.position,targetPos)>0.1f)
         {

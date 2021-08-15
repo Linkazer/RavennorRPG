@@ -52,7 +52,7 @@ public class AiBattleManager : MonoBehaviour
     {
         if (currentChara.GetCurrentHps() > 0)
         {
-            if (wantedAction != null && currentChara.CanDoAction(wantedAction.isWeaponBased))
+            if (wantedAction != null && currentChara.CanDoAction())
             {
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
@@ -85,8 +85,6 @@ public class AiBattleManager : MonoBehaviour
                     SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
 
                     //Debug.Log(currentChara.name + " Move for next round : " + nodeToMoveTo.worldPosition);
-
-                    Debug.Log(nodeToMoveTo);
 
                     if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                     {
@@ -143,7 +141,7 @@ public class AiBattleManager : MonoBehaviour
                     foreach (RuntimeBattleCharacter chara in targets)
                     {
                         //StartCoroutine(TestCanUse(consid.wantedAction, chara, askForNextTurn));
-                        if (CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
+                        if ( CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
                         {
                             float newScore = EvaluateAction(consid, caster, chara);
                             if (newScore > maxScore)
@@ -224,7 +222,7 @@ public class AiBattleManager : MonoBehaviour
 
         //Condition pour l'Action
 
-        if (targetToTry.GetCurrentHps() < 0)
+        if (targetToTry.GetCurrentHps() <= 0)
         {
             return false;
         }
@@ -402,9 +400,7 @@ public class AiBattleManager : MonoBehaviour
             case AiAbscissaType.TargetVulnerability:
                 return target.GetVulnerability();
             case AiAbscissaType.TargetPhysicalArmor:
-                return target.GetCharacterDatas().GetPhysicalArmor();
-            case AiAbscissaType.TargetMagicalArmor:
-                return target.GetCharacterDatas().GetMagicalArmor();
+                return target.GetCharacterDatas().GetArmor();
         }
         return 0;
     }

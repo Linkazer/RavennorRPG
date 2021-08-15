@@ -15,16 +15,18 @@ MonoBehaviour:
   nom: Choc
   icon: {fileID: 21300000, guid: c860e632be43bc14f9e1019042a856e5, type: 3}
   description: Ceci est une spell du Boss
-  spellType: 0
+  overchargedAction: {fileID: 0}
   attackType: 2
-  actionLevel: 1
   maanaCost: 0
+  canUseMoreMaana: 1
+  maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
   target: 1
   castTarget: 1
-  range: 35
+  castOnSelf: 0
+  range: 55
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 0
@@ -34,28 +36,25 @@ MonoBehaviour:
   zoneSprite: {fileID: 0}
   caseSprite: {fileID: 21300000, guid: aadb8e1e8ef297145a30e35e6b776633, type: 3}
   caseFeedback: {fileID: 21300000, guid: a69181bc1e4a71443adae3ec225d49e1, type: 3}
-  castAnimation: 
   soundToPlay: {fileID: 8300000, guid: 8cc878c7e4fb3b54ababe6d512e1a31a, type: 3}
-  maxCooldown: 0
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
+  spellType: 0
   hasPowerEffect: 1
-  dices:
-  - wantedDice: 1
-    numberOfDice: 1
-    wantedDamage: 2
+  damageBase: 0
+  diceNumber: 2
   noBonusSpell: 0
   damageType: 2
-  diceByLevelBonus: 0.5
-  diceByLevel: 0
+  damageBaseByMaana: 0
   autoCritical: 0
   scaleOrigin: 0
   wantedScaleEffect: {fileID: 0}
   scalingDices:
     wantedDice: 0
     numberOfDice: 0
+    diceByMaanaSpent: 0
     wantedDamage: 0
   diceByScale: 0
   bonusByScale: 0
   lifeStealPercent: 0
-  wantedEffectOnTarget: []
-  wantedEffectOnCaster: []
-  wantedEffectOnGround: []

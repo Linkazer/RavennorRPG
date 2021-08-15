@@ -23,6 +23,7 @@ public class SpellEffectCommon
     public int onTimeEffectValue;*/
     public Affliction affliction;
 
+    [HideInInspector]
     public int maana;
 
     public SpellEffectCommon()

@@ -20,17 +20,15 @@ MonoBehaviour:
   brasPosition: 0
   description: 
   level: 1
-  healthPoints: 14
+  healthPoints: 8
   maana: 0
   movementSpeed: 20
-  hitDices: 1
-  defense: 1
-  physicalPower: 0
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
+  accuracy: 0
+  defense: 2
+  power: 0
   physicalArmor: 0
-  magicalArmor: 0
+  actionNumber: 0
+  baseAttackNumber: 0
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: c20d8f53fddb7254ba5971a62ffba42a, type: 2}

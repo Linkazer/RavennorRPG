@@ -11,11 +11,8 @@ public class CharacterActionDirect : CharacterActionScriptable
     [SerializeField]
     protected int damageBase;
     [SerializeField]
-    protected List<Dice> dices;
-    public bool noBonusSpell;
-    public DamageType damageType;
-    [SerializeField]
-    protected float damageBaseByMaana;
+    protected int diceNumber;
+    public DamageType damageType = DamageType.Damage;
     public bool autoCritical = false;
 
     public ScalePossibility scaleOrigin;
@@ -33,22 +30,12 @@ public class CharacterActionDirect : CharacterActionScriptable
 
     public int GetBaseDamage(int maanaSpent)
     {
-        return damageBase + Mathf.FloorToInt(maanaSpent * damageBaseByMaana);
+        return damageBase;
     }
 
-    public List<Dice> GetDices()
+    public int GetDices(int maanaSpent)
     {
-        return dices;
-    }
-
-    public List<Dice> GetDices(int maanaSpent)
-    {
-        List<Dice> toReturn = new List<Dice>(dices);
-        for(int i = 0; i < toReturn.Count; i++)
-        {
-            toReturn[i] = new Dice(toReturn[i].wantedDice, toReturn[i].numberOfDice + Mathf.RoundToInt(maanaSpent * toReturn[i].diceByMaanaSpent), toReturn[i].wantedDamage, toReturn[i].diceByMaanaSpent);
-        }
-        return toReturn;
+        return diceNumber + maanaSpent;
     }
 
     /*public Dice GetLevelBonusDices(int maanaSpent)

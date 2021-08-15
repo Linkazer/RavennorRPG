@@ -20,12 +20,6 @@ public class BattleUiManager : MonoBehaviour
     private List<Image> turnImages;
 
     [Header("Actions du joueur")]
-    /*[SerializeField]
-    private Image baseAttackImage;
-    [SerializeField]
-    private Image baseAttackCooldownImage;
-    [SerializeField]
-    private TextMeshProUGUI baseAttackCooldownText;*/
     [SerializeField]
     private List<Image> spellImages;
     [SerializeField]
@@ -41,7 +35,7 @@ public class BattleUiManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI currentMaanaText;
     [SerializeField]
-    private List<GameObject> actionPoint, baseActionPoint;
+    private List<GameObject> actionPoint;
 
     private int currentMaxHps;
 
@@ -296,20 +290,13 @@ public class BattleUiManager : MonoBehaviour
 
     public void UpdatePossibleAction()
     {
-        currentChara.GetCharacterDatas().GetPossibleActions(out int possibleAction, out int possibleAttack);
+        int possibleAction = currentChara.GetCharacterDatas().GetPossibleActions();
 
         for (int i = 0; i < possibleAction; i++)
         {
             if (i < actionPoint.Count)
             {
                 actionPoint[i].SetActive(true);
-            }
-        }
-        for (int i = 0; i < possibleAttack; i++)
-        {
-            if (i < baseActionPoint.Count)
-            {
-                baseActionPoint[i].SetActive(true);
             }
         }
     }
@@ -355,28 +342,14 @@ public class BattleUiManager : MonoBehaviour
         PlayerBattleManager.instance.UseSpell(0);
     }
 
-    public void UseActionFeedback(bool useActionPoint)
+    public void UseActionFeedback()
     {
-        if(useActionPoint)
+        for (int i = actionPoint.Count - 1; i >= 0; i--)
         {
-            for (int i = actionPoint.Count - 1; i >= 0; i--)
+            if (actionPoint[i].activeSelf)
             {
-                if (actionPoint[i].activeSelf)
-                {
-                    actionPoint[i].SetActive(false);
-                    break;
-                }
-            }
-        }
-        else
-        {
-            for (int i = baseActionPoint.Count - 1; i >= 0; i--)
-            {
-                if (baseActionPoint[i].activeSelf)
-                {
-                    baseActionPoint[i].SetActive(false);
-                    break;
-                }
+                actionPoint[i].SetActive(false);
+                break;
             }
         }
     }
