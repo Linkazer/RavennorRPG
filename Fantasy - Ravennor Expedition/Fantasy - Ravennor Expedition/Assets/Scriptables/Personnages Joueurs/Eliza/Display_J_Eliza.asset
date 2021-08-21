@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Display_J_Eliza
   m_EditorClassIdentifier: 
   id: Eliza
-  sprite: {fileID: 21300000, guid: dba5f849b326f3d4c8c49893aaa4716c, type: 3}
-  position: {x: 350, y: -450}
-  scale: {x: 1, y: 1, z: 1}
+  sprite: {fileID: 21300000, guid: 2ddef07e7b5326c45874d131bfa3458a, type: 3}
+  position: {x: 300, y: -420}
+  scale: {x: -1, y: 1, z: 1}
   scriptable: {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}

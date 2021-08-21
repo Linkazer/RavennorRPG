@@ -7,7 +7,8 @@ public enum AiAbscissaType{ DistanceFromTarget,
                             CasterMaxHp, CasterCurrentHp, CasterPercentHp,
                             TargetMalus, TargetBonus,
                             TargetDangerosity, TargetVulnerability,
-                            TargetPhysicalArmor, TargetMagicalArmor
+                            TargetPhysicalArmor, TargetMagicalArmor,
+                            NumberEnnemyArea, NumberAllyArea
                           }
 
 public enum AiCalculType{ Conditionnal, Affine, Logarythm,

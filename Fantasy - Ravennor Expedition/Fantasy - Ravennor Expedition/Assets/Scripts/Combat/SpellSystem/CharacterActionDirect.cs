@@ -23,10 +23,7 @@ public class CharacterActionDirect : CharacterActionScriptable
 
     public float lifeStealPercent = 0;
 
-    public CharacterActionDirect()
-    {
-        spellType = SpellType.Direct;
-    }
+    public override SpellType SpellType => SpellType.Direct;
 
     public int GetBaseDamage(int maanaSpent)
     {

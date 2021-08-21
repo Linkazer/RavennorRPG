@@ -7,8 +7,5 @@ public class CharacterActionInvocation : CharacterActionScriptable
 {
     public List<PersonnageScriptables> invocations;
 
-    public CharacterActionInvocation()
-    {
-        spellType = SpellType.Invocation;
-    }
+    public override SpellType SpellType => SpellType.Invocation;
 }

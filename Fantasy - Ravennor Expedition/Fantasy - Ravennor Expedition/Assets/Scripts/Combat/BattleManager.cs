@@ -60,11 +60,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private RuntimeBattleCharacter passiveCheater;
 
-    [SerializeField]
-    private AudioClip storyMusic, battleMusic;
-    [SerializeField]
-    private AudioSource backgroundSource;
-
     private LaunchActionData actData = default;
 
     #region Set Up
@@ -131,8 +126,7 @@ public class BattleManager : MonoBehaviour
 
     public void BattleBegin()
     {
-        backgroundSource.clip = battleMusic;
-        backgroundSource.Play();
+        SoundSyst.ChangeMainMusic(RavenorGameManager.BattleClip);
 
         BattleUiManager.instance.SetUI();
 
@@ -221,9 +215,6 @@ public class BattleManager : MonoBehaviour
 
         if(doesWin)
         {
-            backgroundSource.clip = storyMusic;
-            backgroundSource.Play();
-
             Debug.Log("Won");
             if (roomManager.endDialogue != null)
             {
@@ -249,7 +240,7 @@ public class BattleManager : MonoBehaviour
     {
         if (level.GetComponent<RoomManager>().nextLvl != null)
         {
-            RavenorGameManager.instance.SetNextBattle(level.GetComponent<RoomManager>().nextLvl);
+            RavenorGameManager.instance.SetLocalNextBattle(level.GetComponent<RoomManager>().nextLvl);
         }
 
         if (roomManager.endGame)
@@ -442,7 +433,12 @@ public class BattleManager : MonoBehaviour
         currentCaster = caster;
         currentMaanaSpent = maanaSpent;
 
-        switch (wantedAction.spellType)
+        if (wantedAction.incantationTime != ActionIncantation.Rapide)
+        {
+            caster.UseAction(wantedAction.isWeaponBased);
+        }
+
+        switch (wantedAction.SpellType)
         {
             case SpellType.Direct:
                 if (wantedAction.projectile != null)
@@ -470,7 +466,7 @@ public class BattleManager : MonoBehaviour
         DoAction((CharacterActionDirect)currentWantedAction, currentMaanaSpent, currentCaster, positionWanted, false);
     }
 
-    private List<Node> GetHitNodes(Vector2 position, Vector2 casterPosition, CharacterActionScriptable spell)
+    public static List<Node> GetHitNodes(Vector2 position, Vector2 casterPosition, CharacterActionScriptable spell)
     {
         Vector2 direction = Vector2.one;
         if (spell.doesFaceCaster)
@@ -573,11 +569,6 @@ public class BattleManager : MonoBehaviour
             {
                 BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, 0.5f, wantedAction.soundToPlay);
             }
-        }
-
-        if (wantedAction.incantationTime != ActionIncantation.Rapide)
-        {
-            caster.UseAction(wantedAction.isWeaponBased);
         }
 
         if(!wantedAction.HadFeedback() && !effectAction)
@@ -910,7 +901,15 @@ public class BattleManager : MonoBehaviour
     private void TeleportationSpell(RuntimeBattleCharacter caster, CharacterActionTeleportation spell, int maanaSpent, Vector2 wantedPosition)
     {
         Vector2 targetPosition = wantedPosition;
-        wantedPosition = GetTargetPosWithFacingPosition(caster.currentNode.worldPosition, wantedPosition, spell.positionToTeleport);
+        for (int i = 0; i < spell.positionsToTeleport.Count; i++)
+        {
+            Vector2 possiblePosition = GetTargetPosWithFacingPosition(caster.currentNode.worldPosition, wantedPosition, spell.positionsToTeleport[i]);
+            if(Grid.instance.NodeFromWorldPoint(possiblePosition).walkable)
+            {
+                wantedPosition = possiblePosition;
+                break;
+            }
+        }
 
         Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
         if (!nodeWanted.HasCharacterOn && nodeWanted.walkable)
@@ -969,7 +968,7 @@ public class BattleManager : MonoBehaviour
         EndCurrentAction();
     }
 
-    private Vector2 GetTargetPosWithFacingPosition(Vector2 casterPos, Vector2 targetPos, Vector2 spellDirection)
+    public static Vector2 GetTargetPosWithFacingPosition(Vector2 casterPos, Vector2 targetPos, Vector2 spellDirection)
     {
         Vector2 direction = Vector2.one;
 

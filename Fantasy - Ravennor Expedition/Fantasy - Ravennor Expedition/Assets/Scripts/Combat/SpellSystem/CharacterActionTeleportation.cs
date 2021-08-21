@@ -6,13 +6,10 @@ using UnityEngine;
 public class CharacterActionTeleportation : CharacterActionScriptable
 {
     [Header("Teleportation")]
-    public Vector2Int positionToTeleport;
+    public List<Vector2Int> positionsToTeleport = new List<Vector2Int>();
     public bool isJump;
 
     public CharacterActionDirect jumpEffect, landEffect;
 
-    public CharacterActionTeleportation()
-    {
-        spellType = SpellType.Teleportation;
-    }
+    public override SpellType SpellType => SpellType.Teleportation;
 }

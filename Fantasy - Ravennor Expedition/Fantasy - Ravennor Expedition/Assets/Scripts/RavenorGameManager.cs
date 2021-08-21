@@ -26,6 +26,14 @@ public class RavenorGameManager : MonoBehaviour
     [SerializeField]
     private float difficultyMultiplier = 1;
 
+    [Header("Musics")]
+    [SerializeField] private AudioClip menuClip;
+    [SerializeField] private AudioClip battleClip;
+    [SerializeField] private AudioClip campClip;
+
+    public static AudioClip BattleClip => instance.battleClip;
+
+    [SerializeField] private int currentUnlockedLevel = 1;
 
     private void Awake()
     {
@@ -40,12 +48,28 @@ public class RavenorGameManager : MonoBehaviour
         }
     }
 
+    public static int GetUnlockedLevels => instance.currentUnlockedLevel;
+
+    public static void SetNextBattle(GameObject newBattle)
+    {
+        instance.SetLocalNextBattle(newBattle);
+    }
+
+    public static void SetUnlockedLevel(int endedLevel)
+    {
+        if(instance.currentUnlockedLevel <= endedLevel)
+        {
+            instance.currentUnlockedLevel = endedLevel + 1;
+        }
+    }
+
+
     private void OnEnable()
     {
         nextRoom = nextBattle.GetComponent<RoomManager>();
     }
 
-    public void SetNextBattle(GameObject newBattle)
+    public void SetLocalNextBattle(GameObject newBattle)
     {
         nextBattle = newBattle;
         nextRoom = nextBattle.GetComponent<RoomManager>();
@@ -65,25 +89,30 @@ public class RavenorGameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         LoadScene(0);
-        //SceneManager.LoadScene(0);
+        SoundSyst.ChangeMainMusic(menuClip);
     }
 
     public void LoadBattle()
     {
         LoadScene(1);
-        //SceneManager.LoadScene(1);
     }
 
     public void LoadCamp()
     {
         LoadScene(2);
-        //SceneManager.LoadScene(2);
+        if (nextRoom.backgroundMusic != null)
+        {
+            SoundSyst.ChangeMainMusic(nextRoom.backgroundMusic);
+        }
+        else
+        {
+            SoundSyst.ChangeMainMusic(campClip);
+        }
     }
 
     internal void LoadTuto()
     {
         LoadScene(3);
-        //SceneManager.LoadScene(3);
     }
 
     void LoadScene(int sceneNb)

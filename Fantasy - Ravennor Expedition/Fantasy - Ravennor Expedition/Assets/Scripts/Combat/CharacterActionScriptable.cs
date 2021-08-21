@@ -59,8 +59,7 @@ public class CharacterActionScriptable : ScriptableObject
     public List<SpellEffectScriptables> wantedEffectOnTarget, wantedEffectOnCaster, wantedEffectOnGround;
 
 
-    [HideInInspector]
-    public SpellType spellType;
+    public virtual SpellType SpellType => SpellType.Direct;
 
     public CharacterActionScriptable()
     {

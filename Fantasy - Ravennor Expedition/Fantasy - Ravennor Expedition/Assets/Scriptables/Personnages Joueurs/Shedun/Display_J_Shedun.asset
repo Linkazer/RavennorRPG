@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Display_J_Shedun
   m_EditorClassIdentifier: 
   id: Shedun
-  sprite: {fileID: 21300000, guid: 9b2ddc63345410944965a13150ef7e56, type: 3}
-  position: {x: 620, y: -250}
+  sprite: {fileID: 21300000, guid: 7add993a9428ef14f849a8a241c574d5, type: 3}
+  position: {x: 580, y: -240}
   scale: {x: -1, y: 1, z: 1}
   scriptable: {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}

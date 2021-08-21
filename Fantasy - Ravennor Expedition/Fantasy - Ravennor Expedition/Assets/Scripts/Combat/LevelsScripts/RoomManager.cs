@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class RoomManager : MonoBehaviour
 {
-    //public static RoomManager instance;
+    [SerializeField] private int levelId;
 
     [Header("Camera")]
     [SerializeField]
@@ -25,6 +25,7 @@ public class RoomManager : MonoBehaviour
 
     [Header("Camps")]
     public Sprite backgroundCamp;
+    public AudioClip backgroundMusic;
     public Sprite fireSprite;
     public List<CampDisplayableCharacter> characterInCamp = new List<CampDisplayableCharacter>();
 
@@ -154,6 +155,7 @@ public class RoomManager : MonoBehaviour
             RavenorGameManager.instance.dialogueToDisplay = campDialogue;
         }
 
+        RavenorGameManager.SetUnlockedLevel(levelId);
         BattleManager.instance.EndBattle(true);
     }
 

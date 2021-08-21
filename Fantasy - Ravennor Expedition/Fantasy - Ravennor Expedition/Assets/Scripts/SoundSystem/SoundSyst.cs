@@ -14,9 +14,20 @@ public class SoundSyst : MonoBehaviour
     [SerializeField]
     private AudioMixer mixer;
 
+    [SerializeField] private AudioSource mainMusic;
+
     private void Awake()
     {
-        instance = this;
+        if (instance != null)
+        {
+            mainMusic.Stop();
+            Destroy(mainMusic);
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     public float GetVolumeValue(string name)
@@ -39,6 +50,18 @@ public class SoundSyst : MonoBehaviour
         {
             mixer.SetFloat(varName, value * 40 - 40);
         }
+    }
 
+    public static void ChangeMainMusic(AudioClip toPlay)
+    {
+        if(toPlay == null)
+        {
+            instance.mainMusic.Stop();
+        }
+        else if (toPlay != instance.mainMusic.clip)
+        {
+            instance.mainMusic.clip = toPlay;
+            instance.mainMusic.Play();
+        }
     }
 }

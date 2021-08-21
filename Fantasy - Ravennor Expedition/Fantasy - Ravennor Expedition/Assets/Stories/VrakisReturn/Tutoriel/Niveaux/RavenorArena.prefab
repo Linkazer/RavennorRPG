@@ -18753,6 +18753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1838e1ba87a484ea2cfd0f18c3aeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelId: 1
   cameraPos: {x: 0, y: 0}
   cameraMaxLeftTop: {x: -1, y: 1}
   cameraMaxRightBottom: {x: 1, y: -1}
@@ -18768,6 +18769,8 @@ MonoBehaviour:
   endGame: 0
   nextLvl: {fileID: 7560241282882709333}
   backgroundCamp: {fileID: 21300000, guid: 6b9d5b32001d0d94f834de0ea045d175, type: 3}
+  backgroundMusic: {fileID: 0}
+  fireSprite: {fileID: 0}
   characterInCamp:
   - {fileID: 11400000, guid: 98e9569f0257ee543a1dc564fb82cc30, type: 2}
   - {fileID: 11400000, guid: 061deea5da899644fb6488150c6c8007, type: 2}
@@ -18776,7 +18779,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: f00a877c7b0c6db4998b20600438438b, type: 2}
+    - {fileID: 11400000, guid: c2fb47fa20fe465458817772a3e112a1, type: 2}
     - {fileID: 11400000, guid: 398a36cf612cccc4d9481a1fc5b95285, type: 2}
     - {fileID: 11400000, guid: de273237522d51842bc5c41cc6a67e3b, type: 2}
     - {fileID: 11400000, guid: fc9b3af9529c9314e958c19a1637a200, type: 2}

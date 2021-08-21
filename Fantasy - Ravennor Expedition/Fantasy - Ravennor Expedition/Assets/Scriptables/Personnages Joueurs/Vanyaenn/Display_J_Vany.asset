@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Display_J_Vany
   m_EditorClassIdentifier: 
   id: Vanyaenn
-  sprite: {fileID: 21300000, guid: f29b0f45ef63bc44dad80c0428f66ae7, type: 3}
-  position: {x: -190, y: -100}
+  sprite: {fileID: 21300000, guid: 053d40d8910359241b698770897e1ef0, type: 3}
+  position: {x: -300, y: -100}
   scale: {x: 1, y: 1, z: 1}
   scriptable: {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}

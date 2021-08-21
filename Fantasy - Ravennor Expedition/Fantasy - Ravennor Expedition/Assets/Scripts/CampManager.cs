@@ -15,6 +15,8 @@ public class CampManager : MonoBehaviour
     [SerializeField]
     private Color nonSelectedColor;
 
+    [SerializeField] private MenuManager mainMenu;
+
     [Header("Character Sheet")]
     [SerializeField]
     private GameObject characterSheet;
@@ -272,5 +274,13 @@ public class CampManager : MonoBehaviour
     public void EndDialogue()
     {
         
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            mainMenu.OpenMenu();
+        }
     }
 }
