@@ -15,11 +15,11 @@ public class CharacterActionDirect : CharacterActionScriptable
     public DamageType damageType = DamageType.Damage;
     public bool autoCritical = false;
 
-    public ScalePossibility scaleOrigin;
+    /*public ScalePossibility scaleOrigin;
     public SpellEffectScriptables wantedScaleEffect;
     public Dice scalingDices;
     public float diceByScale;
-    public float bonusByScale;
+    public float bonusByScale;*/
 
     public float lifeStealPercent = 0;
 

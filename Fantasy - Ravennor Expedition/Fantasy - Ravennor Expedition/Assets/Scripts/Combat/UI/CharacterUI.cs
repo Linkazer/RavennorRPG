@@ -15,6 +15,8 @@ public class CharacterUI : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> diceResultTexts;
     [SerializeField] private TextMeshProUGUI diceResultDamageText;
 
+    [SerializeField] private TextMeshProUGUI armorValue;
+
     public void ShowDiceResults(List<int> values, List<bool> results, int total)
     {
         for (int i = 0; i < diceResultObjects.Count; i++)
@@ -42,5 +44,11 @@ public class CharacterUI : MonoBehaviour
         diceResultDamageText.text = total.ToString();
 
         diceResultAnimator.SetTrigger("ShowDices");
+    }
+
+    public void ShowArmorValue(int value)
+    {
+        /*armorValue.text = value.ToString();
+        diceResultAnimator.SetTrigger("ShowArmor");*/
     }
 }

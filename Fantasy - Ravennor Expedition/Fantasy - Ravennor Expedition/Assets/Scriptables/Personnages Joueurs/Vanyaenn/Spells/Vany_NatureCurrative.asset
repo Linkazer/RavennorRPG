@@ -20,7 +20,7 @@ MonoBehaviour:
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 1
-  maxCooldown: 0
+  maxCooldown: 1
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
@@ -42,19 +42,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d377dd44beb564346899b2323687f38e, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
-  spellType: 0
   hasPowerEffect: 1
   damageBase: 2
   diceNumber: 0
   damageType: 0
   autoCritical: 0
-  scaleOrigin: 0
-  wantedScaleEffect: {fileID: 0}
-  scalingDices:
-    wantedDice: 0
-    numberOfDice: 0
-    diceByMaanaSpent: 0
-    wantedDamage: 0
-  diceByScale: 0
-  bonusByScale: 0
   lifeStealPercent: 0

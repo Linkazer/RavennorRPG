@@ -8,13 +8,6 @@ public class RavenorGameManager : MonoBehaviour
 {
     public static RavenorGameManager instance;
 
-    /* Contient :
-     * - La liste des personnages dans le groupe
-     * - Le niveau actuel (Update quand on clique sur le prochain niveau)
-     * - Les changements de scènes
-     * 
-     */
-
     [SerializeField]
     private GameObject nextBattle;
     private RoomManager nextRoom;
@@ -33,8 +26,6 @@ public class RavenorGameManager : MonoBehaviour
 
     public static AudioClip BattleClip => instance.battleClip;
 
-    [SerializeField] private int currentUnlockedLevel = 1;
-
     private void Awake()
     {
         if (instance != null)
@@ -48,19 +39,15 @@ public class RavenorGameManager : MonoBehaviour
         }
     }
 
-    public static int GetUnlockedLevels => instance.currentUnlockedLevel;
-
     public static void SetNextBattle(GameObject newBattle)
     {
         instance.SetLocalNextBattle(newBattle);
     }
 
-    public static void SetUnlockedLevel(int endedLevel)
+    public static void AddUnlockLevel(string levelToAdd)
     {
-        if(instance.currentUnlockedLevel <= endedLevel)
-        {
-            instance.currentUnlockedLevel = endedLevel + 1;
-        }
+        SaveManager.data.AddLevel(levelToAdd);
+        SaveManager.SaveUnlockedLevels();
     }
 
 
@@ -97,7 +84,7 @@ public class RavenorGameManager : MonoBehaviour
         LoadScene(1);
     }
 
-    public void LoadCamp()
+    /*public void LoadCamp()
     {
         LoadScene(2);
         if (nextRoom.backgroundMusic != null)
@@ -108,7 +95,7 @@ public class RavenorGameManager : MonoBehaviour
         {
             SoundSyst.ChangeMainMusic(campClip);
         }
-    }
+    }*/
 
     internal void LoadTuto()
     {

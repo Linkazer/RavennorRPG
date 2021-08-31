@@ -62,6 +62,9 @@ public class BattleManager : MonoBehaviour
 
     private LaunchActionData actData = default;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private List<AudioClip> diceClip;
+
     #region Set Up
     private void Awake()
     {
@@ -215,42 +218,42 @@ public class BattleManager : MonoBehaviour
 
         if(doesWin)
         {
-            Debug.Log("Won");
+            if (roomManager.nextLvl != null)
+            {
+                RavenorGameManager.instance.SetLocalNextBattle(roomManager.nextLvl);
+                RavenorGameManager.AddUnlockLevel(RavenorGameManager.instance.GetCurrentBattle().levelInformation.ID);
+            }
+
             if (roomManager.endDialogue != null)
             {
                 BattleUiManager.instance.StartDialogue(roomManager.endDialogue);
             }
             else
             {
-                ExitBattle();
+                SetWinPanel();
             }
         }
         else
         {
-            BattleUiManager.instance.LoosingScreen();
+            //BattleUiManager.instance.LoosingScreen();
+            ExitBattle();
         }
     }
 
-    public void RetryBattle()
+    public void LoadBattle()
     {
         RavenorGameManager.instance.LoadBattle();
     }
 
+    public void SetWinPanel()
+    {
+        //BattleUiManager.instance.WinningScreen();
+        ExitBattle();
+    }
+
     public void ExitBattle()
     {
-        if (level.GetComponent<RoomManager>().nextLvl != null)
-        {
-            RavenorGameManager.instance.SetLocalNextBattle(level.GetComponent<RoomManager>().nextLvl);
-        }
-
-        if (roomManager.endGame)
-        {
-            RavenorGameManager.instance.LoadMainMenu();
-        }
-        else
-        {
-            RavenorGameManager.instance.LoadCamp();
-        }
+        RavenorGameManager.instance.LoadMainMenu();
     }
 
     #endregion
@@ -329,7 +332,6 @@ public class BattleManager : MonoBehaviour
 
     public void EndTurn()
     {
-        Debug.Log("End Turn");
         PlayerBattleManager.instance.ActivatePlayerBattleController(false);
         if (!CheckForBattleEnd())
         {
@@ -694,7 +696,7 @@ public class BattleManager : MonoBehaviour
     {
         int bonusDamages = 0;
 
-        switch (wantedAction.scaleOrigin)
+        /*switch (wantedAction.scaleOrigin)
         {
             case ScalePossibility.EffectStack:
                 foreach(RuntimeSpellEffect eff in target.GetAppliedEffects())
@@ -711,6 +713,11 @@ public class BattleManager : MonoBehaviour
             case ScalePossibility.Distance:
                 bonusDamages += Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.bonusByScale);
                 break;
+        }*/
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(diceClip[UnityEngine.Random.Range(0, diceClip.Count)]);
         }
 
         return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, maanaSpent, caster, target));
@@ -775,6 +782,10 @@ public class BattleManager : MonoBehaviour
         }
 
         target.DisplayDice(diceValues, diceResult, dealtDamage);
+        if(wantedAction.damageType == DamageType.Damage)
+        {
+            target.DisplayArmor();
+        }
 
         //BattleUiManager.instance.ShowDiceResults(diceValues, diceResult, dealtDamage);
 

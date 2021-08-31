@@ -39,19 +39,9 @@ MonoBehaviour:
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
-  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   diceNumber: 2
   damageType: 1
   autoCritical: 0
-  scaleOrigin: 0
-  wantedScaleEffect: {fileID: 0}
-  scalingDices:
-    wantedDice: 0
-    numberOfDice: 0
-    diceByMaanaSpent: 0
-    wantedDamage: 0
-  diceByScale: 0
-  bonusByScale: 0
   lifeStealPercent: 0

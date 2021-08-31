@@ -12,7 +12,7 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelDescription;
     [SerializeField] private List<LevelCharacterButton> characterButtons;
     [SerializeField] private GameObject levelSelectedDisplay;
-    [SerializeField] private List<Button> selectableLevelButton;
+    [SerializeField] private List<LevelSelectionHandler> selectableLevelButton;
 
     [Header("Character Sheet")]
     [SerializeField]
@@ -46,13 +46,13 @@ public class MainMenuUIManager : MonoBehaviour
     {
         for(int i = 0; i < selectableLevelButton.Count; i++)
         {
-            if(i < RavenorGameManager.GetUnlockedLevels)
+            if (SaveManager.DoesLevelExist(selectableLevelButton[i].GetLevelID))
             {
-                selectableLevelButton[i].interactable = true;
+                selectableLevelButton[i].EnableButton();
             }
             else
             {
-                selectableLevelButton[i].interactable = false;
+                selectableLevelButton[i].DisableButton();
             }
         }
 
@@ -88,7 +88,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     }
 
-    public void DisplayLevelInformation(StoryLevelInformation chosenLevel)
+    private void DisplayLevelInformation(StoryLevelInformation chosenLevel)
     {
         levelName.text = chosenLevel.nom;
         levelDescription.text = chosenLevel.description;

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
+  m_Name: E_CoupEpee
+  m_EditorClassIdentifier: 
+  nom: "Coup d'\xE9p\xE9e"
+  icon: {fileID: 0}
+  description: 
+  overchargedAction: {fileID: 0}
+  attackType: 0
+  maanaCost: 0
+  maxCooldown: 0
+  maxUtilisation: -1
+  incantationTime: 1
+  isWeaponBased: 1
+  target: 1
+  castTarget: 1
+  castOnSelf: 0
+  range: 15
+  activeZoneCases:
+  - {x: 0, y: 0}
+  doesFaceCaster: 1
+  hasViewOnTarget: 1
+  projectile: {fileID: 0}
+  speed: 0
+  zoneSprite: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: 930b03cc53b3bfe4d88311dbb3a8aa05, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
+  soundToPlay: {fileID: 0}
+  wantedEffectOnTarget: []
+  wantedEffectOnCaster: []
+  wantedEffectOnGround: []
+  hasPowerEffect: 1
+  damageBase: 0
+  diceNumber: 2
+  damageType: 1
+  autoCritical: 0
+  lifeStealPercent: 0

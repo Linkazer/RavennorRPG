@@ -455,7 +455,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
 
-            Debug.Log(name + " a pris " + damageText);
             BattleDiary.instance.AddText(name + " a pris " + damageText + " points de dégâts.");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
@@ -650,6 +649,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void DisplayDice(List<int> values, List<bool> results, int total)
     {
         uiManagement.ShowDiceResults(values, results, total);
+    }
+
+    public void DisplayArmor()
+    {
+        uiManagement.ShowArmorValue(currentScriptable.GetArmor());
     }
     #endregion
 

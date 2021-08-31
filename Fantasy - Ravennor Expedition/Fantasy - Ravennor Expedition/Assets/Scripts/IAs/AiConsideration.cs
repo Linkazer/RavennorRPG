@@ -30,14 +30,20 @@ public class ValueForCalcul
 }
 
 [System.Serializable]
+public class ValueForCondition
+{
+    public AiAbscissaType conditionWanted;
+    public float conditionValue;
+    public AiConditionType conditionType;
+}
+
+[System.Serializable]
 public class AiConsideration
 {
     [Header("Actions")]
     public CharacterActionScriptable wantedAction;
     [Header("Condition")]
-    public AiAbscissaType conditionWanted;
-    public float conditionValue;
-    public AiConditionType conditionType;
+    public List<ValueForCondition> conditions;
     [Header("Calculs")]
     public float maxValue = 1;
     public List<ValueForCalcul> calculs;

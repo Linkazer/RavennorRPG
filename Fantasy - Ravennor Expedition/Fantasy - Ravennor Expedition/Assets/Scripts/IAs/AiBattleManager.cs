@@ -32,6 +32,8 @@ public class AiBattleManager : MonoBehaviour
             consid.cooldown--;
         }
 
+        target = null;
+
         SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), false);
 
         SearchNextMove(1.5f);
@@ -56,26 +58,33 @@ public class AiBattleManager : MonoBehaviour
             {
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
+                Debug.Log(nodeToMoveTo.worldPosition);
                 if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
-                    //Debug.Log(currentChara + " move for action");
+                    Debug.Log(currentChara + " move for action");
                     BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
                     currentChara.movementLeft -= nodeToMoveTo.gCost;
                 }
                 else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) <= wantedAction.range))
                 {
-                    Debug.Log(currentChara + " do action");
                     currentChara.SetCooldown(wantedAction);
                     BattleManager.instance.LaunchAction(wantedAction, 0, currentChara, target.transform.position, false);
                 }
                 else
                 {
+                    Debug.Log("End Turn");
                     BattleManager.instance.EndTurn();
                 }
             }
-            else if (currentChara.CanMove)
+            else if (currentChara.CanMove && (currentChara.GetCharacterDatas() as AiCharacterScriptable).planForOtherTurns)
             {
-                if (target != null && (target.GetCurrentHps() > 0 || Pathfinding.instance.GetDistance(target.currentNode, currentChara.currentNode) <= 15))
+                Debug.Log(currentChara.gameObject);
+                int wantedDist = 15;
+                if(wantedAction != null)
+                {
+                    wantedDist = wantedAction.range;
+                }
+                if (target != null && (target.GetCurrentHps() > 0 && Pathfinding.instance.GetDistance(target.currentNode, currentChara.currentNode) <= wantedDist))
                 {
                     BattleManager.instance.EndTurn();
                 }
@@ -95,6 +104,7 @@ public class AiBattleManager : MonoBehaviour
                     else
                     {
                         nodeToMoveTo = GetClosestTargetNode(BattleManager.instance.GetPlayerChara());
+                        //Debug.Log("From : " + currentChara.currentNode.worldPosition + " to : " + nodeToMoveTo.worldPosition);
                         if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                         {
                             BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
@@ -192,28 +202,33 @@ public class AiBattleManager : MonoBehaviour
 
         //Condition de l'IA
 
-        float absice = GetAbcsissaValue(consid.wantedAction, consid.conditionWanted, currentChara, targetToTry);
-
-        switch(consid.conditionType)
+        for (int i = 0; i < consid.conditions.Count; i++)
         {
-            case AiConditionType.Up:
-                if(absice < consid.conditionValue)
-                {
-                    return false;
-                }
-                break;
-            case AiConditionType.Down:
-                if (absice > consid.conditionValue)
-                {
-                    return false;
-                }
-                break;
-            case AiConditionType.Equal:
-                if (absice != consid.conditionValue)
-                {
-                    return false;
-                }
-                break;
+            ValueForCondition condition = consid.conditions[i];
+
+            float absice = GetAbcsissaValue(consid.wantedAction, condition.conditionWanted, currentChara, targetToTry);
+
+            switch (condition.conditionType)
+            {
+                case AiConditionType.Up:
+                    if (absice < condition.conditionValue)
+                    {
+                        return false;
+                    }
+                    break;
+                case AiConditionType.Down:
+                    if (absice > condition.conditionValue)
+                    {
+                        return false;
+                    }
+                    break;
+                case AiConditionType.Equal:
+                    if (absice != condition.conditionValue)
+                    {
+                        return false;
+                    }
+                    break;
+            }
         }
 
         //Condition pour l'Action
@@ -284,9 +299,9 @@ public class AiBattleManager : MonoBehaviour
         {
             if (Pathfinding.instance.GetDistance(n, wantedTarget.currentNode) <= rangeWanted)
             {
-                hit = Physics2D.Raycast(n.worldPosition, (wantedTarget.transform.position - n.worldPosition).normalized, Vector2.Distance(wantedTarget.transform.position, n.worldPosition), layerMaskObstacle);
+                bool hasView = BattleManager.instance.IsNodeVisible(n, wantedTarget.currentNode);
 
-                if (hit.collider == null || !needView)
+                if (hasView || !needView)
                 {
                     if (Pathfinding.instance.GetDistance(currentChara.currentNode, n) < currentDistance)
                     {
@@ -309,14 +324,13 @@ public class AiBattleManager : MonoBehaviour
         {
             foreach (Node n in Grid.instance.GetNeighbours(r.currentNode))
             {
-                if (Vector2.Distance(n.worldPosition, currentChara.currentNode.worldPosition) < range)
+                if (n.walkable && Vector2.Distance(n.worldPosition, currentChara.currentNode.worldPosition) < range)
                 {
                     range = Vector2.Distance(n.worldPosition, currentChara.currentNode.worldPosition);
                     nodeToReturn = n;
                 }
             }
         }
-        Debug.Log(nodeToReturn.worldPosition.ToString("F4"));
         return nodeToReturn;
     }
 

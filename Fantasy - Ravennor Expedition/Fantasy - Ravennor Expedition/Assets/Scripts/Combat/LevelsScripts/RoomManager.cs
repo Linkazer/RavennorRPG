@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] private int levelId;
+    public StoryLevelInformation levelInformation;
 
     [Header("Camera")]
     [SerializeField]
@@ -102,7 +102,6 @@ public class RoomManager : MonoBehaviour
 
     public void OpenRoom(int index)
     {
-        Debug.Log("Open room : " + index);
         if (index == 0)
         {
             openRoomIndexes = new List<int>();
@@ -130,7 +129,6 @@ public class RoomManager : MonoBehaviour
             for (int i = 0; i < toActivate.toDisable.Count; i++)
             {
                 toActivate.toDisable[i].SetActive(false);
-                Debug.Log(toActivate.toDisable[i].activeSelf);
             }
 
             for (int i = 0; i < toActivate.ennemis.Count; i++)
@@ -155,7 +153,6 @@ public class RoomManager : MonoBehaviour
             RavenorGameManager.instance.dialogueToDisplay = campDialogue;
         }
 
-        RavenorGameManager.SetUnlockedLevel(levelId);
         BattleManager.instance.EndBattle(true);
     }
 

@@ -6,6 +6,9 @@ using UnityEngine;
 public class AiCharacterScriptable : PersonnageScriptables
 {
     [Header("IA")]
+
+    public bool planForOtherTurns = true;
+
     public List<AiConsideration> comportement;
 
     public void ResetComportement()

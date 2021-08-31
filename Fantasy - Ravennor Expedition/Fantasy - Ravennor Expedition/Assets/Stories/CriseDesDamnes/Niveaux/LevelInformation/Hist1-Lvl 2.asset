@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
+  m_Name: Hist1-Lvl 2
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 7560241282882709333, guid: c3289ca901a006c4ea179ab0f043eb3f, type: 3}
+  ID: Hist1_Lvl1
+  nom: Le Cercle Noir
+  description: "\xC0 la demande de l'Academie, la Confr\xE9rie du Zippo est envoy\xE9e
+    fouiller une crypte \xE0 la recherche d'un ancien art\xE9fact."
+  charactersInLevel:
+  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
+  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
+  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
+  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
+  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}

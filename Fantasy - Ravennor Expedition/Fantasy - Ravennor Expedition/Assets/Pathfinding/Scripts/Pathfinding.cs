@@ -103,6 +103,13 @@ public class Pathfinding : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="startNode"></param>
+	/// <param name="targetNode">If null, will set all ode in the distance.</param>
+	/// <param name="isForNextTurn"></param>
+	/// <returns></returns>
 	public bool SearchPath(Node startNode, Node targetNode, bool isForNextTurn)
 	{
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);

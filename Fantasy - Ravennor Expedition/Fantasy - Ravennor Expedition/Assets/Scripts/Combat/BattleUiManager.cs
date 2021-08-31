@@ -46,8 +46,8 @@ public class BattleUiManager : MonoBehaviour
     private CharacterInformationUI charaInfo;
 
     [Header("Ecrans de fin")]
-    [SerializeField]
-    private GameObject looseScreen;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject looseScreen;
 
     [Header("Information des sorts")]
     [SerializeField]
@@ -243,6 +243,11 @@ public class BattleUiManager : MonoBehaviour
     public void ChooseSpell(int index)
     {
         PlayerBattleControllerManager.instance.ChooseSpell(index);
+    }
+
+    public void WinningScreen()
+    {
+        winScreen.SetActive(true);
     }
 
     public void LoosingScreen()

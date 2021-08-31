@@ -61,7 +61,7 @@ public class ParcheminDialogueSystem : MonoBehaviour
             }
             else if(currentStory.goToCamp)
             {
-                BattleManager.instance.ExitBattle();
+                BattleManager.instance.SetWinPanel();
             }
         }
 
