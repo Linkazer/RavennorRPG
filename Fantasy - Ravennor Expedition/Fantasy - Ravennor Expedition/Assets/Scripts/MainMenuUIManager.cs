@@ -6,6 +6,7 @@ using TMPro;
 
 public class MainMenuUIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject mainMenu;
     [Header("Level Choice")]
     [SerializeField] private GameObject levelMenu;
     [SerializeField] private TextMeshProUGUI levelName;
@@ -62,11 +63,13 @@ public class MainMenuUIManager : MonoBehaviour
     public void OpenLevelMenu()
     {
         levelMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
     public void CloseLevelMenu()
     {
         levelMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
 

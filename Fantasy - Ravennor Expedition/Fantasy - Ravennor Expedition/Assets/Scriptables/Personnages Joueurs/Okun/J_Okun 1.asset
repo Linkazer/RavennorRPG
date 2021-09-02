@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
-  m_Name: J_Okun
+  m_Name: J_Okun 1
   m_EditorClassIdentifier: 
   nom: Okun
-  icon: {fileID: 21300000, guid: 4e9316c87536d4e4f93687cc49197c26, type: 3}
-  portrait: {fileID: 21300000, guid: 4e9316c87536d4e4f93687cc49197c26, type: 3}
-  spritePerso: {fileID: 21300000, guid: 4e9316c87536d4e4f93687cc49197c26, type: 3}
+  icon: {fileID: 21300000, guid: 3f35315f0ee47b842ad1919f36c6e450, type: 3}
+  portrait: {fileID: 21300000, guid: 3f35315f0ee47b842ad1919f36c6e450, type: 3}
+  spritePerso: {fileID: 21300000, guid: 3f35315f0ee47b842ad1919f36c6e450, type: 3}
   spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
   brasPosition: 0.01
   description: "Okun est souvent concid\xE9r\xE9 comme le bourrin du groupe, mais

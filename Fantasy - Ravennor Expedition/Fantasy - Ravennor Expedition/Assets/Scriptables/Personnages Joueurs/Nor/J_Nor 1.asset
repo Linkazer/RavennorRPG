@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
-  m_Name: J_Nor
+  m_Name: J_Nor 1
   m_EditorClassIdentifier: 
   nom: Nor
-  icon: {fileID: 21300000, guid: 126d016b5b9f3944293d7cea289974d5, type: 3}
-  portrait: {fileID: 21300000, guid: 126d016b5b9f3944293d7cea289974d5, type: 3}
-  spritePerso: {fileID: 21300000, guid: 126d016b5b9f3944293d7cea289974d5, type: 3}
+  icon: {fileID: 21300000, guid: 031c99a9656f32540a856c1148526f7a, type: 3}
+  portrait: {fileID: 21300000, guid: 031c99a9656f32540a856c1148526f7a, type: 3}
+  spritePerso: {fileID: 21300000, guid: 031c99a9656f32540a856c1148526f7a, type: 3}
   spriteBras: {fileID: 21300000, guid: 3a37f90bd17454d42a876b41e4066f6c, type: 3}
   brasPosition: -0.01
   description: "Nor est la membre la plus jeune et la plus joviale de la Confr\xE9rie.

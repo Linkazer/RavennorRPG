@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
-  m_Name: J_Eliza
+  m_Name: J_Eliza 1
   m_EditorClassIdentifier: 
   nom: Eliza
-  icon: {fileID: 21300000, guid: 2ddef07e7b5326c45874d131bfa3458a, type: 3}
-  portrait: {fileID: 21300000, guid: 2ddef07e7b5326c45874d131bfa3458a, type: 3}
-  spritePerso: {fileID: 21300000, guid: 2ddef07e7b5326c45874d131bfa3458a, type: 3}
+  icon: {fileID: 21300000, guid: 4c6a0fb7b0e9fda46966eabbde8c283e, type: 3}
+  portrait: {fileID: 21300000, guid: 4c6a0fb7b0e9fda46966eabbde8c283e, type: 3}
+  spritePerso: {fileID: 21300000, guid: 4c6a0fb7b0e9fda46966eabbde8c283e, type: 3}
   spriteBras: {fileID: 21300000, guid: 7706624e8fe90d94784d1b6a675df551, type: 3}
   brasPosition: 0
   description: "Eliza est une jeune elfe originaire des Terres du Nord. Apr\xE8s

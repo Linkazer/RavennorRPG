@@ -854,8 +854,8 @@ MonoBehaviour:
 
     O se quero'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
-  m_sharedMaterial: {fileID: -1194188674167039201, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1020,8 +1020,8 @@ MonoBehaviour:
 
     O se quero'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
-  m_sharedMaterial: {fileID: -1194188674167039201, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1707,8 +1707,8 @@ MonoBehaviour:
 
     O se quero'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
-  m_sharedMaterial: {fileID: -1194188674167039201, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1833,14 +1833,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4165729135373345297}
+  - {fileID: 8619075429776985058}
   - {fileID: 4165729135774060124}
   m_Father: {fileID: 4165729135782125506}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1250, y: 970}
+  m_AnchoredPosition: {x: 30, y: -10}
+  m_SizeDelta: {x: 1300, y: 950}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165729135126454993
 CanvasRenderer:
@@ -1857,7 +1858,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4165729135126455006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2080,10 +2081,10 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -140, y: -140}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 70, y: 0}
+  m_SizeDelta: {x: 500, y: -140}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4165729135373345299
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2120,7 +2121,7 @@ MonoBehaviour:
     et partent \xE0 vive allure. La seule information que le groupe ait pu obtenir
     est que la crypte serait hant\xE9e.\nLe lendemain, apr\xE8s une bonne nuit de
     repos, la confr\xE9rie part en direction de la crypte. Une fois arriv\xE9, Eliza
-    s'approche de la porte.\n\"Ah ! Ca pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
+    s'approche de la porte.\n\"Ah ! \xC7a pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
     le concept d'une crypte\" r\xE9pond Shedun.\n\"Soyez sur vos gardes, on ne sait
     pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en fixant
     Okun.\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent dans une
@@ -2131,8 +2132,8 @@ MonoBehaviour:
     des mumures se font entendre. Tout autour de la confr\xE9rie, des silouhettes
     fantomatiques sortent des tombeaux."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a43cd0148ca02e7478f4e96ebb8e5a5c, type: 2}
-  m_sharedMaterial: {fileID: 5837406155861575886, guid: a43cd0148ca02e7478f4e96ebb8e5a5c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40e9c1c12dda2df4a83b22dd9c5c77fc, type: 2}
+  m_sharedMaterial: {fileID: -8652020827501991989, guid: 40e9c1c12dda2df4a83b22dd9c5c77fc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2156,14 +2157,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2174,8 +2175,8 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
+  m_overflowMode: 6
+  m_linkedTextComponent: {fileID: 6202918777212229752}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
   m_enableExtraPadding: 0
@@ -2186,7 +2187,7 @@ MonoBehaviour:
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
   m_verticalMapping: 0
-  m_uvLineOffset: 0
+  m_uvLineOffset: 10
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 1
@@ -2629,7 +2630,7 @@ RectTransform:
   - {fileID: 4165729135106654837}
   - {fileID: 4165729134143827973}
   m_Father: {fileID: 4165729135126455007}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2689,6 +2690,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2421555621768785998}
+  - {fileID: 7161741981752814393}
   - {fileID: 4165729135897705846}
   - {fileID: 4165729135126455007}
   m_Father: {fileID: 0}
@@ -2791,8 +2793,8 @@ MonoBehaviour:
 
     O se quero'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
-  m_sharedMaterial: {fileID: -1194188674167039201, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3123,8 +3125,8 @@ MonoBehaviour:
 
     O se quero'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
-  m_sharedMaterial: {fileID: -1194188674167039201, guid: c5a51d02dcf11a34fa8484f389a6870e, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3251,7 +3253,7 @@ RectTransform:
   - {fileID: 4165729135502218379}
   - {fileID: 4165729134644021988}
   m_Father: {fileID: 4165729135782125506}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3287,6 +3289,81 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 4c7e2faa190a83842bd51e74054c5d2c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4833086728890698957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7161741981752814393}
+  - component: {fileID: 2032209930004243013}
+  - component: {fileID: 8431783026563129671}
+  m_Layer: 5
+  m_Name: Book
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7161741981752814393
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833086728890698957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4165729135782125506}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2032209930004243013
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833086728890698957}
+  m_CullTransparentMesh: 0
+--- !u!114 &8431783026563129671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833086728890698957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 45382d4330fae0a4a9ce3ba5867014dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3371,3 +3448,184 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8616322328996693643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8619075429776985058}
+  - component: {fileID: 7585715147152090369}
+  - component: {fileID: 6202918777212229752}
+  - component: {fileID: 3002302472134909672}
+  m_Layer: 5
+  m_Name: StoryText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8619075429776985058
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616322328996693643}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4165729135126455007}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -70, y: 0}
+  m_SizeDelta: {x: 500, y: -140}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!222 &7585715147152090369
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616322328996693643}
+  m_CullTransparentMesh: 0
+--- !u!114 &6202918777212229752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616322328996693643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Apr\xE8s des jours de trajets, la Confr\xE9rie du Zippo arrive enfin \xE0
+    Lanon, un village proche de la crypte de Gzarsaroth. L'Acad\xE9mie de Norganon
+    ayant trouv\xE9 des traces d'un ancien art\xE9fact, Majax a charg\xE9 la confr\xE9rie
+    de le retrouver et de le ramener \xE0 l'Acad\xE9mie. Cependant, \xE0 chaque fois
+    que le groupe prononce le nom de Gzarsaroth, les villageois \xE9vitent le sujet
+    et partent \xE0 vive allure. La seule information que le groupe ait pu obtenir
+    est que la crypte serait hant\xE9e.\nLe lendemain, apr\xE8s une bonne nuit de
+    repos, la confr\xE9rie part en direction de la crypte. Une fois arriv\xE9, Eliza
+    s'approche de la porte.\n\"Ah ! \xC7a pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
+    le concept d'une crypte\" r\xE9pond Shedun.\n\"Soyez sur vos gardes, on ne sait
+    pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en fixant
+    Okun.\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent dans une
+    grande salle avec de nombreux tombeaux. Fouillant la pi\xE8ce \xE0 la recherche
+    du moindre indice, le bruit d'une vase se cassant sur le sol r\xE9sonne dans
+    la pi\xE8ce. Vanyaenn tourne rapidement la t\xEAte pour apercevoir l'origine
+    du bruit.\n\"D\xE9sol\xE9\" dit Nor, avec un vase cass\xE9 \xE0 ses pieds.\nSoudain,
+    des mumures se font entendre. Tout autour de la confr\xE9rie, des silouhettes
+    fantomatiques sortent des tombeaux."
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 40e9c1c12dda2df4a83b22dd9c5c77fc, type: 2}
+  m_sharedMaterial: {fileID: -8652020827501991989, guid: 40e9c1c12dda2df4a83b22dd9c5c77fc, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 8
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 50
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 6
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 4165729135373345298}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 10
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3002302472134909672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616322328996693643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4165729135782125507}
+          m_TargetAssemblyTypeName: ParcheminDialogueSystem, Assembly-CSharp
+          m_MethodName: GetResponse
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
