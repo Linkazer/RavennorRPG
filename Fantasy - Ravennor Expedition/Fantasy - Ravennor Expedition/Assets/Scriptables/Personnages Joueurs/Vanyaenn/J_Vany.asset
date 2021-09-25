@@ -22,7 +22,7 @@ MonoBehaviour:
     consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
     bon sens."
   healthPoints: 8
-  maana: 5
+  maana: 4
   movementSpeed: 35
   accuracy: 0
   defense: 1

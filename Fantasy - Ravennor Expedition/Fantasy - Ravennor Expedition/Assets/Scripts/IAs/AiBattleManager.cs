@@ -58,7 +58,6 @@ public class AiBattleManager : MonoBehaviour
             {
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
-                Debug.Log(nodeToMoveTo.worldPosition);
                 if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
                     Debug.Log(currentChara + " move for action");
@@ -78,7 +77,6 @@ public class AiBattleManager : MonoBehaviour
             }
             else if (currentChara.CanMove && (currentChara.GetCharacterDatas() as AiCharacterScriptable).planForOtherTurns)
             {
-                Debug.Log(currentChara.gameObject);
                 int wantedDist = 15;
                 if(wantedAction != null)
                 {

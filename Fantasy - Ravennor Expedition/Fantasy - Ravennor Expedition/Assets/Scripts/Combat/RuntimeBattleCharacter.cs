@@ -646,8 +646,18 @@ public class RuntimeBattleCharacter : MonoBehaviour
     #endregion
 
     #region UI
-    public void DisplayDice(List<int> values, List<bool> results, int total)
+    public void DisplayDice(List<int> values, List<BattleDiceResult> results, int total)
     {
+        int usedArmor = 0;
+        for(int i = 0; i < results.Count; i++)
+        {
+            if(results[i] == BattleDiceResult.Hit && usedArmor < currentScriptable.GetArmor())
+            {
+                usedArmor++;
+                results[i] = BattleDiceResult.Reduce;
+            }
+        }
+
         uiManagement.ShowDiceResults(values, results, total);
     }
 

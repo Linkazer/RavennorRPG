@@ -729,7 +729,7 @@ public class BattleManager : MonoBehaviour
         int dealtDamage = 0;
 
         List<int> diceValues = new List<int>();
-        List<bool> diceResult = new List<bool>();
+        List<BattleDiceResult> diceResult = new List<BattleDiceResult>();
 
         int neededDices = wantedAction.GetDices(maanaSpent);
 
@@ -769,7 +769,16 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < neededDices; i++)
         {
             resultAtt = GameDices.RollD6() + caster.GetCharacterDatas().GetAccuracy();
-            diceResult.Add(resultAtt <= targetDefenseScore);
+
+            if(resultAtt <= targetDefenseScore)
+            {
+                diceResult.Add(BattleDiceResult.Block);
+            }
+            else
+            {
+                diceResult.Add(BattleDiceResult.Hit);
+            }
+            
             diceValues.Add(resultAtt);
             if (resultAtt > targetDefenseScore)
             {
@@ -786,8 +795,6 @@ public class BattleManager : MonoBehaviour
         {
             target.DisplayArmor();
         }
-
-        //BattleUiManager.instance.ShowDiceResults(diceValues, diceResult, dealtDamage);
 
         return dealtDamage;
     }
