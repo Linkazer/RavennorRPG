@@ -19,7 +19,7 @@ MonoBehaviour:
   spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
   brasPosition: 0
   description: 
-  healthPoints: 4
+  healthPoints: 2
   maana: 0
   movementSpeed: 35
   accuracy: 0

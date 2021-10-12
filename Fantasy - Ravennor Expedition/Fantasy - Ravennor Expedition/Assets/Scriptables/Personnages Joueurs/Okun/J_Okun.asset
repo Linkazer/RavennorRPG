@@ -21,7 +21,7 @@ MonoBehaviour:
   description: "Okun est souvent concid\xE9r\xE9 comme le bourrin du groupe, mais
     aussi le plus secret. Toujours de bonne humeur, il esquive chacune des questions
     des autres membres concernant son pass\xE9."
-  healthPoints: 12
+  healthPoints: 10
   maana: 2
   movementSpeed: 35
   accuracy: 0

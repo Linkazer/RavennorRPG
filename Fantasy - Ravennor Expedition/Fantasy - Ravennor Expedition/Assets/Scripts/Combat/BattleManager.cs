@@ -694,27 +694,6 @@ public class BattleManager : MonoBehaviour
 
     public int DoDamage(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        int bonusDamages = 0;
-
-        /*switch (wantedAction.scaleOrigin)
-        {
-            case ScalePossibility.EffectStack:
-                foreach(RuntimeSpellEffect eff in target.GetAppliedEffects())
-                {
-                    if(eff.effet.nom == wantedAction.wantedScaleEffect.effet.nom)
-                    {
-                        bonusDamages += Mathf.RoundToInt(eff.currentStack * wantedAction.bonusByScale);
-                    }
-                }
-                break;
-            case ScalePossibility.HpLostPercent:
-                bonusDamages += Mathf.RoundToInt((1 / target.GetPercentHp()) * 100 * wantedAction.bonusByScale);
-                break;
-            case ScalePossibility.Distance:
-                bonusDamages += Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.bonusByScale);
-                break;
-        }*/
-
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(diceClip[UnityEngine.Random.Range(0, diceClip.Count)]);
@@ -791,10 +770,6 @@ public class BattleManager : MonoBehaviour
         }
 
         target.DisplayDice(diceValues, diceResult, dealtDamage);
-        if(wantedAction.damageType == DamageType.Damage)
-        {
-            target.DisplayArmor();
-        }
 
         return dealtDamage;
     }
@@ -1019,61 +994,6 @@ public class BattleManager : MonoBehaviour
 
     #endregion
 
-    #region Dice Rolling
-    public int AttackRoll(int diceNumber, DiceType wantedDice, int bonus, int luckyDiceNumber, out int luckyDiceResult)
-    {
-        luckyDiceResult = 0;
-        int result = bonus;
-        for(int i = 0; i <diceNumber; i++)
-        {
-            int currentDice = 0;
-            switch (wantedDice)
-            {
-                case DiceType.D4:
-                    currentDice = GameDices.RollD4();
-                    break;
-                case DiceType.D6:
-                    currentDice = GameDices.RollD6();
-                    break;
-            }
-
-
-            if(i<luckyDiceNumber)
-            {
-                if(i == 0 && currentDice == 1)
-                {
-                    luckyDiceResult = -1;
-                }
-                else if(currentDice == 6)
-                {
-                    luckyDiceResult++;
-                }
-            }
-
-            result += currentDice;
-        }
-        return result;
-    }
-
-    public int NormalRoll(int diceNumber, int bonus, DiceType dice)
-    {
-        return GameDices.RollDice(diceNumber, dice)+bonus;
-    }
-
-    public int NormalRoll(List<Dice> diceToUse, int bonus)
-    {
-        int value = bonus;
-
-        for (int i = 0; i < diceToUse.Count; i++)
-        {
-            value += GameDices.RollDice(diceToUse[i].numberOfDice, diceToUse[i].wantedDice);
-        }
-
-        return value;
-    }
-
-    #endregion
-
     //Variables Utilities
     #region Utilities
     public List<RuntimeBattleCharacter> GetAllChara()
@@ -1204,7 +1124,7 @@ public class BattleManager : MonoBehaviour
 
     private void CheckForOpportunityAttack(Vector2 nextPosition)
     {
-        if(!currentCharacterTurn.CheckForAffliction(Affliction.Evasion))
+        /*if(!currentCharacterTurn.CheckForAffliction(Affliction.Evasion))
         {
             List<Node> nodeToCheck = Grid.instance.GetNeighbours(currentCharacterTurn.currentNode);
             Node nextPositionNode = Grid.instance.NodeFromWorldPoint(nextPosition);
@@ -1216,7 +1136,7 @@ public class BattleManager : MonoBehaviour
                     n.chara.AttackOfOpportunity(currentCharacterTurn);
                 }
             }
-        }
+        }*/
     }
 
     public bool IsNodeVisible(Node startNode, Node targetNode)

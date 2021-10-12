@@ -455,6 +455,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
 
+            uiManagement.ShowDirectHitResult(damageAmount, false);
+
             BattleDiary.instance.AddText(name + " a pris " + damageText + " points de dégâts.");
             currentHps -= damageAmount;
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
@@ -479,6 +481,13 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         if (healAmount > 0)
         {
+            if (currentHps + healAmount > currentScriptable.GetMaxHps())
+            {
+                healAmount = currentScriptable.GetMaxHps() - currentHps;
+            }
+
+            uiManagement.ShowDirectHitResult(healAmount, true);
+
             healTakenEvt.Invoke(healAmount);
             ResolveEffect(EffectTrigger.Heal);
 
@@ -486,8 +495,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             BattleDiary.instance.AddText(name + " est soigné de " + healAmount + ".");
 
             currentHps += healAmount;
-
-            currentHps = Mathf.Clamp(currentHps, 0, currentScriptable.GetMaxHps());
 
             hpImage.fillAmount = (float)currentHps / (float)currentScriptable.GetMaxHps();
 
@@ -661,10 +668,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
         uiManagement.ShowDiceResults(values, results, total);
     }
 
-    public void DisplayArmor()
-    {
-        uiManagement.ShowArmorValue(currentScriptable.GetArmor());
-    }
     #endregion
 
     #region Animations

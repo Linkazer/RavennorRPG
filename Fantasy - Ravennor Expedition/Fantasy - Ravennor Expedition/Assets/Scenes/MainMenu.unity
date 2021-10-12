@@ -177,7 +177,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1221,6 +1221,10 @@ PrefabInstance:
     - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Name
       value: LevelSelectionButton (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x
@@ -2392,6 +2396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelSelectionButton (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2747,6 +2755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelSelectionButton (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2863,6 +2875,10 @@ PrefabInstance:
     - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Name
       value: LevelSelectionButton (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x
@@ -3020,6 +3036,10 @@ PrefabInstance:
     - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Name
       value: LevelSelectionButton (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x
@@ -3641,6 +3661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelSelectionButton (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3882,6 +3906,10 @@ PrefabInstance:
     - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Name
       value: LevelSelectionButton (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047704595763487365, guid: 718778902c299d447a7e365f95104435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3047704595763487370, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: m_Pivot.x

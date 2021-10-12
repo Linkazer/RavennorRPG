@@ -8,36 +8,27 @@ using TMPro;
 
 public class CharacterUI : MonoBehaviour
 {
-    [Header("Dice Results")]
-    [SerializeField] private Animator diceResultAnimator;
-    [SerializeField] private List<BattleDiceUI> diceResultObjects;
-    [SerializeField] private List<GameObject> diceResultArmorObjects;
-    [SerializeField] private List<TextMeshProUGUI> diceResultTexts;
-    [SerializeField] private TextMeshProUGUI diceResultDamageText;
-
-    [SerializeField] private TextMeshProUGUI armorValue;
+    [SerializeField] private Transform feedbackUiHandler;
+    [SerializeField] private CharacterDiceHitUI dice;
+    [SerializeField] private CharacterDirectHitUI directHit;
 
     public void ShowDiceResults(List<int> values, List<BattleDiceResult> results, int total)
     {
-        for (int i = 0; i < diceResultObjects.Count; i++)
-        {
-            if (i < results.Count)
-            {
-                diceResultObjects[i].ShowDiceResults(values[i], results[i]);
-            }
-            else
-            {
-                diceResultObjects[i].HideDice();
-            }
-        }
-        diceResultDamageText.text = total.ToString();
-
-        diceResultAnimator.SetTrigger("ShowDices");
+        GameObject toDisplay = Instantiate(dice.gameObject, feedbackUiHandler);
+        toDisplay.GetComponent<CharacterDiceHitUI>().ShowDiceResults(values, results, total);
+        StartCoroutine(DisplayObject(toDisplay));
     }
 
-    public void ShowArmorValue(int value)
+    public void ShowDirectHitResult(int amount, bool isHeal)
     {
-        /*armorValue.text = value.ToString();
-        diceResultAnimator.SetTrigger("ShowArmor");*/
+        GameObject toDisplay = Instantiate(directHit.gameObject, feedbackUiHandler);
+        toDisplay.GetComponent<CharacterDirectHitUI>().ShowResult(amount, isHeal);
+        StartCoroutine(DisplayObject(toDisplay));
+    }
+
+    IEnumerator DisplayObject(GameObject toDisplay)
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(toDisplay);
     }
 }

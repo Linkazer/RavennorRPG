@@ -221,6 +221,7 @@ public class PlayerBattleManager : MonoBehaviour
     {
         if (Grid.instance.NodeFromWorldPoint(newPosition).usableNode)
         {
+            ActivatePlayerBattleController(false);
             BattleManager.instance.MoveCharacter(currentCharacter, newPosition, false);
             currentCharacter.movementLeft -= Grid.instance.NodeFromWorldPoint(newPosition).gCost;
         }

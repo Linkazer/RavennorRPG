@@ -9,8 +9,11 @@ public class AffichageSprites : MonoBehaviour
     public int offset = 0;
     [SerializeField]
     private SpriteRenderer originSpr;
+    [SerializeField] private Canvas canvas;
 
     private Material mat;
+
+    private Vector3 lastPosition = Vector3.zero;
 
     private void Start()
     {
@@ -33,5 +36,20 @@ public class AffichageSprites : MonoBehaviour
         {
             spr.sortingOrder = originSpr.sortingOrder + offset;
         }
+
+        if (canvas != null)
+        {
+            canvas.sortingOrder = spr.sortingOrder;
+        }
+    }
+
+    private void OnEnable()
+    {
+        lastPosition = -transform.position;
+    }
+
+    private void OnDisable()
+    {
+        lastPosition = Vector3.zero;
     }
 }
