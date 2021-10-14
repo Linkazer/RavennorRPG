@@ -21,11 +21,11 @@ MonoBehaviour:
   description: "Nor est la membre la plus jeune et la plus joviale de la Confr\xE9rie.
     Toujours accompagn\xE9e de son fid\xE8le Zippo, elle suit Okun o\xF9 qu'il aille
     depuis la mort de son p\xE8re adoptif."
-  healthPoints: 8
+  healthPoints: 6
   maana: 2
   movementSpeed: 45
   accuracy: 1
-  defense: 2
+  defense: 3
   power: 0
   armor: 0
   actionNumber: 0
