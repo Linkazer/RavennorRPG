@@ -31,7 +31,7 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: 0643e10fe5313154f8837331eece7c99, type: 2}
   passifs: []
-  initiative: 0
+  initiative: 1
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 0643e10fe5313154f8837331eece7c99, type: 2}
