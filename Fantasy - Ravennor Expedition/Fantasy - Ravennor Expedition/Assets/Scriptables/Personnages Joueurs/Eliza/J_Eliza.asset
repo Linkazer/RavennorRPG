@@ -22,10 +22,10 @@ MonoBehaviour:
     la destruction de son village, elle fut recueillie par Varanya, la directrice
     de l'Acad\xE9mie."
   healthPoints: 6
-  maana: 3
+  maana: 5
   movementSpeed: 35
   accuracy: 0
-  defense: 3
+  defense: 2
   power: 0
   armor: 0
   actionNumber: 0

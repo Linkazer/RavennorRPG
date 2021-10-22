@@ -23,7 +23,7 @@ MonoBehaviour:
   maana: 0
   movementSpeed: 35
   accuracy: 0
-  defense: 2
+  defense: 1
   power: 1
   armor: 0
   actionNumber: 0

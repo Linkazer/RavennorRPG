@@ -27,7 +27,7 @@ MonoBehaviour:
       maanaSpent: 0
     affliction: 0
     maana: 0
-  nature: 0
+  nature: 1
   duree: 2
   isMalus: 0
   bonusToCancel: []

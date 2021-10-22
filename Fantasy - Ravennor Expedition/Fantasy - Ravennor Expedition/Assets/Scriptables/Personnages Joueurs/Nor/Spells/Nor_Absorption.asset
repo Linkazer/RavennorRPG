@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Nor_Enchainement
+  m_Name: Nor_Absorption
   m_EditorClassIdentifier: 
-  nom: Enchainement
-  icon: {fileID: 21300000, guid: aa7afa16803c0414f9a76e4f4e5b79b9, type: 3}
-  description: "Attaque la cible avec 4 d\xE9s."
+  nom: Absorption
+  icon: {fileID: 21300000, guid: 3c2ccbc9b2ef42241bf6725961f942d3, type: 3}
+  description: "Attaque la cible avec 3 d\xE9s et se soigne du montant de d\xE9g\xE2ts
+    inflig\xE9s."
   overchargedAction: {fileID: 0}
   attackType: 0
   maanaCost: 1
@@ -33,25 +34,15 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 1d77cee709537c24f838952311b51a19, type: 3}
+  caseSprite: {fileID: 21300000, guid: 39d0f935e788ca842925b05407fe4b39, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
-  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 4
+  diceNumber: 3
   damageType: 1
   autoCritical: 0
-  scaleOrigin: 0
-  wantedScaleEffect: {fileID: 0}
-  scalingDices:
-    wantedDice: 0
-    numberOfDice: 0
-    diceByMaanaSpent: 0
-    wantedDamage: 0
-  diceByScale: 0
-  bonusByScale: 0
-  lifeStealPercent: 0
+  lifeStealPercent: 1
