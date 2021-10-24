@@ -60,7 +60,7 @@ public class AiBattleManager : MonoBehaviour
 
                 if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
-                    Debug.Log(currentChara + " move for action");
+                    Debug.Log(currentChara + " move for action : " + nodeToMoveTo.worldPosition.ToString("F4"));
                     BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
                     currentChara.movementLeft -= nodeToMoveTo.gCost;
                 }

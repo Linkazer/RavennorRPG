@@ -110,7 +110,9 @@ public class PlayerBattleManager : MonoBehaviour
     }
 
     public void ShowSpell(CharacterActionScriptable wantedAction)
-    { 
+    {
+        Grid.instance.CreateGrid();
+
         List<Node> canSpellOn = Pathfinding.instance.GetNodesWithMaxDistance(Grid.instance.NodeFromWorldPoint(currentCharacter.transform.position), wantedAction.range, false);
 
         if (wantedAction.hasViewOnTarget)

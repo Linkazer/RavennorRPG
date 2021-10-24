@@ -31,6 +31,7 @@ public class Pathfinding : MonoBehaviour {
 		if (targetNode.walkable) {
 			pathSuccess = SearchPath(startNode, targetNode, isForNextTurn);
 		}
+		Debug.Log(pathSuccess);
 		yield return null;
 		if (pathSuccess) {
 			waypoints = RetracePath(startNode,targetNode, maxDistance);
@@ -144,7 +145,7 @@ public class Pathfinding : MonoBehaviour {
 					}
 				}
 
-				if (newMovementCostToNeighbour <= neighbour.gCost || (isForNextTurn && !openSet.Contains(neighbour)))
+				if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
 				{
 					neighbour.gCost = newMovementCostToNeighbour;
 					if (targetNode != null)

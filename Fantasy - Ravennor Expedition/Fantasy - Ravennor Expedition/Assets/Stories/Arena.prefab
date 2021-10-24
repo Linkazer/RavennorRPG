@@ -190,7 +190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2750557042608311790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3599999, y: -0.07999998, z: 0}
+  m_LocalPosition: {x: 0.7199999, y: -0.07999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -314,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3272336872446394169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: -0.23999998, z: 0}
+  m_LocalPosition: {x: 1.2, y: -0.23999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -690,7 +690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5230764540862996879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: 0.08000001, z: 0}
+  m_LocalPosition: {x: 1.2, y: 0.08000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -18727,7 +18727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6766939721577049004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1999999, y: 0.08000001, z: 0}
+  m_LocalPosition: {x: 0.87999994, y: 0.08000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -18836,33 +18836,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1838e1ba87a484ea2cfd0f18c3aeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelInformation: {fileID: 0}
   cameraPos: {x: 0, y: 0}
+  cameraMaxLeftTop: {x: -1, y: 1}
+  cameraMaxRightBottom: {x: 1, y: -1}
   startDialogue: {fileID: 11400000, guid: 454dbf36748e6554088210af4804d7f0, type: 2}
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
   characterInLevel:
-  - Eliza
-  - Nor
-  - Okun
-  - Shedun
-  - Vanyaenn
-  characterInCamp:
-  - Eliza
-  - Nor
-  - Okun
-  - Shedun
-  - Vanyaenn
+  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
+  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
+  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
+  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
+  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
   endGame: 0
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
-  levelUp: 0
+  backgroundCamp: {fileID: 0}
+  backgroundMusic: {fileID: 0}
+  fireSprite: {fileID: 0}
+  characterInCamp:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: f677d5733de82294a8d7641a97a5f4c8, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
-    - {fileID: 11400000, guid: 8c0d4134c79964646b1a0cc012501bc7, type: 2}
+    - {fileID: 11400000, guid: ac93fd90eabb0864998fd51400c3749c, type: 2}
+    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
+    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
+    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
+    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
+    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     ennemisPos:
     - {fileID: 2600873587656351773}
     - {fileID: 5118355067676682905}
@@ -18871,12 +18876,12 @@ MonoBehaviour:
     - {fileID: 2178066594704809870}
     - {fileID: 5286541599564282707}
     ennemisPositions:
-    - {x: 1.3599999, y: -0.07999998}
-    - {x: 1.1999999, y: 0.08000001}
-    - {x: 1.1999999, y: -0.23999998}
+    - {x: 0.7199999, y: -0.07999998}
+    - {x: 0.87999994, y: 0.08000001}
+    - {x: 0.87999994, y: -0.23999998}
     - {x: 1.04, y: -0.07999998}
-    - {x: 0.88, y: 0.08000001}
-    - {x: 0.88, y: -0.23999998}
+    - {x: 1.2, y: 0.08000001}
+    - {x: 1.2, y: -0.23999998}
     toEnable: []
     toDisable: []
   playerPos:
@@ -18894,8 +18899,6 @@ MonoBehaviour:
   - {x: -1.0400002, y: 0.08000013}
   - {x: -1.0400002, y: -0.23999977}
   openRoomIndexes: 00000000
-  cameraMaxLeftTop: {x: -1, y: 1}
-  cameraMaxRightBottom: {x: 1, y: -1}
   end: {fileID: 4850284551274847440}
 --- !u!114 &4850284551274847440
 MonoBehaviour:
@@ -19820,7 +19823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524586653687084437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1999999, y: -0.23999998, z: 0}
+  m_LocalPosition: {x: 0.87999994, y: -0.23999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -19950,7 +19953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8236438899408734959, guid: eba4546695e57044794f142c5b2d8abd, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8236438899408734959, guid: eba4546695e57044794f142c5b2d8abd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -20036,7 +20039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8236438899408734959, guid: eba4546695e57044794f142c5b2d8abd, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8236438899408734959, guid: eba4546695e57044794f142c5b2d8abd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -20122,7 +20125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8236438899408734959, guid: eba4546695e57044794f142c5b2d8abd, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8236438899408734959, guid: eba4546695e57044794f142c5b2d8abd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

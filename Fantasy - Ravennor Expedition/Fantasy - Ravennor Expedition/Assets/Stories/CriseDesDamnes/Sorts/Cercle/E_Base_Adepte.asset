@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: E_CoupEpee
+  m_Name: E_Base_Adepte
   m_EditorClassIdentifier: 
   nom: "Coup d'\xE9p\xE9e"
   icon: {fileID: 0}

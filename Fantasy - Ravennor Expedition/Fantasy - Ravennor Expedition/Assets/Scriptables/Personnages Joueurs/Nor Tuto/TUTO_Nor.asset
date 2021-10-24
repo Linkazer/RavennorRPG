@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: TUTO_Nor
+  m_EditorClassIdentifier: 
+  nom: Nor
+  icon: {fileID: 21300000, guid: 126d016b5b9f3944293d7cea289974d5, type: 3}
+  portrait: {fileID: 21300000, guid: 126d016b5b9f3944293d7cea289974d5, type: 3}
+  spritePerso: {fileID: 21300000, guid: 126d016b5b9f3944293d7cea289974d5, type: 3}
+  spriteBras: {fileID: 21300000, guid: 3a37f90bd17454d42a876b41e4066f6c, type: 3}
+  brasPosition: -0.01
+  description: "Nor est la membre la plus jeune et la plus joviale de la Confr\xE9rie.
+    Toujours accompagn\xE9e de son fid\xE8le Zippo, elle suit Okun o\xF9 qu'il aille
+    depuis la mort de son p\xE8re adoptif."
+  healthPoints: 8
+  maana: 1
+  movementSpeed: 65
+  accuracy: 1
+  defense: 2
+  power: 0
+  armor: 0
+  actionNumber: 0
+  levelUpTable: {fileID: 0}
+  knownSpells:
+  - {fileID: 11400000, guid: b8f9982ae89ff1742a56180e7d288325, type: 2}
+  - {fileID: 11400000, guid: ebb52f8b1f4375344982e4f04816bf70, type: 2}
+  passifs: []
+  initiative: 13

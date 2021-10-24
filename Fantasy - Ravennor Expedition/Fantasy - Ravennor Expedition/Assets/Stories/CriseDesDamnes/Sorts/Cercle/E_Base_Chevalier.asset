@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Shedun_Base
+  m_Name: E_Base_Chevalier
   m_EditorClassIdentifier: 
-  nom: Shakram
-  icon: {fileID: 21300000, guid: cbbe7c921b30a8d4abbffe4ef972a014, type: 3}
-  description: "Attaque la cible avec 2 d\xE9s."
+  nom: "Coup d'\xE9p\xE9e \xE0 deux mains"
+  icon: {fileID: 0}
+  description: 
   overchargedAction: {fileID: 0}
   attackType: 0
   maanaCost: 0
@@ -25,15 +25,15 @@ MonoBehaviour:
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 45
+  range: 15
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 1
   hasViewOnTarget: 1
-  projectile: {fileID: 21300000, guid: 409b34ee20e40dc4e8f597c7b3cfccec, type: 3}
-  speed: 3
+  projectile: {fileID: 0}
+  speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 0}
+  caseSprite: {fileID: 21300000, guid: 41b857560026c7f47b0e38812e79fdff, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget: []
@@ -41,7 +41,7 @@ MonoBehaviour:
   wantedEffectOnGround: []
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 2
+  diceNumber: 3
   damageType: 1
   autoCritical: 0
   lifeStealPercent: 0

@@ -261,8 +261,6 @@ public class BattleManager : MonoBehaviour
     #region Turn Management
     public void NewCharacterRound(RuntimeBattleCharacter character)
     {
-        Grid.instance.CreateGrid();
-
         currentCharacterTurn = character;
 
         for(int i = 0; i < roundList.Count; i++)
@@ -306,7 +304,7 @@ public class BattleManager : MonoBehaviour
 
         if (character.GetCurrentHps() > 0 && !character.CheckForAffliction(Affliction.Paralysie))
         {
-            Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(character.transform.position), null, false);
+            //Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(character.transform.position), null, false);
 
             if (character.GetTeam() == 0)
             {
@@ -328,6 +326,8 @@ public class BattleManager : MonoBehaviour
             PlayerBattleManager.instance.ActivatePlayerBattleController(false);
             NewCharacterRound(roundList[currentIndexTurn]);
         }
+
+        Grid.instance.CreateGrid();
     }
 
     public void EndTurn()
