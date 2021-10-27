@@ -31,7 +31,7 @@ public class Pathfinding : MonoBehaviour {
 		if (targetNode.walkable) {
 			pathSuccess = SearchPath(startNode, targetNode, isForNextTurn);
 		}
-		Debug.Log(pathSuccess);
+
 		yield return null;
 		if (pathSuccess) {
 			waypoints = RetracePath(startNode,targetNode, maxDistance);
