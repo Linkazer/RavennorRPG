@@ -188,7 +188,12 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < charaTeamOne.Count; i++)
         {
-            if (charaTeamOne[i].GetCurrentHps() > 0)
+            if (charaTeamOne[i].GetCurrentHps() <= 0)
+            {
+                EndBattle(false);
+                return true;
+            }
+            /*if (charaTeamOne[i].GetCurrentHps() > 0)
             {
                 break;
             }
@@ -196,7 +201,7 @@ public class BattleManager : MonoBehaviour
             {
                 EndBattle(false);
                 return true;
-            }
+            }*/
         }
 
         return roomManager.CheckEndTurn();
