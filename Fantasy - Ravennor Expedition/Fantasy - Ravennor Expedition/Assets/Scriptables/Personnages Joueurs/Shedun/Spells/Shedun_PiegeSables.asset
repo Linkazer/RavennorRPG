@@ -21,7 +21,7 @@ MonoBehaviour:
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 1
-  maxCooldown: 2
+  maxCooldown: 1
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0

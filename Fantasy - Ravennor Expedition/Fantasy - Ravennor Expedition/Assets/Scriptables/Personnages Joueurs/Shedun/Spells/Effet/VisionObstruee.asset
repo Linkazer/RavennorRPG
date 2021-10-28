@@ -34,7 +34,7 @@ MonoBehaviour:
     affliction: 0
     maana: 0
   nature: 1
-  duree: 2
+  duree: 1
   isMalus: 1
   bonusToCancel: []
   spriteZone: {fileID: 0}
