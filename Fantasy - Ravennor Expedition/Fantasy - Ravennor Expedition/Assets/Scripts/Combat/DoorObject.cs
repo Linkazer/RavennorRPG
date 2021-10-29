@@ -21,13 +21,13 @@ public class DoorObject : MonoBehaviour
     {
         RuntimeBattleCharacter chara = BattleManager.instance.GetCurrentTurnChara();
 
-        if (chara.CanDoAction())
+        //if (chara.CanDoAction())
         {
             Node n = Grid.instance.NodeFromWorldPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             if (Pathfinding.instance.GetDistance(chara.currentNode, n) < 15)
             {
                 anim.Play("UseObject");
-                chara.UseAction(true);
+                //chara.UseAction(true);
                 foreach (int i in indexs)
                 {
                     BattleManager.instance.OpenRoom(i);

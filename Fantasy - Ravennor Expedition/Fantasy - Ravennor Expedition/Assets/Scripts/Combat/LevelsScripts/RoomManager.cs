@@ -20,7 +20,7 @@ public class RoomManager : MonoBehaviour
     public ParcheminScriptable campDialogue;
     [Header("Global Informations")]
     public List<PersonnageScriptables> characterInLevel = new List<PersonnageScriptables>();
-    public bool endGame;
+    public int numberCharacterDeathLose = 1;
     public GameObject nextLvl;
 
     [Header("Camps")]

@@ -11,6 +11,7 @@ public class CharacterUI : MonoBehaviour
     [SerializeField] private Transform feedbackUiHandler;
     [SerializeField] private CharacterDiceHitUI dice;
     [SerializeField] private CharacterDirectHitUI directHit;
+    [SerializeField] private CharacterEffectResult effectHit;
 
     public void ShowDiceResults(List<int> values, List<BattleDiceResult> results, int total)
     {
@@ -23,6 +24,13 @@ public class CharacterUI : MonoBehaviour
     {
         GameObject toDisplay = Instantiate(directHit.gameObject, feedbackUiHandler);
         toDisplay.GetComponent<CharacterDirectHitUI>().ShowResult(amount, isHeal);
+        StartCoroutine(DisplayObject(toDisplay));
+    }
+
+    public void ShowEffect(Sprite spriteEffect, bool doesAdd)
+    {
+        GameObject toDisplay = Instantiate(effectHit.gameObject, feedbackUiHandler);
+        toDisplay.GetComponent<CharacterEffectResult>().ShowResult(spriteEffect, doesAdd);
         StartCoroutine(DisplayObject(toDisplay));
     }
 

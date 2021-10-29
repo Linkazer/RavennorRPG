@@ -312,7 +312,9 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         if (currentHps > 0)
         {
-            for(int i = 0; i < cooldowns.Count; i++)
+            beginTurnEvt.Invoke();
+
+            for (int i = 0; i < cooldowns.Count; i++)
             {
                 if (cooldowns[i] > 0)
                 {
@@ -334,8 +336,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
 
             UpdateEffects();
-
-            beginTurnEvt.Invoke();
         }
     }
 
@@ -491,7 +491,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             healTakenEvt.Invoke(healAmount);
             ResolveEffect(EffectTrigger.Heal);
 
-            Debug.Log(this + " healed of " + healAmount);
+            //Debug.Log(this + " healed of " + healAmount);
             BattleDiary.instance.AddText(name + " est soigné de " + healAmount + ".");
 
             currentHps += healAmount;
@@ -519,6 +519,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
         {
             AddAffliction(runEffect.effet.affliction);
         }
+
+        uiManagement.ShowEffect(runEffect.effet.spr, true);
     }
 
     public void ApplyEffect(SpellEffect wantedEffect)
@@ -566,6 +568,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void RemoveEffect(int index)
     {
         appliedEffects[index].RemoveEffect();
+
+        uiManagement.ShowEffect(appliedEffects[index].effet.spr, false);
 
         foreach (SpellEffect eff in appliedEffects[index].effet.effects)
         {

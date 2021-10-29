@@ -186,22 +186,18 @@ public class BattleManager : MonoBehaviour
 
     public bool CheckForBattleEnd()
     {
+        int deadCharacters = 0;
         for (int i = 0; i < charaTeamOne.Count; i++)
         {
             if (charaTeamOne[i].GetCurrentHps() <= 0)
             {
-                EndBattle(false);
-                return true;
+                deadCharacters++;
+                if (deadCharacters >= roomManager.numberCharacterDeathLose)
+                {
+                    EndBattle(false);
+                    return true;
+                }
             }
-            /*if (charaTeamOne[i].GetCurrentHps() > 0)
-            {
-                break;
-            }
-            else if (i == charaTeamOne.Count - 1)
-            {
-                EndBattle(false);
-                return true;
-            }*/
         }
 
         return roomManager.CheckEndTurn();
