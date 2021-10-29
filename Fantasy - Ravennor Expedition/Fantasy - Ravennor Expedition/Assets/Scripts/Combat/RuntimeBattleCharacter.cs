@@ -532,9 +532,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
         {
             ResolveEffect(EffectTrigger.BeginTurn);
 
-            if (appliedEffects[i].currentCooldown >= 0)
+            /*if (appliedEffects[i].currentCooldown >= 0)
             {
-
                 appliedEffects[i].currentCooldown--;
                 if (appliedEffects[i].currentCooldown <= 0)
                 {
@@ -542,7 +541,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
                     RemoveEffect(i);
                     i--;
                 }
-            }
+            }*/
         }
     }
 
@@ -566,6 +565,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void RemoveEffect(int index)
     {
+        appliedEffects[index].RemoveEffect();
+
         foreach (SpellEffect eff in appliedEffects[index].effet.effects)
         {
             currentScriptable.StatBonus(-eff.RealValue(), eff.type, eff.dicesBonus, false);
@@ -577,6 +578,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
 
         appliedEffects.RemoveAt(index);
+    }
+
+    public void ResolveEffect(RuntimeSpellEffect effect, EffectTrigger triggerWanted)
+    {
+        BattleManager.instance.ResolveEffect(effect.effet, transform.position, transform.position, triggerWanted, effect.currentStack);
     }
 
     public void ResolveEffect(EffectTrigger triggerWanted)

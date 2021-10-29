@@ -792,7 +792,7 @@ public class BattleManager : MonoBehaviour
             caster
             );
 
-            target.AddEffect(runEffet);
+            runEffet.ApplyEffect(caster, target);
 
             foreach (SpellEffectScriptables eff in wantedEffect.bonusToCancel)
             {

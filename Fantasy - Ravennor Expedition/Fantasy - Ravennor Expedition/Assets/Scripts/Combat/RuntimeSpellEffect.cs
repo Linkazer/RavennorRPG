@@ -9,10 +9,39 @@ public class RuntimeSpellEffect
 
     public SpellEffectCommon effet;
 
-    public RuntimeSpellEffect(SpellEffectCommon common, int maanaSpent, int startCooldown, RuntimeBattleCharacter caster)
+    private RuntimeBattleCharacter caster;
+    private RuntimeBattleCharacter target;
+
+    public RuntimeSpellEffect(SpellEffectCommon common, int maanaSpent, int startCooldown, RuntimeBattleCharacter nCaster)
     {
-        effet = new SpellEffectCommon(common, maanaSpent, caster);
+        effet = new SpellEffectCommon(common, maanaSpent, nCaster);
 
         currentCooldown = startCooldown;
+    }
+
+    public void ApplyEffect(RuntimeBattleCharacter nCaster, RuntimeBattleCharacter nTarget)
+    {
+        caster = nCaster;
+        target = nTarget;
+
+        target.AddEffect(this);
+
+        caster.beginTurnEvt.AddListener(UpdateCooldown);
+    }
+
+    public void RemoveEffect()
+    {
+        caster.beginTurnEvt.RemoveListener(UpdateCooldown);
+    }
+
+    public void UpdateCooldown()
+    {
+        currentCooldown--;
+        if(currentCooldown <= 0)
+        {
+            RemoveEffect();
+            target.ResolveEffect(this, EffectTrigger.End);
+            target.RemoveEffect(effet);
+        }
     }
 }
