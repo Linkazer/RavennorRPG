@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class Room
@@ -11,6 +13,5 @@ public class Room
     //[HideInInspector]
     public List<Vector2> ennemisPositions;
 
-    public List<GameObject> toEnable;
-    public List<GameObject> toDisable;
+    public UnityEvent toPlayOnEnable;
 }

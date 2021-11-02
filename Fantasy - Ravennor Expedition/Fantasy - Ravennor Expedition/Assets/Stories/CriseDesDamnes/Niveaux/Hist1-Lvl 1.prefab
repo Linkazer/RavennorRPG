@@ -37543,6 +37543,7 @@ GameObject:
   - component: {fileID: 7560241282882709334}
   - component: {fileID: 2336668606332924307}
   - component: {fileID: 1440997080974238530}
+  - component: {fileID: 4978483941551809149}
   m_Layer: 0
   m_Name: Hist1-Lvl 1
   m_TagString: Untagged
@@ -37596,7 +37597,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
   - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
   - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
-  endGame: 0
+  numberCharacterDeathLose: 1
   nextLvl: {fileID: 7560241282882709333, guid: 0425f7adc69d1364b8acfc9be69aedd5, type: 3}
   backgroundCamp: {fileID: 21300000, guid: 6b9d5b32001d0d94f834de0ea045d175, type: 3}
   backgroundMusic: {fileID: 0}
@@ -37617,8 +37618,9 @@ MonoBehaviour:
     ennemisPositions:
     - {x: 0.08, y: -0.08}
     - {x: 0.08, y: 0.24}
-    toEnable: []
-    toDisable: []
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls: []
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
@@ -37634,10 +37636,45 @@ MonoBehaviour:
     - {x: 1.1999999, y: 0.08000004}
     - {x: 1.3599999, y: 0.23999998}
     - {x: 0.5599999, y: 0.88}
-    toEnable: []
-    toDisable:
-    - {fileID: 8860016034915357336}
-    - {fileID: 1678182600331544427}
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8860016034915357336}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1678182600331544427}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4978483941551809149}
+          m_TargetAssemblyTypeName: RoomAction_PlayDialogue, Assembly-CSharp
+          m_MethodName: PlayAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - ennemis:
     - {fileID: 11400000, guid: ac93fd90eabb0864998fd51400c3749c, type: 2}
     - {fileID: 11400000, guid: ac93fd90eabb0864998fd51400c3749c, type: 2}
@@ -37647,10 +37684,33 @@ MonoBehaviour:
     ennemisPositions:
     - {x: 0.3999999, y: -1.04}
     - {x: 0.7199999, y: -1.04}
-    toEnable: []
-    toDisable:
-    - {fileID: 5709920854104646800}
-    - {fileID: 1287699070478792294}
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5709920854104646800}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1287699070478792294}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
@@ -37666,9 +37726,21 @@ MonoBehaviour:
     - {x: 1.52, y: -0.39999995}
     - {x: 1.8399999, y: -0.55999994}
     - {x: 1.9999999, y: -0.7199999}
-    toEnable: []
-    toDisable:
-    - {fileID: 6024233396036431588}
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6024233396036431588}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
@@ -37699,6 +37771,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomManager: {fileID: 2336668606332924307}
   ennemiesToDown: 12
+--- !u!114 &4978483941551809149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560241282882709333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212d0a7f5368cbb449844973ab429d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: {fileID: 11400000, guid: 3488664cd8ba9bd40ad7a53a1e7f3e9d, type: 2}
 --- !u!1 &7657741127237420290
 GameObject:
   m_ObjectHideFlags: 0

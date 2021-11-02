@@ -121,15 +121,7 @@ public class RoomManager : MonoBehaviour
         {
             Room toActivate = rooms[index];
 
-            for (int i = 0; i < toActivate.toEnable.Count; i++)
-            {
-                toActivate.toEnable[i].SetActive(true);
-            }
-
-            for (int i = 0; i < toActivate.toDisable.Count; i++)
-            {
-                toActivate.toDisable[i].SetActive(false);
-            }
+            toActivate.toPlayOnEnable?.Invoke();
 
             for (int i = 0; i < toActivate.ennemis.Count; i++)
             {

@@ -36,8 +36,8 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 930b03cc53b3bfe4d88311dbb3a8aa05, type: 3}
-  caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
+  caseSprite: {fileID: 21300000, guid: af51ce6d9e87a2743a58c737d47c4c7f, type: 3}
+  caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []

@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5319001834017171859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ RectTransform:
   - {fileID: 1883233914511150562}
   - {fileID: 8659229919178536916}
   m_Father: {fileID: 7560241282882709334}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5211,16 +5211,16 @@ RectTransform:
   m_GameObject: {fileID: 5476222577120945694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2134326681239581865}
   - {fileID: 5435338554740358240}
-  m_Father: {fileID: 7560241282882709334}
-  m_RootOrder: 10
+  m_Father: {fileID: 380486405371139288}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.32000002, y: 0.08}
+  m_AnchoredPosition: {x: -32, y: 31.999998}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1967196375589438351
@@ -9257,7 +9257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &380486405371139288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9271,8 +9271,9 @@ RectTransform:
   m_Children:
   - {fileID: 3638809009031516729}
   - {fileID: 2955991377308782457}
+  - {fileID: 7017767711012333709}
   m_Father: {fileID: 7560241282882709334}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9524,7 +9525,6 @@ Transform:
   - {fileID: 5921682153653438329}
   - {fileID: 7233151050056996882}
   - {fileID: 1197480195542245900}
-  - {fileID: 7017767711012333709}
   - {fileID: 380486405371139288}
   - {fileID: 5319001834017171859}
   m_Father: {fileID: 0}
@@ -9568,6 +9568,7 @@ MonoBehaviour:
     ennemisPositions: []
     toEnable: []
     toDisable: []
+    toPlayOnEnable: []
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     ennemisPos:
@@ -9576,6 +9577,9 @@ MonoBehaviour:
     - {x: 0.56, y: 0.08}
     toEnable: []
     toDisable: []
+    toPlayOnEnable:
+    - m_PersistentCalls:
+        m_Calls: []
   playerPos:
   - {fileID: 8483555795714411979}
   playerStartPositions:

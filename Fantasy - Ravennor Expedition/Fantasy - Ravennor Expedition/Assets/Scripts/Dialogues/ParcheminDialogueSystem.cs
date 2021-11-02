@@ -61,6 +61,7 @@ public class ParcheminDialogueSystem : MonoBehaviour
             }
             else if(currentStory.goToCamp)
             {
+                Debug.Log("Pass");
                 BattleManager.instance.SetWinPanel();
             }
         }

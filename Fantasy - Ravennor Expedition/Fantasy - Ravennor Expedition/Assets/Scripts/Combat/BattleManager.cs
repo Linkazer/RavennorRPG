@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
     private int currentIndexTurn;
 
     [SerializeField]
-    private List<PersonnageScriptables> playerTeam = new List<PersonnageScriptables>();//, teamTwo = new List<PersonnageScriptables>();
+    private List<PersonnageScriptables> playerTeam = new List<PersonnageScriptables>();
 
     [SerializeField]
     private List<RuntimeBattleCharacter> usableRuntimeCharacter = new List<RuntimeBattleCharacter>();
