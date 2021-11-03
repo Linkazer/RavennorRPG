@@ -138,6 +138,12 @@ public class BattleManager : MonoBehaviour
         NewCharacterRound(roundList[0]);
     }
 
+    public void SpawnNewAllyCharacter(PersonnageScriptables newPerso, Vector2 position)
+    {
+        playerTeam.Add(newPerso);
+        SpawnNewCharacter(newPerso, position);
+    }
+
     public void SpawnNewCharacter(PersonnageScriptables newPerso, Vector2 position)
     {
         SetCharacter(newPerso, position);
