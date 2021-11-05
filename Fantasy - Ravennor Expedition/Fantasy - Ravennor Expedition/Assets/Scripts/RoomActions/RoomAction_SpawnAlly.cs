@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class RoomAction_SpawnAlly : MonoBehaviour, IRoomAction
 {
-    [SerializeField] private PersonnageScriptables character;
-    [SerializeField] private Vector2 position;
+    [SerializeField] private List<PersonnageScriptables> characters;
+    [SerializeField] private List<Transform> spawnPoints;
     public void PlayAction()
     {
-        BattleManager.instance.SpawnNewAllyCharacter(character, position);
+        for(int i = 0; i < characters.Count; i++)
+        {
+            BattleManager.instance.SpawnNewAllyCharacter(characters[i], spawnPoints[i].position);
+        }
+
     }
 }

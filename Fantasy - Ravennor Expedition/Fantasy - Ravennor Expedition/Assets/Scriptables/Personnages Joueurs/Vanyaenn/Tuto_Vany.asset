@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
+  m_Name: Tuto_Vany
+  m_EditorClassIdentifier: 
+  nom: Vanyaenn
+  icon: {fileID: 21300000, guid: 053d40d8910359241b698770897e1ef0, type: 3}
+  portrait: {fileID: 21300000, guid: 053d40d8910359241b698770897e1ef0, type: 3}
+  spritePerso: {fileID: 21300000, guid: 053d40d8910359241b698770897e1ef0, type: 3}
+  spriteBras: {fileID: 21300000, guid: 804ed668058c9ed40a72c4ba006e8a15, type: 3}
+  brasPosition: 0.01
+  description: "Vanyaenn est une dryade originaire du M\xE9rendil. Elle est souvent
+    consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
+    bon sens."
+  healthPoints: 6
+  maana: 5
+  movementSpeed: 35
+  accuracy: 0
+  defense: 1
+  power: 0
+  armor: 0
+  actionNumber: 0
+  levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}
+  knownSpells:
+  - {fileID: 11400000, guid: a2419c1d202274242ba834e6c0d656e8, type: 2}
+  - {fileID: 11400000, guid: d395e164aa7d0f8498c29acbe5fd4562, type: 2}
+  passifs: []
+  initiative: 10

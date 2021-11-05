@@ -30,5 +30,5 @@ MonoBehaviour:
   reponses:
   - text: Continuer ...
     nextStory: {fileID: 0}
-  battleBegin: 1
+  battleBegin: 0
   goToCamp: 0
