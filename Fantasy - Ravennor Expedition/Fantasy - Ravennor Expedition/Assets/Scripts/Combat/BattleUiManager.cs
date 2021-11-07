@@ -261,10 +261,10 @@ public class BattleUiManager : MonoBehaviour
         parcheminStory.ShowStory(newStory);
     }
 
-    public void EndDialogue()
+   /* public void EndDialogue()
     {
         parcheminStory.gameObject.SetActive(false);
-    }
+    }*/
 
     public void ShowSpellInformations(int index)
     {

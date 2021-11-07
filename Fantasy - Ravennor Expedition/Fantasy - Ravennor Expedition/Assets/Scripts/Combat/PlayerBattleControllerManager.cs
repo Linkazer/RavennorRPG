@@ -123,6 +123,10 @@ public class PlayerBattleControllerManager : MonoBehaviour
 
     public void SetPlayerTurn(bool state)
     {
+        if(!enabled)
+        {
+            enabled = true;
+        }
         BattleUiManager.instance.SetPlayerUI(state);
         isPlayerTurn = state;
     }

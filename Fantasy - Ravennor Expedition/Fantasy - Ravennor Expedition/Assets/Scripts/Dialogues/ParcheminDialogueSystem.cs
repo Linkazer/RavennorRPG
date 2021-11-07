@@ -9,37 +9,26 @@ public class ParcheminDialogueSystem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI storyText;
-    [SerializeField]
-    private List<TextMeshProUGUI> reponsesTexts;
 
     private ParcheminScriptable currentStory;
 
     public UnityEvent EndDialogueEvent = new UnityEvent();
 
+    [SerializeField] private Animator bookAnimator;
+
     public void ShowStory(ParcheminScriptable newStory)
     {
+        bookAnimator.SetTrigger("Open");
         currentStory = newStory;
 
         storyText.text = newStory.storyText;
-
-        for(int i = 0; i < reponsesTexts.Count; i++)
-        {
-            if(i<newStory.reponses.Count)
-            {
-                reponsesTexts[i].gameObject.SetActive(true);
-                reponsesTexts[i].text = newStory.reponses[i].text;
-            }
-            else
-            {
-                reponsesTexts[i].gameObject.SetActive(false);
-            }
-        }
 
         gameObject.SetActive(true);
     }
 
     public void GetResponse(int index)
     {
+        bookAnimator.ResetTrigger("Open");
         if (currentStory.reponses[index].nextStory != null)
         {
             ShowStory(currentStory.reponses[index].nextStory);
@@ -56,7 +45,6 @@ public class ParcheminDialogueSystem : MonoBehaviour
         {
             if (currentStory.battleBegin)
             {
-                BattleUiManager.instance.EndDialogue();
                 BattleManager.instance.BattleBegin();
             }
             else if(currentStory.goToCamp)
@@ -67,6 +55,12 @@ public class ParcheminDialogueSystem : MonoBehaviour
         }
 
         EndDialogueEvent.Invoke();
+        bookAnimator.SetTrigger("Close");
+    }
+
+    public void EndBookAnimation()
+    {
+        bookAnimator.ResetTrigger("Close");
         gameObject.SetActive(false);
     }
 }

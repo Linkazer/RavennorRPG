@@ -1121,7 +1121,7 @@ public class BattleManager : MonoBehaviour
         {
             toReturn = new Vector2(toReturn.x, 1);
         }
-        return position;
+        return toReturn;
     }
 
     public void OpenRoom(int index)
