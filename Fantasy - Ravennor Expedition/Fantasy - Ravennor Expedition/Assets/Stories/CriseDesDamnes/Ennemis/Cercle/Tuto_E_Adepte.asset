@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: Tuto_E_Adepte
+  m_EditorClassIdentifier: 
+  nom: Adepte du Cercle Noir
+  icon: {fileID: 21300000, guid: c9d51816e7502754986d5b2164824898, type: 3}
+  portrait: {fileID: 21300000, guid: c9d51816e7502754986d5b2164824898, type: 3}
+  spritePerso: {fileID: 21300000, guid: c9d51816e7502754986d5b2164824898, type: 3}
+  spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
+  brasPosition: 0
+  description: 
+  healthPoints: 3
+  maana: 0
+  movementSpeed: 25
+  accuracy: 0
+  defense: 1
+  power: 0
+  armor: 0
+  actionNumber: 0
+  levelUpTable: {fileID: 0}
+  knownSpells:
+  - {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+  passifs: []
+  initiative: 2
+  planForOtherTurns: 1
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+    conditions:
+    - conditionWanted: 0
+      conditionValue: 15
+      conditionType: 2
+    maxValue: 1
+    calculs:
+    - calculType: 1
+      abscissaValue: 3
+      maxValue: 100
+      constant: 100
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+    conditions:
+    - conditionWanted: 0
+      conditionValue: 16
+      conditionType: 1
+    maxValue: 1
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      maxValue: 150
+      constant: 150
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
