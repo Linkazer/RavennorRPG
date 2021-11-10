@@ -82,8 +82,6 @@ public class CameraManager : MonoBehaviour
             newPos = new Vector2(newPos.x, transform.position.y);
         }
         transform.position = new Vector3(newPos.x, newPos.y, -10);
-
-        Debug.Log(BattleManager.instance.PossibleCameraDirection(newPos));
     }
 
     public void OnNewTurn()
