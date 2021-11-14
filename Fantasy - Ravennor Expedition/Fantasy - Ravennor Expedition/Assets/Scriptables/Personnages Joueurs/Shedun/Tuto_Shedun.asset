@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c44d218413dd84d8efa144515f19ea, type: 3}
   m_Name: Tuto_Shedun
   m_EditorClassIdentifier: 
-  nom: Shedun
+  nom: She'Dunshanas
   icon: {fileID: 21300000, guid: 7add993a9428ef14f849a8a241c574d5, type: 3}
   portrait: {fileID: 21300000, guid: 7add993a9428ef14f849a8a241c574d5, type: 3}
   spritePerso: {fileID: 21300000, guid: 7add993a9428ef14f849a8a241c574d5, type: 3}

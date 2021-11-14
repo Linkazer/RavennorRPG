@@ -10231,9 +10231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelInformation: {fileID: 0}
-  cameraPos: {x: -2.32, y: -1.36}
-  cameraMaxLeftTop: {x: -2.5, y: -0.5}
-  cameraMaxRightBottom: {x: 0, y: -2}
+  cameraPos: {x: 0, y: 0}
+  cameraMaxLeftTop: {x: -3.5, y: 3}
+  cameraMaxRightBottom: {x: 3.5, y: -3}
   startDialogue: {fileID: 11400000, guid: 454dbf36748e6554088210af4804d7f0, type: 2}
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
@@ -10243,7 +10243,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
   - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
   - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
-  endGame: 0
+  numberCharacterDeathLose: 1
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
   backgroundCamp: {fileID: 21300000, guid: 6b9d5b32001d0d94f834de0ea045d175, type: 3}
   backgroundMusic: {fileID: 0}
@@ -10270,8 +10270,9 @@ MonoBehaviour:
     - {x: -2, y: 0.07999998}
     - {x: -1.84, y: -0.08000001}
     - {x: -1.6800001, y: 0.39999998}
-    toEnable: []
-    toDisable: []
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls: []
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
@@ -10293,8 +10294,9 @@ MonoBehaviour:
     - {x: -0.5600001, y: -0.71999997}
     - {x: -0.8800001, y: -0.88}
     - {x: -1.2, y: -0.72}
-    toEnable: []
-    toDisable: []
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls: []
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
@@ -10313,8 +10315,9 @@ MonoBehaviour:
     - {x: 0.7199999, y: 0.55999994}
     - {x: 0.8799999, y: -0.08000004}
     - {x: 0.3999999, y: -0.40000004}
-    toEnable: []
-    toDisable: []
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls: []
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
@@ -10333,8 +10336,9 @@ MonoBehaviour:
     - {x: -0.0800001, y: -1.52}
     - {x: 0.71999985, y: -1.52}
     - {x: 0.39999986, y: -1.8399999}
-    toEnable: []
-    toDisable: []
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls: []
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
