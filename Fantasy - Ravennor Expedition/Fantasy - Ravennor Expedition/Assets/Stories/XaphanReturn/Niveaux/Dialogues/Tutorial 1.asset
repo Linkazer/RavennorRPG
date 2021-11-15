@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: 
   reponses: []
-  battleBegin: 0
+  battleBegin: 1
   goToCamp: 0
