@@ -19,7 +19,7 @@ MonoBehaviour:
   spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
   brasPosition: 0
   description: 
-  healthPoints: 1
+  healthPoints: 3
   maana: 0
   movementSpeed: 35
   accuracy: 0
@@ -31,7 +31,8 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: 656afe7a67115354f9e720053392066b, type: 2}
   - {fileID: 11400000, guid: c0f4d4ed22fcfb84cb0ed610ebdcc8eb, type: 2}
-  passifs: []
+  passifs:
+  - {fileID: 11400000, guid: dedf2591794e65c498144710da283638, type: 2}
   initiative: 0
   planForOtherTurns: 1
   comportement:

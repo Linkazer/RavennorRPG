@@ -70,6 +70,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     private bool hasOpportunity = true;
 
+    private bool isAlive = true;
+
     private void OnMouseEnter()
     {
         highlightEvt.Invoke();
@@ -90,6 +92,9 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         return currentHps;
     }
+
+    public bool IsAlive => isAlive;
+
     public int GetCurrentMaana()
     {
         return currentMaana;
@@ -451,10 +456,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 }
             }
 
-
-            damageTakenEvt.Invoke(damageAmount);
-            ResolveEffect(EffectTrigger.DamageTaken);
-
             uiManagement.ShowDirectHitResult(damageAmount, false);
 
             BattleDiary.instance.AddText(name + " a pris " + damageText + " points de dégâts.");
@@ -466,10 +467,21 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 BattleUiManager.instance.SetCurrentHps(currentHps);
             }
 
+            damageTakenEvt.Invoke(damageAmount);
+            ResolveEffect(EffectTrigger.DamageTaken);
+
+            Debug.Log(currentHps);
+
             if (currentHps <= 0)
             {
+                int toReturn = damageAmount + currentHps;
+                currentHps = 0;
                 BattleManager.instance.KillCharacter(this);
-                return damageAmount + currentHps;
+                if(currentHps <= 0)
+                {
+                    isAlive = false;
+                }
+                return toReturn;
             }
             return damageAmount;
         }

@@ -24,7 +24,7 @@ public class Node : IHeapItem<Node> {
 	private List<RuntimeSpellEffect> effectsOnNode = new List<RuntimeSpellEffect>();
 	private List<RuntimeBattleCharacter> casterList = new List<RuntimeBattleCharacter>();
 
-	public bool HasCharacterOn => chara != null && chara.GetCurrentHps() > 0;
+	public bool HasCharacterOn => chara != null && chara.IsAlive;
 
 	public Node(bool _walkable, bool _blockVision, RuntimeBattleCharacter newChara, Vector3 _worldPos, int _gridX, int _gridY) {
 		walkable = _walkable;

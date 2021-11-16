@@ -176,17 +176,20 @@ public class BattleManager : MonoBehaviour
 
     public void KillCharacter(RuntimeBattleCharacter toKill)
     {
-        toKill.deathEvt.Invoke();
         toKill.ResolveEffect(EffectTrigger.Die);
 
-        diary.AddText(toKill.name + " succombe.");
-
-        toKill.SetAnimation("DeathAnim");
-        toKill.currentNode.chara = null;
-
-        if(currentCharacterTurn == toKill && toKill.GetTeam()==0)
+        if (toKill.GetCurrentHps() <= 0)
         {
-            EndTurn();
+            toKill.deathEvt.Invoke();
+            diary.AddText(toKill.name + " succombe.");
+
+            toKill.SetAnimation("DeathAnim");
+            toKill.currentNode.chara = null;
+
+            if (currentCharacterTurn == toKill && toKill.GetTeam() == 0)
+            {
+                EndTurn();
+            }
         }
     }
 
