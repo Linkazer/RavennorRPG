@@ -11,6 +11,8 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private GameObject levelMenu;
     [SerializeField] private TextMeshProUGUI levelName;
     [SerializeField] private TextMeshProUGUI levelDescription;
+    [SerializeField] private TextMeshProUGUI levelWinCondition;
+    [SerializeField] private TextMeshProUGUI levelLoseCondition;
     [SerializeField] private List<LevelCharacterButton> characterButtons;
     [SerializeField] private GameObject levelSelectedDisplay;
     [SerializeField] private List<LevelSelectionHandler> selectableLevelButton;
@@ -95,6 +97,8 @@ public class MainMenuUIManager : MonoBehaviour
     {
         levelName.text = chosenLevel.nom;
         levelDescription.text = chosenLevel.description;
+        levelWinCondition.text = chosenLevel.winCondition;
+        levelLoseCondition.text = chosenLevel.looseCondition;
 
         persos = chosenLevel.charactersInLevel;
 

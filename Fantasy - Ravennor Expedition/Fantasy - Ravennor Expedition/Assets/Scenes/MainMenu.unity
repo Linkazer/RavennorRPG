@@ -244,6 +244,8 @@ MonoBehaviour:
   levelMenu: {fileID: 6474629467103688927}
   levelName: {fileID: 5924665072378226315}
   levelDescription: {fileID: 1799246869847080923}
+  levelWinCondition: {fileID: 988644007}
+  levelLoseCondition: {fileID: 785411444}
   characterButtons:
   - {fileID: 5145234180373435398}
   - {fileID: 2023031119}
@@ -543,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be64b6f8b1c9ba340ade2fe5a5d3daa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cheatData: {fileID: 11400000, guid: 1a1505f67406cc34aa046aa788d48c6e, type: 2}
+  cheatData: {fileID: 11400000, guid: 2f42e8c4399982b4e8def682290e7dd7, type: 2}
   firstLevel: Hist1_Lvl0
 --- !u!1 &378879192
 GameObject:
@@ -812,7 +814,7 @@ PrefabInstance:
     - target: {fileID: 5011411927088240114, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: level
       value: 
-      objectReference: {fileID: 11400000, guid: 1fd0ec3434a36fd43b8da2412a100337, type: 2}
+      objectReference: {fileID: 11400000, guid: 428a76e5d49acd44dbf7858b471757ae, type: 2}
     - target: {fileID: 5011411927088240114, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: manager
       value: 
@@ -3513,7 +3515,7 @@ PrefabInstance:
     - target: {fileID: 5011411927088240114, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: level
       value: 
-      objectReference: {fileID: 11400000, guid: b26b1ed07220e994a8ce438985ca1c5b, type: 2}
+      objectReference: {fileID: 11400000, guid: fa8f2066f56973e40ba9b8b0db06784a, type: 2}
     - target: {fileID: 5011411927088240114, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: manager
       value: 
@@ -4258,7 +4260,7 @@ PrefabInstance:
     - target: {fileID: 5011411927088240114, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: level
       value: 
-      objectReference: {fileID: 11400000, guid: b538f9022f4503d4686168126a117e5a, type: 2}
+      objectReference: {fileID: 11400000, guid: 3744d8f9b85b2544facefa36726e1cfd, type: 2}
     - target: {fileID: 5011411927088240114, guid: 718778902c299d447a7e365f95104435, type: 3}
       propertyPath: manager
       value: 

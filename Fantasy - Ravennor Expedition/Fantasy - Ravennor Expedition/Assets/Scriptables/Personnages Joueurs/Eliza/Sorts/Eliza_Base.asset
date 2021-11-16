@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Eliza_Base
   m_EditorClassIdentifier: 
-  nom: "\xC9p\xE9e elfique"
-  icon: {fileID: 21300000, guid: 1084e355e5f7b014980a7deb0864dbff, type: 3}
+  nom: "Flam\xE8che"
+  icon: {fileID: 21300000, guid: 4caeb65da49fb594aa7d56bb54471656, type: 3}
   description: "Attaque la cible avec 2 d\xE9s."
   overchargedAction: {fileID: 0}
   attackType: 1
@@ -25,12 +25,9 @@ MonoBehaviour:
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 10
+  range: 25
   activeZoneCases:
   - {x: 0, y: 0}
-  - {x: 0, y: 1}
-  - {x: -1, y: 1}
-  - {x: 1, y: 1}
   doesFaceCaster: 1
   hasViewOnTarget: 1
   projectile: {fileID: 0}
@@ -44,7 +41,7 @@ MonoBehaviour:
   wantedEffectOnGround: []
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 1
+  diceNumber: 2
   damageType: 1
   autoCritical: 0
   lifeStealPercent: 0

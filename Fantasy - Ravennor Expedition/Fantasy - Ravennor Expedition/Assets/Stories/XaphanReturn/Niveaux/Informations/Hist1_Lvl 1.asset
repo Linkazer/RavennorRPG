@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
+  m_Name: Hist1_Lvl 1
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 7560241282882709333, guid: 22c1dbf7376210c43a54db27be0cdd7a, type: 3}
+  ID: Hist1_Lvl 1
+  nom: Tutoriel
+  winCondition: Sortir du dortoir.
+  looseCondition: "L'un des membres de la Confr\xE9rie tombe inconcient."
+  description: Ceci est un test pour le tutoriel.
+  charactersInLevel:
+  - {fileID: 11400000, guid: 428bd89f08ae5e94eafaaa03f08b9189, type: 2}
+  - {fileID: 11400000, guid: 6119a60e28d32e94aa1bda4248b0f79d, type: 2}
+  - {fileID: 11400000, guid: c24aa01cdfe3c3243ad38fc21f864abd, type: 2}
+  - {fileID: 11400000, guid: 810742d3813224e4981df9e3fb940d27, type: 2}
+  - {fileID: 11400000, guid: e3c49afca2f0dea4b81e9b29f11ab0fe, type: 2}

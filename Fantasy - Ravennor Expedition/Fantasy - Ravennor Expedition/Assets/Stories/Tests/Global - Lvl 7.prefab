@@ -10368,7 +10368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomManager: {fileID: 2336668606332924307}
-  ennemiesToDown: 19
+  ennemiesToDown: 20
 --- !u!1 &7672749282392211552
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eliza_Erruption
   m_EditorClassIdentifier: 
   nom: Erruption
-  icon: {fileID: 21300000, guid: 564a693cb30d7134c9e8f1d0f709c822, type: 3}
+  icon: {fileID: 21300000, guid: c88c25fa886ab4548af9fdb276c5e407, type: 3}
   description: "Attaque les cibles dans la zone avec 2 d\xE9s."
   overchargedAction: {fileID: 0}
   attackType: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 4eb1d2faffb93fa47b0ff7222aedc7bf, type: 3}
+  caseSprite: {fileID: 21300000, guid: a86576e9bb8a62346ac59ede435ebd72, type: 3}
   caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget: []
