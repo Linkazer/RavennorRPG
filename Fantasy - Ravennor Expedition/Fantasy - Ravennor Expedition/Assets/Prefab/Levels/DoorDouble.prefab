@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexs: 01000000
+  usedPositions:
+  - {x: 0, y: 0}
+  - {x: 0, y: 1}
   anim: {fileID: 8147728260275224238}
 --- !u!95 &8147728260275224238
 Animator:

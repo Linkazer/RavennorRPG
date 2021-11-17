@@ -21,7 +21,7 @@ MonoBehaviour:
   maxCooldown: 0
   maxUtilisation: -1
   incantationTime: 1
-  isWeaponBased: 1
+  isWeaponBased: 0
   target: 1
   castTarget: 1
   castOnSelf: 0

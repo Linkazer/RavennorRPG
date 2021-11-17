@@ -34062,7 +34062,7 @@ PrefabInstance:
     - target: {fileID: 2245448136093751646, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: nextBattle
       value: 
-      objectReference: {fileID: 7560241282882709333, guid: 74b6e7edf45ddca49bcbb6dbe0d92cc2, type: 3}
+      objectReference: {fileID: 7560241282882709333, guid: dd457687e6ad1c0449320b883e87adb1, type: 3}
     - target: {fileID: 2245448136093751647, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: m_RootOrder
       value: 1

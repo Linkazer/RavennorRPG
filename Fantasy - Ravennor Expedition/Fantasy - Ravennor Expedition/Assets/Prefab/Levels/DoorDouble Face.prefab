@@ -126,6 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexs: 01000000
+  usedPositions:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
   anim: {fileID: 8147728260275224238}
 --- !u!95 &8147728260275224238
 Animator:
@@ -202,3 +205,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 0, g: 0, b: 0, a: 1}
   outputColor: {r: 1, g: 1, b: 1, a: 1}
+  renderer: {fileID: 0}

@@ -7,30 +7,39 @@ public class DoorObject : MonoBehaviour
     [SerializeField]
     private List<int> indexs;
 
-    private Node currentNode;
+    [SerializeField] private List<Vector2Int> usedPositions;
+
+    private List<Node> currentNode = new List<Node>();
 
     [SerializeField]
     private Animator anim;
 
     private void Start()
     {
-        currentNode = Grid.instance.NodeFromWorldPoint(transform.position);
+        for(int i = 0; i < usedPositions.Count; i++)
+        {
+            Vector3 newPos = new Vector2(0, 0.08f) + new Vector2(0.16f, 0.16f) * usedPositions[i];
+            Debug.Log(newPos.ToString("F4"));
+            Debug.Log((transform.position + newPos).ToString("F4"));
+            currentNode.Add(Grid.instance.NodeFromWorldPoint(transform.position + newPos));
+        }
     }
 
     private void OnMouseDown()
     {
         RuntimeBattleCharacter chara = BattleManager.instance.GetCurrentTurnChara();
 
-        //if (chara.CanDoAction())
+        for(int i = 0; i < currentNode.Count; i++)
         {
-            Node n = Grid.instance.NodeFromWorldPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            if (Pathfinding.instance.GetDistance(chara.currentNode, n) < 15)
+            Debug.Log(chara.currentNode.worldPosition.ToString("F4"));
+            Debug.Log(currentNode[i].worldPosition.ToString("F4"));
+            if (Pathfinding.instance.GetDistance(chara.currentNode, currentNode[i]) < 15)
             {
                 anim.Play("UseObject");
                 //chara.UseAction(true);
-                foreach (int i in indexs)
+                foreach (int r in indexs)
                 {
-                    BattleManager.instance.OpenRoom(i);
+                    BattleManager.instance.OpenRoom(r);
                 }
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 PlayerBattleManager.instance.ActivatePlayerBattleController(false);
