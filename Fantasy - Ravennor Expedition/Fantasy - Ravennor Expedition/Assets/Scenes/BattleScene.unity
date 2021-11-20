@@ -420,7 +420,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -17637,25 +17637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
---- !u!1 &922993180 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2245448136093751649, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
-  m_PrefabInstance: {fileID: 1792548750}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &922993181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922993180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be64b6f8b1c9ba340ade2fe5a5d3daa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cheatData: {fileID: 11400000, guid: 1a1505f67406cc34aa046aa788d48c6e, type: 2}
-  firstLevel: Hist1_Lvl0
 --- !u!1 &932134693
 GameObject:
   m_ObjectHideFlags: 0
@@ -34059,10 +34040,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2245448136093751646, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
-      propertyPath: nextBattle
-      value: 
-      objectReference: {fileID: 7560241282882709333, guid: dd457687e6ad1c0449320b883e87adb1, type: 3}
     - target: {fileID: 2245448136093751647, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -37760,10 +37737,7 @@ MonoBehaviour:
   passiveCheater: {fileID: 0}
   audioSource: {fileID: 15417351}
   diceClip:
-  - {fileID: 8300000, guid: 56ddadcc5eba5a94888786685bff9e6a, type: 3}
-  - {fileID: 8300000, guid: bf4e980729c39234394a9b0d1e5d1d7e, type: 3}
-  - {fileID: 8300000, guid: 80e0a28d8de72e7449dc69aee4579b89, type: 3}
-  - {fileID: 8300000, guid: 8e8954f4740fc9b4485b73d568cb43e1, type: 3}
+  - {fileID: 11400000, guid: f659b1c32224f58498afe09cf8f871bb, type: 2}
   speed: 0.8
   path: []
 --- !u!4 &1935258959

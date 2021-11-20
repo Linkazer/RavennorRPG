@@ -63,7 +63,7 @@ public class BattleManager : MonoBehaviour
     private LaunchActionData actData = default;
 
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private List<AudioClip> diceClip;
+    [SerializeField] private List<RVN_AudioSound> diceClip;
 
     #region Set Up
     private void Awake()
@@ -706,7 +706,7 @@ public class BattleManager : MonoBehaviour
     {
         if (!audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(diceClip[UnityEngine.Random.Range(0, diceClip.Count)]);
+            SoundSyst.PlaySound(diceClip[UnityEngine.Random.Range(0, diceClip.Count)], audioSource);
         }
 
         return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, maanaSpent, caster, target));

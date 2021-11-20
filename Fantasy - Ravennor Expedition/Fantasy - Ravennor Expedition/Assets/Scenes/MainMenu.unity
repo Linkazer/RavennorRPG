@@ -528,25 +528,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8682057743087248787, guid: bd6dee6c93a99a14fa0c666712de58d4, type: 3}
   m_PrefabInstance: {fileID: 8682057743220175595}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &318311747 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2245448136093751649, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
-  m_PrefabInstance: {fileID: 1708382383}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &318311751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318311747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be64b6f8b1c9ba340ade2fe5a5d3daa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cheatData: {fileID: 11400000, guid: 2f42e8c4399982b4e8def682290e7dd7, type: 2}
-  firstLevel: Hist1_Lvl0
 --- !u!1 &378879192
 GameObject:
   m_ObjectHideFlags: 0

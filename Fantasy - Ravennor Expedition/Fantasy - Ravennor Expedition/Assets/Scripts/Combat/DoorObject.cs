@@ -19,8 +19,6 @@ public class DoorObject : MonoBehaviour
         for(int i = 0; i < usedPositions.Count; i++)
         {
             Vector3 newPos = new Vector2(0, 0.08f) + new Vector2(0.16f, 0.16f) * usedPositions[i];
-            Debug.Log(newPos.ToString("F4"));
-            Debug.Log((transform.position + newPos).ToString("F4"));
             currentNode.Add(Grid.instance.NodeFromWorldPoint(transform.position + newPos));
         }
     }

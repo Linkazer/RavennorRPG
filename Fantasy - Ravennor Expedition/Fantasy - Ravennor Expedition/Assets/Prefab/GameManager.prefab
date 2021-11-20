@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2245448136093751647}
   - component: {fileID: 2245448136093751646}
   - component: {fileID: 2245448136093751644}
+  - component: {fileID: 318311751}
+  - component: {fileID: 2276154665441850894}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93e16542554d9f4d8bf59bd66833ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextBattle: {fileID: 7560241282882709333, guid: 1b8b12fee7cccfb4787f5aa1ee595a95, type: 3}
+  nextBattle: {fileID: 7560241282882709333, guid: dd457687e6ad1c0449320b883e87adb1, type: 3}
   dialogueToDisplay: {fileID: 0}
   difficultyMultiplier: 1
   menuClip: {fileID: 8300000, guid: 2ec982d882c178449b76558cfa23bc27, type: 3}
@@ -66,6 +68,56 @@ MonoBehaviour:
   datas: {fileID: 11400000, guid: 25fcc72a6b64714469cb343c02e69b76, type: 2}
   mixer: {fileID: 24100000, guid: 2e114791253eff74487e16a6c3fcc72c, type: 2}
   mainMusic: {fileID: 2245448136110500603}
+  soundSlider:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.962264
+      outSlope: 3.962264
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0.33333334
+      outWeight: 0.004166667
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.8958333
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &318311751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245448136093751649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be64b6f8b1c9ba340ade2fe5a5d3daa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cheatData: {fileID: 11400000, guid: 2f42e8c4399982b4e8def682290e7dd7, type: 2}
+  firstLevel: Hist1_Lvl0
+--- !u!114 &2276154665441850894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245448136093751649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0203600063c97b4ebd53e53566cdc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2245448136110500602
 GameObject:
   m_ObjectHideFlags: 0

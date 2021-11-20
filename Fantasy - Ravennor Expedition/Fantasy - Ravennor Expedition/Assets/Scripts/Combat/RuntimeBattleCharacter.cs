@@ -470,8 +470,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             damageTakenEvt.Invoke(damageAmount);
             ResolveEffect(EffectTrigger.DamageTaken);
 
-            Debug.Log(currentHps);
-
             if (currentHps <= 0)
             {
                 int toReturn = damageAmount + currentHps;
