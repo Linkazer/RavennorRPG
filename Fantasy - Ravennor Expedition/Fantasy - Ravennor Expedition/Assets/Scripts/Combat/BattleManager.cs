@@ -180,7 +180,7 @@ public class BattleManager : MonoBehaviour
 
         if (toKill.GetCurrentHps() <= 0)
         {
-            toKill.deathEvt.Invoke();
+            toKill.deathEvt?.Invoke();
             diary.AddText(toKill.name + " succombe.");
 
             toKill.SetAnimation("DeathAnim");
@@ -440,7 +440,7 @@ public class BattleManager : MonoBehaviour
     {
         if (!effectAction)
         {
-            caster.useActionEvt.Invoke();
+            caster.useActionEvt?.Invoke();
             caster.ResolveEffect(EffectTrigger.DoAction);
 
             diary.AddText(caster.name + " utilise " + wantedAction.nom + ".");

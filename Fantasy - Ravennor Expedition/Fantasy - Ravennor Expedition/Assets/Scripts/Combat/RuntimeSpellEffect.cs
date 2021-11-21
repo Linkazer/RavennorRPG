@@ -26,12 +26,12 @@ public class RuntimeSpellEffect
 
         target.AddEffect(this);
 
-        caster.beginTurnEvt.AddListener(UpdateCooldown);
+        caster.beginTurnEvt += UpdateCooldown;
     }
 
     public void RemoveEffect()
     {
-        caster.beginTurnEvt.RemoveListener(UpdateCooldown);
+        caster.beginTurnEvt -= UpdateCooldown;
     }
 
     public void UpdateCooldown()

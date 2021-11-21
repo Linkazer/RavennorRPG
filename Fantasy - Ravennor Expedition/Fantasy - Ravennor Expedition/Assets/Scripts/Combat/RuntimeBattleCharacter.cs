@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -66,7 +67,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     [SerializeField]
     private UnityEvent highlightEvt = new UnityEvent(), endHighlightEvt = new UnityEvent();
     [HideInInspector]
-    public UnityEvent useActionEvt = new UnityEvent(), endTurnEvt = new UnityEvent(), beginTurnEvt = new UnityEvent(), deathEvt = new UnityEvent();
+    public Action useActionEvt, endTurnEvt, beginTurnEvt, deathEvt;
 
     private bool hasOpportunity = true;
 
@@ -80,6 +81,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private void OnMouseExit()
     {
         endHighlightEvt.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        useActionEvt = null;
+        endTurnEvt = null;
+        beginTurnEvt = null;
+        deathEvt = null;
     }
 
     #region Varialbes Utilities
@@ -317,7 +326,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         if (currentHps > 0)
         {
-            beginTurnEvt.Invoke();
+            beginTurnEvt?.Invoke();
 
             for (int i = 0; i < cooldowns.Count; i++)
             {
