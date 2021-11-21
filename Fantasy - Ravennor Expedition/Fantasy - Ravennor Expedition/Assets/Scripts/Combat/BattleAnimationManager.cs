@@ -6,11 +6,23 @@ public class BattleAnimationManager : MonoBehaviour
 {
     public static BattleAnimationManager instance;
 
-    public List<SpellObject> spellsObjects;
+    [SerializeField] private SpellObject prefab;
+    [SerializeField] private Transform prefabParent;
+    [SerializeField] private int prefabCount;
+
+    public List<SpellObject> spellsObjects = new List<SpellObject>();
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        for(int i = 0; i < prefabCount; i++)
+        {
+            spellsObjects.Add(Instantiate(prefab.gameObject, prefabParent).GetComponent<SpellObject>());
+        }
     }
 
     private SpellObject GetSpellsObject()

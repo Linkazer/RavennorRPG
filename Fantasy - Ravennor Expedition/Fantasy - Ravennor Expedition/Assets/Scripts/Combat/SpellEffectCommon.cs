@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EffectTrigger { Apply, End, DamageTaken, DamageDealSelf, DamageDealTarget, Heal, DoAction, Die, BeginTurn}
+public enum EffectTrigger { Apply, End, DamageTaken, DamageDealSelf, DamageDealTarget, Heal, DoAction, Die, BeginTurn, EnterNode, ExitNode, EndTurn}
 
 [System.Serializable]
 public class SpellEffectCommon

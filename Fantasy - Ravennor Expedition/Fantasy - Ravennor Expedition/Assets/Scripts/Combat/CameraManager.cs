@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         baselerp = lerpCoef;
-        BattleManager.TurnBeginEvent.AddListener(OnNewTurn);
+        BattleManager.TurnBeginEvent += OnNewTurn;
     }
 
     // Update is called once per frame
@@ -84,7 +84,7 @@ public class CameraManager : MonoBehaviour
         transform.position = new Vector3(newPos.x, newPos.y, -10);
     }
 
-    public void OnNewTurn()
+    public void OnNewTurn(RuntimeBattleCharacter turnChara)
     {
         SetNextChara(BattleManager.instance.GetCurrentTurnChara().transform);
     }

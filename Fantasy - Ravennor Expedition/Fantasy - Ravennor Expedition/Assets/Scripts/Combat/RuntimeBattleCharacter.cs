@@ -340,7 +340,16 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 movementLeft = currentScriptable.GetMovementSpeed();
             }
 
-            UpdateEffects();
+            UpdateEffects(EffectTrigger.BeginTurn);
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (currentHps > 0)
+        {
+            endTurnEvt?.Invoke();
+            UpdateEffects(EffectTrigger.EndTurn);
         }
     }
 
@@ -383,10 +392,11 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ModifyCurrentNode(Node newNode)
     {
+        currentNode.ExitNode(this);
         //currentNode.hasCharacterOn = false;
         currentNode = newNode;
         //currentNode.hasCharacterOn = true;
-        currentNode.chara = this;
+        currentNode.EnterNode(this);
     }
 
     public void Die()
@@ -535,14 +545,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ApplyEffect(SpellEffect wantedEffect)
     {
-        currentScriptable.StatBonus(wantedEffect.RealValue(), wantedEffect.type, wantedEffect.dicesBonus, true);
+        currentScriptable.StatBonus(wantedEffect.RealValue(), wantedEffect.type);
     }
 
-    public void UpdateEffects()
+    public void UpdateEffects(EffectTrigger trigger)
     {
         for(int i = 0; i < appliedEffects.Count; i++)
         {
-            ResolveEffect(EffectTrigger.BeginTurn);
+            ResolveEffect(trigger);
 
             /*if (appliedEffects[i].currentCooldown >= 0)
             {
@@ -583,7 +593,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         foreach (SpellEffect eff in appliedEffects[index].effet.effects)
         {
-            currentScriptable.StatBonus(-eff.RealValue(), eff.type, eff.dicesBonus, false);
+            currentScriptable.StatBonus(-eff.RealValue(), eff.type);
         }
 
         if(appliedEffects[index].effet.affliction != Affliction.None && CheckToDeleteAffliction(appliedEffects[index].effet.affliction))

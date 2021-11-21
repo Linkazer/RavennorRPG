@@ -105,8 +105,6 @@ public class SoundSyst : MonoBehaviour
         source.outputAudioMixerGroup = sound.Mixer;
         source.PlayOneShot(toPlay);
 
-        Debug.Log(sound.Mixer);
-
         if(sound.LoopInterval > 0)
         {
             TimerSyst.CreateTimer(sound.LoopInterval, () => PlaySound(sound, source));

@@ -85,7 +85,7 @@ public class SpellObject : MonoBehaviour
         effet = newEffet;
         turnLeft = turn;
         effectCaster = newCaster;
-        BattleManager.TurnBeginEvent.AddListener(UpdateRound);
+        BattleManager.TurnBeginEvent += UpdateRound;
     }
 
     public void ResetObject()
@@ -95,7 +95,7 @@ public class SpellObject : MonoBehaviour
         {
             effet = null;
             effectCaster = null;
-            BattleManager.TurnBeginEvent.RemoveListener(UpdateRound);
+            BattleManager.TurnBeginEvent -= UpdateRound;
         }
         isUsed = false;
         SetPosition(new Vector2(-20, -20));
@@ -104,16 +104,15 @@ public class SpellObject : MonoBehaviour
         enabled = false;
     }
 
-    public void UpdateRound()
+    public void UpdateRound(RuntimeBattleCharacter turnChara)
     {
-        if (BattleManager.instance.GetCurrentTurnChara() == effectCaster)
+        if (turnChara == effectCaster)
         {
             if (Grid.instance.NodeFromWorldPoint(transform.position).HasCharacterOn)
             {
                 RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
 
                 BattleManager.instance.ResolveEffect(effet.effet, transform.position, transform.position, EffectTrigger.BeginTurn, 1);
-
             }
 
             turnLeft--;

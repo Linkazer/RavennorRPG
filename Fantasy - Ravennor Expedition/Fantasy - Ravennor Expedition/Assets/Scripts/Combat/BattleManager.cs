@@ -40,7 +40,7 @@ public class BattleManager : MonoBehaviour
     private List<RuntimeBattleCharacter> charaTeamOne = new List<RuntimeBattleCharacter>(), charaTeamTwo = new List<RuntimeBattleCharacter>();
     private RuntimeBattleCharacter currentCharacterTurn;
 
-    public static UnityEvent TurnBeginEvent = new UnityEvent();
+    public static Action<RuntimeBattleCharacter> TurnBeginEvent;
 
     [SerializeField]
     private List<int> initiatives = new List<int>();
@@ -124,7 +124,7 @@ public class BattleManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        TurnBeginEvent = new UnityEvent();
+        TurnBeginEvent = null;
     }
 
     public void BattleBegin()
@@ -190,6 +190,10 @@ public class BattleManager : MonoBehaviour
             {
                 EndTurn();
             }
+            else
+            {
+                TimerSyst.CreateTimer(0.5f, () => CheckForBattleEnd());
+            }
         }
     }
 
@@ -245,8 +249,8 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            //BattleUiManager.instance.LoosingScreen();
-            ExitBattle();
+            BattleUiManager.instance.LoosingScreen();
+            //ExitBattle();
         }
     }
 
@@ -306,7 +310,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        TurnBeginEvent.Invoke();
+        TurnBeginEvent?.Invoke(character);
 
         BattleUiManager.instance.SetNewTurn(currentIndexTurn, roundList);
 
@@ -345,6 +349,7 @@ public class BattleManager : MonoBehaviour
         PlayerBattleManager.instance.ActivatePlayerBattleController(false);
         if (!CheckForBattleEnd())
         {
+            currentCharacterTurn.EndTurn();
             currentIndexTurn = (currentIndexTurn + 1) % roundList.Count;
             NewCharacterRound(roundList[currentIndexTurn]);
         }
@@ -555,16 +560,17 @@ public class BattleManager : MonoBehaviour
                 foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnGround)
                 {
                     RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
-                        eff.effet,
-                        maanaSpent,
-                        eff.duree,
-                        caster
-                        );
+                    eff.effet,
+                    maanaSpent,
+                    eff.duree,
+                    caster
+                    );
 
-                    n.AddEffect(runEffet, caster);
+                    n.AddEffect(eff, caster);
 
                     if (eff.spriteCase != null)
                     {
+                        Debug.Log("Show Something");
                         BattleAnimationManager.instance.AddZoneEffect(n.worldPosition, eff.spriteCase, caster, eff.duree, runEffet);
                     }
                 }
@@ -856,6 +862,7 @@ public class BattleManager : MonoBehaviour
         {
             if (effAct.trigger == triggerWanted)
             {
+                Debug.Log("Launch Action : " + effAct.caster);
                 LaunchAction(effAct.spellToUse, effAct.maanaSpent, effAct.caster, target.transform.position, true);
             }
         }

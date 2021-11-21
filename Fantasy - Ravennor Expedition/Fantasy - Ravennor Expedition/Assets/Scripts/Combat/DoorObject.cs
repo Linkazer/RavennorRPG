@@ -29,8 +29,6 @@ public class DoorObject : MonoBehaviour
 
         for(int i = 0; i < currentNode.Count; i++)
         {
-            Debug.Log(chara.currentNode.worldPosition.ToString("F4"));
-            Debug.Log(currentNode[i].worldPosition.ToString("F4"));
             if (Pathfinding.instance.GetDistance(chara.currentNode, currentNode[i]) < 15)
             {
                 anim.Play("UseObject");

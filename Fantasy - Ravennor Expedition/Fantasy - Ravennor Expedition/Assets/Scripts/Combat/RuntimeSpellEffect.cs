@@ -36,12 +36,15 @@ public class RuntimeSpellEffect
 
     public void UpdateCooldown()
     {
-        currentCooldown--;
-        if(currentCooldown <= 0)
+        if (currentCooldown > 0)
         {
-            RemoveEffect();
-            target.ResolveEffect(this, EffectTrigger.End);
-            target.RemoveEffect(effet);
+            currentCooldown--;
+            if (currentCooldown == 0)
+            {
+                RemoveEffect();
+                target.ResolveEffect(this, EffectTrigger.End);
+                target.RemoveEffect(effet);
+            }
         }
     }
 }

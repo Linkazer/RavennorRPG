@@ -57,7 +57,10 @@ public class Grid : MonoBehaviour {
 	}
 
 	public void CreateGrid() {
-		grid = new Node[gridSizeX,gridSizeY];
+		if (grid == null)
+		{
+			grid = new Node[gridSizeX, gridSizeY];
+		}
 		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.up * gridWorldSize.y/2;
 
 		for (int x = 0; x < gridSizeX; x ++) {
@@ -70,7 +73,15 @@ public class Grid : MonoBehaviour {
 				{
 					newChara = (Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, characterMasks)).GetComponent<RuntimeBattleCharacter>();
 				}
-				grid[x,y] = new Node(walkable, blockVision, newChara, worldPoint, x, y);
+
+				if (grid[x, y] != null)
+				{
+					grid[x, y].SetNode(walkable, blockVision, newChara, worldPoint, x, y);
+				}
+				else
+                {
+					grid[x, y] = new Node(walkable, blockVision, newChara, worldPoint, x, y); ;
+				}
 			}
 		}
 

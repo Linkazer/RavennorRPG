@@ -21,7 +21,6 @@ public class SpellEffect
     public ActionTargets possiblesTargets = ActionTargets.All;
     public int value;
     public float scaleByMaana;
-    public Dice dicesBonus;
     public EffectTrigger trigger;
 
     [HideInInspector]
@@ -50,7 +49,6 @@ public class SpellEffect
         type = toCopy.type;
         value = toCopy.value;
         scaleByMaana = toCopy.scaleByMaana;
-        dicesBonus = new Dice(toCopy.dicesBonus.wantedDice, toCopy.dicesBonus.numberOfDice, toCopy.dicesBonus.wantedDamage, toCopy.dicesBonus.diceByMaanaSpent);
         trigger = toCopy.trigger;
         maanaSpent = toCopy.maanaSpent;
     }

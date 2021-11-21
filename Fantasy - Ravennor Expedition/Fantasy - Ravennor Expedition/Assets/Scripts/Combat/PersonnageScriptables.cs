@@ -177,7 +177,7 @@ public class PersonnageScriptables : ScriptableObject
     #endregion
 
     #region Ajouts/Retrait des effets
-    public void StatBonus(int value, EffectType effType, Dice bonusDice, bool adding)
+    public void StatBonus(int value, EffectType effType)
     {
         switch (effType)
         {

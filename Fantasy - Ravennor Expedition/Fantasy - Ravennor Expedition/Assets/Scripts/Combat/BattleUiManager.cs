@@ -261,11 +261,6 @@ public class BattleUiManager : MonoBehaviour
         parcheminStory.ShowStory(newStory);
     }
 
-   /* public void EndDialogue()
-    {
-        parcheminStory.gameObject.SetActive(false);
-    }*/
-
     public void ShowSpellInformations(int index)
     {
         CharacterActionScriptable toShow = PlayerBattleControllerManager.instance.GetSpell(index);
