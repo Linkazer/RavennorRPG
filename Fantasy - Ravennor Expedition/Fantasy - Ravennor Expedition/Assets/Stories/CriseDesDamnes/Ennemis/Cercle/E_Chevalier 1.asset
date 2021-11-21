@@ -30,7 +30,8 @@ MonoBehaviour:
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: df4749a3b1173944289f50c2ba21699a, type: 2}
-  passifs: []
+  passifs:
+  - {fileID: 11400000, guid: 44dd5bed1086c484d8120153813016df, type: 2}
   initiative: 3
   planForOtherTurns: 1
   comportement:

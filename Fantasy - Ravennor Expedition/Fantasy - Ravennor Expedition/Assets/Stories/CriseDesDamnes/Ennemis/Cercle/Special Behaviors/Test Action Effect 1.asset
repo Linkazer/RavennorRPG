@@ -24,12 +24,12 @@ MonoBehaviour:
   isWeaponBased: 0
   target: 2
   castTarget: 2
-  castOnSelf: 0
-  range: 0
+  castOnSelf: 1
+  range: 5
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 1
-  hasViewOnTarget: 1
+  hasViewOnTarget: 0
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}

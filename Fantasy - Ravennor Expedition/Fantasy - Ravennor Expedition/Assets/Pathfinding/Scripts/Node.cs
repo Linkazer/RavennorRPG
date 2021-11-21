@@ -27,6 +27,18 @@ public class Node : IHeapItem<Node> {
 
 	public bool HasCharacterOn => chara != null && chara.IsAlive;
 
+	public bool HasSameEffect(RuntimeSpellEffect effectToCheck, RuntimeBattleCharacter casterToCheck)
+	{
+		for (int i = 0; i < effectsOnNode.Count; i++)
+		{
+			if (effectToCheck.effet.nom == effectsOnNode[i].effet.nom && casterList[i] == casterToCheck)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public Node(bool _walkable, bool _blockVision, RuntimeBattleCharacter newChara, Vector3 _worldPos, int _gridX, int _gridY) {
 
 		SetNode(_walkable, _blockVision, newChara, _worldPos, _gridX, _gridY);
@@ -48,44 +60,40 @@ public class Node : IHeapItem<Node> {
 		heapIndex = 0;
 	}
 
-	public void EnterNode(RuntimeBattleCharacter newChara)
+	public void EnterNode(RuntimeBattleCharacter newChara, Node previousNode)
 	{
 		chara = newChara;
 		for (int i = 0; i < effectsOnNode.Count; i++)
 		{
-			Debug.Log("Enter in effect");
-			BattleManager.instance.ApplyEffects(effectsScriptables[i], 0, casterList[i], chara);
-			BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.EnterNode, 1);
+			if (!previousNode.HasSameEffect(effectsOnNode[i], casterList[i]) || !newChara.ContainsEffect(effectsOnNode[i].effet))
+			{
+				Debug.Log("Enter in effect");
+				BattleManager.instance.ApplyEffects(effectsScriptables[i], 0, casterList[i], newChara);
+				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.EnterNode, 1);
+			}
 		}
 	}
 
-	public void ExitNode(RuntimeBattleCharacter charaToExit)
+	public void ExitNode(RuntimeBattleCharacter charaToExit, Node nextNode)
 	{
 		for (int i = 0; i < effectsOnNode.Count; i++)
 		{
-			Debug.Log("Exit in effect");
-			BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.ExitNode, 1);
-			charaToExit.RemoveEffect(effectsOnNode[i].effet);
+			if (!nextNode.HasSameEffect(effectsOnNode[i], casterList[i]))
+			{
+				Debug.Log("Exit in effect");
+				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.ExitNode, 1);
+				charaToExit.RemoveEffect(effectsOnNode[i].effet);
+			}
 		}
 	}
 
-	public void AddEffect(SpellEffectScriptables eff, RuntimeBattleCharacter caster)
+	public void AddEffect(SpellEffectScriptables eff, RuntimeSpellEffect runEffet, RuntimeBattleCharacter caster)
     {
 		effectsScriptables.Add(eff);
 
-		RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
-		eff.effet,
-		0,
-		eff.duree,
-		caster
-		);
-
 		effectsOnNode.Add(runEffet);
 		casterList.Add(caster);
-
-		Debug.Log(eff.effet.nom);
-		Debug.Log(caster);
-    }
+	}
 
 	public void UpdateNode(RuntimeBattleCharacter charaTurn)
     {
@@ -110,7 +118,6 @@ public class Node : IHeapItem<Node> {
 
 			if (HasCharacterOn && BattleManager.instance.GetCurrentTurnChara() == chara)
 			{
-				Debug.Log("New Effect application");
 				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.BeginTurn, 1);
 			}
 		}

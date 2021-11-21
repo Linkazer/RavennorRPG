@@ -52,7 +52,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     private List<int> spellUtilisations = new List<int>();
 
     //Effets
-    private List<RuntimeSpellEffect> appliedEffects = new List<RuntimeSpellEffect>();
+    [SerializeField] private List<RuntimeSpellEffect> appliedEffects = new List<RuntimeSpellEffect>();
 
     private List<Affliction> afflictions = new List<Affliction>();
 
@@ -340,7 +340,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 movementLeft = currentScriptable.GetMovementSpeed();
             }
 
-            UpdateEffects(EffectTrigger.BeginTurn);
+            ResolveEffect(EffectTrigger.BeginTurn);
         }
     }
 
@@ -349,7 +349,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (currentHps > 0)
         {
             endTurnEvt?.Invoke();
-            UpdateEffects(EffectTrigger.EndTurn);
+            ResolveEffect(EffectTrigger.EndTurn);
         }
     }
 
@@ -392,11 +392,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ModifyCurrentNode(Node newNode)
     {
-        currentNode.ExitNode(this);
-        //currentNode.hasCharacterOn = false;
+        currentNode.ExitNode(this, newNode);
+        Node lastNode = currentNode;
+        
         currentNode = newNode;
-        //currentNode.hasCharacterOn = true;
-        currentNode.EnterNode(this);
+       
+        currentNode.EnterNode(this, lastNode);
     }
 
     public void Die()
@@ -527,6 +528,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void AddEffect(RuntimeSpellEffect runEffect)
     {
+        Debug.Log("Add");
         if (ContainsEffect(runEffect.effet))
         {
             RemoveEffect(runEffect.effet);
@@ -546,25 +548,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
     public void ApplyEffect(SpellEffect wantedEffect)
     {
         currentScriptable.StatBonus(wantedEffect.RealValue(), wantedEffect.type);
-    }
-
-    public void UpdateEffects(EffectTrigger trigger)
-    {
-        for(int i = 0; i < appliedEffects.Count; i++)
-        {
-            ResolveEffect(trigger);
-
-            /*if (appliedEffects[i].currentCooldown >= 0)
-            {
-                appliedEffects[i].currentCooldown--;
-                if (appliedEffects[i].currentCooldown <= 0)
-                {
-                    ResolveEffect(EffectTrigger.End);
-                    RemoveEffect(i);
-                    i--;
-                }
-            }*/
-        }
     }
 
     public void RemoveEffect(SpellEffectCommon effectToRemove)

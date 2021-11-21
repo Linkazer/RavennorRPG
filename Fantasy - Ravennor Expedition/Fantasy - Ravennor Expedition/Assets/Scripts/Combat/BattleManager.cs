@@ -566,11 +566,10 @@ public class BattleManager : MonoBehaviour
                     caster
                     );
 
-                    n.AddEffect(eff, caster);
+                    n.AddEffect(eff, runEffet, caster);
 
                     if (eff.spriteCase != null)
                     {
-                        Debug.Log("Show Something");
                         BattleAnimationManager.instance.AddZoneEffect(n.worldPosition, eff.spriteCase, caster, eff.duree, runEffet);
                     }
                 }
