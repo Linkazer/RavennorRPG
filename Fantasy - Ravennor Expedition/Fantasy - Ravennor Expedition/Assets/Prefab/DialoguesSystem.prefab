@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 410.0002, y: -10}
-  m_SizeDelta: {x: 500, y: -270}
+  m_AnchoredPosition: {x: 410.0002, y: 0}
+  m_SizeDelta: {x: 500, y: -400}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4165729135373345299
 CanvasRenderer:
@@ -74,7 +74,7 @@ MonoBehaviour:
     et partent \xE0 vive allure. La seule information que le groupe ait pu obtenir
     est que la crypte serait hant\xE9e.\nLe lendemain, apr\xE8s une bonne nuit de
     repos, la confr\xE9rie part en direction de la crypte. Une fois arriv\xE9, Eliza
-    s'approche de la porte.\n\"Ah ! \xC7a pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
+    s'approche de la porte.\n\"Ah ! Ca pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
     le concept d'une crypte\" r\xE9pond Shedun.\n\"Soyez sur vos gardes, on ne sait
     pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en fixant
     Okun.\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent dans une
@@ -233,12 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyText: {fileID: 4165729135373345298}
-  reponsesTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   EndDialogueEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -338,7 +332,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.2
 --- !u!1 &8161604817658682924
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,8 +443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -350.00006, y: -10}
-  m_SizeDelta: {x: 500, y: -270}
+  m_AnchoredPosition: {x: -350.00006, y: 0}
+  m_SizeDelta: {x: 500, y: -400}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7585715147152090369
 CanvasRenderer:
@@ -488,7 +482,7 @@ MonoBehaviour:
     et partent \xE0 vive allure. La seule information que le groupe ait pu obtenir
     est que la crypte serait hant\xE9e.\nLe lendemain, apr\xE8s une bonne nuit de
     repos, la confr\xE9rie part en direction de la crypte. Une fois arriv\xE9, Eliza
-    s'approche de la porte.\n\"Ah ! \xC7a pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
+    s'approche de la porte.\n\"Ah ! Ca pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
     le concept d'une crypte\" r\xE9pond Shedun.\n\"Soyez sur vos gardes, on ne sait
     pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en fixant
     Okun.\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent dans une
