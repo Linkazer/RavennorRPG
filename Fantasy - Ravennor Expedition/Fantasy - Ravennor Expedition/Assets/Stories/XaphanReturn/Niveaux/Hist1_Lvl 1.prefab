@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6233562267686577049
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4213,7 +4213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2565846620782612925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70191,12 +70191,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98cfef47be3db6045b3510c2512f1df9, type: 2}
   - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
   rooms:
-  - ennemis: []
-    ennemisPos: []
-    ennemisPositions: []
-    toPlayOnEnable:
-      m_PersistentCalls:
-        m_Calls: []
   - ennemis:
     - {fileID: 11400000, guid: 1940c5927b53fa24fa273e6b67f951ff, type: 2}
     ennemisPos:
@@ -74095,6 +74089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3081245067297315837, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
 --- !u!4 &8726165782209353748 stripped
@@ -74423,7 +74421,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3081245067297315833, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: indexs.Array.data[0]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3081245067297315834, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: m_RootOrder
@@ -74493,7 +74491,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3081245067297315833, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: indexs.Array.data[0]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3081245067297315834, guid: a487fea88dda8aa4ba0c96ebe44444f1, type: 3}
       propertyPath: m_RootOrder
