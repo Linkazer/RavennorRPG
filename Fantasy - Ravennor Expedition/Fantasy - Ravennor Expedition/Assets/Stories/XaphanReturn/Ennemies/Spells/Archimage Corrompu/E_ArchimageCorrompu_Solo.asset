@@ -40,7 +40,7 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
-  damageBase: 1
+  damageBase: 0
   diceNumber: 3
   damageType: 1
   autoCritical: 0

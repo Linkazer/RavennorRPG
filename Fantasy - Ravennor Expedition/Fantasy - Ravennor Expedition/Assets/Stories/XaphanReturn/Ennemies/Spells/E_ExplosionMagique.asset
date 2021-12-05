@@ -45,7 +45,7 @@ MonoBehaviour:
   wantedEffectOnGround: []
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 2
+  diceNumber: 1
   damageType: 1
   autoCritical: 0
   lifeStealPercent: 0

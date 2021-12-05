@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RoomEnd_Boss : RoomEnd
 {
-    [SerializeField] private int doorIndexForEnd;
-
     [SerializeField]
     private PersonnageScriptables bossWanted;
 
