@@ -305,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5286541599564282707
 Transform:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2883841227036701449
 Transform:
   m_ObjectHideFlags: 0
@@ -681,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2178066594704809870
 Transform:
   m_ObjectHideFlags: 0
@@ -18718,7 +18718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5118355067676682905
 Transform:
   m_ObjectHideFlags: 0
@@ -18849,7 +18849,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
   - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
   - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
-  endGame: 0
+  numberCharacterDeathLose: 1
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
   backgroundCamp: {fileID: 0}
   backgroundMusic: {fileID: 0}
@@ -18862,28 +18862,14 @@ MonoBehaviour:
   - {fileID: 0}
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: ac93fd90eabb0864998fd51400c3749c, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
-    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
+    - {fileID: 11400000, guid: 51cca50327600ce47935a10f9877a806, type: 2}
     ennemisPos:
     - {fileID: 2600873587656351773}
-    - {fileID: 5118355067676682905}
-    - {fileID: 5414908045646933544}
-    - {fileID: 2883841227036701449}
-    - {fileID: 2178066594704809870}
-    - {fileID: 5286541599564282707}
     ennemisPositions:
     - {x: 0.7199999, y: -0.07999998}
-    - {x: 0.87999994, y: 0.08000001}
-    - {x: 0.87999994, y: -0.23999998}
-    - {x: 1.04, y: -0.07999998}
-    - {x: 1.2, y: 0.08000001}
-    - {x: 1.2, y: -0.23999998}
-    toEnable: []
-    toDisable: []
+    toPlayOnEnable:
+      m_PersistentCalls:
+        m_Calls: []
   playerPos:
   - {fileID: 4579922895677674218}
   - {fileID: 8483555795714411979}
@@ -19814,7 +19800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5414908045646933544
 Transform:
   m_ObjectHideFlags: 0

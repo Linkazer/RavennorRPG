@@ -702,7 +702,7 @@ public class BattleManager : MonoBehaviour
 
     public void DoHeal(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        int baseHeal = wantedAction.GetBaseDamage(maanaSpent) + caster.GetCharacterDatas().GetSoinApplique();
+        int baseHeal = wantedAction.GetBaseDamage(maanaSpent) + caster.GetCharacterDatas().GetSoinApplique() + caster.GetCharacterDatas().GetPower();
 
         target.TakeHeal(baseHeal);
     }
@@ -754,11 +754,6 @@ public class BattleManager : MonoBehaviour
 
         targetDefenseScore = target.GetCharacterDatas().GetDefense();
 
-        if(neededDices <= 0 && wantedAction.GetBaseDamage(maanaSpent) > 0)
-        {
-            dealtDamage += caster.GetCharacterDatas().GetPhysicalDamage() + wantedAction.GetBaseDamage(maanaSpent);
-        }
-
         int resultAtt = 0;
         for (int i = 0; i < neededDices; i++)
         {
@@ -776,12 +771,19 @@ public class BattleManager : MonoBehaviour
             diceValues.Add(resultAtt);
             if (resultAtt > targetDefenseScore)
             {
-                if(dealtDamage <= 0)
-                {
-                    dealtDamage += caster.GetCharacterDatas().GetPhysicalDamage() + wantedAction.GetBaseDamage(maanaSpent);
-                }
                 dealtDamage++;
             }
+        }
+
+
+        if ((neededDices <= 0 && wantedAction.GetBaseDamage(maanaSpent) > 0) || dealtDamage > 0)
+        {
+            dealtDamage += caster.GetCharacterDatas().GetPower() + wantedAction.GetBaseDamage(maanaSpent);
+        }
+
+        if (dealtDamage < 0)
+        {
+            dealtDamage = 0;
         }
 
         target.DisplayDice(diceValues, diceResult, dealtDamage);

@@ -152,6 +152,7 @@ public class AiBattleManager : MonoBehaviour
                         if (CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
                         {
                             float newScore = EvaluateAction(consid, caster, chara);
+                            Debug.Log(consid.wantedAction + " on " + chara + " Score : " + newScore);
                             if (newScore > maxScore)
                             {
                                 if (askForNextTurn)
@@ -208,13 +209,13 @@ public class AiBattleManager : MonoBehaviour
 
             switch (condition.conditionType)
             {
-                case AiConditionType.Up:
+                case AiConditionType.UpOrEqual:
                     if (absice < condition.conditionValue)
                     {
                         return false;
                     }
                     break;
-                case AiConditionType.Down:
+                case AiConditionType.DownOrEqual:
                     if (absice > condition.conditionValue)
                     {
                         return false;
@@ -340,7 +341,7 @@ public class AiBattleManager : MonoBehaviour
 
         foreach(ValueForCalcul value in actionToEvaluate.calculs)
         {
-            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, caster, target, actionToEvaluate.maxValue);
+            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, caster, target, actionToEvaluate.maxValue) * value.calculImportance;
             coef += value.calculImportance;
         }
 
@@ -349,7 +350,7 @@ public class AiBattleManager : MonoBehaviour
         {
             totalResult = actionToEvaluate.maxValue;
         }
-        return totalResult;
+        return totalResult * (actionToEvaluate.considerationImportance + 1);
     }
 
     public float ConsiderationCalcul(CharacterActionScriptable spell, ValueForCalcul values, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, float maxValue)
@@ -389,7 +390,7 @@ public class AiBattleManager : MonoBehaviour
                 break;
         }
 
-        result = Mathf.Clamp(result * values.calculImportance, 0, maxValue);
+        result = Mathf.Clamp(result, 0, maxValue);
 
         return result;
     }

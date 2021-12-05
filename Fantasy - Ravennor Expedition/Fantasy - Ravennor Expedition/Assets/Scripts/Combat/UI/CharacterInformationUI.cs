@@ -66,7 +66,7 @@ public class CharacterInformationUI : MonoBehaviour
         movespeed.text = p.GetMovementSpeed().ToString();
         defense.text = p.GetDefense().ToString();
         accuracy.text = p.GetAccuracy().ToString();
-        power.text = p.GetPhysicalDamage().ToString();
+        power.text = p.GetPower().ToString();
         armor.text = p.GetArmor().ToString();
 
         effectDescriptions = new List<string>();

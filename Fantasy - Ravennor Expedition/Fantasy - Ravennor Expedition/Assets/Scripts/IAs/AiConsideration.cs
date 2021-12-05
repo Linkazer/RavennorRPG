@@ -16,7 +16,7 @@ public enum AiCalculType{ Conditionnal, Affine, Logarythm,
                           Logistical
                         }
 
-public enum AiConditionType { None, Up, Down, Equal }
+public enum AiConditionType { None, UpOrEqual, DownOrEqual, Equal }
 
 [System.Serializable]
 public class ValueForCalcul
@@ -45,6 +45,7 @@ public class AiConsideration
     [Header("Condition")]
     public List<ValueForCondition> conditions;
     [Header("Calculs")]
+    [Tooltip("Minimum -1 si on veut que la Considération ne soit pas prise en compte.")]public float considerationImportance = 0;
     public float maxValue = 1;
     public List<ValueForCalcul> calculs;
     public int maxCooldown, cooldown;

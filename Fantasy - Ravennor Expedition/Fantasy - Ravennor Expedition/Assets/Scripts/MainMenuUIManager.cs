@@ -138,7 +138,7 @@ public class MainMenuUIManager : MonoBehaviour
         characterDescription.text = currentChara.description;
 
         accuracy.text = currentChara.GetAccuracy().ToString();
-        power.text = currentChara.GetPhysicalDamage().ToString();
+        power.text = currentChara.GetPower().ToString();
 
         defense.text = currentChara.GetDefense().ToString();
         movement.text = currentChara.GetMovementSpeed().ToString();

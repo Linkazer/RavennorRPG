@@ -105,7 +105,7 @@ public class PersonnageScriptables : ScriptableObject
         return movementSpeed + movementSpeedBonus;
     }
 
-    public int GetPhysicalDamage()
+    public int GetPower()
     {
         return power + powerBonus;
     }
