@@ -20,7 +20,7 @@ MonoBehaviour:
     maxStack: 1
     effects: []
     actionEffect: []
-    affliction: 2
+    affliction: 1
     maana: 0
   nature: 0
   duree: 1
