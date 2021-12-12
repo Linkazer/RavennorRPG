@@ -23,7 +23,7 @@ MonoBehaviour:
     de l'Acad\xE9mie."
   healthPoints: 6
   maana: 4
-  movementSpeed: 35
+  movementSpeed: 55
   accuracy: 0
   defense: 2
   power: 0

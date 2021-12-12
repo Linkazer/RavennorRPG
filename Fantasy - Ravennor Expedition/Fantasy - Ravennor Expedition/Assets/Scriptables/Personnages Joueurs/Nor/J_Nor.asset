@@ -23,7 +23,7 @@ MonoBehaviour:
     depuis la mort de son p\xE8re adoptif."
   healthPoints: 8
   maana: 2
-  movementSpeed: 45
+  movementSpeed: 75
   accuracy: 1
   defense: 2
   power: 0

@@ -22,7 +22,7 @@ MonoBehaviour:
     qui pourrait l'aider \xE0 sauver sa soeur avec l'aide de la Confr\xE9rie."
   healthPoints: 8
   maana: 2
-  movementSpeed: 45
+  movementSpeed: 65
   accuracy: 0
   defense: 1
   power: 1

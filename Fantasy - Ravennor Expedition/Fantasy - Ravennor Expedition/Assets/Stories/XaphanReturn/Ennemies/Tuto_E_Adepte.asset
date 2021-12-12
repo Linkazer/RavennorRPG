@@ -21,7 +21,7 @@ MonoBehaviour:
   description: 
   healthPoints: 3
   maana: 0
-  movementSpeed: 25
+  movementSpeed: 55
   accuracy: 0
   defense: 1
   power: 0
@@ -39,6 +39,7 @@ MonoBehaviour:
     - conditionWanted: 0
       conditionValue: 15
       conditionType: 2
+    considerationImportance: 0
     maxValue: 1
     calculs:
     - calculType: 1
@@ -54,6 +55,7 @@ MonoBehaviour:
     - conditionWanted: 0
       conditionValue: 16
       conditionType: 1
+    considerationImportance: 0
     maxValue: 1
     calculs:
     - calculType: 1
