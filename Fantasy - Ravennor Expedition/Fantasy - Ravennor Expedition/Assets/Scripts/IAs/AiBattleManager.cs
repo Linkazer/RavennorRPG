@@ -125,8 +125,6 @@ public class AiBattleManager : MonoBehaviour
 
     private void SearchForBestAction(RuntimeBattleCharacter caster, List<RuntimeBattleCharacter> targets, bool askForNextTurn)
     {
-        float evaluatedValues = -99;
-
         AiCharacterScriptable aiCaster = caster.GetCharacterDatas() as AiCharacterScriptable;
 
         target = null;
@@ -139,6 +137,10 @@ public class AiBattleManager : MonoBehaviour
             float maxScore = -99;
 
             AiConsideration considToCooldown = null;
+
+            List<CharacterActionScriptable> possiblesActions = new List<CharacterActionScriptable>();
+            List<Node> possiblesActionsMoveNeeded = new List<Node>();
+            List<RuntimeBattleCharacter> possiblesActionsTargets = new List<RuntimeBattleCharacter>();
 
             foreach (AiConsideration consid in aiCaster.comportement)
             {
@@ -153,8 +155,15 @@ public class AiBattleManager : MonoBehaviour
                         {
                             float newScore = EvaluateAction(consid, caster, chara);
                             Debug.Log(consid.wantedAction + " on " + chara + " Score : " + newScore);
-                            if (newScore > maxScore)
+                            if (newScore >= maxScore)
                             {
+                                if(newScore > maxScore)
+                                {
+                                    possiblesActions = new List<CharacterActionScriptable>();
+                                    possiblesActionsMoveNeeded = new List<Node>();
+                                    possiblesActionsTargets = new List<RuntimeBattleCharacter>();
+                                }
+
                                 if (askForNextTurn)
                                 {
                                     nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 1000);
@@ -164,15 +173,24 @@ public class AiBattleManager : MonoBehaviour
                                     nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
                                 }
                                 maxScore = newScore;
-                                evaluatedValues = newScore;
                                 wantedAction = consid.wantedAction;
                                 target = chara;
                                 considToCooldown = consid;
+
+                                possiblesActions.Add(wantedAction);
+                                possiblesActionsMoveNeeded.Add(nodeToMoveTo);
+                                possiblesActionsTargets.Add(target);
                             }
                         }
                     }
                 }
             }
+
+            int randomAction = Random.Range(0, possiblesActions.Count);
+            wantedAction = possiblesActions[randomAction];
+            nodeToMoveTo = possiblesActionsMoveNeeded[randomAction];
+            target = possiblesActionsTargets[randomAction];
+
 
             if (considToCooldown != null && !askForNextTurn)
             {

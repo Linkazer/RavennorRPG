@@ -23,7 +23,7 @@ MonoBehaviour:
     bon sens."
   healthPoints: 6
   maana: 5
-  movementSpeed: 55
+  movementSpeed: 45
   accuracy: 0
   defense: 1
   power: 0

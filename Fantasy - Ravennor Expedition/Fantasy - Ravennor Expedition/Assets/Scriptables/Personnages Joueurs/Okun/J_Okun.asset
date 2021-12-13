@@ -23,7 +23,7 @@ MonoBehaviour:
     des autres membres concernant son pass\xE9."
   healthPoints: 10
   maana: 2
-  movementSpeed: 55
+  movementSpeed: 45
   accuracy: 0
   defense: 3
   power: 0

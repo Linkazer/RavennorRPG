@@ -18,20 +18,16 @@ MonoBehaviour:
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 0
-  maxCooldown: 2
+  maxCooldown: 1
   maxUtilisation: -1
-  incantationTime: 1
+  incantationTime: 0
   isWeaponBased: 0
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 55
+  range: 200
   activeZoneCases:
   - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: -1, y: 0}
-  - {x: 0, y: 1}
-  - {x: 0, y: -1}
   doesFaceCaster: 1
   hasViewOnTarget: 1
   projectile: {fileID: 0}
