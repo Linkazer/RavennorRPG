@@ -24,11 +24,6 @@ MonoBehaviour:
       possiblesTargets: 0
       value: 1
       scaleByMaana: 0
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        diceByMaanaSpent: 0
-        wantedDamage: 0
       trigger: 0
       maanaSpent: 0
     actionEffect:

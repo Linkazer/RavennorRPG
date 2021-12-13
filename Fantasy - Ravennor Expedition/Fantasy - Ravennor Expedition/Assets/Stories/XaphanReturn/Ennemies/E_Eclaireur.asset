@@ -21,7 +21,7 @@ MonoBehaviour:
   description: 
   healthPoints: 3
   maana: 0
-  movementSpeed: 55
+  movementSpeed: 45
   accuracy: 1
   defense: 1
   power: 0

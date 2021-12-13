@@ -25,7 +25,7 @@ MonoBehaviour:
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 45
+  range: 55
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 1

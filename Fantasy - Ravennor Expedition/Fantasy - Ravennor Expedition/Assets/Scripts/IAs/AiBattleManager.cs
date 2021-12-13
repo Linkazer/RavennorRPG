@@ -186,11 +186,19 @@ public class AiBattleManager : MonoBehaviour
                 }
             }
 
-            int randomAction = Random.Range(0, possiblesActions.Count);
-            wantedAction = possiblesActions[randomAction];
-            nodeToMoveTo = possiblesActionsMoveNeeded[randomAction];
-            target = possiblesActionsTargets[randomAction];
-
+            if (possiblesActions.Count > 0)
+            {
+                int randomAction = Random.Range(0, possiblesActions.Count);
+                wantedAction = possiblesActions[randomAction];
+                nodeToMoveTo = possiblesActionsMoveNeeded[randomAction];
+                target = possiblesActionsTargets[randomAction];
+            }
+            else
+            {
+                wantedAction = null;
+                nodeToMoveTo = currentChara.currentNode;
+                target = null;
+            }
 
             if (considToCooldown != null && !askForNextTurn)
             {
