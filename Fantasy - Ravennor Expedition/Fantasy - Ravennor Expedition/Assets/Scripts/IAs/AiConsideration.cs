@@ -23,6 +23,7 @@ public class ValueForCalcul
 {
     public AiCalculType calculType;
     public AiAbscissaType abscissaValue;
+    public bool checkAroundMax;
     public float maxValue;
     public float constant;
     public float coeficient;

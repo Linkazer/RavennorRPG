@@ -28,8 +28,8 @@ MonoBehaviour:
   range: 200
   activeZoneCases:
   - {x: 0, y: 0}
-  doesFaceCaster: 1
-  hasViewOnTarget: 1
+  doesFaceCaster: 0
+  hasViewOnTarget: 0
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}

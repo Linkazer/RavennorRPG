@@ -33,7 +33,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 887c804377e1da14084973e56a67420c, type: 2}
   - {fileID: 11400000, guid: 1371c5d16831a184db5b4b384d77f2a2, type: 2}
   passifs: []
-  initiative: 0
+  initiative: 5
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 1371c5d16831a184db5b4b384d77f2a2, type: 2}
@@ -58,29 +58,23 @@ MonoBehaviour:
   - wantedAction: {fileID: 11400000, guid: 887c804377e1da14084973e56a67420c, type: 2}
     conditions:
     - conditionWanted: 0
-      conditionValue: 16
+      conditionValue: 5
       conditionType: 1
-    considerationImportance: 0.25
+    considerationImportance: 2
     maxValue: 1
     calculs:
-    - calculType: 1
-      abscissaValue: 0
-      maxValue: 150
-      constant: 150
-      coeficient: -1
-      calculImportance: 1.5
     - calculType: 0
-      abscissaValue: 13
-      maxValue: 2
+      abscissaValue: 0
+      maxValue: 5
       constant: 0
       coeficient: 1
-      calculImportance: 0.5
+      calculImportance: 1
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 360abf5da4408bb43b970021d65caab5, type: 2}
     conditions:
     - conditionWanted: 0
-      conditionValue: 25
+      conditionValue: 35
       conditionType: 2
     considerationImportance: 0
     maxValue: 1

@@ -77,6 +77,7 @@ public class CharacterActionScriptable : ScriptableObject
 
     public int GetMaxCooldown()
     {
+        Debug.Log("Get CD");
         return maxCooldown;
     }
 

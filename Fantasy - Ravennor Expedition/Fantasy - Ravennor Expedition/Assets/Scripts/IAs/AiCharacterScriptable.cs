@@ -7,6 +7,8 @@ public class AiCharacterScriptable : PersonnageScriptables
 {
     [Header("IA")]
 
+    public int closestDistanceWhenNoAction;
+
     public bool planForOtherTurns = true;
 
     public List<AiConsideration> comportement;

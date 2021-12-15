@@ -56,9 +56,11 @@ public class AiBattleManager : MonoBehaviour
         {
             if (wantedAction != null && currentChara.CanDoAction())
             {
+                Debug.Log("AI do something");
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
-                if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null) && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
+                /*(Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null)*/ // Si on a un bug de déplacement des IA
+                if (nodeToMoveTo != null && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
                     //Debug.Log(currentChara + " move for action : " + nodeToMoveTo.worldPosition.ToString("F4"));
                     BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
@@ -68,6 +70,12 @@ public class AiBattleManager : MonoBehaviour
                 {
                     currentChara.SetCooldown(wantedAction);
                     BattleManager.instance.LaunchAction(wantedAction, 0, currentChara, target.transform.position, false);
+                    if (currentChara.CanDoAction())
+                    {
+                        Debug.Log("Can do action");
+                        wantedAction = null;
+                        SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), false);
+                    }
                 }
                 else
                 {
@@ -77,11 +85,12 @@ public class AiBattleManager : MonoBehaviour
             }
             else if (currentChara.CanMove && (currentChara.GetCharacterDatas() as AiCharacterScriptable).planForOtherTurns)
             {
-                int wantedDist = 15;
+                int wantedDist = (currentChara.GetCharacterDatas() as AiCharacterScriptable).closestDistanceWhenNoAction;
                 if(wantedAction != null)
                 {
                     wantedDist = wantedAction.range;
                 }
+
                 if (target != null && (target.GetCurrentHps() > 0 && Pathfinding.instance.GetDistance(target.currentNode, currentChara.currentNode) <= wantedDist))
                 {
                     BattleManager.instance.EndTurn();
@@ -113,12 +122,13 @@ public class AiBattleManager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("AI End turn");
+                Debug.Log("AI End turn");
                 BattleManager.instance.EndTurn();
             }
         }
         else
         {
+            Debug.Log("AI End Turn Last");
             BattleManager.instance.EndTurn();
         }
     }
@@ -412,7 +422,7 @@ public class AiBattleManager : MonoBehaviour
                 break;
             case AiCalculType.Logistical:
                 values.constant = Mathf.Clamp(values.constant, 0, values.maxValue);
-                result = LogisticalCalcul(abcsissa, values.constant, values.coeficient);
+                result = LogisticalCalcul(abcsissa, values.constant, values.coeficient, values.checkAroundMax);
                 break;
         }
 
@@ -511,8 +521,12 @@ public class AiBattleManager : MonoBehaviour
         return 1/Mathf.Exp(c * x + k);
     }
 
-    public float LogisticalCalcul(float x, float k, float c)
+    public float LogisticalCalcul(float x, float k, float c, bool checkAroundMax)
     {
+        if(checkAroundMax)
+        {
+            return 2 / (1 + (Mathf.Exp(Mathf.Abs(c - k) * x)));
+        }
         return 1 / (1 + (Mathf.Exp((c-k) * x)));
     }
     #endregion
