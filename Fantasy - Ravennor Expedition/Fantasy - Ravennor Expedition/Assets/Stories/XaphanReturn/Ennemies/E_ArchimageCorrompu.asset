@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1371c5d16831a184db5b4b384d77f2a2, type: 2}
   passifs: []
   initiative: 5
+  closestDistanceWhenNoAction: 55
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 1371c5d16831a184db5b4b384d77f2a2, type: 2}
@@ -49,6 +50,7 @@ MonoBehaviour:
     calculs:
     - calculType: 1
       abscissaValue: 13
+      checkAroundMax: 0
       maxValue: 4
       constant: 0
       coeficient: 1
@@ -65,6 +67,7 @@ MonoBehaviour:
     calculs:
     - calculType: 0
       abscissaValue: 0
+      checkAroundMax: 0
       maxValue: 5
       constant: 0
       coeficient: 1
@@ -74,29 +77,38 @@ MonoBehaviour:
   - wantedAction: {fileID: 11400000, guid: 360abf5da4408bb43b970021d65caab5, type: 2}
     conditions:
     - conditionWanted: 0
-      conditionValue: 35
+      conditionValue: 55
       conditionType: 2
     considerationImportance: 0
     maxValue: 1
     calculs:
     - calculType: 1
       abscissaValue: 3
+      checkAroundMax: 0
       maxValue: 100
       constant: 100
       coeficient: -1
-      calculImportance: 0
+      calculImportance: 1
+    - calculType: 5
+      abscissaValue: 0
+      checkAroundMax: 1
+      maxValue: 45
+      constant: 45
+      coeficient: 1
+      calculImportance: 0.5
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 360abf5da4408bb43b970021d65caab5, type: 2}
     conditions:
     - conditionWanted: 0
-      conditionValue: 26
+      conditionValue: 56
       conditionType: 1
     considerationImportance: 0
     maxValue: 1
     calculs:
     - calculType: 1
       abscissaValue: 0
+      checkAroundMax: 0
       maxValue: 150
       constant: 150
       coeficient: -1
@@ -116,6 +128,7 @@ MonoBehaviour:
     calculs:
     - calculType: 1
       abscissaValue: 13
+      checkAroundMax: 0
       maxValue: 3
       constant: 0
       coeficient: 1

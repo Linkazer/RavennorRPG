@@ -32,6 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cf63a84b073d754db5aa1e525ece6ab, type: 2}
   passifs: []
   initiative: 2
+  closestDistanceWhenNoAction: 15
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3cf63a84b073d754db5aa1e525ece6ab, type: 2}
@@ -44,6 +45,7 @@ MonoBehaviour:
     calculs:
     - calculType: 1
       abscissaValue: 3
+      checkAroundMax: 0
       maxValue: 100
       constant: 100
       coeficient: -1
@@ -60,6 +62,7 @@ MonoBehaviour:
     calculs:
     - calculType: 1
       abscissaValue: 0
+      checkAroundMax: 0
       maxValue: 150
       constant: 150
       coeficient: -1
