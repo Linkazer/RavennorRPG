@@ -63,12 +63,12 @@ MonoBehaviour:
     maximumValueModifier: 0
     startScore: 0
     calculs:
-    - calculType: 1
+    - calculType: 5
       abscissaValue: 0
-      checkAroundMax: 0
+      checkAroundMax: 1
       maxValue: 150
-      constant: 150
-      coeficient: -1
+      constant: 45
+      coeficient: 0.05
       calculImportance: 2
     - calculType: 1
       abscissaValue: 3

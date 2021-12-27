@@ -93,6 +93,7 @@ public class AiBattleManager : MonoBehaviour
 
                 if (target != null && (target.GetCurrentHps() > 0 && Pathfinding.instance.GetDistance(target.currentNode, currentChara.currentNode) <= wantedDist))
                 {
+                    Debug.Log("End Turn Target Available");
                     BattleManager.instance.EndTurn();
                 }
                 else
@@ -114,6 +115,7 @@ public class AiBattleManager : MonoBehaviour
                         //Debug.Log("From : " + currentChara.currentNode.worldPosition + " to : " + nodeToMoveTo.worldPosition);
                         if (nodeToMoveTo != null && Pathfinding.instance.GetDistance(nodeToMoveTo, currentChara.currentNode) <= wantedDist)
                         {
+                            Debug.Log("End Turn close to Wanted Node");
                             BattleManager.instance.EndTurn();
                         }
                         else if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
@@ -172,36 +174,45 @@ public class AiBattleManager : MonoBehaviour
 
                     foreach (RuntimeBattleCharacter chara in targets)
                     {
-                        //StartCoroutine(TestCanUse(consid.wantedAction, chara, askForNextTurn));
-                        if (CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
+                        List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+
+                        foreach (Node casterPosition in possibleDeplacement)
                         {
-                            float newScore = EvaluateAction(consid, caster, chara);
-                            Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
-                            if (newScore >= maxScore)
+                            //StartCoroutine(TestCanUse(consid.wantedAction, chara, askForNextTurn));
+                            if (CanSpellBeUsed(consid, consid.wantedAction, casterPosition, chara, askForNextTurn))
                             {
-                                if(newScore > maxScore)
+                                float newScore = EvaluateAction(consid, casterPosition, caster, chara);
+                                Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
+                                if (newScore >= maxScore)
                                 {
-                                    possiblesActions = new List<CharacterActionScriptable>();
-                                    possiblesActionsMoveNeeded = new List<Node>();
-                                    possiblesActionsTargets = new List<RuntimeBattleCharacter>();
-                                }
+                                    if (newScore > maxScore)
+                                    {
+                                        possiblesActions = new List<CharacterActionScriptable>();
+                                        possiblesActionsMoveNeeded = new List<Node>();
+                                        possiblesActionsTargets = new List<RuntimeBattleCharacter>();
+                                    }
 
-                                if (askForNextTurn)
-                                {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 1000);
-                                }
-                                else
-                                {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
-                                }
-                                maxScore = newScore;
-                                wantedAction = consid.wantedAction;
-                                target = chara;
-                                considToCooldown = consid;
+                                    if (askForNextTurn)
+                                    {
+                                        nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 1000);
+                                    }
+                                    else if (casterPosition != caster.currentNode)
+                                    {
+                                        nodeToMoveTo = casterPosition;
+                                    }
+                                    else
+                                    {
+                                        nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
+                                    }
+                                    maxScore = newScore;
+                                    wantedAction = consid.wantedAction;
+                                    target = chara;
+                                    considToCooldown = consid;
 
-                                possiblesActions.Add(wantedAction);
-                                possiblesActionsMoveNeeded.Add(nodeToMoveTo);
-                                possiblesActionsTargets.Add(target);
+                                    possiblesActions.Add(wantedAction);
+                                    possiblesActionsMoveNeeded.Add(nodeToMoveTo);
+                                    possiblesActionsTargets.Add(target);
+                                }
                             }
                         }
                     }
@@ -229,7 +240,7 @@ public class AiBattleManager : MonoBehaviour
         }
     }
 
-    private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
+    private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, Node nodeToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
     {
         switch (actionToTry.castTarget)
         {
@@ -247,13 +258,18 @@ public class AiBattleManager : MonoBehaviour
                 break;
         }
 
+        if(!HasVision(nodeToTry, targetToTry.currentNode, actionToTry.range))
+        {
+            return false;
+        }
+
         //Condition de l'IA
 
         for (int i = 0; i < consid.conditions.Count; i++)
         {
             ValueForCondition condition = consid.conditions[i];
 
-            float absice = GetAbcsissaValue(consid.wantedAction, condition.conditionWanted, currentChara, targetToTry);
+            float absice = GetAbcsissaValue(consid.wantedAction, condition.conditionWanted, nodeToTry, targetToTry.currentNode, currentChara, targetToTry);
 
             switch (condition.conditionType)
             {
@@ -297,7 +313,7 @@ public class AiBattleManager : MonoBehaviour
             for(i = 0; i < teleportActionToTry.positionsToTeleport.Count; i++)
             {
                 Vector2Int positionToTry = new Vector2Int(targetToTry.currentNode.gridX, targetToTry.currentNode.gridY);
-                Vector3 wolrdPosToTry = BattleManager.GetTargetPosWithFacingPosition(currentChara.currentNode.worldPosition, positionToTry, teleportActionToTry.positionsToTeleport[i]);
+                Vector3 wolrdPosToTry = BattleManager.GetTargetPosWithFacingPosition(nodeToTry.worldPosition, positionToTry, teleportActionToTry.positionsToTeleport[i]);
                 if (Grid.instance.NodeFromWorldPoint(wolrdPosToTry).walkable)
                 {
                     break;
@@ -309,16 +325,14 @@ public class AiBattleManager : MonoBehaviour
             }
         }
 
-        List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+        List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(nodeToTry, currentChara.movementLeft, true);
 
         if (askForNextTurn)
         {
-            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 150, true);
+            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(nodeToTry, 150, true);
         }
 
         float rangeNeeded = actionToTry.range;
-
-        bool foundSomething = false;
 
         foreach (Node n in possibleDeplacement)
         {
@@ -342,7 +356,7 @@ public class AiBattleManager : MonoBehaviour
             }
         }
 
-        return foundSomething;
+        return false;
     }
 
     private Node GetNodeToHitTarget(RuntimeBattleCharacter wantedTarget, float rangeWanted, bool needView, int deplacementBoost)
@@ -372,6 +386,14 @@ public class AiBattleManager : MonoBehaviour
 
         return nodeToReturn;
     }
+    private bool HasVision(Node startNode, Node targetNode, float range)
+    {
+        if (Pathfinding.instance.GetDistance(startNode, targetNode) <= range)
+        {
+            return BattleManager.instance.IsNodeVisible(startNode, targetNode);
+        }
+        return false;
+    }
 
     private Node GetClosestTargetNode(List<RuntimeBattleCharacter> possiblesTargets)
     {
@@ -393,14 +415,14 @@ public class AiBattleManager : MonoBehaviour
     }
 
     #region Calculs de Considérations
-    public float EvaluateAction(AiConsideration actionToEvaluate, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public float EvaluateAction(AiConsideration actionToEvaluate, Node casterPosition, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         float totalResult = 0;
         float coef = 0;
 
-        foreach(ValueForCalcul value in actionToEvaluate.calculs)
+        foreach (ValueForCalcul value in actionToEvaluate.calculs)
         {
-            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, caster, target, 1 + actionToEvaluate.maximumValueModifier) * value.calculImportance;
+            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, casterPosition, caster, target, 1 + actionToEvaluate.maximumValueModifier) * value.calculImportance;
             coef += value.calculImportance;
         }
 
@@ -410,18 +432,38 @@ public class AiBattleManager : MonoBehaviour
             totalResult = 1 + actionToEvaluate.maximumValueModifier;
         }
 
+
+
         return totalResult * (actionToEvaluate.considerationImportance + 1);
     }
 
-    public float ConsiderationCalcul(CharacterActionScriptable spell, ValueForCalcul values, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, float maxValue)
+    public float ConsiderationCalcul(CharacterActionScriptable spell, ValueForCalcul values, Node casterPosition, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, float maxValue)
     {
         float result = 0;
-        float abcsissa = GetAbcsissaValue(spell, values.abscissaValue, caster, target);
+        float abcsissa = 0;
 
         if (values.maxValue < 1)
         {
             values.maxValue = 1;
         }
+
+        abcsissa = GetAbcsissaValue(spell, values.abscissaValue, casterPosition, target.currentNode, caster, target);
+
+        float potentialResult = CalculateSpecifiedValues(values, abcsissa);
+
+        if (potentialResult > result)
+        {
+            result = potentialResult;
+        }
+
+        result = Mathf.Clamp(result, 0, maxValue);
+
+        return result;
+    }
+
+    private float CalculateSpecifiedValues(ValueForCalcul values, float abcsissa)
+    {
+        float result = 0;
 
         switch (values.calculType)
         {
@@ -432,7 +474,7 @@ public class AiBattleManager : MonoBehaviour
                 result = AffineCalcul(abcsissa, values.constant, values.coeficient) / values.maxValue; ;
                 break;
             case AiCalculType.Logarythm:
-                if(values.coeficient>=1)
+                if (values.coeficient >= 1)
                 {
                     values.coeficient = 1;
                 }
@@ -450,67 +492,101 @@ public class AiBattleManager : MonoBehaviour
                 break;
         }
 
-        result = Mathf.Clamp(result, 0, maxValue);
-
         return result;
     }
 
-    public float GetAbcsissaValue(CharacterActionScriptable spell, AiAbscissaType abcsissa, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public float GetAbcsissaValue(CharacterActionScriptable spell, AiAbscissaType abcsissa, Node casterNode, Node targetNode, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         switch(abcsissa)
         {
             case AiAbscissaType.DistanceFromTarget:
-                return Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode);
+                return Pathfinding.instance.GetDistance(casterNode, targetNode);
             case AiAbscissaType.TargetMaxHp:
-                return target.GetCharacterDatas().GetMaxHps();
+                if (target != null)
+                {
+                    return target.GetCharacterDatas().GetMaxHps();
+                }
+                return 0;
             case AiAbscissaType.TargetCurrentHp:
-                return target.GetCurrentHps();
+                if (target != null)
+                {
+                    return target.GetCurrentHps();
+                }
+                return 0;
             case AiAbscissaType.TargetPercentHp:
-                return target.GetPercentHp() * 100f;
+                if (target != null)
+                {
+                    return target.GetPercentHp() * 100f;
+                }
+                return 0;
             case AiAbscissaType.CasterMaxHp:
-                return caster.GetCharacterDatas().GetMaxHps();
+                if (caster != null)
+                {
+                    return caster.GetCharacterDatas().GetMaxHps();
+                }
+                return 0;
             case AiAbscissaType.CasterCurrentHp:
-                return caster.GetCurrentHps();
+                if (caster != null)
+                {
+                    return caster.GetCurrentHps();
+                }
+                return 0;
             case AiAbscissaType.CasterPercentHp:
-                return caster.GetPercentHp();
+                if (caster != null)
+                {
+                    return caster.GetPercentHp() * 100f;
+                }
+                return 0;
             case AiAbscissaType.TargetMalus:
                 break;
             case AiAbscissaType.TargetBonus:
                 break;
             case AiAbscissaType.TargetDangerosity:
-                return target.GetDangerosity();
+                if (target != null)
+                {
+                    return target.GetDangerosity();
+                }
+                return 0;
             case AiAbscissaType.TargetVulnerability:
-                return target.GetVulnerability();
+                if (target != null)
+                {
+                    return target.GetVulnerability();
+                }
+                return 0;
             case AiAbscissaType.TargetPhysicalArmor:
-                return target.GetCharacterDatas().GetArmor();
+                if (target != null)
+                {
+                    return target.GetCharacterDatas().GetArmor();
+                }
+                return 0;
             case AiAbscissaType.NumberEnnemyArea:
-                return GetCharacterInArea(caster, target.currentNode, spell, false);
+                return GetCharacterInArea(casterNode, targetNode, caster.GetTeam(), spell, false);
             case AiAbscissaType.NumberAllyArea:
-                return GetCharacterInArea(caster, target.currentNode, spell, true);
+                return GetCharacterInArea(casterNode, targetNode, caster.GetTeam(), spell, true);
             case AiAbscissaType.NumberWoundedEnnemyArea:
-                return GetCharacterInArea(caster, target.currentNode, spell, false, true);
+                return GetCharacterInArea(casterNode, targetNode, caster.GetTeam(), spell, false, true);
             case AiAbscissaType.NumberWoundedAllyArea:
-                return GetCharacterInArea(caster, target.currentNode, spell, true, true);
+                return GetCharacterInArea(casterNode, targetNode, caster.GetTeam(), spell, true, true);
         }
         return 0;
     }
 
-    private int GetCharacterInArea(RuntimeBattleCharacter caster, Node targetNode, CharacterActionScriptable spell, bool isAlly, bool checkWounded = false)
+    private int GetCharacterInArea(Node casterNode, Node targetNode, int teamIndex, CharacterActionScriptable spell, bool isAlly, bool checkWounded = false)
     {
-        List<Node> toTest = BattleManager.GetHitNodes(targetNode.worldPosition, caster.currentNode.worldPosition, spell);
+        List<Node> toTest = BattleManager.GetHitNodes(targetNode.worldPosition, casterNode.worldPosition, spell);
         int charaAmount = 0;
         for(int i = 0; i < toTest.Count; i++)
         {
             if(toTest[i].HasCharacterOn)
             {
-                if(toTest[i].chara.GetTeam() == caster.GetTeam() && isAlly)
+                if(toTest[i].chara.GetTeam() == teamIndex && isAlly)
                 {
                     if (!checkWounded || toTest[i].chara.GetPercentHp() < 1)
                     {
                         charaAmount++;
                     }
                 }
-                else if (toTest[i].chara.GetTeam() != caster.GetTeam() && !isAlly)
+                else if (toTest[i].chara.GetTeam() != teamIndex && !isAlly)
                 {
                     if (!checkWounded || toTest[i].chara.GetPercentHp() < 1)
                     {
@@ -559,9 +635,9 @@ public class AiBattleManager : MonoBehaviour
     {
         if(checkAroundMax)
         {
-            return 2 / (1 + (Mathf.Exp(Mathf.Abs(c - k) * x)));
+            return 2 / (1 + (Mathf.Exp(Mathf.Abs(x - k) * c)));
         }
-        return 1 / (1 + (Mathf.Exp((c-k) * x)));
+        return 1 / (1 + (Mathf.Exp((x-k) * c)));
     }
     #endregion
 }

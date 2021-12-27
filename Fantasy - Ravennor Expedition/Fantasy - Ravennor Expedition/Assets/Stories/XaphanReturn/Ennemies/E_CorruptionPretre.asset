@@ -37,7 +37,10 @@ MonoBehaviour:
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 1eebc3eb9b8f7be4e8183f60ce1a600f, type: 2}
-    conditions: []
+    conditions:
+    - conditionWanted: 14
+      conditionValue: 2
+      conditionType: 1
     considerationImportance: 0.2
     maximumValueModifier: 0
     startScore: 0
@@ -52,7 +55,10 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: d11bea63ddd91f348a3990b85b365f55, type: 2}
-    conditions: []
+    conditions:
+    - conditionWanted: 13
+      conditionValue: 2
+      conditionType: 1
     considerationImportance: -0.2
     maximumValueModifier: 0
     startScore: 0

@@ -408,7 +408,7 @@ public class BattleManager : MonoBehaviour
             Pathfinding.instance.SearchPath(Grid.instance.NodeFromWorldPoint(currentCharacterTurn.transform.position), null, false);
             PlayerBattleManager.instance.ActivatePlayerBattleController(true);
         }
-        else if(character.GetTeam() > -1)
+        else if(character.GetTeam() > 0)
         {
             AiBattleManager.instance.SearchNextMove(0.5f);
         }
