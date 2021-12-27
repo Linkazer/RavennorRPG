@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
   m_Name: E_Mage
   m_EditorClassIdentifier: 
-  nom: Mage Fanatique
-  icon: {fileID: 21300000, guid: af13beec4b34425458473d8a617f1d97, type: 3}
-  portrait: {fileID: 21300000, guid: af13beec4b34425458473d8a617f1d97, type: 3}
-  spritePerso: {fileID: 21300000, guid: af13beec4b34425458473d8a617f1d97, type: 3}
+  nom: Adepte Mage
+  icon: {fileID: 21300000, guid: 99b2e654a71bebe4c997d787a5e98855, type: 3}
+  portrait: {fileID: 21300000, guid: 99b2e654a71bebe4c997d787a5e98855, type: 3}
+  spritePerso: {fileID: 21300000, guid: 99b2e654a71bebe4c997d787a5e98855, type: 3}
   spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
   brasPosition: 0
   description: 
@@ -32,14 +32,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 656afe7a67115354f9e720053392066b, type: 2}
   - {fileID: 11400000, guid: c0f4d4ed22fcfb84cb0ed610ebdcc8eb, type: 2}
   passifs: []
-  initiative: 0
+  initiative: 2
   closestDistanceWhenNoAction: 45
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: c0f4d4ed22fcfb84cb0ed610ebdcc8eb, type: 2}
     conditions:
     - conditionWanted: 13
-      conditionValue: 2
+      conditionValue: 1
       conditionType: 1
     considerationImportance: 0
     maxValue: 2
@@ -59,7 +59,7 @@ MonoBehaviour:
       conditionValue: 15
       conditionType: 2
     considerationImportance: 0
-    maxValue: 1
+    maxValue: 0.8
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -76,7 +76,7 @@ MonoBehaviour:
       conditionValue: 16
       conditionType: 1
     considerationImportance: 0
-    maxValue: 1
+    maxValue: 0.8
     calculs:
     - calculType: 1
       abscissaValue: 0

@@ -30,6 +30,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private List<RuntimeBattleCharacter> roundList = new List<RuntimeBattleCharacter>();
     private int currentIndexTurn;
+    private int currentTurn;
 
     [SerializeField]
     private List<PersonnageScriptables> playerTeam = new List<PersonnageScriptables>();
@@ -40,13 +41,13 @@ public class BattleManager : MonoBehaviour
     private List<RuntimeBattleCharacter> charaTeamOne = new List<RuntimeBattleCharacter>(), charaTeamTwo = new List<RuntimeBattleCharacter>();
     private RuntimeBattleCharacter currentCharacterTurn;
 
-    public static Action<RuntimeBattleCharacter> TurnBeginEvent;
+    public static Action<RuntimeBattleCharacter> characterTurnBegin;
 
     [SerializeField]
     private List<int> initiatives = new List<int>();
 
     private CharacterActionScriptable currentWantedAction;
-    private RuntimeBattleCharacter currentCaster, currentTarget;
+    private RuntimeBattleCharacter currentCaster;
     private int currentMaanaSpent = 0;
 
     public GameObject level;
@@ -64,6 +65,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private List<RVN_AudioSound> diceClip;
+
+    public static int TurnNumber => instance.currentTurn;
 
     #region Set Up
     private void Awake()
@@ -124,7 +127,7 @@ public class BattleManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        TurnBeginEvent = null;
+        characterTurnBegin = null;
     }
 
     public void BattleBegin()
@@ -134,6 +137,8 @@ public class BattleManager : MonoBehaviour
         BattleUiManager.instance.SetUI();
 
         Grid.instance.CreateGrid();
+
+        passiveCheater.SetRuntimeCharacterData(passiveCheater.GetCharacterDatas(), 10);
 
         NewCharacterRound(roundList[0]);
     }
@@ -310,7 +315,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        TurnBeginEvent?.Invoke(character);
+        characterTurnBegin?.Invoke(character);
 
         BattleUiManager.instance.SetNewTurn(currentIndexTurn, roundList);
 
@@ -347,10 +352,25 @@ public class BattleManager : MonoBehaviour
     public void EndTurn()
     {
         PlayerBattleManager.instance.ActivatePlayerBattleController(false);
+        if((currentIndexTurn + 1) % roundList.Count == 0)
+        {
+            currentTurn++;
+
+            for (int i = 0; i < roomManager.TurnEvents.Count; i++)
+            {
+                RoomTurnEvent turnEvt = roomManager.TurnEvents[i];
+                if (turnEvt.turnIndex < 0 || turnEvt.turnIndex == currentTurn)
+                {
+                    turnEvt.PlayEvents();
+                }
+            }
+        }
+
         if (!CheckForBattleEnd())
         {
             currentCharacterTurn.EndTurn();
             currentIndexTurn = (currentIndexTurn + 1) % roundList.Count;
+
             NewCharacterRound(roundList[currentIndexTurn]);
         }
     }
@@ -431,6 +451,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void LaunchActionWithoutCaster(CharacterActionScriptable wantedAction, Vector2 positionWanted, bool effectAction)
+    {
+        UseAction(wantedAction, 0, passiveCheater, positionWanted, effectAction);
+    }
+
     public void UseCurrentAction()
     {
         UseAction(actData.wantedAction, actData.maanaSpent, actData.caster, actData.positionWanted, actData.effectAction);
@@ -483,6 +508,29 @@ public class BattleManager : MonoBehaviour
         DoAction((CharacterActionDirect)currentWantedAction, currentMaanaSpent, currentCaster, positionWanted, false);
     }
 
+    public static List<Node> GetSpellUsableNodes(Node casterNode, CharacterActionScriptable spell)
+    {
+        List<Node> canSpellOn = Pathfinding.instance.GetNodesWithMaxDistance(casterNode, spell.range, false);
+
+        if (spell.hasViewOnTarget)
+        {
+            for (int i = 1; i < canSpellOn.Count; i++)
+            {
+                if (!BattleManager.instance.IsNodeVisible(canSpellOn[0], canSpellOn[i]))
+                {
+                    canSpellOn.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        if (!spell.castOnSelf)
+        {
+            canSpellOn.RemoveAt(0);
+        }
+
+        return canSpellOn;
+    }
+
     public static List<Node> GetHitNodes(Vector2 position, Vector2 casterPosition, CharacterActionScriptable spell)
     {
         Vector2 direction = Vector2.one;
@@ -522,6 +570,28 @@ public class BattleManager : MonoBehaviour
     public void DoAction(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
     {
         List<Node> hitNodes = GetHitNodes(positionWanted, new Vector2(caster.currentNode.gridX, caster.currentNode.gridY), wantedAction);
+
+
+        switch (wantedAction.target)
+        {
+            case ActionTargets.EveryAllies:
+                hitNodes = new List<Node>();
+                List<RuntimeBattleCharacter> allyTeam = GetAllyTeamCharacters(caster.GetTeam());
+
+                for (int i = 0; i < allyTeam.Count; i++)
+                {
+                    hitNodes.Add(allyTeam[i].currentNode);
+                }
+                break;
+            case ActionTargets.EveryEnnemies:
+                hitNodes = new List<Node>();
+                List<RuntimeBattleCharacter> ennemyTeam = GetEnemyTeamCharacters(caster.GetTeam());
+                for (int i = 0; i < ennemyTeam.Count; i++)
+                {
+                    hitNodes.Add(ennemyTeam[i].currentNode);
+                }
+                break;
+        }
 
         if(wantedAction.zoneSprite != null)
         {
@@ -648,6 +718,18 @@ public class BattleManager : MonoBehaviour
                 }
                 return false;
             case ActionTargets.Ennemies:
+                if (casterTeam != targetTeam)
+                {
+                    return true;
+                }
+                return false;
+            case ActionTargets.EveryAllies:
+                if (casterTeam == targetTeam)
+                {
+                    return true;
+                }
+                return false;
+            case ActionTargets.EveryEnnemies:
                 if (casterTeam != targetTeam)
                 {
                     return true;
@@ -1017,6 +1099,24 @@ public class BattleManager : MonoBehaviour
     public List<RuntimeBattleCharacter> GetAllChara()
     {
         return new List<RuntimeBattleCharacter>(roundList);
+    }
+
+    public List<RuntimeBattleCharacter> GetAllyTeamCharacters(int teamIndex)
+    {
+        if(teamIndex != 0)
+        {
+            return GetEnemyChara();
+        }
+        return GetPlayerChara();
+    }
+
+    public List<RuntimeBattleCharacter> GetEnemyTeamCharacters(int teamIndex)
+    {
+        if (teamIndex != 0)
+        {
+            return GetPlayerChara();
+        }
+        return GetEnemyChara();
     }
 
     public List<RuntimeBattleCharacter> GetPlayerChara()

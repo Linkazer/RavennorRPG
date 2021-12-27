@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         baselerp = lerpCoef;
-        BattleManager.TurnBeginEvent += OnNewTurn;
+        BattleManager.characterTurnBegin += OnNewTurn;
     }
 
     // Update is called once per frame

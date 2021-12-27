@@ -112,6 +112,12 @@ public class Grid : MonoBehaviour {
 
 		return neighbours;
 	}
+
+	public Node GetRandomNeighbours(Node node)
+    {
+		List<Node> neighbours = GetNeighbours(node);
+		return neighbours[Random.Range(0, neighbours.Count)];
+    }
 	
 	public Node NodeFromWorldPoint(Vector3 worldPosition) {
 		float percentX = (worldPosition.x + nodeRadius + gridWorldSize.x/2) / gridWorldSize.x;

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
-  m_Name: E_FanatiqueCorrompu
+  m_Name: E_AdepteTank
   m_EditorClassIdentifier: 
-  nom: Fanatique Corrompu
-  icon: {fileID: 21300000, guid: e7d6b5a1c0f9426488d2a47b0b516b39, type: 3}
-  portrait: {fileID: 21300000, guid: e7d6b5a1c0f9426488d2a47b0b516b39, type: 3}
-  spritePerso: {fileID: 21300000, guid: e7d6b5a1c0f9426488d2a47b0b516b39, type: 3}
+  nom: Adepte en armure
+  icon: {fileID: 21300000, guid: c601b19562893ae40882b778e7801d63, type: 3}
+  portrait: {fileID: 21300000, guid: c601b19562893ae40882b778e7801d63, type: 3}
+  spritePerso: {fileID: 21300000, guid: c601b19562893ae40882b778e7801d63, type: 3}
   spriteBras: {fileID: 21300000, guid: bcc0a2fdfa4cf9f4784586dae8b6ae40, type: 3}
   brasPosition: 0
   description: 
   healthPoints: 4
   maana: 0
-  movementSpeed: 45
+  movementSpeed: 35
   accuracy: 0
   defense: 4
   power: 0
@@ -30,9 +30,8 @@ MonoBehaviour:
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: 38cd12af3f02c524cbb7d32d91cddf71, type: 2}
-  passifs:
-  - {fileID: 11400000, guid: fe42936bc2b3e9a449ddf09ae921169f, type: 2}
-  initiative: 3
+  passifs: []
+  initiative: 7
   closestDistanceWhenNoAction: 15
   planForOtherTurns: 1
   comportement:
@@ -41,8 +40,9 @@ MonoBehaviour:
     - conditionWanted: 0
       conditionValue: 15
       conditionType: 2
-    considerationImportance: 0
-    maxValue: 1
+    considerationImportance: 1
+    maximumValueModifier: 0
+    startScore: 0.5
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -59,7 +59,8 @@ MonoBehaviour:
       conditionValue: 16
       conditionType: 1
     considerationImportance: 0
-    maxValue: 1
+    maximumValueModifier: 0
+    startScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 0

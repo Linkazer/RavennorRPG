@@ -22,9 +22,9 @@ MonoBehaviour:
     Toujours accompagn\xE9e de son fid\xE8le Zippo, elle suit Okun o\xF9 qu'il aille
     depuis la mort de son p\xE8re adoptif."
   healthPoints: 10
-  maana: 2
-  movementSpeed: 45
-  accuracy: 1
+  maana: 3
+  movementSpeed: 55
+  accuracy: 2
   defense: 2
   power: 0
   armor: 0

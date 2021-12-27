@@ -8,7 +8,7 @@ public enum AiAbscissaType{ DistanceFromTarget,
                             TargetMalus, TargetBonus,
                             TargetDangerosity, TargetVulnerability,
                             TargetPhysicalArmor, TargetMagicalArmor,
-                            NumberEnnemyArea, NumberAllyArea
+                            NumberEnnemyArea, NumberAllyArea, NumberWoundedEnnemyArea, NumberWoundedAllyArea
                           }
 
 public enum AiCalculType{ Conditionnal, Affine, Logarythm,
@@ -28,6 +28,11 @@ public class ValueForCalcul
     public float constant;
     public float coeficient;
     public float calculImportance = 1;
+
+    public ValueForCalcul()
+    {
+        calculImportance = 1;
+    }
 }
 
 [System.Serializable]
@@ -46,8 +51,9 @@ public class AiConsideration
     [Header("Condition")]
     public List<ValueForCondition> conditions;
     [Header("Calculs")]
-    [Tooltip("Minimum -1 si on veut que la Considération ne soit pas prise en compte.")]public float considerationImportance = 0;
-    public float maxValue = 1;
+    [Tooltip("Minimum -1 si on veut que la Considération ne soit pas prise en compte.")] public float considerationImportance = 0;
+    [Tooltip("Met une limite au score maximum des calculs.")] public float maximumValueModifier;
+    public float startScore;
     public List<ValueForCalcul> calculs;
     public int maxCooldown, cooldown;
 }

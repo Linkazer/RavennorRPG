@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_CorruptionPretre
+  m_EditorClassIdentifier: 
+  nom: "Pr\xEAtre de la Corruption"
+  icon: {fileID: 21300000, guid: e6b84d9b4a71e0747b93d010e7e93083, type: 3}
+  portrait: {fileID: 21300000, guid: e6b84d9b4a71e0747b93d010e7e93083, type: 3}
+  spritePerso: {fileID: 21300000, guid: e6b84d9b4a71e0747b93d010e7e93083, type: 3}
+  spriteBras: {fileID: 21300000, guid: ad4de7c80eb02a348869223b7b419aff, type: 3}
+  brasPosition: 0
+  description: 
+  healthPoints: 3
+  maana: 0
+  movementSpeed: 45
+  accuracy: 0
+  defense: 3
+  power: 0
+  armor: 0
+  actionNumber: 0
+  levelUpTable: {fileID: 0}
+  knownSpells:
+  - {fileID: 11400000, guid: d11bea63ddd91f348a3990b85b365f55, type: 2}
+  - {fileID: 11400000, guid: 1eebc3eb9b8f7be4e8183f60ce1a600f, type: 2}
+  passifs: []
+  initiative: 1
+  closestDistanceWhenNoAction: 35
+  planForOtherTurns: 1
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 1eebc3eb9b8f7be4e8183f60ce1a600f, type: 2}
+    conditions: []
+    considerationImportance: 0.2
+    maximumValueModifier: 0
+    startScore: 0
+    calculs:
+    - calculType: 1
+      abscissaValue: 16
+      checkAroundMax: 0
+      maxValue: 4
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: d11bea63ddd91f348a3990b85b365f55, type: 2}
+    conditions: []
+    considerationImportance: -0.2
+    maximumValueModifier: 0
+    startScore: 0
+    calculs:
+    - calculType: 1
+      abscissaValue: 13
+      checkAroundMax: 0
+      maxValue: 4
+      constant: 0
+      coeficient: 1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0

@@ -10,7 +10,14 @@ public class RoomAction_SpawnAlly : MonoBehaviour, IRoomAction
     {
         for(int i = 0; i < characters.Count; i++)
         {
-            BattleManager.instance.SpawnNewAllyCharacter(characters[i], spawnPoints[i].position);
+            Node n = Grid.instance.NodeFromWorldPoint(spawnPoints[i].position);
+            int j = 0;
+            while (j < 5 && !n.walkable)
+            {
+                n = Grid.instance.GetRandomNeighbours(n);
+            }
+
+            BattleManager.instance.SpawnNewAllyCharacter(characters[i], n.worldPosition);
         }
 
     }

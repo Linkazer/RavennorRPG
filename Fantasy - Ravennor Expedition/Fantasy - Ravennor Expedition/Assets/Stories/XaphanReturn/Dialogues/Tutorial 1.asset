@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
   m_Name: Tutorial 1
   m_EditorClassIdentifier: 
-  storyText: 
-  reponses: []
-  battleBegin: 1
+  storyText: Test Tutoriel
+  reponses:
+  - text: 
+    nextStory: {fileID: 0}
+  battleBegin: 0
   goToCamp: 0

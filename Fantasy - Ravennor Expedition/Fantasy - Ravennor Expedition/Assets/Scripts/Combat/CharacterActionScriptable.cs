@@ -8,7 +8,7 @@ public enum AttackType { Physical, Magical}
 
 public enum ActionIncantation { Rapide, Simple, Lent, Hard}
 
-public enum ActionTargets { SelfAllies, Ennemies, All, FreeSpace, Invocations}
+public enum ActionTargets { SelfAllies, Ennemies, All, FreeSpace, Invocations, EveryEnnemies, EveryAllies}
 
 public enum DamageType { Heal, Damage, Brut}
 
@@ -77,7 +77,6 @@ public class CharacterActionScriptable : ScriptableObject
 
     public int GetMaxCooldown()
     {
-        Debug.Log("Get CD");
         return maxCooldown;
     }
 

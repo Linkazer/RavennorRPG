@@ -22,10 +22,10 @@ MonoBehaviour:
     aussi le plus secret. Toujours de bonne humeur, il esquive chacune des questions
     des autres membres concernant son pass\xE9."
   healthPoints: 12
-  maana: 2
-  movementSpeed: 35
+  maana: 3
+  movementSpeed: 45
   accuracy: 0
-  defense: 3
+  defense: 4
   power: 0
   armor: 0
   actionNumber: 0

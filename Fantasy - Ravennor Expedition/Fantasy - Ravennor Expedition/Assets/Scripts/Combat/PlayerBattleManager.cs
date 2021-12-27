@@ -113,23 +113,8 @@ public class PlayerBattleManager : MonoBehaviour
     {
         Grid.instance.CreateGrid();
 
-        List<Node> canSpellOn = Pathfinding.instance.GetNodesWithMaxDistance(Grid.instance.NodeFromWorldPoint(currentCharacter.transform.position), wantedAction.range, false);
+        List<Node> canSpellOn = BattleManager.GetSpellUsableNodes(currentCharacter.currentNode, wantedAction);
 
-        if (wantedAction.hasViewOnTarget)
-        {
-            for (int i = 1; i < canSpellOn.Count; i++)
-            {
-                if (!BattleManager.instance.IsNodeVisible(canSpellOn[0], canSpellOn[i]))
-                {
-                    canSpellOn.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
-        if (!wantedAction.castOnSelf)
-        {
-            canSpellOn.RemoveAt(0);
-        }
         Color tColor = Color.blue;
         tColor.a = 0.5f;
         Grid.instance.SetUsableNodes(canSpellOn, tColor);

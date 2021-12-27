@@ -21,22 +21,15 @@ MonoBehaviour:
   description: "Lila est une jeune elfe ayant surv\xE9cut plusieurs ann\xE9es dans
     un tombeau. Elle a rejoint la Confr\xE9rie afin d'en apprendre plus sur les raisons
     qui ont pouss\xE9 son percepteur \xE0 l'enfermer."
-  level: 1
   healthPoints: 28
   maana: 5
   movementSpeed: 35
-  hitDices: 1
+  accuracy: 0
   defense: 2
-  physicalPower: 0
-  magicalPower: 0
-  luckyDice: 1
-  criticalMultiplicator: 1
-  physicalArmor: 0
-  magicalArmor: 0
+  power: 0
+  armor: 0
+  actionNumber: 0
   levelUpTable: {fileID: 0}
-  knownSpells:
-  - {fileID: 11400000, guid: e2eb90b72e1371449a7f1ece30c70bf7, type: 2}
-  - {fileID: 11400000, guid: e7fa15df79305654fbb6130f9e637962, type: 2}
-  - {fileID: 11400000, guid: be1227359e6e35048aa8c3069215f877, type: 2}
+  knownSpells: []
   passifs: []
   initiative: 3

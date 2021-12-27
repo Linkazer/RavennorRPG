@@ -21,9 +21,9 @@ MonoBehaviour:
   description: "Banni de sa tribu, Shedun cherche depuis plusieurs ann\xE9es un rem\xE8de
     qui pourrait l'aider \xE0 sauver sa soeur avec l'aide de la Confr\xE9rie."
   healthPoints: 10
-  maana: 3
-  movementSpeed: 45
-  accuracy: 0
+  maana: 4
+  movementSpeed: 55
+  accuracy: 1
   defense: 1
   power: 1
   armor: 0

@@ -85,7 +85,7 @@ public class SpellObject : MonoBehaviour
         effet = newEffet;
         turnLeft = turn;
         effectCaster = newCaster;
-        BattleManager.TurnBeginEvent += UpdateRound;
+        BattleManager.characterTurnBegin += UpdateRound;
     }
 
     public void ResetObject()
@@ -95,7 +95,7 @@ public class SpellObject : MonoBehaviour
         {
             effet = null;
             effectCaster = null;
-            BattleManager.TurnBeginEvent -= UpdateRound;
+            BattleManager.characterTurnBegin -= UpdateRound;
         }
         isUsed = false;
         SetPosition(new Vector2(-20, -20));

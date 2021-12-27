@@ -22,11 +22,11 @@ MonoBehaviour:
     consid\xE9r\xE9 comme la seule membre de la confr\xE9rie a avoir un minimum de
     bon sens."
   healthPoints: 8
-  maana: 5
-  movementSpeed: 35
+  maana: 8
+  movementSpeed: 45
   accuracy: 0
   defense: 1
-  power: 0
+  power: 1
   armor: 0
   actionNumber: 0
   levelUpTable: {fileID: 11400000, guid: 19cbc7e612aa34849b44516ae8779116, type: 2}

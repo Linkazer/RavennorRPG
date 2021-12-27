@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
   m_Name: Hist1_Lvl 2
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 7560241282882709333, guid: 74b6e7edf45ddca49bcbb6dbe0d92cc2, type: 3}
+  levelPrefab: {fileID: 7560241282882709333, guid: ee8796c625883f34f84b551074ed62da, type: 3}
   ID: Hist1_Lvl 2
-  nom: Niveau Test 1
+  nom: "L'Acad\xE9mie de Norganon"
   winCondition: "Ouvrir la derni\xE8re porte"
   looseCondition: "L'un des membres de la Confr\xE9rie tombe inconcient."
-  description: Niveau Test
+  description: "Partie \xE0 la recherche des Archimages, la Confr\xE9rie du Zippo
+    doit se frayer un chemin dans l'Acad\xE9mie."
   charactersInLevel:
   - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
   - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: E_ArchimageCorrompu_Stun
   m_EditorClassIdentifier: 
   effet:
-    nom: 
-    spr: {fileID: 0}
-    description: 
+    nom: Prison tellurique
+    spr: {fileID: 21300000, guid: 86b9a00335ccb834589dad2def5b1127, type: 3}
+    description: "La cible est paralys\xE9e et passe son prochain tour."
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects: []

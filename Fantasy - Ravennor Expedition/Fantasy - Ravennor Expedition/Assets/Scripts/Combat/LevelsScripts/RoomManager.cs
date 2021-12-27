@@ -32,6 +32,9 @@ public class RoomManager : MonoBehaviour
     [Header("Rooms Informations")]
     [SerializeField]
     protected List<Room> rooms;
+    [SerializeField] protected List<RoomTurnEvent> turnEvents;
+
+    public List<RoomTurnEvent> TurnEvents => new List<RoomTurnEvent>(turnEvents);
 
     [Header("Player Informations")]
     [SerializeField]

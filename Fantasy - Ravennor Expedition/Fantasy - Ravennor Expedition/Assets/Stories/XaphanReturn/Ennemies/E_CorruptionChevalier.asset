@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
+  m_Name: E_CorruptionChevalier
+  m_EditorClassIdentifier: 
+  nom: Chevalier de la Corruption
+  icon: {fileID: 21300000, guid: d281b4664faaf4f45b31560daa605385, type: 3}
+  portrait: {fileID: 21300000, guid: d281b4664faaf4f45b31560daa605385, type: 3}
+  spritePerso: {fileID: 21300000, guid: d281b4664faaf4f45b31560daa605385, type: 3}
+  spriteBras: {fileID: 21300000, guid: ad4de7c80eb02a348869223b7b419aff, type: 3}
+  brasPosition: 0
+  description: 
+  healthPoints: 5
+  maana: 0
+  movementSpeed: 45
+  accuracy: 0
+  defense: 3
+  power: 1
+  armor: 1
+  actionNumber: 0
+  levelUpTable: {fileID: 0}
+  knownSpells:
+  - {fileID: 11400000, guid: 9b17a47891c82124bb375b122a2f3837, type: 2}
+  passifs:
+  - {fileID: 11400000, guid: 086bfbcccf011ab4e9294fde1ca4f5e6, type: 2}
+  initiative: 8
+  closestDistanceWhenNoAction: 15
+  planForOtherTurns: 1
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 9b17a47891c82124bb375b122a2f3837, type: 2}
+    conditions:
+    - conditionWanted: 0
+      conditionValue: 25
+      conditionType: 2
+    considerationImportance: 1
+    maximumValueModifier: 0
+    startScore: 0.5
+    calculs:
+    - calculType: 1
+      abscissaValue: 3
+      checkAroundMax: 0
+      maxValue: 100
+      constant: 100
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: 9b17a47891c82124bb375b122a2f3837, type: 2}
+    conditions:
+    - conditionWanted: 0
+      conditionValue: 26
+      conditionType: 1
+    considerationImportance: 0
+    maximumValueModifier: 0
+    startScore: 0
+    calculs:
+    - calculType: 1
+      abscissaValue: 3
+      checkAroundMax: 0
+      maxValue: 100
+      constant: 100
+      coeficient: -1
+      calculImportance: 0.5
+    - calculType: 1
+      abscissaValue: 0
+      checkAroundMax: 0
+      maxValue: 150
+      constant: 150
+      coeficient: -1
+      calculImportance: 1
+    maxCooldown: 0
+    cooldown: 0

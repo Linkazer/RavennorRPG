@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: Vecteur de Corruption
-    spr: {fileID: 0}
+    spr: {fileID: 21300000, guid: d5edcd01a8429df4e940da4d1daa7a27, type: 3}
     description: "A sa mort, le porteur laisse s'\xE9chapper une vague de corruption
       offrant un bonus de Puissance et de Pr\xE9cision \xE0 tous les alli\xE9es alentours."
     wantedEffectToTrigger: {fileID: 0}

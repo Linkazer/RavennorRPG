@@ -87,7 +87,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         useActionEvt = null;
         endTurnEvt = null;
-        beginTurnEvt = null;
+        //beginTurnEvt = null;
         deathEvt = null;
     }
 
@@ -241,7 +241,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return afflictions.Contains(toCheck);
     }
 
-    public bool CheckToDeleteAffliction(Affliction toCheck)
+    public bool CanDeleteAffliction(Affliction toCheck)
     {
         int nb = 0;
         foreach(RuntimeSpellEffect eff in appliedEffects)
@@ -250,7 +250,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 nb++;
         }
 
-        return nb > 1;
+        return nb <= 1;
     }
 
     public int GetSpellCooldown(CharacterActionScriptable spell)
@@ -292,6 +292,17 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void UseRuntimeCharacter(PersonnageScriptables newScriptable, int newTeam)
     {
+        SetRuntimeCharacterData(newScriptable, newTeam);
+
+        characterSprite.sprite = currentScriptable.spritePerso;
+        handSpriteRight.sprite = currentScriptable.spriteBras;
+        handSpriteLeft.sprite = currentScriptable.spriteBras;
+
+        brasParent.transform.localPosition = new Vector3(brasParent.transform.localPosition.x, currentScriptable.brasPosition, 0);
+    }
+
+    public void SetRuntimeCharacterData(PersonnageScriptables newScriptable, int newTeam)
+    {
         team = newTeam;
         currentScriptable = Instantiate(newScriptable);
 
@@ -304,30 +315,26 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
         actionsDisponibles = new List<CharacterActionScriptable>(currentScriptable.knownSpells);
 
-        for(int i = 0; i < actionsDisponibles.Count; i++)
+        for (int i = 0; i < actionsDisponibles.Count; i++)
         {
             cooldowns.Add(0);
             spellUtilisations.Add(0);
         }
 
         currentNode = Grid.instance.NodeFromWorldPoint(transform.position);
+        //currentNode.chara = this;
 
         initiative = currentScriptable.GetInitiativeBrut();//BattleManager.instance.NormalRoll(currentScriptable.GetInitiativeDice(), currentScriptable.GetInititativeBonus(), DiceType.D6);
 
-        characterSprite.sprite = currentScriptable.spritePerso;
-        handSpriteRight.sprite = currentScriptable.spriteBras;
-        handSpriteLeft.sprite = currentScriptable.spriteBras;
-
-        brasParent.transform.localPosition = new Vector3(brasParent.transform.localPosition.x, currentScriptable.brasPosition, 0);
     }
     #endregion
 
     public void NewTurn()
     {
+        beginTurnEvt?.Invoke();
+
         if (currentHps > 0)
         {
-            beginTurnEvt?.Invoke();
-
             for (int i = 0; i < cooldowns.Count; i++)
             {
                 if (cooldowns[i] > 0)
@@ -588,7 +595,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             currentScriptable.StatBonus(-eff.RealValue(), eff.type);
         }
 
-        if(appliedEffects[index].effet.affliction != Affliction.None && CheckToDeleteAffliction(appliedEffects[index].effet.affliction))
+        if(appliedEffects[index].effet.affliction != Affliction.None && CanDeleteAffliction(appliedEffects[index].effet.affliction))
         {
             RemoveAffliction(appliedEffects[index].effet.affliction);
         }

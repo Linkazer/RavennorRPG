@@ -38,7 +38,7 @@ public class TimerSyst : MonoBehaviour
         instance = this;
     }
 
-    public static TimerEvent CreateTimer(float timeToWait, Action callback)
+    public static TimerEvent CreateTimer(float timeToWait, Action callback = null)
     {
         return instance.OnCreateTimer(timeToWait, callback);
     }

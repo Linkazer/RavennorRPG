@@ -12,6 +12,8 @@ public class RuntimeSpellEffect
     private RuntimeBattleCharacter caster;
     private RuntimeBattleCharacter target;
 
+    private RuntimeBattleCharacter turnIndexApplied;
+
     public RuntimeSpellEffect(SpellEffectCommon common, int maanaSpent, int startCooldown, RuntimeBattleCharacter nCaster)
     {
         effet = new SpellEffectCommon(common, maanaSpent, nCaster);
@@ -26,12 +28,13 @@ public class RuntimeSpellEffect
 
         target.AddEffect(this);
 
-        caster.beginTurnEvt += UpdateCooldown;
+        turnIndexApplied = BattleManager.instance.GetCurrentTurnChara();
+        turnIndexApplied.beginTurnEvt += UpdateCooldown;
     }
 
     public void RemoveEffect()
     {
-        caster.beginTurnEvt -= UpdateCooldown;
+        turnIndexApplied.beginTurnEvt -= UpdateCooldown;
     }
 
     public void UpdateCooldown()

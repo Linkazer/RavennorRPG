@@ -33,4 +33,4 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: b46678951e558354fba75d1ff32496c1, type: 2}
   passifs: []
-  initiative: 11
+  initiative: 4

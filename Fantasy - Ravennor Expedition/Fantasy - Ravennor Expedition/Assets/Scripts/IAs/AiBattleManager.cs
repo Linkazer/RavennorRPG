@@ -56,7 +56,7 @@ public class AiBattleManager : MonoBehaviour
         {
             if (wantedAction != null && currentChara.CanDoAction())
             {
-                Debug.Log("AI do something");
+                //Debug.Log("AI do something");
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.transform.position - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.transform.position, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
                 /*(Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null)*/ // Si on a un bug de déplacement des IA
@@ -72,7 +72,7 @@ public class AiBattleManager : MonoBehaviour
                     BattleManager.instance.LaunchAction(wantedAction, 0, currentChara, target.transform.position, false);
                     if (currentChara.CanDoAction())
                     {
-                        Debug.Log("Can do action");
+                        //Debug.Log("Can do action");
                         wantedAction = null;
                         SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), false);
                     }
@@ -112,10 +112,19 @@ public class AiBattleManager : MonoBehaviour
                     {
                         nodeToMoveTo = GetClosestTargetNode(BattleManager.instance.GetPlayerChara());
                         //Debug.Log("From : " + currentChara.currentNode.worldPosition + " to : " + nodeToMoveTo.worldPosition);
-                        if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
+                        if (nodeToMoveTo != null && Pathfinding.instance.GetDistance(nodeToMoveTo, currentChara.currentNode) <= wantedDist)
+                        {
+                            BattleManager.instance.EndTurn();
+                        }
+                        else if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                         {
                             BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
                             currentChara.movementLeft -= nodeToMoveTo.gCost;
+                        }
+                        else
+                        {
+                            Debug.Log("AI End turn No possible movement");
+                            BattleManager.instance.EndTurn();
                         }
                     }
                 }
@@ -152,8 +161,11 @@ public class AiBattleManager : MonoBehaviour
             List<Node> possiblesActionsMoveNeeded = new List<Node>();
             List<RuntimeBattleCharacter> possiblesActionsTargets = new List<RuntimeBattleCharacter>();
 
+            int considCount = 0;
+
             foreach (AiConsideration consid in aiCaster.comportement)
             {
+                considCount++;
                 if ((consid.cooldown <= 0 && caster.GetSpellCooldown(consid.wantedAction)<=0) || (askForNextTurn && consid.cooldown <= 1 && caster.GetSpellCooldown(consid.wantedAction) <= 1))
                 {
                     //List<Node> toCheck = Pathfinding.instance.GetNodesWithMaxDistance(caster.currentNode, consid.wantedAction.range.y, false);
@@ -164,7 +176,7 @@ public class AiBattleManager : MonoBehaviour
                         if (CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
                         {
                             float newScore = EvaluateAction(consid, caster, chara);
-                            Debug.Log(consid.wantedAction + " on " + chara + " Score : " + newScore);
+                            Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
                             if (newScore >= maxScore)
                             {
                                 if(newScore > maxScore)
@@ -308,13 +320,24 @@ public class AiBattleManager : MonoBehaviour
 
         bool foundSomething = false;
 
-        foreach(Node n in possibleDeplacement)
+        foreach (Node n in possibleDeplacement)
         {
-            if(Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded)
+            if (Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded && askForNextTurn)
             {
-                if(actionToTry.hasViewOnTarget && BattleManager.instance.IsNodeVisible(targetToTry.currentNode, n) || !actionToTry.hasViewOnTarget || askForNextTurn)
+                return true;
+            }
+            else
+            {
+                List<Node> touchableNodes = BattleManager.GetSpellUsableNodes(n, actionToTry);
+
+                for (int i = 0; i < touchableNodes.Count; i++)
                 {
-                    return true;
+                    List<Node> zoneNodes = BattleManager.GetHitNodes(targetToTry.currentNode.worldPosition, n.worldPosition, actionToTry);
+
+                    if (zoneNodes.Contains(targetToTry.currentNode))
+                    {
+                        return true;
+                    }
                 }
             }
         }
@@ -377,15 +400,16 @@ public class AiBattleManager : MonoBehaviour
 
         foreach(ValueForCalcul value in actionToEvaluate.calculs)
         {
-            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, caster, target, actionToEvaluate.maxValue) * value.calculImportance;
+            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, caster, target, 1 + actionToEvaluate.maximumValueModifier) * value.calculImportance;
             coef += value.calculImportance;
         }
 
-        totalResult = totalResult / coef;
-        if(totalResult > actionToEvaluate.maxValue)
+        totalResult = actionToEvaluate.startScore + totalResult / coef;
+        if (totalResult > 1 + actionToEvaluate.maximumValueModifier)
         {
-            totalResult = actionToEvaluate.maxValue;
+            totalResult = 1 + actionToEvaluate.maximumValueModifier;
         }
+
         return totalResult * (actionToEvaluate.considerationImportance + 1);
     }
 
@@ -442,7 +466,7 @@ public class AiBattleManager : MonoBehaviour
             case AiAbscissaType.TargetCurrentHp:
                 return target.GetCurrentHps();
             case AiAbscissaType.TargetPercentHp:
-                return target.GetPercentHp();
+                return target.GetPercentHp() * 100f;
             case AiAbscissaType.CasterMaxHp:
                 return caster.GetCharacterDatas().GetMaxHps();
             case AiAbscissaType.CasterCurrentHp:
@@ -463,11 +487,15 @@ public class AiBattleManager : MonoBehaviour
                 return GetCharacterInArea(caster, target.currentNode, spell, false);
             case AiAbscissaType.NumberAllyArea:
                 return GetCharacterInArea(caster, target.currentNode, spell, true);
+            case AiAbscissaType.NumberWoundedEnnemyArea:
+                return GetCharacterInArea(caster, target.currentNode, spell, false, true);
+            case AiAbscissaType.NumberWoundedAllyArea:
+                return GetCharacterInArea(caster, target.currentNode, spell, true, true);
         }
         return 0;
     }
 
-    private int GetCharacterInArea(RuntimeBattleCharacter caster, Node targetNode, CharacterActionScriptable spell, bool isAlly)
+    private int GetCharacterInArea(RuntimeBattleCharacter caster, Node targetNode, CharacterActionScriptable spell, bool isAlly, bool checkWounded = false)
     {
         List<Node> toTest = BattleManager.GetHitNodes(targetNode.worldPosition, caster.currentNode.worldPosition, spell);
         int charaAmount = 0;
@@ -477,11 +505,17 @@ public class AiBattleManager : MonoBehaviour
             {
                 if(toTest[i].chara.GetTeam() == caster.GetTeam() && isAlly)
                 {
-                    charaAmount++;
+                    if (!checkWounded || toTest[i].chara.GetPercentHp() < 1)
+                    {
+                        charaAmount++;
+                    }
                 }
                 else if (toTest[i].chara.GetTeam() != caster.GetTeam() && !isAlly)
                 {
-                    charaAmount++;
+                    if (!checkWounded || toTest[i].chara.GetPercentHp() < 1)
+                    {
+                        charaAmount++;
+                    }
                 }
             }
         }

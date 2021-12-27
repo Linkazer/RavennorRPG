@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheatData: {fileID: 11400000, guid: 2f42e8c4399982b4e8def682290e7dd7, type: 2}
-  firstLevel: Hist1_Lvl0
+  firstLevel: Hist1_Lvl 1
 --- !u!114 &2276154665441850894
 MonoBehaviour:
   m_ObjectHideFlags: 0

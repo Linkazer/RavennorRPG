@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: Graine de Corruption
-    spr: {fileID: 0}
+    spr: {fileID: 21300000, guid: f59bc3e631214804baaf1e9b9c7155e2, type: 3}
     description: "Augmente la Puissance et la Pr\xE9cision de 1."
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
