@@ -168,40 +168,52 @@ public class AiBattleManager : MonoBehaviour
                 considCount++;
                 if ((consid.cooldown <= 0 && caster.GetSpellCooldown(consid.wantedAction)<=0) || (askForNextTurn && consid.cooldown <= 1 && caster.GetSpellCooldown(consid.wantedAction) <= 1))
                 {
-                    //List<Node> toCheck = Pathfinding.instance.GetNodesWithMaxDistance(caster.currentNode, consid.wantedAction.range.y, false);
-
                     foreach (RuntimeBattleCharacter chara in targets)
                     {
-                        //StartCoroutine(TestCanUse(consid.wantedAction, chara, askForNextTurn));
-                        if (CanSpellBeUsed(consid, consid.wantedAction, chara, askForNextTurn))
+                        List<Node> possibleMovement = new List<Node>();
+                        possibleMovement.Add(caster.currentNode);
+                        if (consid.optimizePosition)
                         {
-                            float newScore = EvaluateAction(consid, caster, chara);
-                            Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
-                            if (newScore >= maxScore)
+                            possibleMovement = new List<Node>(Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true));
+                        }
+                        for (int i = 0; i < possibleMovement.Count; i++)
+                        {
+                            Node nodeToTry = possibleMovement[i];
+                            
+                            if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, chara, askForNextTurn))
                             {
-                                if(newScore > maxScore)
+                                float newScore = EvaluateAction(consid, nodeToTry, caster, chara);
+                                Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
+                                if (newScore >= maxScore)
                                 {
-                                    possiblesActions = new List<CharacterActionScriptable>();
-                                    possiblesActionsMoveNeeded = new List<Node>();
-                                    possiblesActionsTargets = new List<RuntimeBattleCharacter>();
-                                }
+                                    if (newScore > maxScore)
+                                    {
+                                        possiblesActions = new List<CharacterActionScriptable>();
+                                        possiblesActionsMoveNeeded = new List<Node>();
+                                        possiblesActionsTargets = new List<RuntimeBattleCharacter>();
+                                    }
 
-                                if (askForNextTurn)
-                                {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 1000);
-                                }
-                                else
-                                {
-                                    nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
-                                }
-                                maxScore = newScore;
-                                wantedAction = consid.wantedAction;
-                                target = chara;
-                                considToCooldown = consid;
+                                    if (askForNextTurn)
+                                    {
+                                        nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 1000);
+                                    }
+                                    else if(nodeToTry != caster.currentNode)
+                                    {
+                                        nodeToMoveTo = nodeToTry;
+                                    }
+                                    else
+                                    {
+                                        nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
+                                    }
+                                    maxScore = newScore;
+                                    wantedAction = consid.wantedAction;
+                                    target = chara;
+                                    considToCooldown = consid;
 
-                                possiblesActions.Add(wantedAction);
-                                possiblesActionsMoveNeeded.Add(nodeToMoveTo);
-                                possiblesActionsTargets.Add(target);
+                                    possiblesActions.Add(wantedAction);
+                                    possiblesActionsMoveNeeded.Add(nodeToMoveTo);
+                                    possiblesActionsTargets.Add(target);
+                                }
                             }
                         }
                     }
@@ -229,7 +241,7 @@ public class AiBattleManager : MonoBehaviour
         }
     }
 
-    private bool CanSpellBeUsed(AiConsideration consid, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
+    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
     {
         switch (actionToTry.castTarget)
         {
@@ -247,13 +259,18 @@ public class AiBattleManager : MonoBehaviour
                 break;
         }
 
+        if(Pathfinding.instance.GetDistance(nodeToTry, targetToTry.currentNode) > actionToTry.range || !BattleManager.instance.IsNodeVisible(nodeToTry, targetToTry.currentNode))
+        {
+            return false;
+        }
+
         //Condition de l'IA
 
         for (int i = 0; i < consid.conditions.Count; i++)
         {
             ValueForCondition condition = consid.conditions[i];
 
-            float absice = GetAbcsissaValue(consid.wantedAction, condition.conditionWanted, currentChara, targetToTry);
+            float absice = GetAbcsissaValue(consid.wantedAction, condition.conditionWanted, nodeToTry, currentChara, targetToTry);
 
             switch (condition.conditionType)
             {
@@ -322,7 +339,7 @@ public class AiBattleManager : MonoBehaviour
 
         foreach (Node n in possibleDeplacement)
         {
-            if (Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded && askForNextTurn)
+            if (Pathfinding.instance.GetDistance(n, targetToTry.currentNode) <= rangeNeeded && (askForNextTurn || BattleManager.instance.IsNodeVisible(n, targetToTry.currentNode)))
             {
                 return true;
             }
@@ -393,14 +410,14 @@ public class AiBattleManager : MonoBehaviour
     }
 
     #region Calculs de Considérations
-    public float EvaluateAction(AiConsideration actionToEvaluate, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public float EvaluateAction(AiConsideration actionToEvaluate, Node nodeToTry, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         float totalResult = 0;
         float coef = 0;
 
         foreach(ValueForCalcul value in actionToEvaluate.calculs)
         {
-            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, caster, target, 1 + actionToEvaluate.maximumValueModifier) * value.calculImportance;
+            totalResult += ConsiderationCalcul(actionToEvaluate.wantedAction, value, nodeToTry, caster, target, 1 + actionToEvaluate.maximumValueModifier) * value.calculImportance;
             coef += value.calculImportance;
         }
 
@@ -413,10 +430,10 @@ public class AiBattleManager : MonoBehaviour
         return totalResult * (actionToEvaluate.considerationImportance + 1);
     }
 
-    public float ConsiderationCalcul(CharacterActionScriptable spell, ValueForCalcul values, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, float maxValue)
+    public float ConsiderationCalcul(CharacterActionScriptable spell, ValueForCalcul values, Node nodeToTry, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, float maxValue)
     {
         float result = 0;
-        float abcsissa = GetAbcsissaValue(spell, values.abscissaValue, caster, target);
+        float abcsissa = GetAbcsissaValue(spell, values.abscissaValue, nodeToTry, caster, target);
 
         if (values.maxValue < 1)
         {
@@ -455,12 +472,12 @@ public class AiBattleManager : MonoBehaviour
         return result;
     }
 
-    public float GetAbcsissaValue(CharacterActionScriptable spell, AiAbscissaType abcsissa, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public float GetAbcsissaValue(CharacterActionScriptable spell, AiAbscissaType abcsissa, Node nodeToTry, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         switch(abcsissa)
         {
             case AiAbscissaType.DistanceFromTarget:
-                return Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode);
+                return Pathfinding.instance.GetDistance(nodeToTry, target.currentNode);
             case AiAbscissaType.TargetMaxHp:
                 return target.GetCharacterDatas().GetMaxHps();
             case AiAbscissaType.TargetCurrentHp:
@@ -559,9 +576,9 @@ public class AiBattleManager : MonoBehaviour
     {
         if(checkAroundMax)
         {
-            return 2 / (1 + (Mathf.Exp(Mathf.Abs(c - k) * x)));
+            return 2 / (1 + (Mathf.Exp(Mathf.Abs(x - k) * c)));
         }
-        return 1 / (1 + (Mathf.Exp((c-k) * x)));
+        return 1 / (1 + (Mathf.Exp((x-k) * c)));
     }
     #endregion
 }

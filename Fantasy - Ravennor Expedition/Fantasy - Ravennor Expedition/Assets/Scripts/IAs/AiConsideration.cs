@@ -48,6 +48,7 @@ public class AiConsideration
 {
     [Header("Actions")]
     public CharacterActionScriptable wantedAction;
+    public bool optimizePosition;
     [Header("Condition")]
     public List<ValueForCondition> conditions;
     [Header("Calculs")]
