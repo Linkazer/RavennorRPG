@@ -180,7 +180,7 @@ public class AiBattleManager : MonoBehaviour
                         {
                             Node nodeToTry = possibleMovement[i];
                             
-                            if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, chara, askForNextTurn))
+                            if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, chara, askForNextTurn, consid.optimizePosition))
                             {
                                 float newScore = EvaluateAction(consid, nodeToTry, caster, chara);
                                 Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
@@ -239,9 +239,11 @@ public class AiBattleManager : MonoBehaviour
                 considToCooldown.cooldown = considToCooldown.maxCooldown;
             }
         }
+
+        Debug.Log(wantedAction);
     }
 
-    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn)
+    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn, bool optimizedPosition)
     {
         switch (actionToTry.castTarget)
         {
@@ -259,7 +261,7 @@ public class AiBattleManager : MonoBehaviour
                 break;
         }
 
-        if(Pathfinding.instance.GetDistance(nodeToTry, targetToTry.currentNode) > actionToTry.range || !BattleManager.instance.IsNodeVisible(nodeToTry, targetToTry.currentNode))
+        if(!askForNextTurn && !BattleManager.instance.IsNodeVisible(nodeToTry, targetToTry.currentNode))
         {
             return false;
         }
@@ -326,8 +328,13 @@ public class AiBattleManager : MonoBehaviour
             }
         }
 
-        List<Node> possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+        List<Node> possibleDeplacement = new List<Node>();
+        possibleDeplacement.Add(nodeToTry);
 
+        if(!optimizedPosition)
+        {
+            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+        }
         if (askForNextTurn)
         {
             possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 150, true);
@@ -343,7 +350,7 @@ public class AiBattleManager : MonoBehaviour
             {
                 return true;
             }
-            else
+            /*else
             {
                 List<Node> touchableNodes = BattleManager.GetSpellUsableNodes(n, actionToTry);
 
@@ -356,7 +363,7 @@ public class AiBattleManager : MonoBehaviour
                         return true;
                     }
                 }
-            }
+            }*/
         }
 
         return foundSomething;
