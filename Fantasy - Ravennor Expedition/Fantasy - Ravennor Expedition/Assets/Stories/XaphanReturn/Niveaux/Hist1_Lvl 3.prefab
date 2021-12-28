@@ -131989,7 +131989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6487587514056304231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.72, y: 1.2, z: 0}
+  m_LocalPosition: {x: -0.72, y: 1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -132286,20 +132286,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
+    - {fileID: 11400000, guid: 4b2989af25735bc43bc2e12eb137f4d6, type: 2}
     ennemisPos:
-    - {fileID: 2600873587656351773}
-    - {fileID: 5042642146233792598}
     - {fileID: 4333799979072496140}
-    - {fileID: 3246743402763328050}
     ennemisPositions:
-    - {x: -0.08000001, y: 1.84}
-    - {x: -0.56, y: 1.52}
-    - {x: -0.72, y: 1.2}
-    - {x: -1.04, y: 1.52}
+    - {x: -0.72, y: 1.84}
     toPlayOnEnable:
       m_PersistentCalls:
         m_Calls: []

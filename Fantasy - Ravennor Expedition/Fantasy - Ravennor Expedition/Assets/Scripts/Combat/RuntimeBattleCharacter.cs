@@ -437,7 +437,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     #region Action Interraction
     public void UseActionAnim()
     {
-        BattleManager.instance.UseCurrentAction();
+        BattleActionsManager.UseCurrentAction();
     }
 
     public int TakeDamage(DamageType typeOfDamage, int damageDealt)
@@ -605,14 +605,14 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ResolveEffect(RuntimeSpellEffect effect, EffectTrigger triggerWanted)
     {
-        BattleManager.instance.ResolveEffect(effect.effet, transform.position, transform.position, triggerWanted, effect.currentStack);
+        SpellResolution.AskResolveEffect(effect.effet, transform.position, transform.position, triggerWanted, effect.currentStack);
     }
 
     public void ResolveEffect(EffectTrigger triggerWanted)
     {
         for (int i = 0; i < appliedEffects.Count; i++)
         {
-            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, transform.position, triggerWanted, appliedEffects[i].currentStack);
+            SpellResolution.AskResolveEffect(appliedEffects[i].effet, transform.position, transform.position, triggerWanted, appliedEffects[i].currentStack);
         }
     }
 
@@ -620,7 +620,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         for (int i = 0; i < appliedEffects.Count; i++)
         {
-            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, targetPosition, triggerWanted, appliedEffects[i].currentStack);
+            SpellResolution.AskResolveEffect(appliedEffects[i].effet, transform.position, targetPosition, triggerWanted, appliedEffects[i].currentStack);
         }
     }
 
@@ -656,21 +656,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
         }
         return false;
-    }
-    
-    public void AttackOfOpportunity(RuntimeBattleCharacter opportunityTarget)
-    {
-        bool canUseSpell = true;
-        if ((actionsDisponibles[0].attackType != AttackType.Magical && CheckForAffliction(Affliction.Atrophie)) || (actionsDisponibles[0].attackType == AttackType.Magical && CheckForAffliction(Affliction.Silence)))
-        {
-            canUseSpell = false;
-        }
-
-        if (hasOpportunity && canUseSpell)
-        {
-            BattleManager.instance.LaunchAction(actionsDisponibles[0], 0, this, opportunityTarget.currentNode.worldPosition, true);
-            hasOpportunity = false;
-        }
     }
 
     public void Teleport(Vector2 newPosition)

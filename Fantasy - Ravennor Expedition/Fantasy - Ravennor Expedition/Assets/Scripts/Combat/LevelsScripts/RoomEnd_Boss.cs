@@ -30,7 +30,7 @@ public class RoomEnd_Boss : RoomEnd
 
     private void SpawnBoss(int index)
     {
-        foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara())
+        foreach (RuntimeBattleCharacter chara in BattleManager.GetEnemyChara)
         {
             if (chara.name == bossWanted.nom)
             {

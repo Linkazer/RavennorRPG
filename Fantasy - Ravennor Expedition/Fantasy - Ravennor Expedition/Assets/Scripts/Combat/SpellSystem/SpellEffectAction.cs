@@ -11,8 +11,6 @@ public class SpellEffectAction
 
     [HideInInspector]
     public RuntimeBattleCharacter caster;
-    [HideInInspector]
-    public int maanaSpent;
 
     public SpellEffectAction()
     {
@@ -23,7 +21,6 @@ public class SpellEffectAction
     {
         spellToUse = toCopy.spellToUse;
         caster = toCopy.caster;
-        maanaSpent = toCopy.maanaSpent;
         trigger = toCopy.trigger;
         possiblesTargets = toCopy.possiblesTargets;
     }

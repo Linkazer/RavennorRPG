@@ -14,9 +14,9 @@ public class RuntimeSpellEffect
 
     private RuntimeBattleCharacter turnIndexApplied;
 
-    public RuntimeSpellEffect(SpellEffectCommon common, int maanaSpent, int startCooldown, RuntimeBattleCharacter nCaster)
+    public RuntimeSpellEffect(SpellEffectCommon common, int startCooldown, RuntimeBattleCharacter nCaster)
     {
-        effet = new SpellEffectCommon(common, maanaSpent, nCaster);
+        effet = new SpellEffectCommon(common, nCaster);
 
         currentCooldown = startCooldown;
     }
@@ -28,7 +28,15 @@ public class RuntimeSpellEffect
 
         target.AddEffect(this);
 
-        turnIndexApplied = BattleManager.instance.GetCurrentTurnChara();
+        if (BattleManager.GetCurrentTurnChara != null)
+        {
+            turnIndexApplied = BattleManager.GetCurrentTurnChara;
+        }
+        else
+        {
+            turnIndexApplied = caster;
+        }
+
         turnIndexApplied.beginTurnEvt += UpdateCooldown;
     }
 

@@ -68,8 +68,8 @@ public class Node : IHeapItem<Node> {
 			if (!previousNode.HasSameEffect(effectsOnNode[i], casterList[i]) || !newChara.ContainsEffect(effectsOnNode[i].effet))
 			{
 				Debug.Log("Enter in effect");
-				BattleManager.instance.ApplyEffects(effectsScriptables[i], 0, casterList[i], newChara);
-				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.EnterNode, 1);
+				SpellResolution.ApplyEffects(effectsScriptables[i], casterList[i], newChara);
+				SpellResolution.AskResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.EnterNode, 1);
 			}
 		}
 	}
@@ -81,7 +81,7 @@ public class Node : IHeapItem<Node> {
 			if (!nextNode.HasSameEffect(effectsOnNode[i], casterList[i]))
 			{
 				Debug.Log("Exit in effect");
-				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.ExitNode, 1);
+				SpellResolution.AskResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.ExitNode, 1);
 				charaToExit.RemoveEffect(effectsOnNode[i].effet);
 			}
 		}
@@ -116,9 +116,9 @@ public class Node : IHeapItem<Node> {
 				}
 			}
 
-			if (HasCharacterOn && BattleManager.instance.GetCurrentTurnChara() == chara)
+			if (HasCharacterOn && BattleManager.GetCurrentTurnChara == chara)
 			{
-				BattleManager.instance.ResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.BeginTurn, 1);
+				SpellResolution.AskResolveEffect(effectsOnNode[i].effet, worldPosition, worldPosition, EffectTrigger.BeginTurn, 1);
 			}
 		}
     }

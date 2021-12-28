@@ -60,7 +60,7 @@ public class PlayerBattleManager : MonoBehaviour
                 if (currentCharacter.HasEnoughMaana(actionList[holdSpellIndex].maanaCost))
                 {
                     actionPosition = Grid.instance.NodeFromWorldPoint(position).worldPosition;
-                    UseSpell(0);
+                    UseSpell();
                 }
                 else
                 {
@@ -82,7 +82,7 @@ public class PlayerBattleManager : MonoBehaviour
     public void ChooseSpell(int index)
     {
         //Grid.instance.ResetUsableNode();
-        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && (isOvercharging || BattleManager.instance.IsActionAvailable(currentCharacter, actionList[index])))
+        if (index < actionList.Count && index != holdSpellIndex && index >= 0 && (isOvercharging || BattleActionsManager.CheckActionAvailable(currentCharacter, actionList[index])))
         {
             ShowSpell(actionList[index]);
             holdSpellIndex = index;
@@ -113,7 +113,7 @@ public class PlayerBattleManager : MonoBehaviour
     {
         Grid.instance.CreateGrid();
 
-        List<Node> canSpellOn = BattleManager.GetSpellUsableNodes(currentCharacter.currentNode, wantedAction);
+        List<Node> canSpellOn = BattleActionsManager.GetSpellUsableNodes(currentCharacter.currentNode, wantedAction);
 
         Color tColor = Color.blue;
         tColor.a = 0.5f;
@@ -183,17 +183,17 @@ public class PlayerBattleManager : MonoBehaviour
         return !BattleUiManager.instance.IsAskingSpell();
     }
 
-    public void UseSpell(int maanaSpent)
+    public void UseSpell()
     {
         ActivatePlayerBattleController(false);
 
-        currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost + maanaSpent);
+        currentCharacter.UseMaana(actionList[holdSpellIndex].maanaCost);
 
         currentCharacter.SetCooldown(actionList[holdSpellIndex]);
 
         currentCharacter.UseSpell(actionList[holdSpellIndex]);
 
-        BattleManager.instance.LaunchAction(actionList[holdSpellIndex], maanaSpent, currentCharacter, actionPosition, false);
+        BattleActionsManager.LaunchAction(actionList[holdSpellIndex], currentCharacter, actionPosition, false);
 
         holdSpellIndex = -1;
         BattleUiManager.instance.SetOvercharge(false);
@@ -209,7 +209,7 @@ public class PlayerBattleManager : MonoBehaviour
         if (Grid.instance.NodeFromWorldPoint(newPosition).usableNode)
         {
             ActivatePlayerBattleController(false);
-            BattleManager.instance.MoveCharacter(currentCharacter, newPosition, false);
+            BattleActionsManager.MoveCharacter(currentCharacter, newPosition, false);
             currentCharacter.movementLeft -= Grid.instance.NodeFromWorldPoint(newPosition).gCost;
         }
     }

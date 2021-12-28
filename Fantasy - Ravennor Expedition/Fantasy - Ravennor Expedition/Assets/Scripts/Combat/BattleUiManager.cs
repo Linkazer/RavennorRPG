@@ -211,7 +211,7 @@ public class BattleUiManager : MonoBehaviour
 
         for (int i = 0; i < actionList.Count; i++)
         {
-            if(isOvercharging || BattleManager.instance.IsActionAvailable(currentChara, actionList[i]))
+            if(isOvercharging || BattleActionsManager.CheckActionAvailable(currentChara, actionList[i]))
             {
                 spellCooldownImages[i].gameObject.SetActive(false);
             }
@@ -336,10 +336,10 @@ public class BattleUiManager : MonoBehaviour
     /// Called in editor (Button)
     /// </summary>
     /// <param name="usedMaanaIndex">Index of the button</param>
-    public void UseSpell(int usedMaanaIndex)
+    public void UseSpell()
     {
         maanaSpentParent.SetActive(false);
-        PlayerBattleManager.instance.UseSpell(0);
+        PlayerBattleManager.instance.UseSpell();
     }
 
     public void UseActionFeedback()
@@ -362,11 +362,11 @@ public class BattleUiManager : MonoBehaviour
 
     public void HighlightCharaByTurn(int index)
     {
-        BattleManager.instance.GetAllChara()[(index + currentIndex) % BattleManager.instance.GetAllChara().Count].SetHighlight(true);
+        BattleManager.GetAllChara[(index + currentIndex) % BattleManager.GetAllChara.Count].SetHighlight(true);
     }
 
     public void EndHighlightChara(int index)
     {
-        BattleManager.instance.GetAllChara()[(index + currentIndex) % BattleManager.instance.GetAllChara().Count].SetHighlight(false);
+        BattleManager.GetAllChara[(index + currentIndex) % BattleManager.GetAllChara.Count].SetHighlight(false);
     }
 }

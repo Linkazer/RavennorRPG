@@ -34,7 +34,7 @@ public class AiBattleManager : MonoBehaviour
 
         target = null;
 
-        SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), false);
+        SearchForBestAction(currentChara, BattleManager.GetAllChara, false);
 
         SearchNextMove(1.5f);
     }
@@ -46,7 +46,7 @@ public class AiBattleManager : MonoBehaviour
 
     IEnumerator WaitBeforeTryAction(float timeToWait)
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(timeToWait);
         TryNextMove();
     }
 
@@ -65,22 +65,21 @@ public class AiBattleManager : MonoBehaviour
                 //Debug.Log("AI do something");
                 hit = Physics2D.Raycast(currentChara.currentNode.worldPosition, (target.worldPosition - currentChara.currentNode.worldPosition).normalized, Vector2.Distance(target.worldPosition, currentChara.currentNode.worldPosition), layerMaskObstacle);
 
-                /*(Pathfinding.instance.GetDistance(currentChara.currentNode, target.currentNode) > wantedAction.range || hit.collider != null)*/ // Si on a un bug de déplacement des IA
                 if (nodeToMoveTo != null && currentChara.currentNode.worldPosition != nodeToMoveTo.worldPosition)
                 {
                     //Debug.Log(currentChara + " move for action : " + nodeToMoveTo.worldPosition.ToString("F4"));
-                    BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
+                    BattleActionsManager.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, false);
                     currentChara.movementLeft -= nodeToMoveTo.gCost;
                 }
                 else if ((Pathfinding.instance.GetDistance(currentChara.currentNode, target) <= wantedAction.range))
                 {
                     currentChara.SetCooldown(wantedAction);
-                    BattleManager.instance.LaunchAction(wantedAction, 0, currentChara, target.worldPosition, false);
+                    BattleActionsManager.LaunchAction(wantedAction, currentChara, target.worldPosition, false);
                     if (currentChara.CanDoAction())
                     {
                         //Debug.Log("Can do action");
                         wantedAction = null;
-                        SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), false);
+                        SearchForBestAction(currentChara, BattleManager.GetAllChara, false);
                     }
                 }
                 else
@@ -99,32 +98,34 @@ public class AiBattleManager : MonoBehaviour
 
                 if (target != null && targetCharacter != null && (targetCharacter.GetCurrentHps() > 0 && Pathfinding.instance.GetDistance(target, currentChara.currentNode) <= wantedDist))
                 {
+                    Debug.Log("End Turn with Objective");
                     BattleManager.instance.EndTurn();
                 }
                 else
                 {
                     currentChara.UseAllAction();
-                    SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
+                    SearchForBestAction(currentChara, BattleManager.GetAllChara, true);
 
                     //Debug.Log(currentChara.name + " Move for next round : " + nodeToMoveTo.worldPosition);
 
                     if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                     {
                         //Debug.Log(" Movement Left Moving : " + nodeToMoveTo.worldPosition + " != " + currentChara.currentNode.worldPosition);
-                        BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
+                        BattleActionsManager.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
                         currentChara.movementLeft -= nodeToMoveTo.gCost;
                     }
                     else
                     {
-                        nodeToMoveTo = GetClosestTargetNode(BattleManager.instance.GetPlayerChara());
+                        nodeToMoveTo = GetClosestTargetNode(BattleManager.GetPlayerChara);
                         //Debug.Log("From : " + currentChara.currentNode.worldPosition + " to : " + nodeToMoveTo.worldPosition);
                         if (nodeToMoveTo != null && Pathfinding.instance.GetDistance(nodeToMoveTo, currentChara.currentNode) <= wantedDist)
                         {
+                            Debug.Log("End Turn with Objective close");
                             BattleManager.instance.EndTurn();
                         }
                         else if (nodeToMoveTo != currentChara.currentNode && nodeToMoveTo != null)
                         {
-                            BattleManager.instance.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
+                            BattleActionsManager.MoveCharacter(currentChara, nodeToMoveTo.worldPosition, true);
                             currentChara.movementLeft -= nodeToMoveTo.gCost;
                         }
                         else
@@ -187,7 +188,7 @@ public class AiBattleManager : MonoBehaviour
                         List<Node> targetNodes = new List<Node>();
                         if(consid.wantedAction.castTarget == ActionTargets.All)
                         {
-                            targetNodes = BattleManager.GetSpellUsableNodes(nodeToTry, consid.wantedAction);
+                            targetNodes = BattleActionsManager.GetSpellUsableNodes(nodeToTry, consid.wantedAction);
                         }
                         else
                         {
@@ -202,7 +203,7 @@ public class AiBattleManager : MonoBehaviour
                             Node targetNodeToTry = targetNodes[k];
                             RuntimeBattleCharacter targetCharacter = targetNodeToTry.chara;
 
-                            if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, targetNodeToTry, askForNextTurn))
+                            if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, targetNodeToTry, askForNextTurn, consid.optimizePosition))
                             {
                                 float newScore = EvaluateAction(consid, nodeToTry, targetNodeToTry, caster, targetCharacter);
                                 //Debug.Log(caster + " try " + consid.wantedAction + " on " + targetCharacter + " Score : " + newScore + "(Consideration Nb : " + considCount);
@@ -255,7 +256,6 @@ public class AiBattleManager : MonoBehaviour
                 nodeToMoveTo = currentChara.currentNode;
                 target = null;
             }
-
             if (considToCooldown != null && !askForNextTurn)
             {
                 considToCooldown.cooldown = considToCooldown.maxCooldown;
@@ -263,7 +263,7 @@ public class AiBattleManager : MonoBehaviour
         }
     }
 
-    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, Node targetNode, bool askForNextTurn)
+    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, Node targetNode, bool askForNextTurn, bool optimizedPath)
     {
         RuntimeBattleCharacter potentialTarget = targetNode.chara;
 
@@ -286,7 +286,7 @@ public class AiBattleManager : MonoBehaviour
             }
         }
 
-        if(!askForNextTurn && !BattleManager.instance.IsNodeVisible(nodeToTry, targetNode))
+        if(!askForNextTurn && !Grid.IsNodeVisible(nodeToTry, targetNode))
         {
             return false;
         }
@@ -341,7 +341,7 @@ public class AiBattleManager : MonoBehaviour
             for(i = 0; i < teleportActionToTry.positionsToTeleport.Count; i++)
             {
                 Vector2Int positionToTry = new Vector2Int(targetNode.gridX, targetNode.gridY);
-                Vector3 wolrdPosToTry = BattleManager.GetTargetPosWithFacingPosition(currentChara.currentNode.worldPosition, positionToTry, teleportActionToTry.positionsToTeleport[i]);
+                Vector3 wolrdPosToTry = Grid.GetTargetPosWithFacingPosition(currentChara.currentNode.worldPosition, positionToTry, teleportActionToTry.positionsToTeleport[i]);
                 if (Grid.instance.NodeFromWorldPoint(wolrdPosToTry).walkable)
                 {
                     break;
@@ -353,8 +353,12 @@ public class AiBattleManager : MonoBehaviour
             }
         }
 
-        List<Node> possibleDeplacement = new List<Node>(); //Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+        List<Node> possibleDeplacement = new List<Node>();
 
+        if(!optimizedPath)
+        {
+            possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
+        }
         if (askForNextTurn)
         {
             possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, 150, true);
@@ -366,17 +370,17 @@ public class AiBattleManager : MonoBehaviour
 
         foreach (Node n in possibleDeplacement)
         {
-            if (Pathfinding.instance.GetDistance(n, targetNode) <= rangeNeeded && (askForNextTurn || BattleManager.instance.IsNodeVisible(n, targetNode)))
+            if (Pathfinding.instance.GetDistance(n, targetNode) <= rangeNeeded && (askForNextTurn || Grid.IsNodeVisible(n, targetNode)))
             {
                 return true;
             }
             else
             {
-                List<Node> touchableNodes = BattleManager.GetSpellUsableNodes(n, actionToTry);
+                List<Node> touchableNodes = BattleActionsManager.GetSpellUsableNodes(n, actionToTry);
 
                 for (int i = 0; i < touchableNodes.Count; i++)
                 {
-                    List<Node> zoneNodes = BattleManager.GetHitNodes(targetNode.worldPosition, n.worldPosition, actionToTry);
+                    List<Node> zoneNodes = BattleActionsManager.GetHitNodes(targetNode.worldPosition, n.worldPosition, actionToTry);
 
                     if (zoneNodes.Contains(targetNode))
                     {
@@ -399,16 +403,16 @@ public class AiBattleManager : MonoBehaviour
 
         foreach (Node n in possibleDeplacement)
         {
-            if (Pathfinding.instance.GetDistance(n, wantedTargetNode) <= rangeWanted)
+            //if (Pathfinding.instance.GetDistance(n, wantedTargetNode) <= rangeWanted)
             {
-                bool hasView = BattleManager.instance.IsNodeVisible(n, wantedTargetNode);
+                bool hasView = Grid.IsNodeVisible(n, wantedTargetNode);
 
                 if (hasView || !needView)
                 {
-                    if (Pathfinding.instance.GetDistance(currentChara.currentNode, n) < currentDistance)
+                    if (Pathfinding.instance.GetDistance(wantedTargetNode, n) < currentDistance)
                     {
                         nodeToReturn = n;
-                        currentDistance = Pathfinding.instance.GetDistance(currentChara.currentNode, n);
+                        currentDistance = Pathfinding.instance.GetDistance(wantedTargetNode, n);
                     }
                 }
             }
@@ -577,7 +581,7 @@ public class AiBattleManager : MonoBehaviour
 
     private int GetCharacterInArea(RuntimeBattleCharacter caster, Node targetNode, CharacterActionScriptable spell, bool isAlly, bool checkWounded = false)
     {
-        List<Node> toTest = BattleManager.GetHitNodes(targetNode.worldPosition, caster.currentNode.worldPosition, spell);
+        List<Node> toTest = BattleActionsManager.GetHitNodes(targetNode.worldPosition, caster.currentNode.worldPosition, spell);
         int charaAmount = 0;
         for(int i = 0; i < toTest.Count; i++)
         {

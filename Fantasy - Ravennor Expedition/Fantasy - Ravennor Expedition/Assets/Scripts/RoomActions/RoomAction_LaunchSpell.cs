@@ -10,6 +10,6 @@ public class RoomAction_LaunchSpell : MonoBehaviour, IRoomAction
 
     public void PlayAction()
     {
-        BattleManager.instance.LaunchActionWithoutCaster(spell, possiblePositions[Random.Range(0, possiblePositions.Count)].position, false);
+        BattleActionsManager.LaunchActionWithoutCaster(spell, possiblePositions[Random.Range(0, possiblePositions.Count)].position, false);
     }
 }

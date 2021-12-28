@@ -112,7 +112,7 @@ public class SpellObject : MonoBehaviour
             {
                 RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
 
-                BattleManager.instance.ResolveEffect(effet.effet, transform.position, transform.position, EffectTrigger.BeginTurn, 1);
+                SpellResolution.AskResolveEffect(effet.effet, transform.position, transform.position, EffectTrigger.BeginTurn, 1);
             }
 
             turnLeft--;

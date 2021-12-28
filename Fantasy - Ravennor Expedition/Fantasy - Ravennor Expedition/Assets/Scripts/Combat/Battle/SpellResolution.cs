@@ -1,21 +1,35 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Reflection;
+using UnityEngine.Events;
 
 public class SpellResolution : MonoBehaviour
 {
-    public void ResolveSpell(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, bool isEffectSpell)
+    private static SpellResolution instance;
+
+    [Header("Sons")]
+    [SerializeField] private AudioSource attackAudioSource;
+    [SerializeField] private List<RVN_AudioSound> diceClip;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public static void ResolveSpell(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target, bool isEffectSpell)
     {
         int applyEffect = 0;
         if (wantedAction.hasPowerEffect)
         {
             if (wantedAction.damageType == DamageType.Heal)
             {
-                DoHeal(wantedAction, maanaSpent, caster, target);
+                instance.DoHeal(wantedAction, caster, target);
             }
             else
             {
-                applyEffect = DoDamage(wantedAction, maanaSpent, caster, target);
+                applyEffect = instance.DoDamage(wantedAction, caster, target);
                 caster.TakeHeal(Mathf.CeilToInt(applyEffect * wantedAction.lifeStealPercent));
             }
         }
@@ -35,30 +49,30 @@ public class SpellResolution : MonoBehaviour
             {
                 foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
                 {
-                    ApplyEffects(eff, maanaSpent, caster, target);
+                    ApplyEffects(eff, caster, target);
                 }
             }
         }
     }
 
-    public void DoHeal(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public void DoHeal(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        int baseHeal = wantedAction.GetBaseDamage(maanaSpent) + caster.GetCharacterDatas().GetSoinApplique() + caster.GetCharacterDatas().GetPower();
+        int baseHeal = wantedAction.GetBaseDamage() + caster.GetCharacterDatas().GetSoinApplique() + caster.GetCharacterDatas().GetPower();
 
         target.TakeHeal(baseHeal);
     }
 
-    public int DoDamage(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public int DoDamage(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        if (!audioSource.isPlaying)
+        if (!attackAudioSource.isPlaying)
         {
-            SoundSyst.PlaySound(diceClip[UnityEngine.Random.Range(0, diceClip.Count)], audioSource);
+            SoundSyst.PlaySound(diceClip[UnityEngine.Random.Range(0, diceClip.Count)], attackAudioSource);
         }
 
-        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, maanaSpent, caster, target));
+        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target));
     }
 
-    public int DoesHit(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public int DoesHit(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         int targetDefenseScore = 0;
         int dealtDamage = 0;
@@ -66,32 +80,7 @@ public class SpellResolution : MonoBehaviour
         List<int> diceValues = new List<int>();
         List<BattleDiceResult> diceResult = new List<BattleDiceResult>();
 
-        int neededDices = wantedAction.GetDices(maanaSpent);
-
-        #region Scaling
-        /*switch (wantedAction.scaleOrigin)
-        {
-            case ScalePossibility.EffectStack:
-                foreach (RuntimeSpellEffect eff in target.GetAppliedEffects())
-                {
-                    if (eff.effet.nom == wantedAction.wantedScaleEffect.effet.nom)
-                    {
-                        neededDices.Add(wantedAction.scalingDices);
-                        neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(eff.currentStack * wantedAction.diceByScale);
-                    }
-                }
-                break;
-            case ScalePossibility.HpLostPercent:
-                neededDices.Add(wantedAction.scalingDices);
-                neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt((1 / target.GetPercentHp()) * 100 * wantedAction.diceByScale);
-                break;
-            case ScalePossibility.Distance:
-                neededDices.Add(wantedAction.scalingDices);
-                neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.diceByScale);
-                break;
-        }*/
-        #endregion
-
+        int neededDices = wantedAction.GetDices();
 
         targetDefenseScore = target.GetCharacterDatas().GetDefense();
 
@@ -117,9 +106,9 @@ public class SpellResolution : MonoBehaviour
         }
 
 
-        if ((neededDices <= 0 && wantedAction.GetBaseDamage(maanaSpent) > 0) || dealtDamage > 0)
+        if ((neededDices <= 0 && wantedAction.GetBaseDamage() > 0) || dealtDamage > 0)
         {
-            dealtDamage += caster.GetCharacterDatas().GetPower() + wantedAction.GetBaseDamage(maanaSpent);
+            dealtDamage += caster.GetCharacterDatas().GetPower() + wantedAction.GetBaseDamage();
         }
 
         if (dealtDamage < 0)
@@ -132,7 +121,7 @@ public class SpellResolution : MonoBehaviour
         return dealtDamage;
     }
 
-    public void ApplyEffects(SpellEffectScriptables wantedEffect, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public static void ApplyEffects(SpellEffectScriptables wantedEffect, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         if (wantedEffect.effet.wantedEffectToTrigger == null || target.ContainsEffect(wantedEffect.effet.wantedEffectToTrigger.effet))
         {
@@ -140,7 +129,6 @@ public class SpellResolution : MonoBehaviour
 
             RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
             wantedEffect.effet,
-            maanaSpent,
             wantedEffect.duree,
             caster
             );
@@ -152,8 +140,18 @@ public class SpellResolution : MonoBehaviour
                 target.RemoveEffect(eff.effet);
             }
 
-            ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
+            instance.ResolveEffect(runEffet.effet, target, EffectTrigger.Apply);
         }
+    }
+
+    public static void AskResolveEffect(SpellEffectCommon effect, Vector2 casterPosition, Vector2 targetPosition, EffectTrigger triggerWanted, int stack)
+    {
+        instance.ResolveEffect(effect, casterPosition, targetPosition, triggerWanted, stack);
+    }
+
+    public static void AskResolveEffect(SpellEffectCommon effect, RuntimeBattleCharacter target, EffectTrigger triggerWanted)
+    {
+        instance.ResolveEffect(effect, target, triggerWanted);
     }
 
     public void ResolveEffect(SpellEffectCommon effect, Vector2 casterPosition, Vector2 targetPosition, EffectTrigger triggerWanted, int stack)
@@ -179,11 +177,11 @@ public class SpellResolution : MonoBehaviour
                 {
                     if (triggerWanted == EffectTrigger.DamageDealTarget)
                     {
-                        LaunchAction(effAct.spellToUse, effAct.maanaSpent, effAct.caster, targetPosition, true);
+                        BattleActionsManager.LaunchAction(effAct.spellToUse, effAct.caster, targetPosition, true);
                     }
                     else
                     {
-                        LaunchAction(effAct.spellToUse, effAct.maanaSpent, effAct.caster, casterPosition, true);
+                        BattleActionsManager.LaunchAction(effAct.spellToUse, effAct.caster, casterPosition, true);
                     }
                 }
             }
@@ -205,22 +203,21 @@ public class SpellResolution : MonoBehaviour
             if (effAct.trigger == triggerWanted)
             {
                 Debug.Log("Launch Action : " + effAct.caster);
-                LaunchAction(effAct.spellToUse, effAct.maanaSpent, effAct.caster, target.transform.position, true);
+                BattleActionsManager.LaunchAction(effAct.spellToUse, effAct.caster, target.transform.position, true);
             }
         }
     }
 
     private void InvokeAlly(RuntimeBattleCharacter caster, CharacterActionInvocation spell, Vector2 wantedPosition)
     {
-        PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations);
+        /*PersonnageScriptables toInvoke = CharacterToInvoke(spell.invocations);
 
         if (!caster.CheckForInvocations(toInvoke) && toInvoke != null)
         {
             Node nodeWanted = Grid.instance.NodeFromWorldPoint(wantedPosition);
             if (nodeWanted.usableNode && !nodeWanted.HasCharacterOn)
             {
-                playerTeam.Add(toInvoke);
-                SetCharacter(toInvoke, wantedPosition);
+                BattleManager.SetNewCharacter(toInvoke, wantedPosition, 0);
 
                 caster.AddInvocation(roundList[roundList.Count - 1]);
 
@@ -234,7 +231,7 @@ public class SpellResolution : MonoBehaviour
                 Grid.instance.CreateGrid();
             }
         }
-        EndCurrentAction();
+        EndCurrentAction();*/
     }
 
     private PersonnageScriptables CharacterToInvoke(List<PersonnageScriptables> possibleInvoc)
@@ -250,12 +247,12 @@ public class SpellResolution : MonoBehaviour
         return null;
     }
 
-    private void TeleportationSpell(RuntimeBattleCharacter caster, CharacterActionTeleportation spell, int maanaSpent, Vector2 wantedPosition)
+    private void TeleportationSpell(RuntimeBattleCharacter caster, CharacterActionTeleportation spell, Vector2 wantedPosition)
     {
         Vector2 targetPosition = wantedPosition;
         for (int i = 0; i < spell.positionsToTeleport.Count; i++)
         {
-            Vector2 possiblePosition = GetTargetPosWithFacingPosition(caster.currentNode.worldPosition, wantedPosition, spell.positionsToTeleport[i]);
+            Vector2 possiblePosition = Grid.GetTargetPosWithFacingPosition(caster.currentNode.worldPosition, wantedPosition, spell.positionsToTeleport[i]);
             if (Grid.instance.NodeFromWorldPoint(possiblePosition).walkable)
             {
                 wantedPosition = possiblePosition;
@@ -268,18 +265,19 @@ public class SpellResolution : MonoBehaviour
         {
             foreach (SpellEffectScriptables eff in spell.wantedEffectOnCaster)
             {
-                ApplyEffects(eff, maanaSpent, caster, caster);
+                ApplyEffects(eff, caster, caster);
             }
-            StartCoroutine(TeleportationSpellWaiter(spell, maanaSpent, caster, wantedPosition, targetPosition));
+            StartCoroutine(TeleportationSpellWaiter(spell, caster, wantedPosition, targetPosition));
         }
         else
         {
             BattleUiManager.instance.DisplayErrorMessage("Aucun espace disponible pour attérir/se téléporter");
-            CancelCurrentAction();
+            //CancelCurrentAction();
+            // VOIR POUR FAIRE AUTREMENT CODE REVIEW
         }
     }
 
-    private IEnumerator TeleportationSpellWaiter(CharacterActionTeleportation spell, int maanaSpent, RuntimeBattleCharacter characterToTeleport, Vector2 teleportPosition, Vector2 spellTargetPosition)
+    private IEnumerator TeleportationSpellWaiter(CharacterActionTeleportation spell, RuntimeBattleCharacter characterToTeleport, Vector2 teleportPosition, Vector2 spellTargetPosition)
     {
         if (spell.isJump)
         {
@@ -292,7 +290,7 @@ public class SpellResolution : MonoBehaviour
 
         if (spell.jumpEffect != null)
         {
-            UseAction(spell.jumpEffect, maanaSpent, characterToTeleport, characterToTeleport.currentNode.worldPosition, true);
+            BattleActionsManager.AskUseAction(spell.jumpEffect, characterToTeleport, characterToTeleport.currentNode.worldPosition, true);
         }
 
         yield return new WaitForEndOfFrame();
@@ -312,42 +310,11 @@ public class SpellResolution : MonoBehaviour
         }
         if (spell.landEffect != null)
         {
-            UseAction(spell.landEffect, maanaSpent, characterToTeleport, spellTargetPosition, true);
+            BattleActionsManager.AskUseAction(spell.landEffect, characterToTeleport, spellTargetPosition, true);
         }
 
         yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(characterToTeleport.GetCurrentAnimation().clip.length);
-        EndCurrentAction();
-    }
-
-    public static Vector2 GetTargetPosWithFacingPosition(Vector2 casterPos, Vector2 targetPos, Vector2 spellDirection)
-    {
-        Vector2 direction = Vector2.one;
-
-        direction = new Vector2(casterPos.x, casterPos.y);
-        direction = new Vector2(Grid.instance.NodeFromWorldPoint(targetPos).gridX, Grid.instance.NodeFromWorldPoint(targetPos).gridY) - direction;
-
-        if (direction.y == 0 && direction.x == 0)
-        {
-            targetPos += new Vector2(spellDirection.x * 0.16f, spellDirection.y * 0.16f);
-        }
-        else if (direction.y > 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == direction.y))
-        {
-            targetPos += new Vector2(spellDirection.x * 0.16f, spellDirection.y * 0.16f);
-        }
-        else if (direction.x < 0 && (Mathf.Abs(direction.x) > Mathf.Abs(direction.y) || direction.x == -direction.y))
-        {
-            targetPos += new Vector2(-spellDirection.y * 0.16f, spellDirection.x * 0.16f);
-        }
-        else if (direction.y < 0 && (Mathf.Abs(direction.y) > Mathf.Abs(direction.x) || direction.x == direction.y))
-        {
-            targetPos += new Vector2(-spellDirection.x * 0.16f, -spellDirection.y * 0.16f);
-        }
-        else
-        {
-            targetPos += new Vector2(spellDirection.y * 0.16f, -spellDirection.x * 0.16f);
-        }
-
-        return targetPos;
+        BattleActionsManager.EndCurrentAction(0f);
     }
 }

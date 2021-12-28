@@ -5,24 +5,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.Events;
 
-/*public struct LaunchActionData
-{
-    public LaunchActionData(CharacterActionScriptable _wantedAction, int _maanaSpent, RuntimeBattleCharacter _caster, Vector2 _positionWanted, bool _effectAction)
-    {
-        wantedAction = _wantedAction;
-        caster = _caster;
-        maanaSpent = _maanaSpent;
-        positionWanted = _positionWanted;
-        effectAction = _effectAction;
-    }
-
-    public CharacterActionScriptable wantedAction;
-    public RuntimeBattleCharacter caster;
-    public int maanaSpent;
-    public Vector2 positionWanted;
-    public bool effectAction;
-}*/
-
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
@@ -46,10 +28,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private List<int> initiatives = new List<int>();
 
-    private CharacterActionScriptable currentWantedAction;
-    private RuntimeBattleCharacter currentCaster;
-    private int currentMaanaSpent = 0;
-
     public GameObject level;
     private RoomManager roomManager;
 
@@ -57,14 +35,6 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     private BattleDiary diary;
-
-    [SerializeField]
-    private RuntimeBattleCharacter passiveCheater;
-
-    //private LaunchActionData actData = default;
-
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private List<RVN_AudioSound> diceClip;
 
     public static int TurnNumber => instance.currentTurn;
 
@@ -172,7 +142,7 @@ public class BattleManager : MonoBehaviour
         Grid.instance.CreateGrid();
 
         // Mise en place du personnage permettant de lancer des sorts sans caster
-        passiveCheater.SetRuntimeCharacterData(passiveCheater.GetCharacterDatas(), 10);
+        BattleActionsManager.SetCheater();
 
         NewCharacterRound(roundList[0]);
     }
@@ -187,6 +157,16 @@ public class BattleManager : MonoBehaviour
     {
         SetCharacter(newPerso, position);
         SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
+    }
+
+    public static void SetNewCharacter(PersonnageScriptables newPerso, Vector2 position, int team)
+    {
+        if(team == 0)
+        {
+            instance.playerTeam.Add(newPerso);
+        }
+
+        instance.SetCharacter(newPerso, position);
     }
 
     private void SetCharacter(PersonnageScriptables newPerso, Vector2 position)
@@ -211,7 +191,7 @@ public class BattleManager : MonoBehaviour
         // Application des passifs
         foreach(SpellEffectScriptables eff in roundList[roundList.Count - 1].GetCharacterDatas().passifs)
         {
-            ApplyEffects(eff, 0, roundList[roundList.Count - 1], roundList[roundList.Count - 1]);
+            SpellResolution.ApplyEffects(eff, roundList[roundList.Count - 1], roundList[roundList.Count - 1]);
         }
 
         // Ajout de l'initiative
@@ -383,6 +363,11 @@ public class BattleManager : MonoBehaviour
 
             NewCharacterRound(roundList[currentIndexTurn]);
         }
+    }
+
+    public static void AskEndTurn()
+    {
+        instance.EndTurn();
     }
 
     public void EndTurn()

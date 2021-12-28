@@ -25,7 +25,7 @@ public class DoorObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        RuntimeBattleCharacter chara = BattleManager.instance.GetCurrentTurnChara();
+        RuntimeBattleCharacter chara = BattleManager.GetCurrentTurnChara;
 
         for(int i = 0; i < currentNode.Count; i++)
         {

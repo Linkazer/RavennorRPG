@@ -61,7 +61,7 @@ public class BattleAnimationManager : MonoBehaviour
         StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
         if (timeToShow >= 0)
         {
-            BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+            BattleActionsManager.EndCurrentAction(timeToShow);
         }
     }
 
@@ -75,7 +75,7 @@ public class BattleAnimationManager : MonoBehaviour
         StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
         if (timeToShow >= 0)
         {
-            BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+            BattleActionsManager.EndCurrentAction(timeToShow);
         }
     }
 
@@ -84,7 +84,7 @@ public class BattleAnimationManager : MonoBehaviour
         SpellObject toShow = GetSpellsObject();
         toShow.SetObject(startPos);
         toShow.SetSprite(projectileSprite, null, 10);
-        toShow.SetMovableObject(endPos, speed, ()=> BattleManager.instance.DoCurrentAction(endPos));
+        toShow.SetMovableObject(endPos, speed, ()=> BattleActionsManager.DoCurrentAction());
     }
 
     public void AddZoneEffect(Vector2 position, Sprite zoneSprite, RuntimeBattleCharacter caster, int turnNeeded, RuntimeSpellEffect newEffet)

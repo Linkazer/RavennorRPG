@@ -1,14 +1,52 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Reflection;
+using UnityEngine.Events;
+
+public struct LaunchActionData
+{
+    public LaunchActionData(CharacterActionScriptable _wantedAction, RuntimeBattleCharacter _caster, Vector2 _positionWanted, bool _effectAction)
+    {
+        wantedAction = _wantedAction;
+        caster = _caster;
+        positionWanted = _positionWanted;
+        effectAction = _effectAction;
+    }
+
+    public CharacterActionScriptable wantedAction;
+    public RuntimeBattleCharacter caster;
+    public Vector2 positionWanted;
+    public bool effectAction;
+}
 
 public class BattleActionsManager : MonoBehaviour
 {
     private static BattleActionsManager instance;
 
+    [SerializeField] private RuntimeBattleCharacter passiveCheater;
+
+    private LaunchActionData waitingActionData;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public static void SetCheater()
+    {
+        instance.passiveCheater.SetRuntimeCharacterData(instance.passiveCheater.GetCharacterDatas(), 10);
+    }
+
     public static void MoveCharacter(RuntimeBattleCharacter character, Vector2 destination, bool isForNextTurn)
     {
         instance.AskToMove(character.gameObject, destination, character.movementLeft, isForNextTurn);
+    }
+
+    public static void EndCurrentAction(float delay)
+    {
+        instance.EndCurrentActionWithDelay(delay);
     }
 
     public void EndCurrentActionWithDelay(float timeDelay)
@@ -25,10 +63,6 @@ public class BattleActionsManager : MonoBehaviour
         EndCurrentAction(BattleManager.GetCurrentTurnChara);
     }
 
-    public static void EndCurrentAction(float delay)
-    {
-        instance.EndCurrentActionWithDelay(delay);
-    }
 
     public void EndCurrentAction(RuntimeBattleCharacter character)
     {
@@ -56,18 +90,7 @@ public class BattleActionsManager : MonoBehaviour
         EndCurrentAction();
     }*/
 
-    public void IncantateAction(RuntimeBattleCharacter caster, string animToPlay)
-    {
-        caster.SetAnimation(animToPlay);
-    }
-
-    IEnumerator SpellIncantation(CharacterActionScriptable wantedAction, int maanaSpent, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction, float timeToWait)
-    {
-        yield return new WaitForSeconds(timeToWait);
-        LaunchAction(wantedAction, maanaSpent, caster, positionWanted, effectAction);
-    }
-
-    public void LaunchAction(CharacterActionScriptable wantedAction, int maanaSpent, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    public static void LaunchAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
     {
         if (!effectAction)
         {
@@ -75,38 +98,46 @@ public class BattleActionsManager : MonoBehaviour
         }
         if (effectAction || wantedAction.isWeaponBased)
         {
-            UseAction(wantedAction, maanaSpent, caster, positionWanted, effectAction);
+            instance.UseAction(wantedAction, caster, positionWanted, effectAction);
         }
         else
         {
             caster.SetAnimation("LaunchSpell");
-            actData = new LaunchActionData(wantedAction, maanaSpent, caster, positionWanted, effectAction);
+            instance.waitingActionData = new LaunchActionData(wantedAction, caster, positionWanted, effectAction);
         }
     }
 
-    public void LaunchActionWithoutCaster(CharacterActionScriptable wantedAction, Vector2 positionWanted, bool effectAction)
+    public static void LaunchActionWithoutCaster(CharacterActionScriptable wantedAction, Vector2 positionWanted, bool effectAction)
     {
-        UseAction(wantedAction, 0, passiveCheater, positionWanted, effectAction);
+        instance.UseAction(wantedAction, instance.passiveCheater, positionWanted, effectAction);
     }
 
-    public void UseCurrentAction()
+    public static void DoCurrentAction()
     {
-        UseAction(actData.wantedAction, actData.maanaSpent, actData.caster, actData.positionWanted, actData.effectAction);
+        instance.DoAction((CharacterActionDirect)instance.waitingActionData.wantedAction, instance.waitingActionData.caster, instance.waitingActionData.positionWanted, instance.waitingActionData.effectAction);
     }
 
-    private void UseAction(CharacterActionScriptable wantedAction, int maanaSpent, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    public static void UseCurrentAction()
+    {
+       instance.UseAction(instance.waitingActionData.wantedAction, instance.waitingActionData.caster, instance.waitingActionData.positionWanted, instance.waitingActionData.effectAction);
+    }
+
+    public static void AskUseAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    {
+        instance.UseAction(wantedAction, caster, positionWanted, effectAction);
+    }
+
+    private void UseAction(CharacterActionScriptable wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
     {
         if (!effectAction)
         {
             caster.useActionEvt?.Invoke();
             caster.ResolveEffect(EffectTrigger.DoAction);
 
-            diary.AddText(caster.name + " utilise " + wantedAction.nom + ".");
+            //diary.AddText(caster.name + " utilise " + wantedAction.nom + ".");
         }
 
-        currentWantedAction = wantedAction;
-        currentCaster = caster;
-        currentMaanaSpent = maanaSpent;
+        waitingActionData = new LaunchActionData(wantedAction, caster, positionWanted, effectAction);
 
         if (wantedAction.incantationTime != ActionIncantation.Rapide)
         {
@@ -122,23 +153,18 @@ public class BattleActionsManager : MonoBehaviour
                 }
                 else
                 {
-                    DoAction((CharacterActionDirect)wantedAction, maanaSpent, caster, positionWanted, effectAction);
+                    DoAction((CharacterActionDirect)wantedAction, caster, positionWanted, effectAction);
                 }
                 break;
-            case SpellType.Invocation:
-                InvokeAlly(caster, (CharacterActionInvocation)wantedAction, positionWanted);
+            /*case SpellType.Invocation:
+                SpellResolution.InvokeAlly(caster, (CharacterActionInvocation)wantedAction, positionWanted);
                 break;
             case SpellType.Teleportation:
-                TeleportationSpell(caster, (CharacterActionTeleportation)wantedAction, maanaSpent, positionWanted);
-                break;
+                SpellResolution.TeleportationSpell(caster, (CharacterActionTeleportation)wantedAction, positionWanted);
+                break;*/
             case SpellType.SimpleEffect:
                 break;
         }
-    }
-
-    public void DoCurrentAction(Vector2 positionWanted)
-    {
-        DoAction((CharacterActionDirect)currentWantedAction, currentMaanaSpent, currentCaster, positionWanted, false);
     }
 
     public static List<Node> GetSpellUsableNodes(Node casterNode, CharacterActionScriptable spell)
@@ -149,7 +175,7 @@ public class BattleActionsManager : MonoBehaviour
         {
             for (int i = 1; i < canSpellOn.Count; i++)
             {
-                if (!BattleManager.instance.IsNodeVisible(canSpellOn[0], canSpellOn[i]))
+                if (!Grid.IsNodeVisible(canSpellOn[0], canSpellOn[i]))
                 {
                     canSpellOn.RemoveAt(i);
                     i--;
@@ -200,16 +226,16 @@ public class BattleActionsManager : MonoBehaviour
         return Grid.instance.GetZoneFromPosition(position, spellZone);
     }
 
-    public void DoAction(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
+    public void DoAction(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, Vector2 positionWanted, bool effectAction)
     {
         List<Node> hitNodes = GetHitNodes(positionWanted, new Vector2(caster.currentNode.gridX, caster.currentNode.gridY), wantedAction);
 
-
+        // Prend en compte tous les ennemis et alliés de la map en fonction des targets voulut
         switch (wantedAction.target)
         {
             case ActionTargets.EveryAllies:
                 hitNodes = new List<Node>();
-                List<RuntimeBattleCharacter> allyTeam = GetAllyTeamCharacters(caster.GetTeam());
+                List<RuntimeBattleCharacter> allyTeam = BattleManager.GetAllyTeamCharacters(caster.GetTeam());
 
                 for (int i = 0; i < allyTeam.Count; i++)
                 {
@@ -218,7 +244,7 @@ public class BattleActionsManager : MonoBehaviour
                 break;
             case ActionTargets.EveryEnnemies:
                 hitNodes = new List<Node>();
-                List<RuntimeBattleCharacter> ennemyTeam = GetEnemyTeamCharacters(caster.GetTeam());
+                List<RuntimeBattleCharacter> ennemyTeam = BattleManager.GetEnemyTeamCharacters(caster.GetTeam());
                 for (int i = 0; i < ennemyTeam.Count; i++)
                 {
                     hitNodes.Add(ennemyTeam[i].currentNode);
@@ -242,7 +268,7 @@ public class BattleActionsManager : MonoBehaviour
         {
             foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnCaster)
             {
-                ApplyEffects(eff, maanaSpent, caster, caster);
+                SpellResolution.ApplyEffects(eff, caster, caster);
             }
         }
 
@@ -254,7 +280,7 @@ public class BattleActionsManager : MonoBehaviour
 
             if (n.HasCharacterOn && IsTargetAvailable(caster.GetTeam(), n.chara.GetTeam(), wantedAction.target, caster.GetInvocations().Contains(n.chara)))
             {
-                ResolveSpell(wantedAction, maanaSpent, caster, n.chara, effectAction);
+                SpellResolution.ResolveSpell(wantedAction, caster, n.chara, effectAction);
             }
 
             //Application d'effets sur le Sol
@@ -264,7 +290,6 @@ public class BattleActionsManager : MonoBehaviour
                 {
                     RuntimeSpellEffect runEffet = new RuntimeSpellEffect(
                     eff.effet,
-                    maanaSpent,
                     eff.duree,
                     caster
                     );
@@ -295,6 +320,11 @@ public class BattleActionsManager : MonoBehaviour
         {
             EndCurrentActionWithDelay(0.2f);
         }
+    }
+
+    public static bool CheckActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
+    {
+        return instance.IsActionAvailable(character, wantedAction);
     }
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
@@ -392,7 +422,7 @@ public class BattleActionsManager : MonoBehaviour
     {
         toMove = objectToMove;
         int distance = Pathfinding.instance.GetDistance(Grid.instance.NodeFromWorldPoint(objectToMove.transform.position), Grid.instance.NodeFromWorldPoint(destination));
-        currentCharacterTurn.movedEvt.Invoke(distance);
+        BattleManager.GetCurrentTurnChara.movedEvt.Invoke(distance);
         PathRequestManager.RequestPath(objectToMove.transform.position, destination, maxDistance, isForNextTurn, OnPathFound);
     }
 
@@ -402,8 +432,7 @@ public class BattleActionsManager : MonoBehaviour
         {
             path = newPath;
             targetIndex = 0;
-            CheckForOpportunityAttack(path[0]);
-            currentCharacterTurn.SetAnimation("Moving");
+            BattleManager.GetCurrentTurnChara.SetAnimation("Moving");
             //Grid.instance.ResetUsableNode();
             Grid.instance.ResetNodeFeedback();
             StopCoroutine(FollowPath());
@@ -411,14 +440,14 @@ public class BattleActionsManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(currentCharacterTurn + "No Path");
-            if (currentCharacterTurn.GetTeam() != 0)
+            Debug.Log(BattleManager.GetCurrentTurnChara + "No Path");
+            if (BattleManager.GetCurrentTurnChara.GetTeam() != 0)
             {
-                EndTurn();
+                BattleManager.AskEndTurn();
             }
             else
             {
-                EndCurrentAction(currentCharacterTurn);
+                EndCurrentAction(BattleManager.GetCurrentTurnChara);
             }
         }
     }
@@ -427,6 +456,8 @@ public class BattleActionsManager : MonoBehaviour
     {
         if (path.Length > 0)
         {
+            RuntimeBattleCharacter currentCharacterTurn = BattleManager.GetCurrentTurnChara;
+
             Vector3 currentWaypoint = path[0];
 
             if (toMove == currentCharacterTurn.gameObject)
@@ -452,7 +483,6 @@ public class BattleActionsManager : MonoBehaviour
                     {
                         currentCharacterTurn.SetSpriteDirection((path[targetIndex].x < toMove.transform.position.x));
                         currentCharacterTurn.ModifyCurrentNode(Grid.instance.NodeFromWorldPoint(currentWaypoint));
-                        CheckForOpportunityAttack(path[targetIndex]);
                     }
 
                     currentWaypoint = path[targetIndex];

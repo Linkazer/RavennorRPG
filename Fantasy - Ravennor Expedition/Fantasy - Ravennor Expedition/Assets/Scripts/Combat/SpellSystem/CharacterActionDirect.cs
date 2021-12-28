@@ -25,14 +25,14 @@ public class CharacterActionDirect : CharacterActionScriptable
 
     public override SpellType SpellType => SpellType.Direct;
 
-    public int GetBaseDamage(int maanaSpent)
+    public int GetBaseDamage()
     {
         return damageBase;
     }
 
-    public int GetDices(int maanaSpent)
+    public int GetDices()
     {
-        return diceNumber + maanaSpent;
+        return diceNumber;
     }
 
     /*public Dice GetLevelBonusDices(int maanaSpent)
