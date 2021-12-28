@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6124c6608535e4cafe374448867c2a, type: 3}
+  m_Name: E_BriseArmurePassive
+  m_EditorClassIdentifier: 
+  effet:
+    nom: "Briseur de D\xE9fense"
+    spr: {fileID: 0}
+    description: "Lorsqu'il r\xE9ussit une attaque, le Brise Armure r\xE9duit la
+      D\xE9fense de la cible de 1 pendant 1 tour."
+    wantedEffectToTrigger: {fileID: 0}
+    maxStack: 1
+    effects: []
+    actionEffect: []
+    affliction: 0
+    maana: 0
+  nature: 1
+  duree: -1
+  isMalus: 0
+  bonusToCancel: []
+  spriteZone: {fileID: 0}
+  spriteCase: {fileID: 0}

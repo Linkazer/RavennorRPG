@@ -32650,7 +32650,7 @@ GameObject:
   - component: {fileID: 2336668606332924307}
   - component: {fileID: 4710960412310456470}
   m_Layer: 0
-  m_Name: Hist1_Lvl 2
+  m_Name: Hist1_Lvl 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32716,30 +32716,30 @@ MonoBehaviour:
   rooms:
   - ennemis:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: e2b911e2ccf1b2f4e8de1ce31e8ce2f7, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
+    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
+    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
+    - {fileID: 11400000, guid: 3354ffb2ba230d042b6002bd69a6cbca, type: 2}
     ennemisPos:
     - {fileID: 2600873587656351773}
+    - {fileID: 1179394812324346281}
+    - {fileID: 487728128644247287}
     - {fileID: 3033557693304584920}
     - {fileID: 210125516688813353}
     - {fileID: 1101691332734544629}
-    - {fileID: 1179394812324346281}
-    - {fileID: 487728128644247287}
     ennemisPositions:
     - {x: -0.88000005, y: 1.1999999}
+    - {x: -0.24000007, y: 1.1999999}
+    - {x: -0.40000007, y: 1.04}
     - {x: -0.88000005, y: 0.4}
     - {x: -1.04, y: 0.24000001}
     - {x: -1.2000002, y: 0.4}
-    - {x: -0.24000007, y: 1.1999999}
-    - {x: -0.40000007, y: 1.04}
     toPlayOnEnable:
       m_PersistentCalls:
         m_Calls: []
   - ennemis:
-    - {fileID: 11400000, guid: c68cf4242e1f16a43a7800d22c25fb63, type: 2}
+    - {fileID: 11400000, guid: 83caecebd05a3304da1925bba03b5d3f, type: 2}
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     ennemisPos:
@@ -32766,22 +32766,19 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - ennemis:
-    - {fileID: 11400000, guid: c68cf4242e1f16a43a7800d22c25fb63, type: 2}
-    - {fileID: 11400000, guid: c68cf4242e1f16a43a7800d22c25fb63, type: 2}
-    - {fileID: 11400000, guid: e2b911e2ccf1b2f4e8de1ce31e8ce2f7, type: 2}
-    - {fileID: 11400000, guid: e2b911e2ccf1b2f4e8de1ce31e8ce2f7, type: 2}
+    - {fileID: 11400000, guid: f3df6dcc944ed4947b0adec1dd973db5, type: 2}
+    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
+    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     ennemisPos:
     - {fileID: 7846940358094624276}
-    - {fileID: 5338940077828155497}
     - {fileID: 4332984526985984277}
     - {fileID: 7781596098297649923}
     - {fileID: 62628072098454564}
     - {fileID: 6112022668750189470}
     ennemisPositions:
     - {x: -0.24000001, y: -1.04}
-    - {x: -0.40000004, y: -1.0399998}
     - {x: -0.72, y: -0.5599998}
     - {x: 0.07999992, y: -0.5599999}
     - {x: -0.72, y: -0.8799999}
@@ -32831,7 +32828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomManager: {fileID: 2336668606332924307}
-  ennemiesToDown: 15
+  ennemiesToDown: 14
 --- !u!1 &8412524457342843277
 GameObject:
   m_ObjectHideFlags: 0

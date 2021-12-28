@@ -644,14 +644,6 @@ public class BattleManager : MonoBehaviour
                     }
                 }
             }
-
-            if (n.HasCharacterOn && wantedAction.wantedEffectOnTarget.Count > 0)
-            {
-                foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
-                {
-                    ApplyEffects(eff, maanaSpent, caster, n.chara);
-                }
-            }
         }
 
         if (wantedAction.caseSprite != null)
@@ -766,6 +758,15 @@ public class BattleManager : MonoBehaviour
             {
                 applyEffect = DoDamage(wantedAction, maanaSpent, caster, target);
                 caster.TakeHeal(Mathf.CeilToInt(applyEffect * wantedAction.lifeStealPercent));
+            }
+        }
+
+
+        if (wantedAction.wantedEffectOnTarget.Count > 0)
+        {
+            foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
+            {
+                ApplyEffects(eff, maanaSpent, caster, target);
             }
         }
 
