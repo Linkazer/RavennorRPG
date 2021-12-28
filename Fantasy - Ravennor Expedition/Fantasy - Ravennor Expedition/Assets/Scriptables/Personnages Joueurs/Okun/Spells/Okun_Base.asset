@@ -45,3 +45,5 @@ MonoBehaviour:
   damageType: 1
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

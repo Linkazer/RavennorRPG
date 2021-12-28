@@ -20,9 +20,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
     [SerializeField]
     private GameObject brasParent;
 
-    [HideInInspector]
-    private int possibleAction;
-    
+    private int usedActionInTurn;
+
     [HideInInspector]
     public bool CanMove => movementLeft >= 10;
 
@@ -113,23 +112,23 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public bool CanDoAction()
     {
-        return (possibleAction > 0);
+        return (usedActionInTurn < currentScriptable.GetPossibleActions());
     }
 
     public void UseAction(bool isBaseAttack)
     {
-        possibleAction--;
+        usedActionInTurn++;
         BattleUiManager.instance.UseActionFeedback();
     }
 
     public void UseAllAction()
     {
-        possibleAction = 0;
+        usedActionInTurn = currentScriptable.GetPossibleActions();
     }
 
     public void ResetOneAction()
     {
-        possibleAction++;
+        usedActionInTurn--;
     }
 
     public bool HasEnoughMaana(int maanaAmount)
@@ -343,7 +342,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 }
             }
 
-            possibleAction = currentScriptable.GetPossibleActions();
+            usedActionInTurn = 0;
 
             hasOpportunity = true;
 

@@ -20,7 +20,7 @@ MonoBehaviour:
   maanaCost: 0
   maxCooldown: 0
   maxUtilisation: -1
-  incantationTime: 1
+  incantationTime: 0
   isWeaponBased: 0
   target: 1
   castTarget: 0
@@ -65,3 +65,5 @@ MonoBehaviour:
   damageType: 1
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

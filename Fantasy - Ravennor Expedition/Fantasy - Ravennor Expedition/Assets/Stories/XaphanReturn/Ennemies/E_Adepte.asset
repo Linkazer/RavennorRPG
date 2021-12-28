@@ -36,13 +36,14 @@ MonoBehaviour:
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 15
       conditionType: 2
     considerationImportance: 1
     maximumValueModifier: 0
-    startScore: 0.5
+    startScore: 1
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -54,6 +55,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 16
@@ -67,13 +69,6 @@ MonoBehaviour:
       checkAroundMax: 0
       maxValue: 150
       constant: 150
-      coeficient: -1
-      calculImportance: 1
-    - calculType: 1
-      abscissaValue: 3
-      checkAroundMax: 0
-      maxValue: 100
-      constant: 100
       coeficient: -1
       calculImportance: 1
     maxCooldown: 0

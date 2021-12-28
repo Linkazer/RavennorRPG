@@ -644,6 +644,14 @@ public class BattleManager : MonoBehaviour
                     }
                 }
             }
+
+            if (n.HasCharacterOn && wantedAction.wantedEffectOnTarget.Count > 0)
+            {
+                foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
+                {
+                    ApplyEffects(eff, maanaSpent, caster, n.chara);
+                }
+            }
         }
 
         if (wantedAction.caseSprite != null)
@@ -760,10 +768,6 @@ public class BattleManager : MonoBehaviour
                 caster.TakeHeal(Mathf.CeilToInt(applyEffect * wantedAction.lifeStealPercent));
             }
         }
-        else
-        {
-            applyEffect = 1;
-        }
 
         if (applyEffect > 0)
         {
@@ -772,11 +776,26 @@ public class BattleManager : MonoBehaviour
                 caster.ResolveEffect(EffectTrigger.DamageDealSelf);
                 caster.ResolveEffect(EffectTrigger.DamageDealTarget, target.currentNode.worldPosition);
             }
-            if (wantedAction.wantedEffectOnTarget.Count > 0)
+            
+            if (wantedAction.wantedHitEffectOnTarget.Count > 0)
             {
-                foreach (SpellEffectScriptables eff in wantedAction.wantedEffectOnTarget)
+                foreach (SpellEffectScriptables eff in wantedAction.wantedHitEffectOnTarget)
                 {
-                    ApplyEffects(eff, maanaSpent, caster, target);
+                    if (!target.ContainsEffect(eff.effet))
+                    {
+                        ApplyEffects(eff, maanaSpent, caster, target);
+                    }
+                }
+            }
+
+            if (wantedAction.wantedHitEffectOnCaster.Count > 0)
+            {
+                foreach (SpellEffectScriptables eff in wantedAction.wantedHitEffectOnCaster)
+                {
+                    if (!caster.ContainsEffect(eff.effet))
+                    {
+                        ApplyEffects(eff, maanaSpent, caster, caster);
+                    }
                 }
             }
         }

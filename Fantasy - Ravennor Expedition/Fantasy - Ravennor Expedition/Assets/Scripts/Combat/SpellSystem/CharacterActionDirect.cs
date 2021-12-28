@@ -23,6 +23,9 @@ public class CharacterActionDirect : CharacterActionScriptable
 
     public float lifeStealPercent = 0;
 
+    [Header("On Hit Effects")]
+    public List<SpellEffectScriptables> wantedHitEffectOnTarget, wantedHitEffectOnCaster;
+
     public override SpellType SpellType => SpellType.Direct;
 
     public int GetBaseDamage(int maanaSpent)
