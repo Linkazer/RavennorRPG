@@ -86,7 +86,7 @@ public class CameraManager : MonoBehaviour
 
     public void OnNewTurn(RuntimeBattleCharacter turnChara)
     {
-        SetNextChara(BattleManager.instance.GetCurrentTurnChara().transform);
+        SetNextChara(BattleManager.GetCurrentTurnChara.transform);
     }
 
     public void SetNextChara(Transform newToFollow)
@@ -100,5 +100,10 @@ public class CameraManager : MonoBehaviour
             lerpCoef = baselerp;
         toFollow = newToFollow;
         followChara = true;
+    }
+
+    private void OnDestroy()
+    {
+        BattleManager.characterTurnBegin -= OnNewTurn;
     }
 }
