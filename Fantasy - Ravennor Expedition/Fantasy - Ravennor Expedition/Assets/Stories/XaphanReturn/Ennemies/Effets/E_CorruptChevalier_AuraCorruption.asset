@@ -20,13 +20,13 @@ MonoBehaviour:
     maxStack: 1
     effects:
     - type: 2
-      possiblesTargets: 2
+      possiblesTargets: 1
       value: -1
       scaleByMaana: 0
       trigger: 0
       maanaSpent: 0
     - type: 4
-      possiblesTargets: 2
+      possiblesTargets: 1
       value: -1
       scaleByMaana: 0
       trigger: 0

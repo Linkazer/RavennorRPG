@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
   m_Name: Hist1_Lvl 3
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 7560241282882709333, guid: db292adc3472478479c5d6f1559f3f7a, type: 3}
+  levelPrefab: {fileID: 7560241282882709333, guid: ee8796c625883f34f84b551074ed62da, type: 3}
   ID: Hist1_Lvl 3
-  nom: Les Archimages
-  winCondition: Vaincre Tiloeth.
+  nom: A la recherche des Archimages
+  winCondition: Trouver les Archimages
   looseCondition: "L'un des membres de la Confr\xE9rie tombe inconcient."
-  description: "La Confr\xE9rie du Zippo s'approchent de la salle o\xF9 sont retenus
-    les Archimages."
+  description: "Malgr\xE9 l'attaque de l'Acad\xE9mie, les \xE9l\xE8ves n'ont aucune
+    nouvelle des Archimages. Apr\xE8s s'\xEAtre assur\xE9 que les \xE9l\xE8ves soient
+    en s\xE9curit\xE9, la Confr\xE9rie part \xE0 la recherche des Archimages."
   charactersInLevel:
   - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
   - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}

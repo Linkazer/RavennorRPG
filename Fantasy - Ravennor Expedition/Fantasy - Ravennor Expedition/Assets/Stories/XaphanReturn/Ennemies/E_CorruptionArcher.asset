@@ -29,14 +29,14 @@ MonoBehaviour:
   actionNumber: 0
   levelUpTable: {fileID: 0}
   knownSpells:
-  - {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+  - {fileID: 11400000, guid: 5a8e7d96cf4e447409039282805a8703, type: 2}
   - {fileID: 11400000, guid: fd6d85a43b48a654b929464231c0ecce, type: 2}
   passifs: []
   initiative: 4
   closestDistanceWhenNoAction: 45
   planForOtherTurns: 1
   comportement:
-  - wantedAction: {fileID: 11400000, guid: d65bde98ddd08c142810e5c1d0caffdf, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 5a8e7d96cf4e447409039282805a8703, type: 2}
     optimizePosition: 0
     conditions:
     - conditionWanted: 0
@@ -46,13 +46,6 @@ MonoBehaviour:
     maximumValueModifier: 0
     startScore: 0.5
     calculs:
-    - calculType: 1
-      abscissaValue: 3
-      checkAroundMax: 0
-      maxValue: 100
-      constant: 100
-      coeficient: -1
-      calculImportance: 1
     - calculType: 1
       abscissaValue: 3
       checkAroundMax: 0

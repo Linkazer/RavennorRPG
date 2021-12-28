@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
-  m_Name: B_ArchimageCorrompu
+  m_Name: OLD B_ArchimageCorrompu
   m_EditorClassIdentifier: 
   nom: Tiloeth, l'archimage corrompu
   icon: {fileID: 21300000, guid: 2ed8110e69375354da622602d30fe19e, type: 3}
@@ -38,6 +38,7 @@ MonoBehaviour:
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 1371c5d16831a184db5b4b384d77f2a2, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 16
@@ -59,6 +60,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 887c804377e1da14084973e56a67420c, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 5
@@ -77,6 +79,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 360abf5da4408bb43b970021d65caab5, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 55
@@ -102,6 +105,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 360abf5da4408bb43b970021d65caab5, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 56
@@ -120,6 +124,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 1371c5d16831a184db5b4b384d77f2a2, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 15
