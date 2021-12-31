@@ -18,6 +18,9 @@ public class SoundSyst : MonoBehaviour
     [SerializeField] private AudioSource mainMusic;
     [SerializeField] private AnimationCurve soundSlider;
 
+    [SerializeField] private Transform globalAudioHandler;
+    [SerializeField] private AudioSource soundPrefab;
+
     private float maxSound = 0f;
     private float minSound = -80f;
 
@@ -38,9 +41,9 @@ public class SoundSyst : MonoBehaviour
             instance = this;
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            sliderProgresses.Add(0.7f);
+            sliderProgresses.Add(0.5f);
         }
     }
 
@@ -64,6 +67,8 @@ public class SoundSyst : MonoBehaviour
                 return sliderProgresses[1];
             case "SFXVolume":
                 return sliderProgresses[2];
+            case "UIVolume":
+                return sliderProgresses[3];
         }
         return 0;
     }
@@ -80,6 +85,9 @@ public class SoundSyst : MonoBehaviour
                 break;
             case "SFXVolume":
                 sliderProgresses[2] = value;
+                break;
+            case "UIVolume":
+                sliderProgresses[3] = value;
                 break;
         }
         mixer.SetFloat(varName, GetSoundLevel(value));
@@ -109,5 +117,18 @@ public class SoundSyst : MonoBehaviour
         {
             TimerSyst.CreateTimer(sound.LoopInterval, () => PlaySound(sound, source));
         }
+    }
+
+    public static void PlayGlobalSound(RVN_AudioSound sound)
+    {
+        instance.OnPlayGlobalSound(sound);
+    }
+
+    private void OnPlayGlobalSound(RVN_AudioSound sound)
+    {
+        AudioSource source = Instantiate(soundPrefab, globalAudioHandler);
+        PlaySound(sound, source);
+
+        TimerSyst.CreateTimer(sound.GetClip.length, () => Destroy(source));
     }
 }

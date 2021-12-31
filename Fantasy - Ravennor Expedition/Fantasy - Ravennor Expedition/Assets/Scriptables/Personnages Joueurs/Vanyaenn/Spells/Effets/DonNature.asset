@@ -15,6 +15,7 @@ MonoBehaviour:
   effet:
     nom: Don de la nature
     spr: {fileID: 21300000, guid: e6766b4154d68cc4c95caf0ce96d4908, type: 3}
+    hideUIDisplay: 0
     description: "Augmente la Pr\xE9cision de 1 et soigne la cible de 1 \xE0 chaque
       d\xE9but de tour."
     wantedEffectToTrigger: {fileID: 0}
@@ -35,7 +36,7 @@ MonoBehaviour:
     affliction: 0
     maana: 0
   nature: 1
-  duree: 2
+  duree: 1
   isMalus: 0
   bonusToCancel: []
   spriteZone: {fileID: 0}

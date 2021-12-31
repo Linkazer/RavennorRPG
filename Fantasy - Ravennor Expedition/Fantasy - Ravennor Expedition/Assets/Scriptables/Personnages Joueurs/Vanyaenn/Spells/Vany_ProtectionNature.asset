@@ -42,9 +42,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7ab2ff4cae207b47afd3a8ee06667f9, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
-  hasPowerEffect: 0
-  damageBase: 0
+  hasPowerEffect: 1
+  damageBase: 1
   diceNumber: 0
   damageType: 0
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

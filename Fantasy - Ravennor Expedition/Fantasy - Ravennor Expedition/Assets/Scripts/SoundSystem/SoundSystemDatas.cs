@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New SoundDatas", menuName = "Create SoundData")]
 public class SoundSystemDatas : ScriptableObject
 {
-    public float globalVolume = 1, musicVolume = 1, sfxVolume = 1; 
+    public float globalVolume = 1, musicVolume = 1, sfxVolume = 1, uiVolume = 1; 
 }

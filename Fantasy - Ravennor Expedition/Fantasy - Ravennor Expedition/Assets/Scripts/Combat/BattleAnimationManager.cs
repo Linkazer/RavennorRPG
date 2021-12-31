@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,18 +51,9 @@ public class BattleAnimationManager : MonoBehaviour
 
     public void PlayOnNode(List<Vector2> position, Sprite spriteToPut, Sprite caseSprite, float timeToShow, AudioClip soundToPlay)
     {
-        List<SpellObject> toShow = new List<SpellObject>();
         foreach(Vector2 pos in position)
         {
-            toShow.Add(GetSpellsObject());
-            toShow[toShow.Count-1].SetObject(pos);
-            toShow[toShow.Count - 1].SetSprite(spriteToPut, caseSprite, 5);
-        }
-
-        StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
-        if (timeToShow >= 0)
-        {
-            BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+            PlayOnNode(pos, spriteToPut, caseSprite, timeToShow, soundToPlay);
         }
     }
 
@@ -72,10 +64,13 @@ public class BattleAnimationManager : MonoBehaviour
         toShow[toShow.Count - 1].SetObject(position);
         toShow[toShow.Count - 1].SetSprite(spriteToPut, caseSprite, 1);
 
-        StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
         if (timeToShow >= 0)
         {
-            BattleManager.instance.EndCurrentActionWithDelay(timeToShow);
+            StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
+        }
+        else
+        {
+            StartCoroutine(SpriteShowed(toShow, timeToShow, soundToPlay));
         }
     }
 
@@ -96,19 +91,29 @@ public class BattleAnimationManager : MonoBehaviour
         toShow[toShow.Count - 1].SetCaster(caster, turnNeeded, newEffet);
     }
 
-    IEnumerator SpriteShowed(List<SpellObject> usedObj, float time, AudioClip soundToPlay)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="usedObj"></param>
+    /// <param name="time"></param>
+    /// <param name="soundToPlay"></param>
+    /// <param name="callbackTime">Entre 0 et 1. 0 joue le Callback en début d'affichage, 1 le joue une fois l'affichage finit.</param>
+    /// <param name="callBack"></param>
+    /// <returns></returns>
+    IEnumerator SpriteShowed(List<SpellObject> usedObj, float time, AudioClip soundToPlay, Action callBack = null)
     {
         usedObj[0].SetSound(soundToPlay);
 
         if(time < 0)
         {
-            time = 0.5f;
+            time = 0.1f;
         }
         yield return new WaitForSeconds(time);
         foreach(SpellObject obj in usedObj)
         {
             obj.ResetObject();
         }
+        callBack?.Invoke();
     }
 
 }

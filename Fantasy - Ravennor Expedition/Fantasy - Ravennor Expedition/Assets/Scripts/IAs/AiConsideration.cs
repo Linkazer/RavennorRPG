@@ -54,7 +54,7 @@ public class AiConsideration
     [Header("Calculs")]
     [Tooltip("Minimum -1 si on veut que la Considération ne soit pas prise en compte.")] public float considerationImportance = 0;
     [Tooltip("Met une limite au score maximum des calculs.")] public float maximumValueModifier;
-    public float startScore;
+    public float bonusScore;
     public List<ValueForCalcul> calculs;
     public int maxCooldown, cooldown;
 }

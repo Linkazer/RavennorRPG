@@ -62,6 +62,12 @@ public class BattleUiManager : MonoBehaviour
     private RuntimeBattleCharacter currentChara;
     private int currentIndex;
 
+    [Header("Events")]
+    [SerializeField] private UnityEvent PlayOnDisplayCharacterInformation;
+    [SerializeField] private UnityEvent PlayOnHideCharacterInformation;
+    [SerializeField] private UnityEvent PlayOnDisplaySpellInformation;
+    [SerializeField] private UnityEvent PlayOnHideSpellInformation;
+
     [Header("Error management")]
     [SerializeField]
     private TextMeshProUGUI errorTxt;
@@ -263,6 +269,8 @@ public class BattleUiManager : MonoBehaviour
 
     public void ShowSpellInformations(int index)
     {
+        PlayOnDisplaySpellInformation?.Invoke();
+
         CharacterActionScriptable toShow = PlayerBattleControllerManager.instance.GetSpell(index);
 
         spellTitle.text = toShow.nom;
@@ -275,16 +283,22 @@ public class BattleUiManager : MonoBehaviour
 
     public void HideSpellInformation()
     {
+        PlayOnHideSpellInformation?.Invoke();
         spellInfo.SetActive(false);
     }
 
     public void ShowCharaInformation(RuntimeBattleCharacter newChara)
     {
+        PlayOnDisplayCharacterInformation?.Invoke();
         charaInfo.SetNewChara(newChara);
     }
 
     public void HideCharaInformation()
     {
+        if (charaInfo.gameObject.activeSelf)
+        {
+            PlayOnHideCharacterInformation?.Invoke();
+        }
         charaInfo.Hide();
     }
 
@@ -306,37 +320,10 @@ public class BattleUiManager : MonoBehaviour
         return maanaSpentParent.activeSelf;
     }
 
-    public void ShowMaanaSpentAsker(Vector2 position, int minUse, int maxUse)
-    {
-        int currentUse = minUse;
-        for(int i = 0; i < maanaToUseText.Count; i++)
-        {
-            if(currentUse <= maxUse)
-            {
-                maanaToUseText[i].text = currentUse.ToString();
-                maanaToUseText[i].transform.parent.gameObject.SetActive(true);
-            }
-            else
-            {
-                maanaToUseText[i].transform.parent.gameObject.SetActive(false);
-            }
-            currentUse++;
-        }
-        Vector2 newPos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-        maanaSpentParent.transform.position = newPos;
-        maanaSpentParent.SetActive(true);
-    }
-
-    public void HideMaanaSpentAsker()
-    {
-        maanaSpentParent.SetActive(false);
-    }
-
     /// <summary>
     /// Called in editor (Button)
     /// </summary>
-    /// <param name="usedMaanaIndex">Index of the button</param>
-    public void UseSpell(int usedMaanaIndex)
+    public void UseSpell()
     {
         maanaSpentParent.SetActive(false);
         PlayerBattleManager.instance.UseSpell(0);

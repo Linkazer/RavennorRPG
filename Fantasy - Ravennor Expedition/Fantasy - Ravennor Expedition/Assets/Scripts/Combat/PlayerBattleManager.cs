@@ -93,7 +93,6 @@ public class PlayerBattleManager : MonoBehaviour
             {
                 ShowDeplacement();
             }
-            BattleUiManager.instance.HideMaanaSpentAsker();
             holdSpellIndex = -1;
         }
     }

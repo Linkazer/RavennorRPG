@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
-    private Slider globalSlider, musicSlider, sfxSlider;
+    private Slider globalSlider, musicSlider, sfxSlider, uiSlider;
 
     [SerializeField]
     private GameObject controleFiche;
@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
         globalSlider.value = SoundSyst.instance.GetVolumeValue("GlobalVolume");
         musicSlider.value = SoundSyst.instance.GetVolumeValue("MusicVolume");
         sfxSlider.value = SoundSyst.instance.GetVolumeValue("SFXVolume");
+        uiSlider.value = SoundSyst.instance.GetVolumeValue("UIVolume");
         gameObject.SetActive(true);
     }
 
@@ -37,6 +38,11 @@ public class MenuManager : MonoBehaviour
     public void ChangeSFXSound(Slider wantedSlider)
     {
         SoundSyst.instance.ChangeMixerVolume("SFXVolume", wantedSlider.value);
+    }
+
+    public void ChangeUISound(Slider wantedSlider)
+    {
+        SoundSyst.instance.ChangeMixerVolume("UIVolume", wantedSlider.value);
     }
 
     public void GoToMainMenu()

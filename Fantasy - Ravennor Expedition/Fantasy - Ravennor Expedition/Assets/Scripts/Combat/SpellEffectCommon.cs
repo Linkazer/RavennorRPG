@@ -7,10 +7,14 @@ public enum EffectTrigger { Apply, End, DamageTaken, DamageDealSelf, DamageDealT
 [System.Serializable]
 public class SpellEffectCommon
 {
+    [Header("Affichage")]
     public string nom;
     public Sprite spr;
+    public bool hideUIDisplay;
     [TextArea(3,5)]
     public string description;
+
+    [Header("Effet")]
     public SpellEffectScriptables wantedEffectToTrigger;
 
     public int maxStack = 1;
@@ -19,8 +23,6 @@ public class SpellEffectCommon
 
     public List<SpellEffectAction> actionEffect;
 
-    /*public DamageType onTimeEffectType;
-    public int onTimeEffectValue;*/
     public Affliction affliction;
 
     [HideInInspector]
@@ -37,6 +39,7 @@ public class SpellEffectCommon
         spr = toCopy.spr;
         description = toCopy.description;
         maana = maanaSpent;
+        hideUIDisplay = toCopy.hideUIDisplay;
 
         List<SpellEffect> newList = new List<SpellEffect>();
         List<SpellEffectAction> newListAct = new List<SpellEffectAction>();

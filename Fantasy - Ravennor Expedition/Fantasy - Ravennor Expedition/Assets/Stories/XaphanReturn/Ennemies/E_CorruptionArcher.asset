@@ -23,7 +23,7 @@ MonoBehaviour:
   maana: 0
   movementSpeed: 55
   accuracy: 2
-  defense: 2
+  defense: 3
   power: 0
   armor: 0
   actionNumber: 0
@@ -42,9 +42,9 @@ MonoBehaviour:
     - conditionWanted: 0
       conditionValue: 15
       conditionType: 2
-    considerationImportance: 0
+    considerationImportance: 1
     maximumValueModifier: 0
-    startScore: 0.5
+    bonusScore: 1
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -63,7 +63,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 0
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 5
       abscissaValue: 0

@@ -428,7 +428,7 @@ public class AiBattleManager : MonoBehaviour
             coef += value.calculImportance;
         }
 
-        totalResult = actionToEvaluate.startScore + totalResult / coef;
+        totalResult = (actionToEvaluate.bonusScore + totalResult) / (coef+1);
         if (totalResult > 1 + actionToEvaluate.maximumValueModifier)
         {
             totalResult = 1 + actionToEvaluate.maximumValueModifier;

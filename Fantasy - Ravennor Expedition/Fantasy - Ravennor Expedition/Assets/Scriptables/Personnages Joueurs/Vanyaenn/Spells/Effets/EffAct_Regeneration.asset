@@ -36,22 +36,16 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 4f9c991b056ac7d40a2bc90df2078493, type: 3}
   caseFeedback: {fileID: 21300000, guid: 1c2b9b62f9b2c9d44a769f9c717d60a0, type: 3}
   soundToPlay: {fileID: 0}
-  wantedEffectOnTarget: []
+  wantedEffectOnTarget:
+  - {fileID: 11400000, guid: e73ab561488e5e14ea9e6211ef6684e8, type: 2}
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
-  spellType: 0
   hasPowerEffect: 1
   damageBase: 1
   diceNumber: 0
   damageType: 0
+  ignorePower: 1
   autoCritical: 0
-  scaleOrigin: 0
-  wantedScaleEffect: {fileID: 0}
-  scalingDices:
-    wantedDice: 0
-    numberOfDice: 0
-    diceByMaanaSpent: 0
-    wantedDamage: 0
-  diceByScale: 0
-  bonusByScale: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

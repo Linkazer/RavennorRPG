@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3005031525781656520}
   - component: {fileID: 6953533179843895952}
   m_Layer: 8
-  m_Name: Furite OneCase 1
+  m_Name: Furniture Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spr: {fileID: 4218936032012231654}
-  offset: 0
+  offset: -8
   originSpr: {fileID: 0}
+  canvas: {fileID: 0}

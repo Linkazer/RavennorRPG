@@ -15,6 +15,7 @@ MonoBehaviour:
   effet:
     nom: Acharnement
     spr: {fileID: 0}
+    hideUIDisplay: 1
     description: Le personnage peut faire un seconde action.
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1

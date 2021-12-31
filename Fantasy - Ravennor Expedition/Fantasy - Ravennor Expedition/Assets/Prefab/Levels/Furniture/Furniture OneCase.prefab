@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8236438899408734959}
   - component: {fileID: 4289212864089799607}
   m_Layer: 8
-  m_Name: Decor 1
+  m_Name: Furniture OneCase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spr: {fileID: 7022548046911650497}
-  offset: 0
+  offset: -8
   originSpr: {fileID: 0}
+  canvas: {fileID: 0}

@@ -44,7 +44,7 @@ MonoBehaviour:
       conditionType: 2
     considerationImportance: 1
     maximumValueModifier: 0
-    startScore: 0.5
+    bonusScore: 1
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -56,6 +56,35 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 0643e10fe5313154f8837331eece7c99, type: 2}
+    optimizePosition: 0
+    conditions:
+    - conditionWanted: 0
+      conditionValue: 16
+      conditionType: 1
+    - conditionWanted: 0
+      conditionValue: 55
+      conditionType: 2
+    considerationImportance: 0
+    maximumValueModifier: 0
+    bonusScore: 0
+    calculs:
+    - calculType: 1
+      abscissaValue: 0
+      checkAroundMax: 0
+      maxValue: 55
+      constant: 55
+      coeficient: -1
+      calculImportance: 2
+    - calculType: 1
+      abscissaValue: 3
+      checkAroundMax: 0
+      maxValue: 100
+      constant: 100
+      coeficient: -1
+      calculImportance: 0.5
+    maxCooldown: 0
+    cooldown: 0
+  - wantedAction: {fileID: 11400000, guid: 0643e10fe5313154f8837331eece7c99, type: 2}
     optimizePosition: 1
     conditions:
     - conditionWanted: 0
@@ -63,7 +92,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 0
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 5
       abscissaValue: 0

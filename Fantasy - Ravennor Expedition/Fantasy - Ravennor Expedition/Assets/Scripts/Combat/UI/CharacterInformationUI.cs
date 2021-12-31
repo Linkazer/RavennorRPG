@@ -72,15 +72,18 @@ public class CharacterInformationUI : MonoBehaviour
         effectDescriptions = new List<string>();
         effectNames = new List<string>();
         int i = 0;
-        foreach(RuntimeSpellEffect runEff in chara.GetAppliedEffects())
+        foreach (RuntimeSpellEffect runEff in chara.GetAppliedEffects())
         {
-            effectNames.Add(runEff.effet.nom);
-            effectDescriptions.Add(runEff.effet.description);
-            effectsOnChara[i].sprite = runEff.effet.spr;
-            effectsOnChara[i].transform.parent.gameObject.SetActive(true);
+            if (!runEff.effet.hideUIDisplay)
+            {
+                effectNames.Add(runEff.effet.nom);
+                effectDescriptions.Add(runEff.effet.description);
+                effectsOnChara[i].sprite = runEff.effet.spr;
+                effectsOnChara[i].transform.parent.gameObject.SetActive(true);
 
-            effectTimes[i].text = runEff.currentCooldown>=0 ? runEff.currentCooldown.ToString() : "";
-            i++;
+                effectTimes[i].text = runEff.currentCooldown >= 0 ? runEff.currentCooldown.ToString() : "";
+                i++;
+            }
         }
     }
 

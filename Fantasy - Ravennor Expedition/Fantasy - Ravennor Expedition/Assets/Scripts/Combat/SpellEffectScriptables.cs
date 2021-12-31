@@ -17,17 +17,5 @@ public class SpellEffectScriptables : ScriptableObject
 
     public List<SpellEffectScriptables> bonusToCancel;
 
-    //Targets
-    //Applications ??
-
-    //public List<SpellEffect> effects;
-
-    //public DamageType onTimeEffectType;
-    //public int effectOnTimePower;
-    /*public Dice diceOnTime;
-    public float diceByLevelBonus;
-    public DiceType diceByLevel;*/
-    //public Affliction affliction;
-
     public Sprite spriteZone, spriteCase;
 }

@@ -22,7 +22,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     private int usedActionInTurn;
 
-    [HideInInspector]
     public bool CanMove => movementLeft >= 10;
 
     //[HideInInspector]
@@ -543,7 +542,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void AddEffect(RuntimeSpellEffect runEffect)
     {
-        Debug.Log("Add");
         if (ContainsEffect(runEffect.effet))
         {
             RemoveEffect(runEffect.effet);
@@ -557,7 +555,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
             AddAffliction(runEffect.effet.affliction);
         }
 
-        uiManagement.ShowEffect(runEffect.effet.spr, true);
+        if (!runEffect.effet.hideUIDisplay)
+        {
+            uiManagement.ShowEffect(runEffect.effet.spr, true);
+        }
     }
 
     public void ApplyEffect(SpellEffect wantedEffect)
@@ -587,7 +588,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
     {
         appliedEffects[index].RemoveEffect();
 
-        uiManagement.ShowEffect(appliedEffects[index].effet.spr, false);
+        if (!appliedEffects[index].effet.hideUIDisplay)
+        {
+            uiManagement.ShowEffect(appliedEffects[index].effet.spr, false);
+        }
 
         foreach (SpellEffect eff in appliedEffects[index].effet.effects)
         {

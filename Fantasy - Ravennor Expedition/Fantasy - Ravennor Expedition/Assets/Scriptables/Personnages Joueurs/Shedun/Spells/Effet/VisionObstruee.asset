@@ -13,21 +13,17 @@ MonoBehaviour:
   m_Name: VisionObstruee
   m_EditorClassIdentifier: 
   effet:
-    nom: "Vision obstru\xE9e"
-    spr: {fileID: 21300000, guid: 155642351525a3d41b91316c8aa388d6, type: 3}
-    description: "R\xE9duit la Pr\xE9cision de 1."
+    nom: "D\xE9fense perc\xE9e"
+    spr: {fileID: 21300000, guid: 89693d44e1e6eba4d924d65cb6d71f60, type: 3}
+    hideUIDisplay: 0
+    description: "R\xE9duit la D\xE9fense de 1."
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 4
+    - type: 2
       possiblesTargets: 2
       value: -1
       scaleByMaana: 0
-      dicesBonus:
-        wantedDice: 0
-        numberOfDice: 0
-        diceByMaanaSpent: 0
-        wantedDamage: 0
       trigger: 0
       maanaSpent: 0
     actionEffect: []

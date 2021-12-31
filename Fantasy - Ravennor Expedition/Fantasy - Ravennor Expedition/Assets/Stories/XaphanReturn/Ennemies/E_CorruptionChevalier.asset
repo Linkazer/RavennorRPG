@@ -40,11 +40,11 @@ MonoBehaviour:
     optimizePosition: 0
     conditions:
     - conditionWanted: 0
-      conditionValue: 15
+      conditionValue: 25
       conditionType: 2
     considerationImportance: 1
     maximumValueModifier: 0
-    startScore: 0.5
+    bonusScore: 1
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -59,19 +59,12 @@ MonoBehaviour:
     optimizePosition: 0
     conditions:
     - conditionWanted: 0
-      conditionValue: 16
+      conditionValue: 26
       conditionType: 1
     considerationImportance: 0
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
-    - calculType: 1
-      abscissaValue: 3
-      checkAroundMax: 0
-      maxValue: 100
-      constant: 100
-      coeficient: -1
-      calculImportance: 0.5
     - calculType: 1
       abscissaValue: 0
       checkAroundMax: 0

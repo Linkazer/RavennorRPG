@@ -28,18 +28,27 @@ public class RuntimeSpellEffect
 
         target.AddEffect(this);
 
-        turnIndexApplied = BattleManager.instance.GetCurrentTurnChara();
-        turnIndexApplied.beginTurnEvt += UpdateCooldown;
+        if (currentCooldown == 0)
+        {
+            turnIndexApplied = BattleManager.instance.GetCurrentTurnChara();
+            turnIndexApplied.endTurnEvt += UpdateCooldown;
+        }
+        else
+        {
+            turnIndexApplied = BattleManager.instance.GetCurrentTurnChara();
+            turnIndexApplied.beginTurnEvt += UpdateCooldown;
+        }
     }
 
     public void RemoveEffect()
     {
+        turnIndexApplied.endTurnEvt -= UpdateCooldown;
         turnIndexApplied.beginTurnEvt -= UpdateCooldown;
     }
 
     public void UpdateCooldown()
     {
-        if (currentCooldown > 0)
+        if (currentCooldown >= 0)
         {
             currentCooldown--;
             if (currentCooldown == 0)

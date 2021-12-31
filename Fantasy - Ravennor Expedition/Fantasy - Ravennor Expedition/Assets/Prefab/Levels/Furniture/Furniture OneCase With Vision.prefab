@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spr: {fileID: 7022548046911650497}
-  offset: 0
+  offset: -8
   originSpr: {fileID: 0}
   canvas: {fileID: 0}

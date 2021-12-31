@@ -23,9 +23,9 @@ MonoBehaviour:
   healthPoints: 8
   maana: 2
   movementSpeed: 55
-  accuracy: 0
-  defense: 1
-  power: 1
+  accuracy: 1
+  defense: 2
+  power: 0
   armor: 0
   actionNumber: 0
   levelUpTable: {fileID: 0}

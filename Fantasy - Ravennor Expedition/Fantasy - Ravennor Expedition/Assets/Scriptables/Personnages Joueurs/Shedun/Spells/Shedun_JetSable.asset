@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: Shedun_JetSable
   m_EditorClassIdentifier: 
-  nom: Nuage de sable
-  icon: {fileID: 21300000, guid: 155642351525a3d41b91316c8aa388d6, type: 3}
-  description: "Applique \"Vision obstru\xE9e\" pendant 2 tours.\nVision obstru\xE9e
-    : R\xE9duit la Pr\xE9cision de 1."
+  nom: Pics de sable
+  icon: {fileID: 21300000, guid: 89693d44e1e6eba4d924d65cb6d71f60, type: 3}
+  description: "Applique \"D\xE9fense perc\xE9e\" pendant 1 tour.\nD\xE9fense perc\xE9e
+    : R\xE9duit la D\xE9fense de 1."
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: b58e2c72e18b2d640b7f2357833a63d2, type: 3}
+  caseSprite: {fileID: 21300000, guid: 1515db1d7e0965c4bbdfd262cc0c0261, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget:
@@ -49,5 +49,8 @@ MonoBehaviour:
   damageBase: 0
   diceNumber: 0
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

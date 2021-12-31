@@ -13,6 +13,7 @@ public class CharacterActionDirect : CharacterActionScriptable
     [SerializeField]
     protected int diceNumber;
     public DamageType damageType = DamageType.Damage;
+    public bool ignorePower;
     public bool autoCritical = false;
 
     /*public ScalePossibility scaleOrigin;
@@ -28,14 +29,18 @@ public class CharacterActionDirect : CharacterActionScriptable
 
     public override SpellType SpellType => SpellType.Direct;
 
-    public int GetBaseDamage(int maanaSpent)
+    public int GetBaseDamage()
     {
         return damageBase;
     }
 
-    public int GetDices(int maanaSpent)
+    public int GetDices(int power = 0)
     {
-        return diceNumber + maanaSpent;
+        if (!ignorePower && diceNumber > 0)
+        {
+            return diceNumber + power;
+        }
+        return diceNumber;
     }
 
     /*public Dice GetLevelBonusDices(int maanaSpent)

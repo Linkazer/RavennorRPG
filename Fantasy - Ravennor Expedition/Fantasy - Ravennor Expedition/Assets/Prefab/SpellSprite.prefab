@@ -98,6 +98,7 @@ MonoBehaviour:
   spr: {fileID: 3059175041428438326}
   offset: -10
   originSpr: {fileID: 8316312716796886530}
+  canvas: {fileID: 0}
 --- !u!1 &8316312716796886531
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,8 +171,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -224959233
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -215,8 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spr: {fileID: 8316312716796886530}
-  offset: 20
+  offset: 0
   originSpr: {fileID: 0}
+  canvas: {fileID: 0}
 --- !u!82 &5562798128886304227
 AudioSource:
   m_ObjectHideFlags: 0

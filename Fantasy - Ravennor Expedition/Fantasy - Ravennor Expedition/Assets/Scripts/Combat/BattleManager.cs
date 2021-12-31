@@ -381,21 +381,10 @@ public class BattleManager : MonoBehaviour
     {
         AskToMove(character.gameObject, destination, character.movementLeft, isForNextTurn);
     }
-    
-    public void EndCurrentActionWithDelay(float timeDelay)
-    {
-        StartCoroutine(WaitForActionToEnd(timeDelay));
-    }
 
-    IEnumerator WaitForActionToEnd(float timeDelay)
+    public static void EndCurrentAction()
     {
-        yield return new WaitForSeconds(timeDelay);
-        EndCurrentAction(currentCharacterTurn);
-    }
-
-    public void EndCurrentAction()
-    {
-        EndCurrentAction(currentCharacterTurn);
+        instance.EndCurrentAction(instance.currentCharacterTurn);
     }
 
     public void EndCurrentAction(RuntimeBattleCharacter character)
@@ -571,7 +560,6 @@ public class BattleManager : MonoBehaviour
     {
         List<Node> hitNodes = GetHitNodes(positionWanted, new Vector2(caster.currentNode.gridX, caster.currentNode.gridY), wantedAction);
 
-
         switch (wantedAction.target)
         {
             case ActionTargets.EveryAllies:
@@ -654,14 +642,11 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, 0.5f, wantedAction.soundToPlay);
+                BattleAnimationManager.instance.PlayOnNode(nodesPos, wantedAction.caseSprite, wantedAction.caseFeedback, 1f, wantedAction.soundToPlay);
             }
         }
 
-        if(!wantedAction.HadFeedback() && !effectAction)
-        {
-            EndCurrentActionWithDelay(0.2f);
-        }
+        TimerSyst.CreateTimer(0.5f, EndCurrentAction);
     }
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
@@ -752,12 +737,14 @@ public class BattleManager : MonoBehaviour
         {
             if(wantedAction.damageType == DamageType.Heal)
             {
-                DoHeal(wantedAction, maanaSpent, caster, target);
+                DoHeal(wantedAction, caster, target);
             }
             else
             {
-                applyEffect = DoDamage(wantedAction, maanaSpent, caster, target);
+                applyEffect = DoDamage(wantedAction, caster, target);
                 caster.TakeHeal(Mathf.CeilToInt(applyEffect * wantedAction.lifeStealPercent));
+
+                Debug.Log(applyEffect);
             }
         }
 
@@ -802,24 +789,39 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void DoHeal(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public void DoHeal(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
-        int baseHeal = wantedAction.GetBaseDamage(maanaSpent) + caster.GetCharacterDatas().GetSoinApplique() + caster.GetCharacterDatas().GetPower();
+        int baseHeal = wantedAction.GetBaseDamage() + caster.GetCharacterDatas().GetSoinApplique();
+
+        if(!wantedAction.ignorePower && wantedAction.GetBaseDamage() != 0)
+        {
+            baseHeal += caster.GetCharacterDatas().GetPower();
+        }
+
+        int neededDices = wantedAction.GetDices(caster.GetCharacterDatas().GetPower());
+
+        for (int i = 0; i < neededDices; i++)
+        {
+            if(GameDices.RollD6() > 3)
+            {
+                baseHeal++;
+            }
+        }
 
         target.TakeHeal(baseHeal);
     }
 
-    public int DoDamage(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public int DoDamage(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         if (!audioSource.isPlaying)
         {
             SoundSyst.PlaySound(diceClip[UnityEngine.Random.Range(0, diceClip.Count)], audioSource);
         }
 
-        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, maanaSpent, caster, target));
+        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target));
     }
 
-    public int DoesHit(CharacterActionDirect wantedAction, int maanaSpent, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
+    public int DoesHit(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)
     {
         int targetDefenseScore = 0;
         int dealtDamage = 0;
@@ -827,32 +829,7 @@ public class BattleManager : MonoBehaviour
         List<int> diceValues = new List<int>();
         List<BattleDiceResult> diceResult = new List<BattleDiceResult>();
 
-        int neededDices = wantedAction.GetDices(maanaSpent);
-
-        #region Scaling
-        /*switch (wantedAction.scaleOrigin)
-        {
-            case ScalePossibility.EffectStack:
-                foreach (RuntimeSpellEffect eff in target.GetAppliedEffects())
-                {
-                    if (eff.effet.nom == wantedAction.wantedScaleEffect.effet.nom)
-                    {
-                        neededDices.Add(wantedAction.scalingDices);
-                        neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(eff.currentStack * wantedAction.diceByScale);
-                    }
-                }
-                break;
-            case ScalePossibility.HpLostPercent:
-                neededDices.Add(wantedAction.scalingDices);
-                neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt((1 / target.GetPercentHp()) * 100 * wantedAction.diceByScale);
-                break;
-            case ScalePossibility.Distance:
-                neededDices.Add(wantedAction.scalingDices);
-                neededDices[neededDices.Count - 1].numberOfDice = Mathf.RoundToInt(Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode) / 10 * wantedAction.diceByScale);
-                break;
-        }*/
-        #endregion
-
+        int neededDices = wantedAction.GetDices(caster.GetCharacterDatas().GetPower());
 
         targetDefenseScore = target.GetCharacterDatas().GetDefense();
 
@@ -878,9 +855,9 @@ public class BattleManager : MonoBehaviour
         }
 
 
-        if ((neededDices <= 0 && wantedAction.GetBaseDamage(maanaSpent) > 0) || dealtDamage > 0)
+        if ((neededDices <= 0 && wantedAction.GetBaseDamage() > 0) || dealtDamage > 0)
         {
-            dealtDamage += caster.GetCharacterDatas().GetPower() + wantedAction.GetBaseDamage(maanaSpent);
+            dealtDamage += wantedAction.GetBaseDamage();
         }
 
         if (dealtDamage < 0)
