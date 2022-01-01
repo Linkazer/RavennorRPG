@@ -354,7 +354,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 movementLeft = currentScriptable.GetMovementSpeed();
             }
 
-            ResolveEffect(EffectTrigger.BeginTurn);
+            ResolveEffects(EffectTrigger.BeginTurn);
         }
     }
 
@@ -363,7 +363,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (currentHps > 0)
         {
             endTurnEvt?.Invoke();
-            ResolveEffect(EffectTrigger.EndTurn);
+            ResolveEffects(EffectTrigger.EndTurn);
         }
     }
 
@@ -493,7 +493,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
 
             damageTakenEvt.Invoke(damageAmount);
-            ResolveEffect(EffectTrigger.DamageTaken);
+            ResolveEffects(EffectTrigger.DamageTaken);
 
             if (currentHps <= 0)
             {
@@ -524,7 +524,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
             uiManagement.ShowDirectHitResult(healAmount, true);
 
             healTakenEvt.Invoke(healAmount);
-            ResolveEffect(EffectTrigger.Heal);
+            ResolveEffects(EffectTrigger.Heal);
 
             //Debug.Log(this + " healed of " + healAmount);
             BattleDiary.instance.AddText(name + " est soigné de " + healAmount + ".");
@@ -606,20 +606,17 @@ public class RuntimeBattleCharacter : MonoBehaviour
         appliedEffects.RemoveAt(index);
     }
 
-    public void ResolveEffect(RuntimeSpellEffect effect, EffectTrigger triggerWanted)
+    public void ResolveSpecifiedEffect(RuntimeSpellEffect effect, EffectTrigger triggerWanted)
     {
         BattleManager.instance.ResolveEffect(effect.effet, transform.position, transform.position, triggerWanted, effect.currentStack);
     }
 
-    public void ResolveEffect(EffectTrigger triggerWanted)
+    public void ResolveEffects(EffectTrigger triggerWanted)
     {
-        for (int i = 0; i < appliedEffects.Count; i++)
-        {
-            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, transform.position, triggerWanted, appliedEffects[i].currentStack);
-        }
+        ResolveEffects(triggerWanted, transform.position);
     }
 
-    public void ResolveEffect(EffectTrigger triggerWanted, Vector2 targetPosition)
+    public void ResolveEffects(EffectTrigger triggerWanted, Vector2 targetPosition)
     {
         for (int i = 0; i < appliedEffects.Count; i++)
         {

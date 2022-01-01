@@ -183,7 +183,7 @@ public class AiBattleManager : MonoBehaviour
                             if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, chara, askForNextTurn, consid.optimizePosition))
                             {
                                 float newScore = EvaluateAction(consid, nodeToTry, caster, chara);
-                                Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
+                                //Debug.Log(caster + " try " + consid.wantedAction + " on " + chara + " Score : " + newScore + "(Consideration Nb : " + considCount);
                                 if (newScore >= maxScore)
                                 {
                                     if (newScore > maxScore)
@@ -239,8 +239,6 @@ public class AiBattleManager : MonoBehaviour
                 considToCooldown.cooldown = considToCooldown.maxCooldown;
             }
         }
-
-        Debug.Log(wantedAction);
     }
 
     private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn, bool optimizedPosition)

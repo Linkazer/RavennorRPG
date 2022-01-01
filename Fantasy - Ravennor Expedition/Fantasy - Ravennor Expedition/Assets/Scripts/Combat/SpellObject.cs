@@ -10,7 +10,7 @@ public class SpellObject : MonoBehaviour
     [SerializeField]
     private Animation spellAnimation;
 
-    private RuntimeBattleCharacter effectCaster;
+    private RuntimeBattleCharacter turnIndex;
 
     public bool isUsed;
 
@@ -18,8 +18,6 @@ public class SpellObject : MonoBehaviour
 
     [SerializeField]
     private AffichageSprites spriteAffichage;
-
-    private RuntimeSpellEffect effet;
 
     [SerializeField]
     private AudioSource audioSource;
@@ -82,19 +80,17 @@ public class SpellObject : MonoBehaviour
 
     public void SetCaster(RuntimeBattleCharacter newCaster, int turn, RuntimeSpellEffect newEffet)
     {
-        effet = newEffet;
         turnLeft = turn;
-        effectCaster = newCaster;
+        turnIndex = newCaster;
         BattleManager.characterTurnBegin += UpdateRound;
     }
 
     public void ResetObject()
     {
         transform.right = Vector2.right;
-        if(effectCaster != null)
+        if(turnIndex != null)
         {
-            effet = null;
-            effectCaster = null;
+            turnIndex = null;
             BattleManager.characterTurnBegin -= UpdateRound;
         }
         isUsed = false;
@@ -106,15 +102,8 @@ public class SpellObject : MonoBehaviour
 
     public void UpdateRound(RuntimeBattleCharacter turnChara)
     {
-        if (turnChara == effectCaster)
+        if (turnChara == turnIndex)
         {
-            if (Grid.instance.NodeFromWorldPoint(transform.position).HasCharacterOn)
-            {
-                RuntimeBattleCharacter chara = Grid.instance.NodeFromWorldPoint(transform.position).chara;
-
-                BattleManager.instance.ResolveEffect(effet.effet, transform.position, transform.position, EffectTrigger.BeginTurn, 1);
-            }
-
             turnLeft--;
             if (turnLeft <= 0)
             {

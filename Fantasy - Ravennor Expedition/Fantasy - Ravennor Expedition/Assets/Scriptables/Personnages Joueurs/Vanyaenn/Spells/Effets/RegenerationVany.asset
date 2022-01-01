@@ -10,33 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be6124c6608535e4cafe374448867c2a, type: 3}
-  m_Name: E_CorruptChevalier_AuraCorruption
+  m_Name: RegenerationVany
   m_EditorClassIdentifier: 
   effet:
-    nom: Corruption Affaiblissante
-    spr: {fileID: 0}
-    description: "La cible subit un malus de D\xE9fense et de Pr\xE9cision de 1"
+    nom: "R\xE9g\xE9n\xE9ration"
+    spr: {fileID: 21300000, guid: a2f8a5057e7f18b4db721e4b2fe9787e, type: 3}
+    hideUIDisplay: 0
+    description: "Soigne de 1 point de vie au d\xE9but du tour."
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
-    effects:
-    - type: 2
-      possiblesTargets: 1
-      value: -1
-      scaleByMaana: 0
-      trigger: 0
+    effects: []
+    actionEffect:
+    - spellToUse: {fileID: 11400000, guid: c24d201dd98a85d47ba400db4808d798, type: 2}
+      trigger: 8
+      possiblesTargets: 2
+      caster: {fileID: 0}
       maanaSpent: 0
-    - type: 4
-      possiblesTargets: 1
-      value: -1
-      scaleByMaana: 0
-      trigger: 0
-      maanaSpent: 0
-    actionEffect: []
     affliction: 0
     maana: 0
   nature: 1
-  duree: 1
-  isMalus: 1
+  duree: 2
+  isMalus: 0
   bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 0}

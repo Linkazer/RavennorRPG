@@ -43,8 +43,8 @@ MonoBehaviour:
   damageBase: 0
   diceNumber: 2
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
-  wantedHitEffectOnTarget:
-  - {fileID: 11400000, guid: 2f194217128b0f148a8bf5698b5e3e1d, type: 2}
+  wantedHitEffectOnTarget: []
   wantedHitEffectOnCaster: []

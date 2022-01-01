@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
   m_Name: E_CorruptionChevalier
   m_EditorClassIdentifier: 
-  nom: Chevalier de la Corruption
+  nom: "Ap\xF4tre de la Corruption"
   icon: {fileID: 21300000, guid: d281b4664faaf4f45b31560daa605385, type: 3}
   portrait: {fileID: 21300000, guid: d281b4664faaf4f45b31560daa605385, type: 3}
   spritePerso: {fileID: 21300000, guid: d281b4664faaf4f45b31560daa605385, type: 3}

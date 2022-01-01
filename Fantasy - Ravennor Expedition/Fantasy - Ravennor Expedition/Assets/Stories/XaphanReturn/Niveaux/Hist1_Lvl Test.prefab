@@ -72284,11 +72284,11 @@ MonoBehaviour:
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
   characterInLevel:
-  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
-  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
-  - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
-  - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
-  - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
+  - {fileID: 11400000, guid: 04d59213453839a458c9b141d129bd9b, type: 2}
+  - {fileID: 11400000, guid: 2358d219d9d397944919ca64997499b8, type: 2}
+  - {fileID: 11400000, guid: eb0fed5078376504eb078e6e4f218ea9, type: 2}
+  - {fileID: 11400000, guid: 2cc0f94517ce7fe47916207eedfc85d1, type: 2}
+  - {fileID: 11400000, guid: c33cadc22b48a4047a5eecb035e33bcf, type: 2}
   numberCharacterDeathLose: 1
   nextLvl: {fileID: 7560241282882709333, guid: 7bce32479e1e2e34ea13da47e5cc1f48, type: 3}
   backgroundCamp: {fileID: 21300000, guid: 6b9d5b32001d0d94f834de0ea045d175, type: 3}
@@ -72302,11 +72302,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: f3df6dcc944ed4947b0adec1dd973db5, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 9b77dcffb786df94db97983a1e14bc49, type: 2}
-    - {fileID: 11400000, guid: 9b77dcffb786df94db97983a1e14bc49, type: 2}
+    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
+    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
+    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
+    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
+    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
     ennemisPos:
     - {fileID: 2600873587656351773}
     - {fileID: 8518244435941725999}

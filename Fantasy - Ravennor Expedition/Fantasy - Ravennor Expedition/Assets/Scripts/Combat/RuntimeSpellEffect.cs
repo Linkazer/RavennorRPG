@@ -48,15 +48,15 @@ public class RuntimeSpellEffect
 
     public void UpdateCooldown()
     {
-        if (currentCooldown >= 0)
+        if (currentCooldown > 0)
         {
             currentCooldown--;
-            if (currentCooldown == 0)
-            {
-                RemoveEffect();
-                target.ResolveEffect(this, EffectTrigger.End);
-                target.RemoveEffect(effet);
-            }
+        }
+        if (currentCooldown == 0)
+        {
+            RemoveEffect();
+            target.ResolveSpecifiedEffect(this, EffectTrigger.End);
+            target.RemoveEffect(effet);
         }
     }
 }

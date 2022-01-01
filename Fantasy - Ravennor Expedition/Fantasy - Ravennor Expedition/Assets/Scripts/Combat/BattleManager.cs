@@ -181,7 +181,7 @@ public class BattleManager : MonoBehaviour
 
     public void KillCharacter(RuntimeBattleCharacter toKill)
     {
-        toKill.ResolveEffect(EffectTrigger.Die);
+        toKill.ResolveEffects(EffectTrigger.Die);
 
         if (toKill.GetCurrentHps() <= 0)
         {
@@ -455,7 +455,7 @@ public class BattleManager : MonoBehaviour
         if (!effectAction)
         {
             caster.useActionEvt?.Invoke();
-            caster.ResolveEffect(EffectTrigger.DoAction);
+            caster.ResolveEffects(EffectTrigger.DoAction);
 
             diary.AddText(caster.name + " utilise " + wantedAction.nom + ".");
         }
@@ -464,7 +464,7 @@ public class BattleManager : MonoBehaviour
         currentCaster = caster;
         currentMaanaSpent = maanaSpent;
 
-        if (wantedAction.incantationTime != ActionIncantation.Rapide)
+        if (wantedAction.incantationTime != ActionIncantation.Rapide && !effectAction)
         {
             caster.UseAction(wantedAction.isWeaponBased);
         }
@@ -646,7 +646,10 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        TimerSyst.CreateTimer(0.5f, EndCurrentAction);
+        if (!effectAction)
+        {
+            TimerSyst.CreateTimer(0.5f, EndCurrentAction);
+        }
     }
 
     public bool IsActionAvailable(RuntimeBattleCharacter character, CharacterActionScriptable wantedAction)
@@ -743,8 +746,6 @@ public class BattleManager : MonoBehaviour
             {
                 applyEffect = DoDamage(wantedAction, caster, target);
                 caster.TakeHeal(Mathf.CeilToInt(applyEffect * wantedAction.lifeStealPercent));
-
-                Debug.Log(applyEffect);
             }
         }
 
@@ -761,8 +762,8 @@ public class BattleManager : MonoBehaviour
         {
             if (!isEffectSpell)
             {
-                caster.ResolveEffect(EffectTrigger.DamageDealSelf);
-                caster.ResolveEffect(EffectTrigger.DamageDealTarget, target.currentNode.worldPosition);
+                caster.ResolveEffects(EffectTrigger.DamageDealSelf);
+                caster.ResolveEffects(EffectTrigger.DamageDealTarget, target.currentNode.worldPosition);
             }
             
             if (wantedAction.wantedHitEffectOnTarget.Count > 0)
@@ -857,7 +858,7 @@ public class BattleManager : MonoBehaviour
 
         if ((neededDices <= 0 && wantedAction.GetBaseDamage() > 0) || dealtDamage > 0)
         {
-            dealtDamage += wantedAction.GetBaseDamage();
+            dealtDamage += wantedAction.GetBaseDamage() + caster.GetCharacterDatas().GetBaseDamage();
         }
 
         if (dealtDamage < 0)
@@ -904,7 +905,7 @@ public class BattleManager : MonoBehaviour
 
                 foreach (SpellEffect eff in effect.effects)
                 {
-                    if (eff.trigger == triggerWanted) //Rajouter la prise en compte des Targets possibles
+                    if (eff.trigger == triggerWanted)
                     {
                         target.ApplyEffect(eff);
                     }

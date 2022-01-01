@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
   m_Name: E_Adepte
   m_EditorClassIdentifier: 
-  nom: Adepte
+  nom: Guerrier Corrompu
   icon: {fileID: 21300000, guid: 38851226ebe0cec4c92a7c3204f9ac0d, type: 3}
   portrait: {fileID: 21300000, guid: 38851226ebe0cec4c92a7c3204f9ac0d, type: 3}
   spritePerso: {fileID: 21300000, guid: 38851226ebe0cec4c92a7c3204f9ac0d, type: 3}

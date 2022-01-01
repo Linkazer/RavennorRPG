@@ -11,7 +11,8 @@ public enum EffectType
     Accuracy,
     HealApplied, 
     HealRecieved, 
-    ActionBonus
+    ActionBonus,
+    BaseDamage
 }
 
 [System.Serializable]

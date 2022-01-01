@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
   m_Name: E_AdepteArcher
   m_EditorClassIdentifier: 
-  nom: Adepte Archer
+  nom: Archer Corrompu
   icon: {fileID: 21300000, guid: fbc674f0f4305fa46bcc76fc887a824a, type: 3}
   portrait: {fileID: 21300000, guid: fbc674f0f4305fa46bcc76fc887a824a, type: 3}
   spritePerso: {fileID: 21300000, guid: fbc674f0f4305fa46bcc76fc887a824a, type: 3}

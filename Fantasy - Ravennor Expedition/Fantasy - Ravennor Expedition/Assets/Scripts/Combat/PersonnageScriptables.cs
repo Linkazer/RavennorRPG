@@ -55,6 +55,7 @@ public class PersonnageScriptables : ScriptableObject
     protected int accuracyBonus;
     protected int defenseBonus;
     protected int powerBonus;
+    protected int baseDamageBonus;
     protected int bonusSoinAppli;
     protected int bonusSoinRecu;
     protected int bonusArmor;
@@ -108,6 +109,11 @@ public class PersonnageScriptables : ScriptableObject
     public int GetPower()
     {
         return power + powerBonus;
+    }
+
+    public int GetBaseDamage()
+    {
+        return baseDamageBonus;
     }
 
     public int GetMagicalDamage()
@@ -167,6 +173,7 @@ public class PersonnageScriptables : ScriptableObject
 
         defenseBonus = 0;
         powerBonus = 0;
+        baseDamageBonus = 0;
 
         bonusSoinAppli = 0;
         bonusSoinRecu = 0;
@@ -186,6 +193,9 @@ public class PersonnageScriptables : ScriptableObject
                 break;
             case EffectType.Power:
                 powerBonus += value;
+                break;
+            case EffectType.BaseDamage:
+                baseDamageBonus += value;
                 break;
             case EffectType.Defense:
                 defenseBonus += value;
