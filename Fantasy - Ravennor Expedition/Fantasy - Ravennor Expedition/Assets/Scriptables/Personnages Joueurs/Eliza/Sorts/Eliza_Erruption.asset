@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Erruption
   icon: {fileID: 21300000, guid: c88c25fa886ab4548af9fdb276c5e407, type: 3}
-  description: "Attaque les cibles dans la zone avec 1 d\xE9."
+  description: "Attaque les cibles dans la zone avec 2 d\xE9s."
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 1
@@ -47,6 +47,7 @@ MonoBehaviour:
   damageBase: 0
   diceNumber: 2
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
   wantedHitEffectOnTarget: []

@@ -72302,11 +72302,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53e337c35a921684a8928504471c0627, type: 2}
   rooms:
   - ennemis:
-    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
-    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
-    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
-    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
-    - {fileID: 11400000, guid: ac5909212ee991040ac5e7113c308e26, type: 2}
+    - {fileID: 11400000, guid: f3df6dcc944ed4947b0adec1dd973db5, type: 2}
+    - {fileID: 11400000, guid: 3354ffb2ba230d042b6002bd69a6cbca, type: 2}
+    - {fileID: 11400000, guid: 83caecebd05a3304da1925bba03b5d3f, type: 2}
+    - {fileID: 11400000, guid: 9b77dcffb786df94db97983a1e14bc49, type: 2}
+    - {fileID: 11400000, guid: 9b77dcffb786df94db97983a1e14bc49, type: 2}
     ennemisPos:
     - {fileID: 2600873587656351773}
     - {fileID: 8518244435941725999}

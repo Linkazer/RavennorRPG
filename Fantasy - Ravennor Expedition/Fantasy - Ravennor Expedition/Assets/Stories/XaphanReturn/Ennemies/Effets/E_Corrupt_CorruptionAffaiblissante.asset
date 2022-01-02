@@ -10,17 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be6124c6608535e4cafe374448867c2a, type: 3}
-  m_Name: E_BriseArmure
+  m_Name: E_Corrupt_CorruptionAffaiblissante
   m_EditorClassIdentifier: 
   effet:
-    nom: "D\xE9fense bris\xE9e"
+    nom: Corruption Affaiblissante
     spr: {fileID: 0}
-    description: 
+    hideUIDisplay: 0
+    description: "La cible subit un malus de D\xE9fense et de Pr\xE9cision de 1"
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
     - type: 2
-      possiblesTargets: 2
+      possiblesTargets: 1
+      value: -1
+      scaleByMaana: 0
+      trigger: 0
+      maanaSpent: 0
+    - type: 4
+      possiblesTargets: 1
       value: -1
       scaleByMaana: 0
       trigger: 0
@@ -28,9 +35,9 @@ MonoBehaviour:
     actionEffect: []
     affliction: 0
     maana: 0
-  nature: 0
+  nature: 1
   duree: 1
-  isMalus: 0
+  isMalus: 1
   bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 0}

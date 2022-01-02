@@ -15,7 +15,7 @@ MonoBehaviour:
   effet:
     nom: ???
     spr: {fileID: 21300000, guid: 4caeb65da49fb594aa7d56bb54471656, type: 3}
-    hideUIDisplay: 0
+    hideUIDisplay: 1
     description: "La prochaine attaque d'Eliza qui touchera sa cible infligera 2
       de d\xE9g\xE2ts suppl\xE9mentaire."
     wantedEffectToTrigger: {fileID: 0}

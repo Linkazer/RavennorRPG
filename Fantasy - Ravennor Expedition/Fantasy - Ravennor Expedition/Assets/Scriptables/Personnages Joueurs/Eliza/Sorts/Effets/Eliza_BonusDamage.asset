@@ -27,11 +27,16 @@ MonoBehaviour:
       scaleByMaana: 0
       trigger: 0
       maanaSpent: 0
-    actionEffect: []
+    actionEffect:
+    - spellToUse: {fileID: 11400000, guid: 35614aa7a81e367408cb751a19d4af4f, type: 2}
+      trigger: 3
+      possiblesTargets: 0
+      caster: {fileID: 0}
+      maanaSpent: 0
     affliction: 0
     maana: 0
   nature: 0
-  duree: 0
+  duree: -1
   isMalus: 0
   bonusToCancel: []
   spriteZone: {fileID: 0}

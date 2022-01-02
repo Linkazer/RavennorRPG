@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: "R\xE9g\xE9n\xE9ration protectrice"
   icon: {fileID: 21300000, guid: 0697705f2480e4a4da1fc3012436b95c, type: 3}
-  description: "Applique \"R\xE9g\xE9n\xE9ration protectrice\" sur la cible pendant
-    2 tours.\nR\xE9g\xE9n\xE9ration protectrice : Augmente la D\xE9fense de 1 et
-    soigne la cible de 1 \xE0 chaque d\xE9but de tour."
+  description: "Soigne la cible de 1 et applique \"R\xE9g\xE9n\xE9ration protectrice\"
+    sur la cible pendant 1 tour.\nR\xE9g\xE9n\xE9ration protectrice : Augmente la
+    D\xE9fense de 1 et soigne la cible de 1 \xE0 chaque d\xE9but de tour."
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 1

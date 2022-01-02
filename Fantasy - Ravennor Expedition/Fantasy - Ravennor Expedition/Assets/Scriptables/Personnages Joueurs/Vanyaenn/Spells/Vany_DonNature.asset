@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: "R\xE9g\xE9n\xE9ration vaillante"
   icon: {fileID: 21300000, guid: e6766b4154d68cc4c95caf0ce96d4908, type: 3}
-  description: "Applique \"R\xE9g\xE9n\xE9ration vaillante\" sur la cible pendant
-    2 tours.\nR\xE9g\xE9n\xE9ration vaillante : Augmente la Pr\xE9cision de 1 et
-    soigne la cible de 1 \xE0 chaque d\xE9but de tour."
+  description: "Sgoine la cible de 1 et applique \"R\xE9g\xE9n\xE9ration vaillante\"
+    sur la cible pendant 1 tour.\nR\xE9g\xE9n\xE9ration vaillante : Augmente la Pr\xE9cision
+    de 1 et soigne la cible de 1 \xE0 chaque d\xE9but de tour."
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 1

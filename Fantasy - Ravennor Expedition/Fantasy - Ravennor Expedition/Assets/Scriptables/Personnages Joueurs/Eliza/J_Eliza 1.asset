@@ -34,5 +34,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a5f668bc0fd9e44a9bf7241cf16a67c, type: 2}
   - {fileID: 11400000, guid: 0a9ac512635f2ed40bab91cb30e4d945, type: 2}
   - {fileID: 11400000, guid: 81ecbe87c8387e8418a89ae1bb771eab, type: 2}
+  - {fileID: 11400000, guid: 7ff3c5012b59dc44f9930a040ed48ef6, type: 2}
   passifs: []
   initiative: 12

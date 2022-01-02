@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
-  m_Name: E_BriseArmure
+  m_Name: E_Chevalier
   m_EditorClassIdentifier: 
   nom: Chevalier Corrompu
   icon: {fileID: 21300000, guid: c601b19562893ae40882b778e7801d63, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: e8324dab0a1f1e64da10b95877f59a3b, type: 2}
   passifs:
-  - {fileID: 11400000, guid: 88064b2838d928542a92d0b8a27e6dfa, type: 2}
+  - {fileID: 11400000, guid: 1320447fe32ed1744b064f7ae2b38acb, type: 2}
   initiative: 6
   closestDistanceWhenNoAction: 15
   planForOtherTurns: 1
