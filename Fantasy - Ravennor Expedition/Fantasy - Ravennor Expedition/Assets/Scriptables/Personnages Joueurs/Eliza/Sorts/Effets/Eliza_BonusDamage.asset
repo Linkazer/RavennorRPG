@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: ???
-    spr: {fileID: 21300000, guid: 4caeb65da49fb594aa7d56bb54471656, type: 3}
+    spr: {fileID: 21300000, guid: c88c25fa886ab4548af9fdb276c5e407, type: 3}
     hideUIDisplay: 0
     description: "La prochaine attaque d'Eliza qui touchera sa cible infligera 2
       de d\xE9g\xE2ts suppl\xE9mentaire."

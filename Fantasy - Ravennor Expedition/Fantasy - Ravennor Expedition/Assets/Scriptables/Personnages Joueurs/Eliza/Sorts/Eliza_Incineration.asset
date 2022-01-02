@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Eliza_Flameche
+  m_Name: Eliza_Incineration
   m_EditorClassIdentifier: 
-  nom: "Flam\xE8che"
+  nom: "Incin\xE9ration"
   icon: {fileID: 21300000, guid: 564a693cb30d7134c9e8f1d0f709c822, type: 3}
   description: "Attaque la cible avec 4 d\xE9s."
   overchargedAction: {fileID: 0}
@@ -43,5 +43,8 @@ MonoBehaviour:
   damageBase: 0
   diceNumber: 4
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

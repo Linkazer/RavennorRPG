@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: "R\xE9g\xE9n\xE9ration"
-    spr: {fileID: 0}
+    spr: {fileID: 21300000, guid: be912e1b82c7a7b4eab755ed99bd9844, type: 3}
     hideUIDisplay: 0
     description: "Soigne de 1 point de vie au d\xE9but du tour."
     wantedEffectToTrigger: {fileID: 0}

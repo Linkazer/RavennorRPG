@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: Corruption Affaiblissante
-    spr: {fileID: 0}
+    spr: {fileID: 21300000, guid: fe6b1d74663888444963d0349b15af2b, type: 3}
     hideUIDisplay: 0
     description: "La cible subit un malus de D\xE9fense et de Pr\xE9cision de 1"
     wantedEffectToTrigger: {fileID: 0}

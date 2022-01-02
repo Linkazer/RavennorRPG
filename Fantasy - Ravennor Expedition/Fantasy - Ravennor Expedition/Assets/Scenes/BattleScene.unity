@@ -38776,6 +38776,16 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1935258960}
+    - target: {fileID: 2555616351759804863, guid: 9f925a3c419dba74888b8d81e6662d49, type: 3}
+      propertyPath: m_text
+      value: "Au d\xE9but de chaque tour, applique \"Corruption Affaiblissante\"
+        \xE0 tous les ennemis autour.\nCorruption Affaiblissante : R\xE9duit la D\xE9fense
+        et la Pr\xE9cision de 1 pendant 1 tour."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555616351759804863, guid: 9f925a3c419dba74888b8d81e6662d49, type: 3}
+      propertyPath: m_fontSize
+      value: 19.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2555616351817385966, guid: 9f925a3c419dba74888b8d81e6662d49, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

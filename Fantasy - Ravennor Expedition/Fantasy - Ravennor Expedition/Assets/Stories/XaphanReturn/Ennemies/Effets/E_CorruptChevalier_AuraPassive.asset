@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effet:
     nom: Aura de Corruption
-    spr: {fileID: 0}
+    spr: {fileID: 21300000, guid: ebe9b79cd0d71294fa797b70781358f6, type: 3}
+    hideUIDisplay: 0
     description: "Au d\xE9but de chaque tour, applique \"Corruption Affaiblissante\"
       \xE0 tous les ennemis autour.\nCorruption Affaiblissante : R\xE9duit la D\xE9fense
       et la Pr\xE9cision de 1 pendant 1 tour."

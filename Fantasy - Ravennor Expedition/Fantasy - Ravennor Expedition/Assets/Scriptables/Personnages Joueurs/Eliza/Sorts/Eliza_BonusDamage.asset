@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eliza_BonusDamage
   m_EditorClassIdentifier: 
   nom: ???
-  icon: {fileID: 21300000, guid: 4caeb65da49fb594aa7d56bb54471656, type: 3}
+  icon: {fileID: 21300000, guid: c88c25fa886ab4548af9fdb276c5e407, type: 3}
   description: "Applique \"???\" sur le lanceur.\n??? : La prochaine attaque qui
     touche sa cible inflige 2 de d\xE9g\xE2ts suppl\xE9mentaire."
   overchargedAction: {fileID: 0}
@@ -34,7 +34,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 4eb1d2faffb93fa47b0ff7222aedc7bf, type: 3}
+  caseSprite: {fileID: 21300000, guid: 3e2b43d86d442ba42ba2ec8ffc64d5cf, type: 3}
   caseFeedback: {fileID: 21300000, guid: 544d1f83a32d39f4789b790adecac678, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget:
