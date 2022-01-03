@@ -56,7 +56,7 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: fd6d85a43b48a654b929464231c0ecce, type: 2}
-    optimizePosition: 0
+    optimizePosition: 1
     conditions:
     - conditionWanted: 0
       conditionValue: 16
@@ -68,7 +68,7 @@ MonoBehaviour:
     - calculType: 5
       abscissaValue: 0
       checkAroundMax: 1
-      maxValue: 100
+      maxValue: 150
       constant: 45
       coeficient: 0.05
       calculImportance: 2
@@ -78,6 +78,6 @@ MonoBehaviour:
       maxValue: 100
       constant: 100
       coeficient: -1
-      calculImportance: 1
+      calculImportance: 0.5
     maxCooldown: 0
     cooldown: 0
