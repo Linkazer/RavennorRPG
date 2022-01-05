@@ -26,8 +26,6 @@ MonoBehaviour:
   nature: 0
   duree: 0
   isMalus: 0
-  bonusToCancel:
-  - {fileID: 11400000, guid: 713856435f9f6144fbfd4e2753782098, type: 2}
-  - {fileID: 11400000, guid: f7ab2ff4cae207b47afd3a8ee06667f9, type: 2}
+  bonusToCancel: []
   spriteZone: {fileID: 0}
   spriteCase: {fileID: 0}

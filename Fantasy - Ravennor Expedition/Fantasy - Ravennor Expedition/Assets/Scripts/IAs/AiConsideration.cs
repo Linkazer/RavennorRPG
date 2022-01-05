@@ -8,7 +8,7 @@ public enum AiAbscissaType{ DistanceFromTarget,
                             TargetMalus, TargetBonus,
                             TargetDangerosity, TargetVulnerability,
                             TargetPhysicalArmor, TargetMagicalArmor,
-                            NumberEnnemyArea, NumberAllyArea, NumberWoundedEnnemyArea, NumberWoundedAllyArea
+                            NumberEnnemyArea, NumberAllyArea, NumberWoundedEnnemyArea, NumberWoundedAllyArea, DistranceFromTargetBasePosition
                           }
 
 public enum AiCalculType{ Conditionnal, Affine, Logarythm,

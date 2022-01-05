@@ -483,6 +483,8 @@ public class AiBattleManager : MonoBehaviour
         {
             case AiAbscissaType.DistanceFromTarget:
                 return Pathfinding.instance.GetDistance(nodeToTry, target.currentNode);
+            case AiAbscissaType.DistranceFromTargetBasePosition:
+                return Pathfinding.instance.GetDistance(caster.currentNode, target.currentNode);
             case AiAbscissaType.TargetMaxHp:
                 return target.GetCharacterDatas().GetMaxHps();
             case AiAbscissaType.TargetCurrentHp:
