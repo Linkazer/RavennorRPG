@@ -21,7 +21,7 @@ MonoBehaviour:
   description: 
   healthPoints: 5
   maana: 0
-  movementSpeed: 55
+  movementSpeed: 45
   accuracy: 0
   defense: 4
   power: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: e8324dab0a1f1e64da10b95877f59a3b, type: 2}
   passifs:
-  - {fileID: 11400000, guid: 1320447fe32ed1744b064f7ae2b38acb, type: 2}
+  - {fileID: 11400000, guid: 79a7cee5290a0124ca89060e286d6754, type: 2}
   initiative: 6
   closestDistanceWhenNoAction: 15
   planForOtherTurns: 1

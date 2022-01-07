@@ -819,7 +819,7 @@ public class BattleManager : MonoBehaviour
             SoundSyst.PlaySound(diceClip[UnityEngine.Random.Range(0, diceClip.Count)], audioSource);
         }
 
-        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target));
+        return target.TakeDamage(wantedAction.damageType, DoesHit(wantedAction, caster, target), caster);
     }
 
     public int DoesHit(CharacterActionDirect wantedAction, RuntimeBattleCharacter caster, RuntimeBattleCharacter target)

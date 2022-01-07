@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6124c6608535e4cafe374448867c2a, type: 3}
+  m_Name: Passive_BonusDamage
+  m_EditorClassIdentifier: 
+  effet:
+    nom: ???
+    spr: {fileID: 0}
+    hideUIDisplay: 0
+    description: "Lorsqu'une de ses attaques inflige des d\xE9g\xE2ts, inflige 1
+      d\xE9g\xE2t suppl\xE9mentaire \xE0 sa cible."
+    wantedEffectToTrigger: {fileID: 0}
+    maxStack: 1
+    effects:
+    - type: 8
+      possiblesTargets: 0
+      value: 1
+      scaleByMaana: 0
+      trigger: 0
+      maanaSpent: 0
+    actionEffect: []
+    affliction: 0
+    maana: 0
+  nature: 0
+  duree: -1
+  isMalus: 0
+  bonusToCancel: []
+  spriteZone: {fileID: 0}
+  spriteCase: {fileID: 0}

@@ -221,7 +221,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (affToAdd == Affliction.InstantKill)
         {
             Debug.Log("Affliction de Mort");
-            TakeDamage(DamageType.Brut, currentHps);
+            TakeDamage(DamageType.Brut, currentHps, this);
         }
         else
         {
@@ -438,7 +438,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         BattleManager.instance.UseCurrentAction();
     }
 
-    public int TakeDamage(DamageType typeOfDamage, int damageDealt)
+    public int TakeDamage(DamageType typeOfDamage, int damageDealt, RuntimeBattleCharacter damageOrigin)
     {
         int damageAmount;
 
@@ -493,7 +493,8 @@ public class RuntimeBattleCharacter : MonoBehaviour
             }
 
             damageTakenEvt.Invoke(damageAmount);
-            ResolveEffects(EffectTrigger.DamageTaken);
+            ResolveEffects(EffectTrigger.DamageTakenSelf);
+            ResolveEffects(EffectTrigger.DamageTakenAttacker, damageOrigin.currentNode.worldPosition);
 
             if (currentHps <= 0)
             {
