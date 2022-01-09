@@ -1119,12 +1119,28 @@ public class BattleManager : MonoBehaviour
 
     public List<RuntimeBattleCharacter> GetPlayerChara()
     {
-        return new List<RuntimeBattleCharacter>(charaTeamOne);
+        List<RuntimeBattleCharacter> tPlayerTeam = new List<RuntimeBattleCharacter>();
+        for(int i = 0; i < charaTeamOne.Count; i++)
+        {
+            if(charaTeamOne[i].IsAlive)
+            {
+                tPlayerTeam.Add(charaTeamOne[i]);
+            }
+        }
+        return tPlayerTeam;
     }
 
     public List<RuntimeBattleCharacter> GetEnemyChara()
     {
-        return new List<RuntimeBattleCharacter>(charaTeamTwo);
+        List<RuntimeBattleCharacter> tEnnemyTeam = new List<RuntimeBattleCharacter>();
+        for (int i = 0; i < charaTeamTwo.Count; i++)
+        {
+            if (charaTeamTwo[i].IsAlive)
+            {
+                tEnnemyTeam.Add(charaTeamTwo[i]);
+            }
+        }
+        return tEnnemyTeam;
     }
 
     public RuntimeBattleCharacter GetCurrentTurnChara()

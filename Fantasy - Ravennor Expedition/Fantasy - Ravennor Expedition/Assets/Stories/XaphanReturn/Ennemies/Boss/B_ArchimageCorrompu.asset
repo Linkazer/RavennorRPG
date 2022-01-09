@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
-  m_Name: OLD B_ArchimageCorrompu
+  m_Name: B_ArchimageCorrompu
   m_EditorClassIdentifier: 
   nom: Tiloeth, l'archimage corrompu
   icon: {fileID: 21300000, guid: 2ed8110e69375354da622602d30fe19e, type: 3}
@@ -48,7 +48,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 0.5
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 13
@@ -67,7 +67,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 2
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 0
       abscissaValue: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
       conditionType: 2
     considerationImportance: 0
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -112,7 +112,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 0
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 0
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 13

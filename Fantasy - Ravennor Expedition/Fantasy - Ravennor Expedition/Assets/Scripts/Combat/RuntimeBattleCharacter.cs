@@ -69,8 +69,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     private bool hasOpportunity = true;
 
-    private bool isAlive = true;
-
     private void OnMouseEnter()
     {
         highlightEvt.Invoke();
@@ -100,7 +98,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return currentHps;
     }
 
-    public bool IsAlive => isAlive;
+    public bool IsAlive => currentHps > 0;
 
     public int GetCurrentMaana()
     {
@@ -501,10 +499,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
                 int toReturn = damageAmount + currentHps;
                 currentHps = 0;
                 BattleManager.instance.KillCharacter(this);
-                if(currentHps <= 0)
-                {
-                    isAlive = false;
-                }
                 return toReturn;
             }
             return damageAmount;
@@ -609,7 +603,10 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ResolveSpecifiedEffect(RuntimeSpellEffect effect, EffectTrigger triggerWanted)
     {
-        BattleManager.instance.ResolveEffect(effect.effet, transform.position, transform.position, triggerWanted, effect.currentStack);
+        if (IsAlive || triggerWanted == EffectTrigger.Die)
+        {
+            BattleManager.instance.ResolveEffect(effect.effet, transform.position, transform.position, triggerWanted, effect.currentStack);
+        }
     }
 
     public void ResolveEffects(EffectTrigger triggerWanted)
@@ -619,9 +616,12 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void ResolveEffects(EffectTrigger triggerWanted, Vector2 targetPosition)
     {
-        for (int i = 0; i < appliedEffects.Count; i++)
+        if (IsAlive || triggerWanted == EffectTrigger.Die)
         {
-            BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, targetPosition, triggerWanted, appliedEffects[i].currentStack);
+            for (int i = 0; i < appliedEffects.Count; i++)
+            {
+                BattleManager.instance.ResolveEffect(appliedEffects[i].effet, transform.position, targetPosition, triggerWanted, appliedEffects[i].currentStack);
+            }
         }
     }
 

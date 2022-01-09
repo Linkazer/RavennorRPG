@@ -20,10 +20,10 @@ MonoBehaviour:
   maanaCost: 0
   maxCooldown: 1
   maxUtilisation: -1
-  incantationTime: 0
+  incantationTime: 1
   isWeaponBased: 0
-  target: 1
-  castTarget: 1
+  target: 0
+  castTarget: 0
   castOnSelf: 0
   range: 200
   activeZoneCases:
@@ -44,5 +44,8 @@ MonoBehaviour:
   damageBase: 0
   diceNumber: 0
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

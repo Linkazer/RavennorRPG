@@ -25,11 +25,11 @@ MonoBehaviour:
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 45
+  range: 85
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 1
-  hasViewOnTarget: 1
+  hasViewOnTarget: 0
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
@@ -40,8 +40,11 @@ MonoBehaviour:
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
-  damageBase: 0
-  diceNumber: 3
+  damageBase: 1
+  diceNumber: 0
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []
