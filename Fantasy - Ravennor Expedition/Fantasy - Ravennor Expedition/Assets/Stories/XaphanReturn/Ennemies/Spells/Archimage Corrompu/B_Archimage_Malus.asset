@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be6124c6608535e4cafe374448867c2a, type: 3}
-  m_Name: B_Archimage_BonusPuissance
+  m_Name: B_Archimage_Malus
   m_EditorClassIdentifier: 
   effet:
     nom: 
@@ -20,9 +20,15 @@ MonoBehaviour:
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 0
+    - type: 2
       possiblesTargets: 0
-      value: 0
+      value: -1
+      scaleByMaana: 0
+      trigger: 0
+      maanaSpent: 0
+    - type: 4
+      possiblesTargets: 0
+      value: -1
       scaleByMaana: 0
       trigger: 0
       maanaSpent: 0

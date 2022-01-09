@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: E_ArchimageCorrompu_Solo
   m_EditorClassIdentifier: 
-  nom: Solo
+  nom: "Fl\xE9au"
   icon: {fileID: 0}
   description: 
   overchargedAction: {fileID: 0}
@@ -22,8 +22,8 @@ MonoBehaviour:
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
-  target: 1
-  castTarget: 1
+  target: 6
+  castTarget: 6
   castOnSelf: 0
   range: 85
   activeZoneCases:

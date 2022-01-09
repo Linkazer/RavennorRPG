@@ -22,12 +22,19 @@ MonoBehaviour:
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 1
-  target: 0
+  target: 1
   castTarget: 0
-  castOnSelf: 0
+  castOnSelf: 1
   range: 200
   activeZoneCases:
-  - {x: 0, y: 0}
+  - {x: 1, y: 1}
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: 1, y: -1}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
   doesFaceCaster: 1
   hasViewOnTarget: 1
   projectile: {fileID: 0}
@@ -36,13 +43,12 @@ MonoBehaviour:
   caseSprite: {fileID: 21300000, guid: 930b03cc53b3bfe4d88311dbb3a8aa05, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
-  wantedEffectOnTarget:
-  - {fileID: 0}
+  wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 2
+  diceNumber: 1
   damageType: 1
   ignorePower: 0
   autoCritical: 0

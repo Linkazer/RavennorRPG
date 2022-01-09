@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
   m_Name: E_ArchimageCorrompu_Stun
   m_EditorClassIdentifier: 
-  nom: Stun
+  nom: Graine Corruption
   icon: {fileID: 0}
   description: 
   overchargedAction: {fileID: 0}
   attackType: 1
   maanaCost: 0
-  maxCooldown: 1
+  maxCooldown: 3
   maxUtilisation: -1
   incantationTime: 1
   isWeaponBased: 0
-  target: 0
-  castTarget: 0
+  target: 6
+  castTarget: 6
   castOnSelf: 0
   range: 200
   activeZoneCases:

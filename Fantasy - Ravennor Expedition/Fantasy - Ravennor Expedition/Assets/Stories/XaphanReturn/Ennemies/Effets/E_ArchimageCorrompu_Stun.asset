@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: E_ArchimageCorrompu_Stun
   m_EditorClassIdentifier: 
   effet:
-    nom: Prison tellurique
+    nom: Graine corruption
     spr: {fileID: 21300000, guid: 86b9a00335ccb834589dad2def5b1127, type: 3}
     hideUIDisplay: 0
     description: "La cible est paralys\xE9e et passe son prochain tour."
@@ -23,7 +23,7 @@ MonoBehaviour:
     actionEffect:
     - spellToUse: {fileID: 11400000, guid: d90e13b0234c85945b035f7b80a9c45d, type: 2}
       trigger: 1
-      possiblesTargets: 1
+      possiblesTargets: 0
       caster: {fileID: 0}
       maanaSpent: 0
     affliction: 0

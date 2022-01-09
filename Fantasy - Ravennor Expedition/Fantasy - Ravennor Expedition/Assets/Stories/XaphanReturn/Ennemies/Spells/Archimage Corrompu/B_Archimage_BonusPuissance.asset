@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: B_Archimage_BonusPuissance
   m_EditorClassIdentifier: 
   effet:
-    nom: 
+    nom: Bonus power
     spr: {fileID: 0}
     hideUIDisplay: 0
     description: 
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:
-    - type: 0
+    - type: 1
       possiblesTargets: 0
-      value: 0
+      value: 1
       scaleByMaana: 0
       trigger: 0
       maanaSpent: 0
