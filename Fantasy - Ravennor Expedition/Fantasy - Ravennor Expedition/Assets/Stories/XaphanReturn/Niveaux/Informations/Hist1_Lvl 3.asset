@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
   m_Name: Hist1_Lvl 3
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 7560241282882709333, guid: ee8796c625883f34f84b551074ed62da, type: 3}
+  levelPrefab: {fileID: 7560241282882709333, guid: 94547be04b873184b9d80bb41fe31e4d, type: 3}
   ID: Hist1_Lvl 3
   nom: A la recherche des Archimages
   winCondition: Trouver les Archimages

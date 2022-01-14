@@ -8,7 +8,7 @@ public class RoomEnd_DoorExit : RoomEnd
 
     public override void SetEnd()
     {
-        roomManager.openRoomAct += CheckEnd;
+        roomManager.beforeOpenRoomAct += CheckEnd;
     }
 
     protected override void CheckEnd()
@@ -26,6 +26,6 @@ public class RoomEnd_DoorExit : RoomEnd
 
     private void OnDestroy()
     {
-        roomManager.openRoomAct -= CheckEnd;
+        roomManager.beforeOpenRoomAct -= CheckEnd;
     }
 }

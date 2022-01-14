@@ -414,6 +414,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
 
     public void Die()
     {
+
         gameObject.SetActive(false);
     }
 

@@ -7,11 +7,11 @@ public class RoomEnd_Boss : RoomEnd
     [SerializeField]
     private PersonnageScriptables bossWanted;
 
-    private RuntimeBattleCharacter bossRuntime;
+    [SerializeField] private RuntimeBattleCharacter bossRuntime;
 
     public override void SetEnd()
     {
-        roomManager.openRoomAct += SpawnBoss;
+        roomManager.afterOpenRoomAct += SpawnBoss;
         roomManager.checkTurnAct += CheckEnd;
     }
 
@@ -30,6 +30,7 @@ public class RoomEnd_Boss : RoomEnd
 
     private void SpawnBoss(int index)
     {
+        Debug.Log(BattleManager.instance.GetEnemyChara().Count);
         foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara())
         {
             if (chara.name == bossWanted.nom)
@@ -42,7 +43,7 @@ public class RoomEnd_Boss : RoomEnd
 
     private void OnDestroy()
     {
-        roomManager.openRoomAct -= SpawnBoss;
+        roomManager.afterOpenRoomAct -= SpawnBoss;
         roomManager.checkTurnAct -= CheckEnd;
     }
 }

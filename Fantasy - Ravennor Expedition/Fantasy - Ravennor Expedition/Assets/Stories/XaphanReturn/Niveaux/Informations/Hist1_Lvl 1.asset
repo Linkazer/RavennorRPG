@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
   m_Name: Hist1_Lvl 1
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 7560241282882709333, guid: 22c1dbf7376210c43a54db27be0cdd7a, type: 3}
+  levelPrefab: {fileID: 7560241282882709333, guid: 7f82d15a83e2a934786a7654427e3f6e, type: 3}
   ID: Hist1_Lvl 1
   nom: Tutoriel
   winCondition: Sortir du dortoir.

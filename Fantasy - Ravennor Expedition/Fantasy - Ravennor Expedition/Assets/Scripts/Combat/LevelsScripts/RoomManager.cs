@@ -45,7 +45,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     protected List<int> openRoomIndexes = new List<int>();
 
-    public Action<int> openRoomAct;
+    public Action<int> beforeOpenRoomAct;
+    public Action<int> afterOpenRoomAct;
     public Action checkTurnAct;
 
     [SerializeField] private RoomEnd end;
@@ -119,7 +120,8 @@ public class RoomManager : MonoBehaviour
 
     public void ActivateRoom(int index)
     {
-        openRoomAct?.Invoke(index);
+        beforeOpenRoomAct?.Invoke(index);
+
         if (!hasEnd)
         {
             Room toActivate = rooms[index];
@@ -131,6 +133,7 @@ public class RoomManager : MonoBehaviour
                 BattleManager.instance.SpawnNewCharacter(toActivate.ennemis[i], toActivate.ennemisPositions[i]);
             }
 
+            afterOpenRoomAct?.Invoke(index);
         }
     }
 
