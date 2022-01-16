@@ -9,6 +9,7 @@ using TMPro;
 public class CharacterUI : MonoBehaviour
 {
     [SerializeField] private Transform feedbackUiHandler;
+    [SerializeField] private RectTransform feedbackUIRectTransform;
     [SerializeField] private CharacterDiceHitUI dice;
     [SerializeField] private CharacterDirectHitUI directHit;
     [SerializeField] private CharacterEffectResult effectHit;
@@ -36,6 +37,7 @@ public class CharacterUI : MonoBehaviour
 
     IEnumerator DisplayObject(GameObject toDisplay)
     {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(feedbackUIRectTransform);
         yield return new WaitForSeconds(3f);
         Destroy(toDisplay);
     }

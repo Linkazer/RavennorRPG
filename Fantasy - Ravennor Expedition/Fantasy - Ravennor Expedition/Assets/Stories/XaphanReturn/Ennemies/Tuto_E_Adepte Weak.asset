@@ -30,18 +30,21 @@ MonoBehaviour:
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: 3cf63a84b073d754db5aa1e525ece6ab, type: 2}
+  opportunityAttack: {fileID: 11400000, guid: 3cf63a84b073d754db5aa1e525ece6ab, type: 2}
   passifs: []
   initiative: 0
   closestDistanceWhenNoAction: 15
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3cf63a84b073d754db5aa1e525ece6ab, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 15
       conditionType: 2
     considerationImportance: 0
-    maxValue: 1
+    maximumValueModifier: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 3
@@ -53,12 +56,14 @@ MonoBehaviour:
     maxCooldown: 0
     cooldown: 0
   - wantedAction: {fileID: 11400000, guid: 3cf63a84b073d754db5aa1e525ece6ab, type: 2}
+    optimizePosition: 0
     conditions:
     - conditionWanted: 0
       conditionValue: 16
       conditionType: 1
     considerationImportance: 0
-    maxValue: 1
+    maximumValueModifier: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 0

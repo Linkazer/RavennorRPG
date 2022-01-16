@@ -27,6 +27,11 @@ public class PlayerBattleManager : MonoBehaviour
 
     private bool isOvercharging;
 
+    [SerializeField] private Color moveColor;
+    [SerializeField] private Color pathColor;
+    [SerializeField] private Color spellColor;
+    [SerializeField] private Color spellZoneColor;
+
     private void Start()
     {
         instance = this;
@@ -114,27 +119,29 @@ public class PlayerBattleManager : MonoBehaviour
 
         List<Node> canSpellOn = BattleManager.GetSpellUsableNodes(currentCharacter.currentNode, wantedAction);
 
-        Color tColor = Color.blue;
-        tColor.a = 0.5f;
-        Grid.instance.SetUsableNodes(canSpellOn, tColor);
+        Grid.instance.SetUsableNodes(canSpellOn, spellColor);
     }
+
+    Vector3[] displayedPath = new Vector3[20];
 
     public void ShowPath(Vector2 mousePos)
     {
         PathRequestManager.RequestPath(currentCharacter.currentNode.worldPosition, mousePos, currentCharacter.movementLeft, false, DisplayPath);
     }
 
+    public void HidePath()
+    {
+        Grid.instance.ResetNodeColor(pathColor);
+    }
+
     private void DisplayPath(Vector3[] newPath, bool pathSuccessful)
     {
-        List<Vector2Int> path = new List<Vector2Int>();
-        for(int i = 0; i < newPath.Length; i++)
+        displayedPath = newPath;
+        for (int i = 0; i < displayedPath.Length; i++)
         {
-            Node n = Grid.instance.NodeFromWorldPoint(newPath[i]);
-            path.Add(new Vector2Int(n.gridX, n.gridY));
+            Node n = Grid.instance.NodeFromWorldPoint(displayedPath[i]);
         }
-        Color tColor = Color.green;
-        tColor.a = 0.75f;
-        Grid.instance.ShowZone(newPath, tColor);
+        Grid.instance.ShowZone(displayedPath, pathColor);
     }
 
     public void ShowCurrentSpell(Vector2 mousePos)
@@ -172,9 +179,8 @@ public class PlayerBattleManager : MonoBehaviour
                 spellZone.Add(new Vector2Int(vect.y, -vect.x));
             }
         }
-        Color tColor = Color.red;
-        tColor.a = 0.5f;
-        Grid.instance.ShowZone(mousePos, spellZone, tColor);
+        
+        Grid.instance.ShowZone(mousePos, spellZone, spellZoneColor);
     }
 
     public bool CanAskSpell()
@@ -233,8 +239,6 @@ public class PlayerBattleManager : MonoBehaviour
         Grid.instance.CreateGrid();
         List<Node> canMoveTo = Pathfinding.instance.GetNodesWithMaxDistance(currentCharacter.currentNode, currentCharacter.movementLeft, true);
         canMoveTo.RemoveAt(0);
-        Color tColor = Color.green;
-        tColor.a = 0.5f;
-        Grid.instance.SetUsableNodes(canMoveTo, tColor);
+        Grid.instance.SetUsableNodes(canMoveTo, moveColor);
     }
 }

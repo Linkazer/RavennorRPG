@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Passive_BonusDamage
   m_EditorClassIdentifier: 
   effet:
-    nom: ???
+    nom: "Brutalit\xE9"
     spr: {fileID: 0}
     hideUIDisplay: 0
-    description: "Lorsqu'une de ses attaques inflige des d\xE9g\xE2ts, inflige 1
-      d\xE9g\xE2t suppl\xE9mentaire \xE0 sa cible."
+    description: "Lorsqu'une de ses attaques inflige des d\xE9g\xE2ts, le personnage
+      inflige 1 d\xE9g\xE2t suppl\xE9mentaire \xE0 sa cible."
     wantedEffectToTrigger: {fileID: 0}
     maxStack: 1
     effects:

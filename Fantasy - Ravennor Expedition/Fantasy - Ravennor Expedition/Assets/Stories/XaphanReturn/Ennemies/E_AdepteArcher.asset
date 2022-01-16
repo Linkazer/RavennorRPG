@@ -31,6 +31,7 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: 0643e10fe5313154f8837331eece7c99, type: 2}
   - {fileID: 11400000, guid: 5c42808dc61a8914d9bc4c19057cdadf, type: 2}
+  opportunityAttack: {fileID: 11400000, guid: 5c42808dc61a8914d9bc4c19057cdadf, type: 2}
   passifs: []
   initiative: 3
   closestDistanceWhenNoAction: 55

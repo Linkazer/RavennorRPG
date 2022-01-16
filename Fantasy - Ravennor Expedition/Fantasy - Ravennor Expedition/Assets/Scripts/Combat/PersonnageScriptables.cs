@@ -66,6 +66,7 @@ public class PersonnageScriptables : ScriptableObject
 
     [Header("Sorts Disponibles")]
     public List<CharacterActionScriptable> knownSpells;
+    public CharacterActionScriptable opportunityAttack;
 
     public List<SpellEffectScriptables> passifs;
 

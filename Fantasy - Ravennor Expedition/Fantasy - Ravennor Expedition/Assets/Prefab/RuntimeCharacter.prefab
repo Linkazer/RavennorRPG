@@ -1013,6 +1013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbackUiHandler: {fileID: 8380495027306934110}
+  feedbackUIRectTransform: {fileID: 8380495027306934110}
   dice: {fileID: 6770246949489665021, guid: ffa5772337169924ca9b29040a41ec80, type: 3}
   directHit: {fileID: 4395491620358875273, guid: 0984f65d738a1a24283ee9c3015d80a5, type: 3}
   effectHit: {fileID: 4669087369618327922, guid: 6db6d2cf9f8c0604c913458563b8e8aa, type: 3}

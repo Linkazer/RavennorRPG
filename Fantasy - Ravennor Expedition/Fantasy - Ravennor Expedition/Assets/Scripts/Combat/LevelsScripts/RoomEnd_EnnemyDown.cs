@@ -14,7 +14,7 @@ public class RoomEnd_EnnemyDown : RoomEnd
     protected override void CheckEnd()
     {
         int killedChara = 0;
-        foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara())
+        foreach (RuntimeBattleCharacter chara in BattleManager.instance.GetEnemyChara(false))
         {
             if (chara.GetCurrentHps() <= 0)
             {

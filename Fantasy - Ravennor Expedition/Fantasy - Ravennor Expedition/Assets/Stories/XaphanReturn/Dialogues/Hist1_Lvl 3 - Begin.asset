@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe07c9a58aa6a4d905fb4f6db4e2f4, type: 3}
+  m_Name: Hist1_Lvl 3 - Begin
+  m_EditorClassIdentifier: 
+  storyText: "Apr\xE8s des jours de trajets, la Confr\xE9rie du Zippo arrive enfin
+    \xE0 Lanon, un village proche de la crypte de Gzarsaroth. L'Acad\xE9mie de Norganon
+    ayant trouv\xE9 des traces d'un ancien art\xE9fact, Majax a charg\xE9 la confr\xE9rie
+    de le retrouver et de le ramener \xE0 l'Acad\xE9mie. Cependant, \xE0 chaque fois
+    que le groupe prononce le nom de Gzarsaroth, les villageois \xE9vitent le sujet
+    et partent \xE0 vive allure. La seule information que le groupe ait pu obtenir
+    est que la crypte serait hant\xE9e.\nLe lendemain, apr\xE8s une bonne nuit de
+    repos, la confr\xE9rie part en direction de la crypte. Une fois arriv\xE9, Eliza
+    s'approche de la porte.\n\"Ah ! Ca pue la mort la dedans.\" dit-elle en ouvrant.\n\"C'est
+    le concept d'une crypte\" r\xE9pond Shedun.\n\"Soyez sur vos gardes, on ne sait
+    pas ce qui nous attend \xE0 l'int\xE9rieur de ces murs\" dit Vanyaenn en fixant
+    Okun.\nAlors que nos h\xE9ros s'enfoncent dans le donjon, ils arrivent dans une
+    grande salle avec de nombreux tombeaux. Fouillant la pi\xE8ce \xE0 la recherche
+    du moindre indice, le bruit d'une vase se cassant sur le sol r\xE9sonne dans
+    la pi\xE8ce. Vanyaenn tourne rapidement la t\xEAte pour apercevoir l'origine
+    du bruit.\n\"D\xE9sol\xE9\" dit Nor, avec un vase cass\xE9 \xE0 ses pieds.\nSoudain,
+    des mumures se font entendre. Tout autour de la confr\xE9rie, des silouhettes
+    fantomatiques sortent des tombeaux."
+  reponses:
+  - text: Continuer...
+    nextStory: {fileID: 0}
+  battleBegin: 1
+  goToCamp: 0

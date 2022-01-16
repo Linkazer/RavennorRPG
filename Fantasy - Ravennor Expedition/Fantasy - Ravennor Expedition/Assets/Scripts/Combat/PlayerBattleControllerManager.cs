@@ -63,14 +63,15 @@ public class PlayerBattleControllerManager : MonoBehaviour
             if (!currentMouseNode.usableNode)
             {
                 Grid.instance.HideZone();
+                PlayerBattleManager.instance.HidePath();
             }
             else
             {
-                if ((PlayerBattleManager.instance.holdSpellIndex >= 0))
+                if (PlayerBattleManager.instance.holdSpellIndex >= 0)
                 {
                     PlayerBattleManager.instance.ShowCurrentSpell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 }
-                else
+                else if(Grid.instance.NodeFromWorldPoint(currentMousePos).usableNode)
                 {
                     PlayerBattleManager.instance.ShowPath(currentMousePos);
                 }

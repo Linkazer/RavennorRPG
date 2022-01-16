@@ -31081,7 +31081,7 @@ PrefabInstance:
     - target: {fileID: 2245448136093751646, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: nextBattle
       value: 
-      objectReference: {fileID: 7560241282882709333, guid: f42632b497d329f4babf7402939eafb0, type: 3}
+      objectReference: {fileID: 7560241282882709333, guid: 94547be04b873184b9d80bb41fe31e4d, type: 3}
     - target: {fileID: 2245448136093751647, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -34582,6 +34582,10 @@ MonoBehaviour:
   layerMaskObstacle:
     serializedVersion: 2
     m_Bits: 256
+  moveColor: {r: 0.34531856, g: 0.9150943, b: 0, a: 0.5019608}
+  pathColor: {r: 0.3781308, g: 1, b: 0, a: 0.7490196}
+  spellColor: {r: 0, g: 0.27710438, b: 1, a: 0.5019608}
+  spellZoneColor: {r: 1, g: 0.1963191, b: 0, a: 0.5019608}
 --- !u!114 &1935258958
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -174,7 +174,7 @@ public class AiBattleManager : MonoBehaviour
                         possibleMovement.Add(caster.currentNode);
                         if (consid.optimizePosition)
                         {
-                            possibleMovement = new List<Node>(Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true));
+                            possibleMovement = new List<Node>(Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true, true));
                         }
                         for (int i = 0; i < possibleMovement.Count; i++)
                         {
@@ -201,7 +201,7 @@ public class AiBattleManager : MonoBehaviour
                                     {
                                         nodeToMoveTo = nodeToTry;
                                     }
-                                    else
+                                    else if (!consid.optimizePosition)
                                     {
                                         nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
                                     }

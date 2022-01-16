@@ -15,6 +15,7 @@ public class Node : IHeapItem<Node> {
 	public int gCost;
 	public int hCost;
 	public Node parent;
+	public Node children;
 	int heapIndex;
 
 	//public CaseGameObj nodeAnim;
@@ -57,6 +58,7 @@ public class Node : IHeapItem<Node> {
 		gCost = 0;
 		hCost = 0;
 		parent = null;
+		children = null;
 		heapIndex = 0;
 	}
 

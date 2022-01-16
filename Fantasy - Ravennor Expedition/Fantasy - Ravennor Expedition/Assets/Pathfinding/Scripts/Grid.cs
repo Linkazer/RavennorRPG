@@ -201,13 +201,6 @@ public class Grid : MonoBehaviour {
 			for (int y = 0; y < gridSizeY; y++)
 			{
 				grid[x, y].usableNode = false;
-				/*grid[x, y].walkable = !(Physics2D.OverlapCircle(grid[x, y].worldPosition, nodeRadius * 0.2f, unwalkableMask));
-				grid[x, y].hasCharacterOn = (Physics2D.OverlapCircle(grid[x, y].worldPosition, nodeRadius * 0.2f, characterMasks));
-				grid[x, y].chara = null;
-				if (grid[x, y].hasCharacterOn)
-				{
-					grid[x, y].chara = (Physics2D.OverlapCircle(grid[x, y].worldPosition, nodeRadius * 0.2f, characterMasks)).GetComponent<RuntimeBattleCharacter>();
-				}*/
 			}
 		}
 

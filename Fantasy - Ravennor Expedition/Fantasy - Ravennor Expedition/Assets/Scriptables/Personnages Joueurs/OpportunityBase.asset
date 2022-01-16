@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66c1ef328b428324082c86f0b8566d3a, type: 3}
-  m_Name: Nor_Base
+  m_Name: OpportunityBase
   m_EditorClassIdentifier: 
   nom: Dagues
   icon: {fileID: 21300000, guid: b369045d6dee0894d969df671597623e, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   speed: 0
   zoneSprite: {fileID: 0}
-  caseSprite: {fileID: 21300000, guid: 1d77cee709537c24f838952311b51a19, type: 3}
+  caseSprite: {fileID: 21300000, guid: 086cb6a13f4320b4ab2e24c7f5e7047e, type: 3}
   caseFeedback: {fileID: 21300000, guid: 82fe7bbcb257626499201d53fe103a3b, type: 3}
   soundToPlay: {fileID: 0}
   wantedEffectOnTarget: []
@@ -41,7 +41,7 @@ MonoBehaviour:
   wantedEffectOnGround: []
   hasPowerEffect: 1
   damageBase: 0
-  diceNumber: 2
+  diceNumber: 1
   damageType: 1
   ignorePower: 0
   autoCritical: 0

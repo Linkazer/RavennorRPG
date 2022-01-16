@@ -32,5 +32,6 @@ MonoBehaviour:
   levelUpTable: {fileID: 0}
   knownSpells:
   - {fileID: 11400000, guid: b8f9982ae89ff1742a56180e7d288325, type: 2}
+  opportunityAttack: {fileID: 11400000, guid: b8f9982ae89ff1742a56180e7d288325, type: 2}
   passifs: []
   initiative: 6

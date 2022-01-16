@@ -278,9 +278,9 @@ public class RuntimeBattleCharacter : MonoBehaviour
     #endregion
 
     #region Set Chara
-    public void UseRuntimeCharacter(PersonnageScriptables newScriptable, int newTeam, Vector2 newPosition)
+    public void UseRuntimeCharacter(PersonnageScriptables newScriptable, int newTeam, Vector2 newPosition, int persoindexdebug)
     {
-        name = newScriptable.nom;
+        name = newScriptable.nom + " " + persoindexdebug;
         transform.position = newPosition;
         currentNode = Grid.instance.NodeFromWorldPoint(newPosition);
         UseRuntimeCharacter(newScriptable, newTeam);
@@ -432,11 +432,6 @@ public class RuntimeBattleCharacter : MonoBehaviour
     #endregion
 
     #region Action Interraction
-    public void UseActionAnim()
-    {
-        BattleManager.instance.UseCurrentAction();
-    }
-
     public int TakeDamage(DamageType typeOfDamage, int damageDealt, RuntimeBattleCharacter damageOrigin)
     {
         int damageAmount;
@@ -659,18 +654,19 @@ public class RuntimeBattleCharacter : MonoBehaviour
         }
         return false;
     }
-    
+
     public void AttackOfOpportunity(RuntimeBattleCharacter opportunityTarget)
     {
         bool canUseSpell = true;
-        if ((actionsDisponibles[0].attackType != AttackType.Magical && CheckForAffliction(Affliction.Atrophie)) || (actionsDisponibles[0].attackType == AttackType.Magical && CheckForAffliction(Affliction.Silence)))
+        CharacterActionScriptable attack = currentScriptable.opportunityAttack;
+        if ((attack.attackType != AttackType.Magical && CheckForAffliction(Affliction.Atrophie)) || (attack.attackType == AttackType.Magical && CheckForAffliction(Affliction.Silence)))
         {
             canUseSpell = false;
         }
 
         if (hasOpportunity && canUseSpell)
         {
-            BattleManager.instance.LaunchAction(actionsDisponibles[0], 0, this, opportunityTarget.currentNode.worldPosition, true);
+            BattleManager.instance.LaunchAction(attack, 0, this, opportunityTarget.currentNode.worldPosition, true);
             hasOpportunity = false;
         }
     }
@@ -707,9 +703,21 @@ public class RuntimeBattleCharacter : MonoBehaviour
         characterSprite.flipX = direction;
     }
 
-    public void SetAnimation(string animName)
+    public void SetAnimation(string animName, Action callback = null)
     {
         anim.Play(animName);
+        if(callback != null)
+        {
+            StartCoroutine(PlayAnimationCallback(callback));
+        }
+    }
+
+    IEnumerator PlayAnimationCallback(Action callback)
+    {
+        yield return new WaitForEndOfFrame();
+        float timeToWait = GetCurrentAnimation().clip.length;
+        yield return new WaitForSeconds(timeToWait);
+        callback?.Invoke();
     }
 
     public AnimatorClipInfo GetCurrentAnimation()

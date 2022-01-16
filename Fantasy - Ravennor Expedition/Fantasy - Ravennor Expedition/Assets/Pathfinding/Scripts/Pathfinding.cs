@@ -108,6 +108,7 @@ public class Pathfinding : MonoBehaviour {
 					neighbour.gCost = newMovementCostToNeighbour;
 					neighbour.hCost = newDistanceFromTargetCost;
 					neighbour.parent = currentNode;
+					currentNode.children = neighbour;
 
 					if (!openSet.Contains(neighbour))
 					{
@@ -119,6 +120,7 @@ public class Pathfinding : MonoBehaviour {
 					neighbour.gCost = newMovementCostToNeighbour;
 					neighbour.hCost = newDistanceFromTargetCost;
 					neighbour.parent = currentNode;
+					currentNode.children = neighbour;
 
 					if (!openSet.Contains(neighbour))
 					{
@@ -185,7 +187,7 @@ public class Pathfinding : MonoBehaviour {
 		return 15*dstX + 10 * (dstY-dstX);
 	}
 
-	public List<Node> GetNodesWithMaxDistance(Node startNode, float distance, bool pathCalcul)
+	public List<Node> GetNodesWithMaxDistance(Node startNode, float distance, bool pathCalcul, bool optimizedPath = false)
 	{
 		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
@@ -200,8 +202,9 @@ public class Pathfinding : MonoBehaviour {
 
 			foreach (Node neighbour in grid.GetNeighbours(currentNode))
 			{
-
-				if (((!neighbour.walkable || neighbour.HasCharacterOn) && pathCalcul) || closedSet.Contains(neighbour))
+				if (((!neighbour.walkable || neighbour.HasCharacterOn) && pathCalcul)
+					|| closedSet.Contains(neighbour)
+					|| (optimizedPath && BattleManager.instance.CheckForOpportunityAttack(neighbour).Count > 0))
 				{
 					continue;
 				}
@@ -219,6 +222,7 @@ public class Pathfinding : MonoBehaviour {
 					{
 						neighbour.gCost = newMovementCostToNeighbour;
 						neighbour.parent = currentNode;
+						currentNode.children = neighbour;
 
 						if (!openSet.Contains(neighbour))
 						{

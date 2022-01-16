@@ -22,7 +22,7 @@ MonoBehaviour:
   healthPoints: 4
   maana: 0
   movementSpeed: 55
-  accuracy: 2
+  accuracy: 0
   defense: 3
   power: 0
   armor: 0
@@ -31,6 +31,7 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: 5a8e7d96cf4e447409039282805a8703, type: 2}
   - {fileID: 11400000, guid: fd6d85a43b48a654b929464231c0ecce, type: 2}
+  opportunityAttack: {fileID: 11400000, guid: 5a8e7d96cf4e447409039282805a8703, type: 2}
   passifs: []
   initiative: 4
   closestDistanceWhenNoAction: 45
