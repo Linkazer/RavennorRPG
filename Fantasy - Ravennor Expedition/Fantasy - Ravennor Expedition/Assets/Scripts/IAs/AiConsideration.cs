@@ -18,6 +18,13 @@ public enum AiCalculType{ Conditionnal, Affine, Logarythm,
 
 public enum AiConditionType { None, UpOrEqual, DownOrEqual, Equal }
 
+public enum OptimizePositionOption
+{
+    None,
+    Distance,
+    Melee
+}
+
 [System.Serializable]
 public class ValueForCalcul
 {
@@ -48,7 +55,7 @@ public class AiConsideration
 {
     [Header("Actions")]
     public CharacterActionScriptable wantedAction;
-    public bool optimizePosition;
+    public OptimizePositionOption optimizePosition;
     [Header("Condition")]
     public List<ValueForCondition> conditions;
     [Header("Calculs")]

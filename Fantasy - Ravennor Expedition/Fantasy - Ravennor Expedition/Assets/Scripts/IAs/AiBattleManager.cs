@@ -97,7 +97,7 @@ public class AiBattleManager : MonoBehaviour
                 }
                 else
                 {
-                    currentChara.UseAllAction();
+                    //currentChara.UseAllAction();
                     SearchForBestAction(currentChara, BattleManager.instance.GetAllChara(), true);
 
                     //Debug.Log(currentChara.name + " Move for next round : " + nodeToMoveTo.worldPosition);
@@ -172,14 +172,14 @@ public class AiBattleManager : MonoBehaviour
                     {
                         List<Node> possibleMovement = new List<Node>();
                         possibleMovement.Add(caster.currentNode);
-                        if (consid.optimizePosition)
+                        if (consid.optimizePosition != OptimizePositionOption.None)
                         {
-                            possibleMovement = new List<Node>(Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true, true));
+                            possibleMovement = new List<Node>(Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true, consid.optimizePosition));
                         }
                         for (int i = 0; i < possibleMovement.Count; i++)
                         {
                             Node nodeToTry = possibleMovement[i];
-                            
+
                             if (CanSpellBeUsed(consid, nodeToTry, consid.wantedAction, chara, askForNextTurn, consid.optimizePosition))
                             {
                                 float newScore = EvaluateAction(consid, nodeToTry, caster, chara);
@@ -201,7 +201,7 @@ public class AiBattleManager : MonoBehaviour
                                     {
                                         nodeToMoveTo = nodeToTry;
                                     }
-                                    else if (!consid.optimizePosition)
+                                    else if (consid.optimizePosition == OptimizePositionOption.None)
                                     {
                                         nodeToMoveTo = GetNodeToHitTarget(chara, consid.wantedAction.range, consid.wantedAction.hasViewOnTarget, 0);
                                     }
@@ -241,7 +241,7 @@ public class AiBattleManager : MonoBehaviour
         }
     }
 
-    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn, bool optimizedPosition)
+    private bool CanSpellBeUsed(AiConsideration consid, Node nodeToTry, CharacterActionScriptable actionToTry, RuntimeBattleCharacter targetToTry, bool askForNextTurn, OptimizePositionOption optimizedPosition)
     {
         switch (actionToTry.castTarget)
         {
@@ -329,7 +329,7 @@ public class AiBattleManager : MonoBehaviour
         List<Node> possibleDeplacement = new List<Node>();
         possibleDeplacement.Add(nodeToTry);
 
-        if(!optimizedPosition)
+        if(optimizedPosition == OptimizePositionOption.None)
         {
             possibleDeplacement = Pathfinding.instance.GetNodesWithMaxDistance(currentChara.currentNode, currentChara.movementLeft, true);
         }
