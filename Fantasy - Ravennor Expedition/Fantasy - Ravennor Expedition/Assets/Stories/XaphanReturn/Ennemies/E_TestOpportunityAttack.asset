@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
-  m_Name: E_Berserker
+  m_Name: E_TestOpportunityAttack
   m_EditorClassIdentifier: 
   nom: Berserker Corrompu
   icon: {fileID: 21300000, guid: ff30d2023d7500146b7c9976db0d0c69, type: 3}
@@ -38,11 +38,8 @@ MonoBehaviour:
   planForOtherTurns: 1
   comportement:
   - wantedAction: {fileID: 11400000, guid: ef087a49a25c09442bed9ad13a9b5440, type: 2}
-    optimizePosition: 0
-    conditions:
-    - conditionWanted: 0
-      conditionValue: 15
-      conditionType: 2
+    optimizePosition: 2
+    conditions: []
     considerationImportance: 1
     maximumValueModifier: 0
     bonusScore: 1
@@ -52,25 +49,6 @@ MonoBehaviour:
       checkAroundMax: 0
       maxValue: 100
       constant: 100
-      coeficient: -1
-      calculImportance: 1
-    maxCooldown: 0
-    cooldown: 0
-  - wantedAction: {fileID: 11400000, guid: ef087a49a25c09442bed9ad13a9b5440, type: 2}
-    optimizePosition: 0
-    conditions:
-    - conditionWanted: 0
-      conditionValue: 16
-      conditionType: 1
-    considerationImportance: 0
-    maximumValueModifier: 0
-    bonusScore: 0
-    calculs:
-    - calculType: 1
-      abscissaValue: 0
-      checkAroundMax: 0
-      maxValue: 150
-      constant: 150
       coeficient: -1
       calculImportance: 1
     maxCooldown: 0
