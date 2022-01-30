@@ -41,7 +41,7 @@ MonoBehaviour:
     optimizePosition: 0
     conditions:
     - conditionWanted: 0
-      conditionValue: 25
+      conditionValue: 15
       conditionType: 2
     considerationImportance: 1
     maximumValueModifier: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     optimizePosition: 2
     conditions:
     - conditionWanted: 0
-      conditionValue: 26
+      conditionValue: 16
       conditionType: 1
     considerationImportance: 0
     maximumValueModifier: 0

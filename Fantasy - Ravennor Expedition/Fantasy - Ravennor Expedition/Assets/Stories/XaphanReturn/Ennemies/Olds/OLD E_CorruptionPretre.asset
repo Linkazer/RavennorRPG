@@ -31,6 +31,7 @@ MonoBehaviour:
   knownSpells:
   - {fileID: 11400000, guid: d11bea63ddd91f348a3990b85b365f55, type: 2}
   - {fileID: 11400000, guid: 1eebc3eb9b8f7be4e8183f60ce1a600f, type: 2}
+  opportunityAttack: {fileID: 0}
   passifs: []
   initiative: 1
   closestDistanceWhenNoAction: 35
@@ -44,7 +45,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: 0.2
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 16
@@ -63,7 +64,7 @@ MonoBehaviour:
       conditionType: 1
     considerationImportance: -0.2
     maximumValueModifier: 0
-    startScore: 0
+    bonusScore: 0
     calculs:
     - calculType: 1
       abscissaValue: 13
