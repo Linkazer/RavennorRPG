@@ -381,7 +381,6 @@ public class BattleManager : MonoBehaviour
     #region Character Actions
     public void MoveCharacter(RuntimeBattleCharacter character, Vector2 destination, bool isForNextTurn)
     {
-        Debug.Log(destination.ToString("F4"));
         AskToMove(character.gameObject, destination, character.movementLeft, isForNextTurn);
     }
 

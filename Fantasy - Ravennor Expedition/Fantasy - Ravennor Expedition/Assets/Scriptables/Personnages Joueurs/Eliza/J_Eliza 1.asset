@@ -21,7 +21,7 @@ MonoBehaviour:
   description: "Eliza est une jeune elfe originaire des Terres du Nord. Apr\xE8s
     la destruction de son village, elle fut recueillie par Varanya, la directrice
     de l'Acad\xE9mie."
-  healthPoints: 8
+  healthPoints: 10
   maana: 6
   movementSpeed: 45
   accuracy: 0
