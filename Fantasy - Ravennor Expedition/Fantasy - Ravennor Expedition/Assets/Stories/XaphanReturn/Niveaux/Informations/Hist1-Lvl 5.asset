@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
+  m_Name: Hist1-Lvl 5
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 7560241282882709333, guid: 9cf81c2ea66d7954e9521d91c3bc7039, type: 3}
+  ID: Hist1_Lvl4
+  nom: Le Pont
+  winCondition: "Ouvrir la porte \xE0 l'autre bout du pont."
+  looseCondition: "Un des membres de la Confr\xE9rie est inconscient."
+  description: "Les Archimages \xE9tant tous bless\xE9s, la Confr\xE9rie part chercher
+    l'art\xE9fact permettant de sceller Xaphan."
+  charactersInLevel:
+  - {fileID: 11400000, guid: 04d59213453839a458c9b141d129bd9b, type: 2}
+  - {fileID: 11400000, guid: 2358d219d9d397944919ca64997499b8, type: 2}
+  - {fileID: 11400000, guid: eb0fed5078376504eb078e6e4f218ea9, type: 2}
+  - {fileID: 11400000, guid: 2cc0f94517ce7fe47916207eedfc85d1, type: 2}
+  - {fileID: 11400000, guid: c33cadc22b48a4047a5eecb035e33bcf, type: 2}

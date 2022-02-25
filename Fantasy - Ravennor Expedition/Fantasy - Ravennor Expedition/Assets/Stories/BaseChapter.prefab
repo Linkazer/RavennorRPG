@@ -70339,9 +70339,9 @@ MonoBehaviour:
   endDialogue: {fileID: 11400000, guid: 2f5765e687898ea4b8d0e845266fca73, type: 2}
   campDialogue: {fileID: 0}
   characterInLevel:
-  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
-  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
   - {fileID: 11400000, guid: d9219f87532a80b4b85c1abd922c8a73, type: 2}
+  - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}
+  - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
   - {fileID: 11400000, guid: 5af7dd888d90e9147b734ab6325a8218, type: 2}
   - {fileID: 11400000, guid: 102a19e3b432ef54790cd72846438659, type: 2}
   numberCharacterDeathLose: 1
@@ -70358,18 +70358,19 @@ MonoBehaviour:
   rooms: []
   turnEvents: []
   playerPos:
-  - {fileID: 4579922895677674218}
-  - {fileID: 8483555795714411979}
   - {fileID: 6658296771814768445}
+  - {fileID: 8483555795714411979}
+  - {fileID: 4579922895677674218}
   - {fileID: 2753580877957920145}
   - {fileID: 2495437387191324909}
   - {fileID: 8120343879943029358}
   playerStartPositions:
-  - {x: -2.64, y: -1.52}
-  - {x: -2.6400003, y: -1.1999999}
-  - {x: -2.4800003, y: -1.3599999}
-  - {x: -2.8000002, y: -1.2}
-  - {x: -2.8000002, y: -1.3599999}
+  - {x: 0.08, y: 0.08}
+  - {x: 0.08, y: 0.08}
+  - {x: 0.08, y: 0.08}
+  - {x: 0.08, y: 0.08}
+  - {x: 0.08, y: 0.08}
+  - {x: 0.08, y: 0.08}
   openRoomIndexes: 
   end: {fileID: 0}
 --- !u!1 &8412524457342843277

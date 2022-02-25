@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     unlockedLevelIds:
-    - Hist1_Lvl 1
-    - Hist1_Lvl 2
-    - Hist1_Lvl 3
-    - Hist1_Lvl 4
-    - Hist1_Lvl 5
-    - Hist1_Lvl 6
-    - Hist1_Lvl 7
-    - Hist1_Lvl 8
-    - Hist1_Lvl 9
-    - Hist1_Lvl 10
+    - Hist1_Lvl1
+    - Hist1_Lvl2
+    - Hist1_Lvl3
+    - Hist1_Lvl4
+    - Hist1_Lvl5
+    - Hist1_Lvl6
+    - Hist1_Lvl7
+    - Hist1_Lvl8
+    - Hist1_Lvl9
+    - Hist1_Lvl10

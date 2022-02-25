@@ -42,6 +42,7 @@ public class BattleManager : MonoBehaviour
     private RuntimeBattleCharacter currentCharacterTurn;
 
     public static Action<RuntimeBattleCharacter> characterTurnBegin;
+    public static Action newTurnBegin;
 
     [SerializeField]
     private List<int> initiatives = new List<int>();
@@ -110,7 +111,7 @@ public class BattleManager : MonoBehaviour
             r.transform.position = new Vector2(-10, -10);
         }
 
-        SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
+        //SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
 
         LoadingScreenManager.instance.HideScreen();
 
@@ -152,7 +153,7 @@ public class BattleManager : MonoBehaviour
     public void SpawnNewCharacter(PersonnageScriptables newPerso, Vector2 position)
     {
         SetCharacter(newPerso, position);
-        SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
+        //SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
     }
 
     int persoindexdebug;
@@ -357,6 +358,9 @@ public class BattleManager : MonoBehaviour
         if((currentIndexTurn + 1) % roundList.Count == 0)
         {
             currentTurn++;
+            newTurnBegin?.Invoke();
+
+            currentIndexTurn = -1;
 
             for (int i = 0; i < roomManager.TurnEvents.Count; i++)
             {
@@ -570,6 +574,8 @@ public class BattleManager : MonoBehaviour
             case ActionTargets.EveryAllies:
                 hitNodes = new List<Node>();
                 List<RuntimeBattleCharacter> allyTeam = GetAllyTeamCharacters(caster.GetTeam());
+
+                allyTeam.Remove(caster);
 
                 for (int i = 0; i < allyTeam.Count; i++)
                 {
@@ -973,7 +979,7 @@ public class BattleManager : MonoBehaviour
                     currentIndexTurn++;
                 }
 
-                SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
+                //SortInitiativeList(initiatives, roundList, 0, initiatives.Count - 1);
 
                 Grid.instance.CreateGrid();
             }
@@ -1210,7 +1216,7 @@ public class BattleManager : MonoBehaviour
                 persoList[lowIndex] = persoList[j];
                 persoList[j] = tempChara;
             }
-            else if(array[j] == pivot && persoList[j].GetMaxHp < hpPivot)
+            else if(array[j] == pivot && persoList[j].GetMaxHp > hpPivot)
             {
                 lowIndex++;
 

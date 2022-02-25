@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
-  m_Name: Hist1-Lvl 3
+  m_Name: Hist1-Lvl 6
   m_EditorClassIdentifier: 
   levelPrefab: {fileID: 7560241282882709333, guid: d64fa8d73fb003e4282e71d80e16f7fb, type: 3}
-  ID: Hist1_Lvl2
+  ID: Hist1_Lvl5
   nom: La Crypte
   winCondition: 
-  looseCondition: 
+  looseCondition: "Un des membres de la Confr\xE9rie est inconscient."
   description: "S'engouffrant dans la crypte, la Confr\xE9rie se retrouve dans un
     d\xE9dale de tunnels."
   charactersInLevel:

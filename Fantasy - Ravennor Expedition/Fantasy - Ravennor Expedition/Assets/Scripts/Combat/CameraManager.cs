@@ -9,9 +9,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField]
     private float mouseSpeed, keySpeed;
-    [SerializeField]
-    private float lerpCoef;
-    private float baselerp = 0;
+    [SerializeField] private AnimationCurve lerpCurve;
 
     public bool followChara;
     [SerializeField]
@@ -19,9 +17,11 @@ public class CameraManager : MonoBehaviour
     Vector2 followingPos => toFollow.position;
     Vector2 currentPosition => transform.position;
 
+    private Vector3 lerpDistance;
+    private float curveToEvalutate;
+
     private void Start()
     {
-        baselerp = lerpCoef;
         BattleManager.characterTurnBegin += OnNewTurn;
     }
 
@@ -30,16 +30,17 @@ public class CameraManager : MonoBehaviour
     {
         if (followChara && toFollow != null && Vector2.Distance(toFollow.position, transform.position) > 0)
         {
-            Vector2 lerpedVector = transform.position + (new Vector3(toFollow.position.x, toFollow.position.y, -10) - transform.position).normalized * lerpCoef * Time.deltaTime;
+            Vector2 lerpedVector = toFollow.position + lerpDistance * lerpCurve.Evaluate(curveToEvalutate);
 
-            if (Vector2.Distance(toFollow.position, transform.position) < (lerpCoef * Time.deltaTime))
+            //if (Vector2.Distance(toFollow.position, transform.position) < (lerpCoef * Time.deltaTime))
+            if(curveToEvalutate < lerpCurve.keys[lerpCurve.length -1].time)
             {
-                lerpCoef = baselerp;
-                SetCameraPosition(toFollow.position);
+                curveToEvalutate += Time.deltaTime;
+                SetCameraPosition(lerpedVector);
             }
             else
             {
-                SetCameraPosition(lerpedVector);
+                SetCameraPosition(toFollow.position);
             }
         }
 
@@ -95,10 +96,10 @@ public class CameraManager : MonoBehaviour
         {
             SetCameraPosition(RoomManager.GetCamStartPosition());
         }
-        lerpCoef = Vector2.Distance(newToFollow.position, transform.position) * baselerp;
-        if (lerpCoef < baselerp)
-            lerpCoef = baselerp;
         toFollow = newToFollow;
         followChara = true;
+
+        curveToEvalutate = 0;
+        lerpDistance = transform.position - toFollow.position;
     }
 }

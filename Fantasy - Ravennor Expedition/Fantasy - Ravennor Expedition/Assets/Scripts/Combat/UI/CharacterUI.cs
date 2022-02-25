@@ -32,9 +32,11 @@ public class CharacterUI : MonoBehaviour
     {
         GameObject toDisplay = Instantiate(effectHit.gameObject, feedbackUiHandler);
         toDisplay.GetComponent<CharacterEffectResult>().ShowResult(spriteEffect, doesAdd);
-        StartCoroutine(DisplayObject(toDisplay));
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(DisplayObject(toDisplay));
+        }
     }
-
     IEnumerator DisplayObject(GameObject toDisplay)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(feedbackUIRectTransform);

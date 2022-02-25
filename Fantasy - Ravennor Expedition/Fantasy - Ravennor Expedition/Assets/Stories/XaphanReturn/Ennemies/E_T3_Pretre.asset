@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cebcdbe8067a442bdb19a6fe3042a6, type: 3}
-  m_Name: E_CorruptionMage
+  m_Name: E_T3_Pretre
   m_EditorClassIdentifier: 
   nom: "Pr\xEAtre de la Corruption"
   icon: {fileID: 21300000, guid: e6b84d9b4a71e0747b93d010e7e93083, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fd6d85a43b48a654b929464231c0ecce, type: 2}
   opportunityAttack: {fileID: 11400000, guid: 5a8e7d96cf4e447409039282805a8703, type: 2}
   passifs: []
-  initiative: 4
+  initiative: 0
   closestDistanceWhenNoAction: 45
   planForOtherTurns: 1
   comportement:

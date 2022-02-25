@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
-  m_Name: Hist1-Lvl 1
+  m_Name: Hist1-Lvl 2
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 7560241282882709333, guid: 22c1dbf7376210c43a54db27be0cdd7a, type: 3}
-  ID: Hist1_Lvl0
-  nom: "L'\xE9preuve finale"
-  winCondition: 
-  looseCondition: 
-  description: "Afin de devenir des membres de l'Academie, la Confr\xE9rie du Zippo
-    doit passr une derni\xE8re \xE9preuve."
+  levelPrefab: {fileID: 7560241282882709333, guid: ee8796c625883f34f84b551074ed62da, type: 3}
+  ID: Hist1_Lvl1
+  nom: "Retour \xE0 l'Acad\xE9mie"
+  winCondition: Atteindre la porte de sortie.
+  looseCondition: "Un des membres de la Confr\xE9rie est inconscient."
+  description: "Ayant aper\xE7u une grande fumm\xE9e sortir de l'Acad\xE9mie, ma
+    Confr\xE9rie arrive sur place."
   charactersInLevel:
   - {fileID: 11400000, guid: adcafb60cebc77a47b8c3301a369f2eb, type: 2}
   - {fileID: 11400000, guid: 0c322fa1de7a97841b2ed40649c4e1da, type: 2}

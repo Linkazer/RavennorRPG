@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
+  m_Name: Hist1-Lvl 10
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 7560241282882709333, guid: d64fa8d73fb003e4282e71d80e16f7fb, type: 3}
+  ID: Hist1_Lvl2
+  nom: La Crypte
+  winCondition: 
+  looseCondition: "Un des membres de la Confr\xE9rie est inconscient."
+  description: "S'engouffrant dans la crypte, la Confr\xE9rie se retrouve dans un
+    d\xE9dale de tunnels."
+  charactersInLevel:
+  - {fileID: 11400000, guid: 04d59213453839a458c9b141d129bd9b, type: 2}
+  - {fileID: 11400000, guid: 2358d219d9d397944919ca64997499b8, type: 2}
+  - {fileID: 11400000, guid: eb0fed5078376504eb078e6e4f218ea9, type: 2}
+  - {fileID: 11400000, guid: 2cc0f94517ce7fe47916207eedfc85d1, type: 2}
+  - {fileID: 11400000, guid: c33cadc22b48a4047a5eecb035e33bcf, type: 2}

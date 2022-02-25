@@ -9986,7 +9986,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSpeed: 35
   keySpeed: 1
-  lerpCoef: 1
+  lerpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.1952627
+      outSlope: -2.1952627
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06988877
+    - serializedVersion: 3
+      time: 1.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   followChara: 0
   toFollow: {fileID: 0}
 --- !u!20 &519420031
@@ -31081,7 +31104,7 @@ PrefabInstance:
     - target: {fileID: 2245448136093751646, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: nextBattle
       value: 
-      objectReference: {fileID: 7560241282882709333, guid: 03bc0dfac878cea4e9257eda60f4e019, type: 3}
+      objectReference: {fileID: 7560241282882709333, guid: 9557009db7cac1444a0bb3b39422d44c, type: 3}
     - target: {fileID: 2245448136093751647, guid: 4d4130a55fbe4f0429f09c3f8a462052, type: 3}
       propertyPath: m_RootOrder
       value: 1
