@@ -62,7 +62,7 @@ public class PlayerBattleControllerManager : MonoBehaviour
 
             if (!currentMouseNode.usableNode)
             {
-                Grid.instance.HideZone();
+                //Grid.instance.HideZone();
                 PlayerBattleManager.instance.HidePath();
             }
             else
@@ -111,14 +111,6 @@ public class PlayerBattleControllerManager : MonoBehaviour
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        /*for(int i = 0; i < results.Count; i++)
-        {
-            if(results[i].sortingLayer != UILayer)
-            {
-                results.RemoveAt(i);
-                i--;
-            }
-        }*/
         return results.Count > 0;
     }
 

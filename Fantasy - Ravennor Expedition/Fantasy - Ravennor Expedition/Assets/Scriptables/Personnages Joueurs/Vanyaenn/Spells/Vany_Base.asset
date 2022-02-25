@@ -25,7 +25,7 @@ MonoBehaviour:
   target: 1
   castTarget: 1
   castOnSelf: 0
-  range: 25
+  range: 35
   activeZoneCases:
   - {x: 0, y: 0}
   doesFaceCaster: 1
@@ -39,19 +39,12 @@ MonoBehaviour:
   wantedEffectOnTarget: []
   wantedEffectOnCaster: []
   wantedEffectOnGround: []
-  spellType: 0
   hasPowerEffect: 1
   damageBase: 0
   diceNumber: 1
   damageType: 1
+  ignorePower: 0
   autoCritical: 0
-  scaleOrigin: 0
-  wantedScaleEffect: {fileID: 0}
-  scalingDices:
-    wantedDice: 0
-    numberOfDice: 0
-    diceByMaanaSpent: 0
-    wantedDamage: 0
-  diceByScale: 0
-  bonusByScale: 0
   lifeStealPercent: 0
+  wantedHitEffectOnTarget: []
+  wantedHitEffectOnCaster: []

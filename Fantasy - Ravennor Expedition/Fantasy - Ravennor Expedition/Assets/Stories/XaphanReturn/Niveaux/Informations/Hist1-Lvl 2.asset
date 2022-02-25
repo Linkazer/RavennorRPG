@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4655c4c01436c489fa46767209dbb0, type: 3}
   m_Name: Hist1-Lvl 2
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 7560241282882709333, guid: ee8796c625883f34f84b551074ed62da, type: 3}
+  levelPrefab: {fileID: 7560241282882709333, guid: 03bc0dfac878cea4e9257eda60f4e019, type: 3}
   ID: Hist1_Lvl1
   nom: "Retour \xE0 l'Acad\xE9mie"
   winCondition: Atteindre la porte de sortie.

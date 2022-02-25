@@ -4,6 +4,18 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
 
+	public class NodeFeedback
+    {
+		public Node attachedNode;
+		public SpriteRenderer usedSprite;
+
+		public NodeFeedback(Node n, SpriteRenderer s)
+        {
+			attachedNode = n;
+			usedSprite = s;
+        }
+    }
+
 	public static Grid instance;
 
 	public bool displayGridGizmos;
@@ -19,9 +31,9 @@ public class Grid : MonoBehaviour {
 	int gridSizeX, gridSizeY;
 
 	[SerializeField]
-	private List<GameObject> usedNodeFeedback = new List<GameObject>();
+	private List<NodeFeedback> usedNodeFeedback = new List<NodeFeedback>();
 	[SerializeField]
-	private List<GameObject> freeNodeFeedback;
+	private List<SpriteRenderer> freeNodeFeedback;
 	public GameObject parentFree;
 
 	public int values;
@@ -33,7 +45,7 @@ public class Grid : MonoBehaviour {
 
 		foreach(Transform child in parentFree.transform)
         {
-			freeNodeFeedback.Add(child.gameObject);
+			freeNodeFeedback.Add(child.gameObject.GetComponent<SpriteRenderer>());
         }
     }
 
@@ -44,7 +56,7 @@ public class Grid : MonoBehaviour {
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
 		CreateGrid();
 
-		foreach(GameObject g in freeNodeFeedback)
+		foreach(SpriteRenderer g in freeNodeFeedback)
         {
 			g.GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -207,21 +219,6 @@ public class Grid : MonoBehaviour {
 		ResetNodeFeedback();
 	}
 
-    public void ResetNodeColor(Color wantedColor)
-	{
-		for(int i = 0; i < usedNodeFeedback.Count; i++)
-        {
-			GameObject g = usedNodeFeedback[i];
-			if(g.GetComponent<SpriteRenderer>().color == wantedColor)
-            {
-				g.GetComponent<SpriteRenderer>().enabled = false;
-				freeNodeFeedback.Add(g);
-				usedNodeFeedback.RemoveAt(i);
-				i--;
-            }
-        }
-	}
-
 	public void SetAllUsableNodes()
     {
 		for (int x = 0; x < gridSizeX; x++)
@@ -268,29 +265,84 @@ public class Grid : MonoBehaviour {
 		return toReturn;
 	}
 
-	public void SetNodeFeedback(Vector2 position, Color newColor, int layerIndex)
+	public NodeFeedback SetNodeFeedback(Vector2 position, Color newColor, int layerIndex)
     {
 		if (freeNodeFeedback.Count > 0)
 		{
 			freeNodeFeedback[0].transform.position = position;
-			freeNodeFeedback[0].GetComponent<SpriteRenderer>().enabled = true;
-			freeNodeFeedback[0].GetComponent<SpriteRenderer>().color = newColor;
-			freeNodeFeedback[0].GetComponent<SpriteRenderer>().sortingOrder = layerIndex;
+			freeNodeFeedback[0].enabled = true;
+			freeNodeFeedback[0].color = newColor;
+			freeNodeFeedback[0].sortingOrder = layerIndex;
 
-			freeNodeFeedback[0].GetComponent<TempCaseFeedbackCost>().cost = NodeFromWorldPoint(position).gCost;
+			NodeFeedback toAdd = new NodeFeedback(NodeFromWorldPoint(position), freeNodeFeedback[0]);
 
-			usedNodeFeedback.Add(freeNodeFeedback[0]);
+			usedNodeFeedback.Add(toAdd);
 			freeNodeFeedback.RemoveAt(0);
+
+			return toAdd;
 		}
+		return null;
     }
+
+
+	public void ResetNodeColor(Color wantedColor)
+	{
+		for (int i = 0; i < usedNodeFeedback.Count; i++)
+		{
+			SpriteRenderer spriteRnd = usedNodeFeedback[i].usedSprite;
+			if (spriteRnd.color == wantedColor)
+			{
+				spriteRnd.enabled = false;
+				freeNodeFeedback.Add(spriteRnd);
+				usedNodeFeedback.RemoveAt(i);
+				i--;
+			}
+		}
+	}
+
+	public void ResetNodeFeedback(NodeFeedback toReset)
+	{
+		toReset.usedSprite.enabled = false;
+		freeNodeFeedback.Add(toReset.usedSprite);
+		usedNodeFeedback.Remove(toReset);
+	}
 
 	public void ResetNodeFeedback()
     {
-		foreach(GameObject g in usedNodeFeedback)
+		while(usedNodeFeedback.Count > 0)
 		{
-			g.GetComponent<SpriteRenderer>().enabled = false;
-			freeNodeFeedback.Add(g);
+			ResetNodeFeedback(usedNodeFeedback[0]);
         }
-		usedNodeFeedback.Clear();
     }
+
+	/*public void ResetNodeFeedback(List<Node> toReset)
+    {
+		List<NodeFeedback> listToReset = new List<NodeFeedback>();
+
+		for(int i = 0; i < usedNodeFeedback.Count; i++)
+        {
+			if(toReset.Contains(usedNodeFeedback[i].attachedNode))
+            {
+				listToReset.Add(usedNodeFeedback[i]);
+            }
+        }
+
+		for(int i = 0; i < listToReset.Count; i++)
+        {
+			ResetNodeFeedback(listToReset[i]);
+        }
+    }
+
+
+	public void ResetNodeFeedback(Node toReset)
+    {
+		for (int i = 0; i < usedNodeFeedback.Count; i++)
+		{
+			if (toReset == usedNodeFeedback[i].attachedNode)
+			{
+				ResetNodeFeedback(usedNodeFeedback[i]);
+				i--;
+			}
+		}
+	}*/
 }

@@ -29,6 +29,7 @@ public class PlayerBattleManager : MonoBehaviour
 
     [SerializeField] private Color moveColor;
     [SerializeField] private Color pathColor;
+    [SerializeField] private Color pathOpportunityColor;
     [SerializeField] private Color spellColor;
     [SerializeField] private Color spellZoneColor;
 
@@ -122,7 +123,7 @@ public class PlayerBattleManager : MonoBehaviour
         Grid.instance.SetUsableNodes(canSpellOn, spellColor);
     }
 
-    Vector3[] displayedPath = new Vector3[20];
+    List<Grid.NodeFeedback> displayedPath = new List<Grid.NodeFeedback>();
 
     public void ShowPath(Vector2 mousePos)
     {
@@ -131,23 +132,52 @@ public class PlayerBattleManager : MonoBehaviour
 
     public void HidePath()
     {
-        Grid.instance.ResetNodeColor(pathColor);
+        while(displayedPath.Count > 0)
+        {
+            Grid.instance.ResetNodeFeedback(displayedPath[0]);
+            displayedPath.RemoveAt(0);
+        }
+
+        /*Grid.instance.ResetNodeColor(pathColor);
+        Grid.instance.ResetNodeColor(pathOpportunityColor);*/
     }
 
     private void DisplayPath(Vector3[] newPath, bool pathSuccessful)
     {
-        displayedPath = newPath;
-        for (int i = 0; i < displayedPath.Length; i++)
+        HidePath();
+
+        if (newPath.Length > 0)
         {
-            Node n = Grid.instance.NodeFromWorldPoint(displayedPath[i]);
+
+            displayedPath = new List<Grid.NodeFeedback>();
+
+            if (BattleManager.instance.CheckForOpportunityAttack(currentCharacter.currentNode.worldPosition, newPath[0], currentCharacter).Count > 0)
+            {
+                displayedPath.Add(Grid.instance.SetNodeFeedback(newPath[0], pathOpportunityColor, 7));
+            }
+            else
+            {
+                displayedPath.Add(Grid.instance.SetNodeFeedback(newPath[0], pathColor, 7));
+            }
+
+            for (int i = 1; i < newPath.Length; i++)
+            {
+                if (BattleManager.instance.CheckForOpportunityAttack(newPath[i - 1], newPath[i], currentCharacter).Count > 0)
+                {
+                    displayedPath.Add(Grid.instance.SetNodeFeedback(newPath[i], pathOpportunityColor, 7));
+                }
+                else
+                {
+                    displayedPath.Add(Grid.instance.SetNodeFeedback(newPath[i], pathColor, 7));
+                }
+            }
+            
         }
-        Grid.instance.ShowZone(displayedPath, pathColor);
     }
 
     public void ShowCurrentSpell(Vector2 mousePos)
     {
         CharacterActionScriptable wantedAction = actionList[holdSpellIndex];
-        //ShowSpell(wantedAction);
 
         Vector2 direction = Vector2.one;
         if (wantedAction.doesFaceCaster)

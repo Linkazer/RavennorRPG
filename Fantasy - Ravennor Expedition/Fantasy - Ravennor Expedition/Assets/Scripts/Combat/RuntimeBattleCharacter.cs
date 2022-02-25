@@ -280,7 +280,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
     #region Set Chara
     public void UseRuntimeCharacter(PersonnageScriptables newScriptable, int newTeam, Vector2 newPosition, int persoindexdebug)
     {
-        name = newScriptable.nom + " " + persoindexdebug;
+        name = newScriptable.nom;// + " " + persoindexdebug;
         transform.position = newPosition;
         currentNode = Grid.instance.NodeFromWorldPoint(newPosition);
         UseRuntimeCharacter(newScriptable, newTeam);
@@ -655,6 +655,18 @@ public class RuntimeBattleCharacter : MonoBehaviour
         return false;
     }
 
+    public bool CanUseOpportunityAttack()
+    {
+        bool canUseSpell = true;
+        CharacterActionScriptable attack = currentScriptable.opportunityAttack;
+        if ((attack.attackType != AttackType.Magical && CheckForAffliction(Affliction.Atrophie)) || (attack.attackType == AttackType.Magical && CheckForAffliction(Affliction.Silence)))
+        {
+            canUseSpell = false;
+        }
+
+        return (hasOpportunity && canUseSpell);
+    }
+
     public void AttackOfOpportunity(RuntimeBattleCharacter opportunityTarget)
     {
         bool canUseSpell = true;
@@ -667,7 +679,7 @@ public class RuntimeBattleCharacter : MonoBehaviour
         if (hasOpportunity && canUseSpell)
         {
             BattleManager.instance.LaunchAction(attack, 0, this, opportunityTarget.currentNode.worldPosition, true);
-            hasOpportunity = false;
+            //hasOpportunity = false;
         }
     }
 

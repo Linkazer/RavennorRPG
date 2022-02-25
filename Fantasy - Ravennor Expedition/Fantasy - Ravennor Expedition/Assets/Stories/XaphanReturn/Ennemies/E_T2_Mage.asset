@@ -23,8 +23,8 @@ MonoBehaviour:
   maana: 0
   movementSpeed: 45
   accuracy: 0
-  defense: 3
-  power: 0
+  defense: 2
+  power: 1
   armor: 0
   actionNumber: 0
   levelUpTable: {fileID: 0}

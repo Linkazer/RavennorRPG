@@ -719,7 +719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3709298793109867995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.48, y: 0.07999998, z: 0}
+  m_LocalPosition: {x: -2.48, y: 0.23999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -51086,7 +51086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6295498974961241867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.48, y: 1.3600001, z: 0}
+  m_LocalPosition: {x: -2.32, y: 1.5200001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -51368,7 +51368,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6698468085218080464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3200002, y: 1.5200001, z: 0}
+  m_LocalPosition: {x: -2.4800003, y: 1.3600001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6800671016915125161}
@@ -51514,7 +51514,7 @@ MonoBehaviour:
     ennemisPositions:
     - {x: -1.9999998, y: 0.55999994}
     - {x: -1.84, y: -0.08000004}
-    - {x: -2.48, y: 0.07999998}
+    - {x: -2.48, y: 0.23999998}
     - {x: -1.52, y: 0.39999998}
     toPlayOnEnable:
       m_PersistentCalls:
@@ -51524,19 +51524,19 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
     - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
-    - {fileID: 11400000, guid: 46ea393bb138b5f4f8322c8c92992faf, type: 2}
+    - {fileID: 11400000, guid: 10c0f4c2f9fd70547ae126ee77bdf374, type: 2}
     ennemisPos:
     - {fileID: 8645176152054087747}
     - {fileID: 250254737904940965}
     - {fileID: 2768302507748189624}
-    - {fileID: 6119884998501636491}
     - {fileID: 8948599738744527066}
+    - {fileID: 6119884998501636491}
     ennemisPositions:
     - {x: -1.3599999, y: -0.4}
     - {x: -1.04, y: 0.08000004}
     - {x: -1.8399999, y: -0.8799999}
-    - {x: -0.8799999, y: -0.5599999}
     - {x: -0.71999997, y: 0.5600002}
+    - {x: -0.8799999, y: -0.5599999}
     toPlayOnEnable:
       m_PersistentCalls:
         m_Calls:
@@ -51553,9 +51553,9 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - ennemis:
-    - {fileID: 11400000, guid: f3df6dcc944ed4947b0adec1dd973db5, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
-    - {fileID: 11400000, guid: 1f02e220ab070734188574d86ba077ff, type: 2}
+    - {fileID: 11400000, guid: 83caecebd05a3304da1925bba03b5d3f, type: 2}
+    - {fileID: 11400000, guid: 3354ffb2ba230d042b6002bd69a6cbca, type: 2}
+    - {fileID: 11400000, guid: 3354ffb2ba230d042b6002bd69a6cbca, type: 2}
     - {fileID: 11400000, guid: 10c0f4c2f9fd70547ae126ee77bdf374, type: 2}
     ennemisPos:
     - {fileID: 1280675251001768182}
@@ -51594,8 +51594,8 @@ MonoBehaviour:
   - {x: -2.3200002, y: 1.2}
   - {x: -2.4800003, y: 1.2}
   - {x: -2.3200002, y: 1.3600001}
-  - {x: -2.48, y: 1.3600001}
-  - {x: -2.3200002, y: 1.5200001}
+  - {x: -2.32, y: 1.5200001}
+  - {x: -2.4800003, y: 1.3600001}
   - {x: 0.08, y: 0.08}
   openRoomIndexes: 
   end: {fileID: 9199570980675634797}

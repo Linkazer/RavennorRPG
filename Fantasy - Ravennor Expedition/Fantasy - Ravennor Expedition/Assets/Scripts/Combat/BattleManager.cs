@@ -1266,15 +1266,20 @@ public class BattleManager : MonoBehaviour
     }
 
 
-    public List<Node> CheckForOpportunityAttack(Node toCheck)
+    public List<Node> CheckForOpportunityAttack(Node toCheck, RuntimeBattleCharacter charaToCheck = null)
     {
+        if(charaToCheck == null)
+        {
+            charaToCheck = currentCharacterTurn;
+        }
+
         List<Node> nodeToCheck = Grid.instance.GetNeighbours(toCheck);
 
         List<Node> toReturn = new List<Node>();
 
         foreach (Node n in nodeToCheck)
         {
-            if (n.HasCharacterOn && n.chara.GetTeam() != currentCharacterTurn.GetTeam())
+            if (n.HasCharacterOn && n.chara.GetTeam() != charaToCheck.GetTeam() && n.chara.CanUseOpportunityAttack())
             {
                 toReturn.Add(n);
             }
@@ -1283,17 +1288,20 @@ public class BattleManager : MonoBehaviour
         return toReturn;
     }
 
-
-    private void CheckForOpportunityAttack(Vector2 nextPosition)
+    /// <summary>
+    /// Vérifie si on se prend une attaque d'opportunité en se déplacant vers la position entrée.
+    /// </summary>
+    /// <param name="nextPosition"></param>
+    /// <param name="movingChara"></param>
+    /// <returns>Liste des Nodes ayant droit à une attaque d'opportunité.</returns>
+    public List<Node> CheckForOpportunityAttack(Vector2 basePosition, Vector2 nextPosition, RuntimeBattleCharacter movingChara)
     {
-        if (!currentCharacterTurn.CheckForAffliction(Affliction.Evasion))
+        List<Node> toReturn = new List<Node>();
+        if (!movingChara.CheckForAffliction(Affliction.Evasion))
         {
-            List<Node> nodeToCheck = CheckForOpportunityAttack(currentCharacterTurn.currentNode);
-            foreach (Node n in nodeToCheck)
-            {
-                n.chara.AttackOfOpportunity(currentCharacterTurn);
-            }
+            toReturn = CheckForOpportunityAttack(Grid.instance.NodeFromWorldPoint(basePosition), movingChara);
         }
+        return toReturn;
     }
 
     public bool IsNodeVisible(Node startNode, Node targetNode)
@@ -1410,7 +1418,13 @@ public class BattleManager : MonoBehaviour
         {
             path = newPath;
             targetIndex = 0;
-            CheckForOpportunityAttack(path[0]);
+
+            List<Node> opportunityAttacker = CheckForOpportunityAttack(currentCharacterTurn.currentNode.worldPosition, path[0], currentCharacterTurn);
+            for (int i = 0; i < opportunityAttacker.Count; i++)
+            {
+                opportunityAttacker[i].chara.AttackOfOpportunity(currentCharacterTurn);
+            }
+
             currentCharacterTurn.SetAnimation("Moving");
             Grid.instance.ResetNodeFeedback();
             StopCoroutine(FollowPath());
@@ -1459,7 +1473,12 @@ public class BattleManager : MonoBehaviour
                     {
                         currentCharacterTurn.SetSpriteDirection((path[targetIndex].x < toMove.transform.position.x));
                         currentCharacterTurn.ModifyCurrentNode(Grid.instance.NodeFromWorldPoint(currentWaypoint));
-                        CheckForOpportunityAttack(path[targetIndex]);
+
+                        List<Node> opportunityAttacker = CheckForOpportunityAttack(currentCharacterTurn.currentNode.worldPosition, path[targetIndex], currentCharacterTurn);
+                        for (int i = 0; i < opportunityAttacker.Count; i++)
+                        {
+                            opportunityAttacker[i].chara.AttackOfOpportunity(currentCharacterTurn);
+                        }
                     }
 
                     currentWaypoint = path[targetIndex];
